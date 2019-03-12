@@ -3,7 +3,7 @@ SILENCE ?= @
 
 PROJECT_HOME_DIR ?= .
 
-PROJECT_NAME ?= ZombiSimulation
+PROJECT_NAME ?= Zombie-Simulation
 COMPONENT_NAME ?= $(PROJECT_NAME)
 
 TESTING_DIR ?= $(PROJECT_HOME_DIR)/Testing
@@ -66,5 +66,5 @@ upgrade:
 # This will clean up everything including CppUTest
 distclean: clean upgrade
 	make -C $(CPPUTEST_HOME) clean distclean
-	
+
 $(CPPUTEST_HOME)/lib/libCppUTestExt.a: $(CPPUTEST_HOME)/lib/libCppUTest.a
