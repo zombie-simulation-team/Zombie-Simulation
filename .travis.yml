@@ -1,0 +1,17 @@
+language: cpp
+
+os:
+ - osx
+ - linux
+
+dist:
+ - trusty
+
+cpp:
+ - "stable"
+
+compiler:
+ - gcc
+
+script:
+ - make -j8
