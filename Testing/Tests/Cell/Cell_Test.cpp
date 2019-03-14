@@ -31,6 +31,7 @@ TEST(CellTest, ShouldInitializeCell)
 	CHECK_EQUAL(actualX, cell->getX());
 	CHECK_EQUAL(actualY, cell->getY());
 	CHECK_EQUAL(actualColor, cell->getColor());
+	CHECK(cell->isValid() == true);
 }
 
 TEST(CellTest, ShouldSetCellXPosition)
@@ -58,4 +59,11 @@ TEST(CellTest, ShouldSetCellColor)
 	cell->setColor(Red);
 
 	CHECK_EQUAL(actualColor, cell->getColor());
+}
+
+TEST(CellTest, ShouldSetAnInvalidCell)
+{
+	cell->setValid(false);
+
+	CHECK(cell->isValid() == false);
 }

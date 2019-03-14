@@ -12,6 +12,7 @@ Cell::Cell()
 	xPos = 0;
 	yPos = 0;
 	color = Transparent;
+	valid = true;
 }
 
 Cell::~Cell()
@@ -47,4 +48,14 @@ void Cell::setY(int y)
 void Cell::setColor(CellColor_e color)
 {
 	this->color = color;
+}
+
+bool Cell::isValid()
+{
+	return valid;
+}
+
+void Cell::setValid(bool value)
+{
+	valid = value;
 }
