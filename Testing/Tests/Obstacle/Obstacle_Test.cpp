@@ -24,40 +24,40 @@ TEST_GROUP(ObstacleTest)
 
 TEST(ObstacleTest, ShouldInitializeAnObstacle)
 {
-	int actualDefence = 0;
+	int expectedDefence = 0;
 
-	int expectedDefence = obstacle->getDefence();
+	int actualDefence = obstacle->getDefence();
 
-	CHECK_EQUAL(actualDefence, expectedDefence);
+	CHECK_EQUAL(expectedDefence, actualDefence);
 }
 
 TEST(ObstacleTest, ShouldSetDefenceOfAnObstacle)
 {
-	int actualDefence = 60;
+	int expectedDefence = 60;
 
 	obstacle->setDefence(60);
-	int expectedDefence = obstacle->getDefence();
+	int actualDefence = obstacle->getDefence();
 
-	CHECK_EQUAL(actualDefence, expectedDefence);
+	CHECK_EQUAL(expectedDefence, actualDefence);
 }
 
 TEST(ObstacleTest, ShouldSetDefenceLessThanOrEqualToMaximum)
 {
-	int actualDefence = 100;
+	int expectedDefence = 100;
 
 	obstacle->setDefence(150);
-	int expectedDefence = obstacle->getDefence();
+	int actualDefence = obstacle->getDefence();
 
-	CHECK_EQUAL(actualDefence, expectedDefence);
+	CHECK_EQUAL(expectedDefence, actualDefence);
 }
 
 TEST(ObstacleTest, ShouldSetDefenceGreaterThanOrEqualToMinimum)
 {
-	int actualDefence = 0;
+	int expectedDefence = 0;
 
 	obstacle->setDefence(-100);
-	int expectedDefence = obstacle->getDefence();
+	int actualDefence = obstacle->getDefence();
 
-	CHECK_EQUAL(actualDefence, expectedDefence);
+	CHECK_EQUAL(expectedDefence, actualDefence);
 }
 
