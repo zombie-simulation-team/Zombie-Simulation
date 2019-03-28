@@ -39,12 +39,14 @@ SRC_DIRS += \
 	Source/Environment/ \
 	Source/Cell/ \
 	Source/Obstacle/ \
+	Source/Trap/ \
 
 TEST_SRC_DIRS += \
 	Testing/Tests/ \
 	Testing/Tests/Environment \
 	Testing/Tests/Cell \
 	Testing/Tests/Obstacle \
+	Testing/Tests/Trap \
 
 INCLUDE_DIRS += \
 	$(SRC_DIRS) \
