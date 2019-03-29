@@ -7,7 +7,7 @@
 
 #include "EmptyCell.h"
 
-EmptyCell::EmptyCell()
+EmptyCell::EmptyCell() : Cell()
 {
 
 }
