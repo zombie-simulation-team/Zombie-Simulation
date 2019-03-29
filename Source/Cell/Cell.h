@@ -40,7 +40,6 @@ public:
 	int getY();
 	bool isValid();
 	CellColor_e getColor();
-	bool isValid();
 	virtual void tick() = 0;
 };
 
