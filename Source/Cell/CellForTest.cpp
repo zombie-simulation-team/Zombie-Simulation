@@ -7,13 +7,31 @@
 
 #include "CellForTest.h"
 
-CellForTest::CellForTest() : Cell() {
-	// TODO Auto-generated constructor stub
+CellForTest::CellForTest() : Cell()
+{
 
 }
 
+CellForTest::CellForTest(int x, int y, CellColor_e c, bool valid)
+	: Cell(x, y, c, valid)
+{
+}
+
+CellForTest::CellForTest(int x, int y, CellColor_e c)
+	: Cell(x, y, c)
+{
+}
+
+CellForTest::CellForTest(int x, int y, bool valid)
+	: Cell(x, y, valid)
+{
+}
+
+CellForTest::CellForTest(int x, int y) : Cell(x, y)
+{
+}
+
 CellForTest::~CellForTest() {
-	// TODO Auto-generated destructor stub
 }
 
 void CellForTest::tick()

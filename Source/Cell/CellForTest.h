@@ -10,9 +10,14 @@
 
 #include "Cell.h"
 
-class CellForTest : public Cell {
+class CellForTest : public Cell
+{
 public:
 	CellForTest();
+	CellForTest(int, int, CellColor_e, bool);
+	CellForTest(int, int, CellColor_e);
+	CellForTest(int, int, bool);
+	CellForTest(int, int);
 	virtual ~CellForTest();
 	void tick();
 };
