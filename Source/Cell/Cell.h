@@ -23,10 +23,14 @@ private:
 	int xPos;
 	int yPos;
 	CellColor_e color;
-	bool valid;
+	bool is_valid;
 
 public:
 	Cell();
+	Cell(int, int, CellColor_e, bool);
+	Cell(int, int, CellColor_e);
+	Cell(int, int, bool);
+	Cell(int, int);
 	virtual ~Cell();
 	void setX(int);
 	void setY(int);
@@ -34,6 +38,7 @@ public:
 	void setValid(bool);
 	int getX();
 	int getY();
+	bool isValid();
 	CellColor_e getColor();
 	bool isValid();
 	virtual void tick() = 0;

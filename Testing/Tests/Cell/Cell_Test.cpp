@@ -11,59 +11,167 @@ TEST_GROUP(CellTest)
 {
 	CellForTest *cell;
 
+	//Initializes a Cell before every test.
 	void setup()
 	{
 		cell = new CellForTest();
 	}
 
+	//destroys the Cell after test ends.
 	void teardown()
 	{
 		delete cell;
 	}
 };
 
-TEST(CellTest, ShouldInitializeCell)
+TEST(CellTest, ShouldInitializeACell)
 {
-	int actualX = 0;
-	int actualY = 0;
-	int actualColor = Transparent;
+	int expectedX = 0;
+	int expectedY = 0;
+	int expectedColor = Transparent;
+	bool expectedIsValid = true;
 
-	CHECK_EQUAL(actualX, cell->getX());
-	CHECK_EQUAL(actualY, cell->getY());
-	CHECK_EQUAL(actualColor, cell->getColor());
-	CHECK(cell->isValid() == true);
+	int actualX = cell->getX();
+	int actualY = cell->getY();
+	int actualColor = cell->getColor();
+	bool actualIsValid = cell->isValid();
+
+	CHECK_EQUAL(expectedX, actualX);
+	CHECK_EQUAL(expectedY, actualY);
+	CHECK_EQUAL(expectedColor, actualColor);
+	CHECK_EQUAL(expectedIsValid, actualIsValid);
+}
+
+TEST(CellTest, ShouldInitializeCellWithPositionColorAndValidity)
+{
+	CellForTest *myCell = new CellForTest(8, 6, Black, true);
+
+	int expectedX = 8;
+	int expectedY = 6;
+	int expectedColor = Black;
+	int expectedIsValid = true;
+
+	int actualX = myCell->getX();
+	int actualY = myCell->getY();
+	int actualColor = myCell->getColor();
+	int actualIsValid = myCell->isValid();
+
+	CHECK_EQUAL(expectedX, actualX);
+	CHECK_EQUAL(expectedY, actualY);
+	CHECK_EQUAL(expectedColor, actualColor);
+	CHECK_EQUAL(expectedIsValid, actualIsValid);
+
+	delete myCell;
+}
+
+TEST(CellTest, ShouldInitializeCellWithPositionAndColor)
+{
+	CellForTest *myCell = new CellForTest(8, 6, Green);
+
+	int expectedX = 8;
+	int expectedY = 6;
+	int expectedColor = Green;
+	int expectedIsValid = true;
+
+	int actualX = myCell->getX();
+	int actualY = myCell->getY();
+	int actualColor = myCell->getColor();
+	int actualIsValid = myCell->isValid();
+
+	CHECK_EQUAL(expectedX, actualX);
+	CHECK_EQUAL(expectedY, actualY);
+	CHECK_EQUAL(expectedColor, actualColor);
+	CHECK_EQUAL(expectedIsValid, actualIsValid);
+
+	delete myCell;
+}
+
+TEST(CellTest, ShouldInitializeCellWithPositionAndValidity)
+{
+	CellForTest *myCell = new CellForTest(8, 6, false);
+
+	int expectedX = 8;
+	int expectedY = 6;
+	int expectedColor = Transparent;
+	int expectedIsValid = false;
+
+	int actualX = myCell->getX();
+	int actualY = myCell->getY();
+	int actualColor = myCell->getColor();
+	int actualIsValid = myCell->isValid();
+
+	CHECK_EQUAL(expectedX, actualX);
+	CHECK_EQUAL(expectedY, actualY);
+	CHECK_EQUAL(expectedColor, actualColor);
+	CHECK_EQUAL(expectedIsValid, actualIsValid);
+
+	delete myCell;
+}
+
+TEST(CellTest, ShouldInitializeCellOnlyWithPositionOnly)
+{
+	CellForTest *myCell = new CellForTest(8, 6);
+
+	int expectedX = 8;
+	int expectedY = 6;
+	int expectedColor = Transparent;
+	int expectedIsValid = true;
+
+	int actualX = myCell->getX();
+	int actualY = myCell->getY();
+	int actualColor = myCell->getColor();
+	int actualIsValid = myCell->isValid();
+
+	CHECK_EQUAL(expectedX, actualX);
+	CHECK_EQUAL(expectedY, actualY);
+	CHECK_EQUAL(expectedColor, actualColor);
+	CHECK_EQUAL(expectedIsValid, actualIsValid);
+
+	delete myCell;
 }
 
 TEST(CellTest, ShouldSetCellXPosition)
 {
-	int actualX = 20;
+	int expectedX = 20;
 
 	cell->setX(20);
 
-	CHECK_EQUAL(actualX, cell->getX());
+	int actualX = cell->getX();
+
+	CHECK_EQUAL(expectedX, actualX);
 }
 
 TEST(CellTest, ShouldSetCellYPosition)
 {
-	int actualY = 20;
+	int expectedY = 20;
 
 	cell->setY(20);
 
-	CHECK_EQUAL(actualY, cell->getY());
+	int actualY = cell->getY();
+
+	CHECK_EQUAL(expectedY, actualY);
 }
 
 TEST(CellTest, ShouldSetCellColor)
 {
-	int actualColor = Red;
+	int expectedColor = Red;
 
 	cell->setColor(Red);
 
-	CHECK_EQUAL(actualColor, cell->getColor());
+	int actualColor = cell->getColor();
+
+	CHECK_EQUAL(expectedColor, actualColor);
 }
 
 TEST(CellTest, ShouldSetAnInvalidCell)
 {
-	cell->setValid(false);
+	CellForTest *myCell = new CellForTest(4, 5, Red, false);
 
-	CHECK(cell->isValid() == false);
+	int expectedIsValid = false;
+
+	int actualIsValid = myCell->isValid();
+
+	CHECK_EQUAL(expectedIsValid, actualIsValid);
+
+	delete myCell;
 }

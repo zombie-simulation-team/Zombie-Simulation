@@ -12,12 +12,43 @@ Cell::Cell()
 	xPos = 0;
 	yPos = 0;
 	color = Transparent;
-	valid = true;
+	is_valid = true;
+}
+
+Cell::Cell(int x, int y, CellColor_e c, bool valid)
+{
+	xPos = x;
+	yPos = y;
+	color = c;
+	is_valid = valid;
+}
+
+Cell::Cell(int x, int y, CellColor_e c)
+{
+	xPos = x;
+	yPos = y;
+	color = c;
+	is_valid = true;
+}
+
+Cell::Cell(int x, int y, bool valid)
+{
+	xPos = x;
+	yPos = y;
+	is_valid = valid;
+	color = Transparent;
+}
+
+Cell::Cell(int x, int y)
+{
+	xPos = x;
+	yPos = y;
+	color = Transparent;
+	is_valid = true;
 }
 
 Cell::~Cell()
 {
-
 }
 
 int Cell::getX()
@@ -52,10 +83,5 @@ void Cell::setColor(CellColor_e color)
 
 bool Cell::isValid()
 {
-	return valid;
-}
-
-void Cell::setValid(bool value)
-{
-	valid = value;
+	return is_valid;
 }
