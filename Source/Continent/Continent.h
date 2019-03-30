@@ -30,6 +30,7 @@ public:
 	Cell*** getShape();
 	int getSize();
 	string getName();
+	void setName(string);
 	void tick();
 	virtual ~Continent();
 };

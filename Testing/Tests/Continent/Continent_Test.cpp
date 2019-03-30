@@ -25,13 +25,15 @@ TEST_GROUP(ContinentTest)
 	void CheckShape(Cell ***actualShape, int size)
 	{
 		bool expectedIsValid = true;
+		int expectedX;
+		int expectedY;
 
 		for(int i = 0; i < continent->getSize(); i++) {
 			for(int j = 0; j < continent->getSize(); j++) {
 				EmptyCell *emptyCell = dynamic_cast<EmptyCell*>(actualShape[i][j]);
 
-				int expectedX = i;
-				int expectedY = j;
+				expectedX = i;
+				expectedY = j;
 
 				int actualX = emptyCell->getX();
 				int actualY = emptyCell->getY();
@@ -72,3 +74,14 @@ TEST(ContinentTest, ShouldInitializeAContinentWithNameAndSize)
 
 	delete theContinent;
 }
+
+TEST(ContinentTest, ShouldSetContinentNameToEurope)
+{
+	continent->setName("Europe");
+
+	string expectedName = "Europe";
+	string actualName = continent->getName();
+
+	CHECK_EQUAL(expectedName, actualName);
+}
+

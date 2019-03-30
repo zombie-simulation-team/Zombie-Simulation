@@ -65,3 +65,8 @@ Cell*** Continent::getShape()
 	return shape;
 }
 
+void Continent::setName(string name)
+{
+	this->name = name;
+}
+
