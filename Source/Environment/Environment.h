@@ -18,6 +18,7 @@ private:
 
 public:
 	Environment();
+	Environment(int, int, int, int);
 	virtual ~Environment();
 	void setZombiCount(int);
 	void setHumanCount(int);

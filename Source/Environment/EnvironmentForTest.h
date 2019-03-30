@@ -14,6 +14,7 @@ class EnvironmentForTest: public Environment
 {
 	public:
 		EnvironmentForTest();
+		EnvironmentForTest(int, int, int, int);
 		virtual ~EnvironmentForTest();
 		void tick();
 };

@@ -15,6 +15,18 @@ Environment::Environment()
 	trapCount = 0;
 }
 
+Environment::Environment(
+		int hCount,			//human count
+		int zCount,			//zombie count
+		int tCount,			//trap count
+		int rCount)			//resource count
+{
+	humanCount = hCount;
+	zombieCount = zCount;
+	resourceCount = rCount;
+	trapCount = tCount;
+}
+
 Environment::~Environment() {}
 
 void Environment::setHumanCount(int count)
