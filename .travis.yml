@@ -1,7 +1,7 @@
 language: cpp
 
 os:
- - osx
+ - osx_iamge: xcode10.2
  - linux
 
 dist:
