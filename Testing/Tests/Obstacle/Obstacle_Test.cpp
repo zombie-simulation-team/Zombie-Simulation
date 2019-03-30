@@ -24,7 +24,7 @@ TEST_GROUP(ObstacleTest)
 
 TEST(ObstacleTest, ShouldInitializeAnObstacle)
 {
-	int expectedDefence = 0;
+	int expectedDefence = 100;
 	int expectedX = 0;
 	int expectedY = 0;
 
