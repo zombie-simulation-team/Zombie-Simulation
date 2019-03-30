@@ -38,4 +38,3 @@ void CellForTest::tick()
 {
 	//do-nothing
 }
-

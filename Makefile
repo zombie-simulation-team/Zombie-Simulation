@@ -41,6 +41,7 @@ SRC_DIRS += \
 	Source/Obstacle/ \
 	Source/Resource/ \
 	Source/Trap/ \
+  	Source/Actors/ \
 
 TEST_SRC_DIRS += \
 	Testing/Tests/ \
