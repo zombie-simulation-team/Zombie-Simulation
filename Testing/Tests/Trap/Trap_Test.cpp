@@ -24,7 +24,7 @@ TEST_GROUP(TrapTest)
 
 TEST(TrapTest, ShouldInitializeATrap)
 {
-	int actualDefence = 0;
+	int actualDefence = 100;
 
 	int expectedDefence = trap->getDefence();
 
