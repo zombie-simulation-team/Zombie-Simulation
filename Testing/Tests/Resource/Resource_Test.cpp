@@ -13,7 +13,7 @@ TEST_GROUP(ResourceTest)
 
 	void setup()
 	{
-		resource = new Resource();
+		resource = new Resource(5, 5);
 	}
 
 	void teardown()
@@ -22,13 +22,16 @@ TEST_GROUP(ResourceTest)
 	}
 };
 
-TEST(ResourceTest, ShouldInitializeAResource)
+TEST(ResourceTest, ShouldInitializeADefaultResource)
 {
-	int expectedFood = 0;
+	int expectedFood = 50;
+	CellColor_e expectedColor = White;
 
 	int actualFood = resource->getFood();
+	CellColor_e actualColor = resource->getColor();
 
 	CHECK_EQUAL(expectedFood, actualFood);
+	CHECK_EQUAL(expectedColor, actualColor);
 }
 
 TEST(ResourceTest, ShouldSetFoodValue)
@@ -62,4 +65,26 @@ TEST(ResourceTest, ShouldSetFoodEqualToMinimumFood)
 	int actualFood = resource->getFood();
 
 	CHECK_EQUAL(expectedFood, actualFood);
+}
+
+TEST(ResourceTest, ShouldInitializeARessurceWithPositionAndFood)
+{
+	Resource *theResource = new Resource(4, 9, 50);
+
+	int expectedFood = 50;
+	int expectedX = 4;
+	int expectedY = 9;
+	CellColor_e expectedColor = White;
+
+	int actualFood = theResource->getFood();
+	int actualX = theResource->getX();
+	int actualY = theResource->getY();
+	int actualColor = theResource->getColor();
+
+	CHECK_EQUAL(expectedFood, actualFood);
+	CHECK_EQUAL(expectedX, actualX);
+	CHECK_EQUAL(expectedY, actualY);
+	CHECK_EQUAL(expectedColor, actualColor);
+
+	delete theResource;
 }
