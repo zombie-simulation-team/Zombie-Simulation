@@ -14,7 +14,9 @@ typedef enum CellColor_e
 	Blue,
 	Red,
 	Green,
-	Black
+	Black,
+	White,
+	Grey
 } CellColor_e;
 
 class Cell

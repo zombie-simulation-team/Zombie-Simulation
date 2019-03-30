@@ -9,7 +9,19 @@
 
 Obstacle::Obstacle()
 {
-	defence = 0;
+	defence = defaultDefece;
+}
+
+Obstacle::Obstacle(int x, int y, int defence, CellColor_e color)
+	: Cell(x, y, color)
+{
+	this->defence = defence;
+}
+
+Obstacle::Obstacle(int x, int y, CellColor_e color)
+	: Cell(x, y, color)
+{
+	this->defence = defaultDefece;
 }
 
 Obstacle::~Obstacle()
@@ -36,10 +48,5 @@ void Obstacle::setDefence(int amount)
 int Obstacle::getDefence()
 {
 	return defence;
-}
-
-void Obstacle::tick()
-{
-	//do-nothing
 }
 

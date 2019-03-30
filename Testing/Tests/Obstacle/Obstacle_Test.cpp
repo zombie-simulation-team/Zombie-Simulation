@@ -5,15 +5,15 @@
 
 #include "CppUTestExt/MockSupport.h"
 #include "CppUTest/TestHarness.h"
-#include "Obstacle.h"
+#include "ObstacleForTest.h"
 
 TEST_GROUP(ObstacleTest)
 {
-	Obstacle *obstacle;
+	ObstacleForTest *obstacle;
 
 	void setup()
 	{
-		obstacle = new Obstacle();
+		obstacle = new ObstacleForTest();
 	}
 
 	void teardown()
@@ -24,11 +24,17 @@ TEST_GROUP(ObstacleTest)
 
 TEST(ObstacleTest, ShouldInitializeAnObstacle)
 {
-	int expectedDefence = 0;
+	int expectedDefence = 100;
+	int expectedX = 0;
+	int expectedY = 0;
 
 	int actualDefence = obstacle->getDefence();
+	int actualX = obstacle->getX();
+	int actualY = obstacle->getY();
 
 	CHECK_EQUAL(expectedDefence, actualDefence);
+	CHECK_EQUAL(expectedX, actualX);
+	CHECK_EQUAL(expectedY, actualY);
 }
 
 TEST(ObstacleTest, ShouldSetDefenceOfAnObstacle)
@@ -59,5 +65,27 @@ TEST(ObstacleTest, ShouldSetDefenceGreaterThanOrEqualToMinimum)
 	int actualDefence = obstacle->getDefence();
 
 	CHECK_EQUAL(expectedDefence, actualDefence);
+}
+
+TEST(ObstacleTest, ShouldInitializeAnObstacleWithPositionAndDefence)
+{
+	ObstacleForTest *theObstacle = new ObstacleForTest(5, 10, 100, White);
+
+	int expectedDefence = 100;
+	int expectedX = 5;
+	int expectedY = 10;
+	CellColor_e expectedColor = White;
+
+	int actualDefence = theObstacle->getDefence();
+	int actualX = theObstacle->getX();
+	int actualY = theObstacle->getY();
+	int actualColor = theObstacle->getColor();
+
+	CHECK_EQUAL(expectedDefence, actualDefence);
+	CHECK_EQUAL(expectedX, actualX);
+	CHECK_EQUAL(expectedY, actualY);
+	CHECK_EQUAL(expectedColor, actualColor);
+
+	delete theObstacle;
 }
 

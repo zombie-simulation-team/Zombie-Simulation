@@ -13,16 +13,19 @@
 enum
 {
 	minFood = 0,
-	maxFood = 100
+	maxFood = 100,
+	defaultFood = 50
 };
 
 class Resource: public Obstacle
 {
 private:
 	int food;
+	static const CellColor_e color = White;
 
 public:
-	Resource();
+	Resource(int, int);
+	Resource(int, int, int);
 	void tick();
 	int getFood();
 	void setFood(int);

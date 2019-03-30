@@ -13,7 +13,8 @@
 enum
 {
 	maxDefence = 100,
-	minDefence = 0
+	minDefence = 0,
+	defaultDefece = 100
 };
 
 class Obstacle: public Cell
@@ -23,8 +24,10 @@ private:
 
 public:
 	Obstacle();
+	Obstacle(int, int, int , CellColor_e);
+	Obstacle(int, int, CellColor_e);
 	virtual ~Obstacle();
-	void tick();
+	virtual void tick() = 0;
 	void setDefence(int);
 	int getDefence(void);
 };

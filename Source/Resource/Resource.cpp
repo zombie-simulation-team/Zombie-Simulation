@@ -7,10 +7,16 @@
 
 #include "Resource.h"
 
-Resource::Resource()
+Resource::Resource(int x, int y)
+	: Obstacle(x, y, color)
 {
-	food = 0;
+	food = defaultFood;
+}
 
+Resource::Resource(int x, int y, int food)
+	: Obstacle(x, y, color)
+{
+	this->food = food;
 }
 
 Resource::~Resource()

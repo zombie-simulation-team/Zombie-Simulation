@@ -13,7 +13,7 @@ TEST_GROUP(TrapTest)
 
 	void setup()
 	{
-		trap = new Trap();
+		trap = new Trap(10, 10);
 	}
 
 	void teardown()
@@ -24,42 +24,67 @@ TEST_GROUP(TrapTest)
 
 TEST(TrapTest, ShouldInitializeATrap)
 {
-	int actualDefence = 0;
+	int expectedAttack = 100;
+	int expectedDefence = 100;
+	CellColor_e expectedColor = Black;
 
-	int expectedDefence = trap->getDefence();
+	int actualAttack = trap->getAttack();
+	int actualDefence = trap->getDefence();
+	CellColor_e actualColor = trap->getColor();
 
-	CHECK_EQUAL(actualDefence, expectedDefence);
+	CHECK_EQUAL(expectedAttack, actualAttack);
+	CHECK_EQUAL(expectedDefence, actualDefence);
+	CHECK_EQUAL(expectedColor, actualColor);
 }
 
 TEST(TrapTest, ShouldSetTheAttack)
 {
-	int actualAttack = 45;
+	int expectedAttack = 45;
 
 	trap->setAttack(45);
 
-	int expectedAttack = trap->getAttack();
+	int actualAttack = trap->getAttack();
 
-	CHECK_EQUAL(actualAttack, expectedAttack);
+	CHECK_EQUAL(expectedAttack, actualAttack);
 }
 
 TEST(TrapTest, ShouldSetAttackEqualToMaximum)
 {
-	int actualAttack = 100;
+	int expectedAttack = 100;
 
 	trap->setAttack(200);
 
-	int expectedAttack = trap->getAttack();
+	int actualAttack = trap->getAttack();
 
-	CHECK_EQUAL(actualAttack, expectedAttack);
+	CHECK_EQUAL(expectedAttack, actualAttack);
 }
 
 TEST(TrapTest, ShouldSetAttackEqualToMinimum)
 {
-	int actualAttack = 0;
+	int expectedAttack = 0;
 
 	trap->setAttack(-200);
 
-	int expectedAttack = trap->getAttack();
+	int actualAttack = trap->getAttack();
 
-	CHECK_EQUAL(actualAttack, expectedAttack);
+	CHECK_EQUAL(expectedAttack, actualAttack);
+}
+
+TEST(TrapTest, ShouldInitializeATrapWithPositionAndAttackAmmount)
+{
+	Trap *testTrap = new Trap(3, 7, 60);
+
+	int expectedAttack = 60;
+	int expectedDefence = 100;
+	CellColor_e expectedColor = Black;
+
+	int actualAttack = testTrap->getAttack();
+	int actualDefence = testTrap->getDefence();
+	CellColor_e actualColor = testTrap->getColor();
+
+	CHECK_EQUAL(expectedAttack, actualAttack);
+	CHECK_EQUAL(expectedDefence, actualDefence);
+	CHECK_EQUAL(expectedColor, actualColor);
+
+	delete testTrap;
 }
