@@ -1,11 +1,12 @@
 language: cpp
+dist: trusty
 
-osx_iamge: xcode10.2
-os:
- - linux
-
-dist:
- - trusty
+matrix:
+  include:
+    - os: osx
+      osx_iamge: xcode10.2
+      compiler: clang
+    - os: linux
 
 cpp:
  - "stable"
