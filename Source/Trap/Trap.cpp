@@ -7,13 +7,14 @@
 
 #include "Trap.h"
 
-Trap::Trap()
+Trap::Trap(int x, int y)
+	: Obstacle(x, y, color)
 {
-	attack = 0;
-
+	attack = defaultAttack;
 }
 
-Trap::Trap(int amount)
+Trap::Trap(int x, int y, int amount)
+	: Obstacle(x, y, color)
 {
 	attack = amount;
 }
