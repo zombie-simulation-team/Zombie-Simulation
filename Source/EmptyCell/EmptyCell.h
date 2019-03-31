@@ -14,8 +14,8 @@ class EmptyCell: public Cell
 {
 public:
 	EmptyCell();
-	EmptyCell(int, int, CellColor_e, bool);
-	EmptyCell(int, int, bool);
+	EmptyCell(int x, int y, CellColor_e color, bool valid);
+	EmptyCell(int x, int y, bool valid);
 	void tick();
 	virtual ~EmptyCell();
 };
