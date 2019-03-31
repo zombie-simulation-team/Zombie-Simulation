@@ -25,15 +25,15 @@ TEST_GROUP(TrapTest)
 TEST(TrapTest, ShouldInitializeATrap)
 {
 	int expectedAttack = 100;
-	int expectedDefence = 100;
+	int expectedDefense = 100;
 	CellColor_e expectedColor = Black;
 
 	int actualAttack = trap->getAttack();
-	int actualDefence = trap->getDefence();
+	int actualDefense = trap->getDefense();
 	CellColor_e actualColor = trap->getColor();
 
 	CHECK_EQUAL(expectedAttack, actualAttack);
-	CHECK_EQUAL(expectedDefence, actualDefence);
+	CHECK_EQUAL(expectedDefense, actualDefense);
 	CHECK_EQUAL(expectedColor, actualColor);
 }
 
@@ -75,15 +75,15 @@ TEST(TrapTest, ShouldInitializeATrapWithPositionAndAttackAmmount)
 	Trap *testTrap = new Trap(3, 7, 60);
 
 	int expectedAttack = 60;
-	int expectedDefence = 100;
+	int expectedDefense = 100;
 	CellColor_e expectedColor = Black;
 
 	int actualAttack = testTrap->getAttack();
-	int actualDefence = testTrap->getDefence();
+	int actualDefense = testTrap->getDefense();
 	CellColor_e actualColor = testTrap->getColor();
 
 	CHECK_EQUAL(expectedAttack, actualAttack);
-	CHECK_EQUAL(expectedDefence, actualDefence);
+	CHECK_EQUAL(expectedDefense, actualDefense);
 	CHECK_EQUAL(expectedColor, actualColor);
 
 	delete testTrap;
