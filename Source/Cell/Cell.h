@@ -29,15 +29,14 @@ private:
 
 public:
 	Cell();
-	Cell(int, int, CellColor_e, bool);
-	Cell(int, int, CellColor_e);
-	Cell(int, int, bool);
-	Cell(int, int);
+	Cell(int x, int y, CellColor_e color, bool valid);
+	Cell(int x, int y, CellColor_e color);
+	Cell(int x, int y, bool valid);
+	Cell(int x, int y);
 	virtual ~Cell();
-	void setX(int);
-	void setY(int);
-	void setColor(CellColor_e);
-	void setValid(bool);
+	void setX(int x);
+	void setY(int y);
+	void setColor(CellColor_e color);
 	int getX();
 	int getY();
 	bool isValid();

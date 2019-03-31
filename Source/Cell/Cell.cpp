@@ -15,19 +15,19 @@ Cell::Cell()
 	is_valid = true;
 }
 
-Cell::Cell(int x, int y, CellColor_e c, bool valid)
+Cell::Cell(int x, int y, CellColor_e color, bool valid)
 {
 	xPos = x;
 	yPos = y;
-	color = c;
+	this->color = color;
 	is_valid = valid;
 }
 
-Cell::Cell(int x, int y, CellColor_e c)
+Cell::Cell(int x, int y, CellColor_e color)
 {
 	xPos = x;
 	yPos = y;
-	color = c;
+	this->color = color;
 	is_valid = true;
 }
 
