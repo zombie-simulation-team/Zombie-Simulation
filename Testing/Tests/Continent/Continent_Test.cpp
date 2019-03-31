@@ -75,12 +75,3 @@ TEST(ContinentTest, ShouldSetContinentNameToEurope)
 
 	CHECK_EQUAL(expectedName, actualName);
 }
-
-TEST(ContinentTest, ShouldInitializeAContinentWithObstacleAndActors)
-{
-	Continent *testContinent = new Continent(10, "Asia", 1, 1, 2, 2);
-
-	delete testContinent;
-}
-
-
