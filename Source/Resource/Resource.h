@@ -24,11 +24,11 @@ private:
 	static const CellColor_e color = White;
 
 public:
-	Resource(int, int);
-	Resource(int, int, int);
+	Resource(int x, int y);
+	Resource(int x, int y, int food);
 	void tick();
 	int getFood();
-	void setFood(int);
+	void setFood(int amount);
 	virtual ~Resource();
 };
 

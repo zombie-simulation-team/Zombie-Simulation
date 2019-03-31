@@ -23,8 +23,8 @@ private:
 
 public:
 	Obstacle();
-	Obstacle(int, int, int , CellColor_e);
-	Obstacle(int, int, CellColor_e);
+	Obstacle(int x, int y, int defense, CellColor_e color);
+	Obstacle(int x, int y, CellColor_e color);
 	virtual ~Obstacle();
 	virtual void tick() = 0;
 	void setDefense(int);
