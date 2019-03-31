@@ -41,7 +41,8 @@ SRC_DIRS += \
 	Source/Obstacle/ \
 	Source/Resource/ \
 	Source/Trap/ \
-  	Source/Actors/ \
+	Source/EmptyCell/ \
+	Source/Actors/ \
 
 TEST_SRC_DIRS += \
 	Testing/Tests/ \
@@ -50,6 +51,7 @@ TEST_SRC_DIRS += \
 	Testing/Tests/Obstacle \
 	Testing/Tests/Resource \
 	Testing/Tests/Trap \
+	Testing/Tests/EmptyCell \
 
 INCLUDE_DIRS += \
 	$(SRC_DIRS) \
