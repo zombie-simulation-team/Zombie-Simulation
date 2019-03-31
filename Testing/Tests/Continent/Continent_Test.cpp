@@ -8,13 +8,18 @@
 #include "Continent.h"
 #include <iostream>
 
+enum
+{
+	ContinentSize = 10
+};
+
 TEST_GROUP(ContinentTest)
 {
 	Continent *continent;
 
 	void setup()
 	{
-		continent = new Continent();
+		continent = new Continent(ContinentSize, "America");
 	}
 
 	void teardown()
@@ -28,8 +33,8 @@ TEST_GROUP(ContinentTest)
 		int expectedX;
 		int expectedY;
 
-		for(int i = 0; i < continent->getSize(); i++) {
-			for(int j = 0; j < continent->getSize(); j++) {
+		for(int i = 0; i < ContinentSize; i++) {
+			for(int j = 0; j < ContinentSize; j++) {
 				EmptyCell *emptyCell = dynamic_cast<EmptyCell*>(actualShape[i][j]);
 
 				expectedX = i;
@@ -47,32 +52,18 @@ TEST_GROUP(ContinentTest)
 	}
 };
 
-TEST(ContinentTest, ShouldInitializeADefaultContinent)
+TEST(ContinentTest, ShouldInitializeAContinentWithEmptyCells)
 {
-	int expectedSize = 10;
-	int actualSize = continent->getSize();
-
-	CHECK_EQUAL(expectedSize, actualSize);
-
-	Cell ***actualShape = continent->getShape();
-
-	CheckShape(actualShape, actualSize);
-}
-
-TEST(ContinentTest, ShouldInitializeAContinentWithNameAndSize)
-{
-	Continent *theContinent = new Continent(10, "America");
-
-	int expectedSize = 10;
+	int expectedSize = ContinentSize;
 	string expectedName = "America";
 
 	int actualSize = continent->getSize();
-	string actualName = theContinent->getName();
+	string actualName = continent->getName();
+
+	Cell ***actualShape = continent->getShape();
 
 	CHECK_EQUAL(expectedSize, actualSize);
-	CHECK_EQUAL(expectedName, actualName);
-
-	delete theContinent;
+	CheckShape(actualShape, actualSize);
 }
 
 TEST(ContinentTest, ShouldSetContinentNameToEurope)
@@ -84,4 +75,12 @@ TEST(ContinentTest, ShouldSetContinentNameToEurope)
 
 	CHECK_EQUAL(expectedName, actualName);
 }
+
+TEST(ContinentTest, ShouldInitializeAContinentWithObstacleAndActors)
+{
+	Continent *testContinent = new Continent(10, "Asia", 1, 1, 2, 2);
+
+	delete testContinent;
+}
+
 

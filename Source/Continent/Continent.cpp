@@ -6,19 +6,26 @@
  */
 
 #include "Continent.h"
-#include<stdio.h>
-
-Continent::Continent()
-{
-	size = 10;
-	initializeShape(size);
-}
 
 Continent::Continent(int size, string name)
 {
 	this->size = size;
-	initializeShape(size);
 	this->name = name;
+	initializeShape();
+}
+
+Continent::Continent(
+		int size,
+		string name,
+		int hCount,			//human count
+		int zCount,			//zombie count
+		int tCount,			//trap count
+		int rCount) 		//resource count
+	: Environment(hCount, zCount, tCount, rCount)
+{
+	this->size = size;
+	this->name = name;
+	initializeShape();
 }
 
 Continent::~Continent()
@@ -37,7 +44,7 @@ void Continent::tick()
 
 }
 
-void Continent::initializeShape(int size)
+void Continent::initializeShape()
 {
 	shape = new Cell**[size];
 

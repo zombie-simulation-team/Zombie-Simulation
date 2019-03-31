@@ -22,11 +22,11 @@ private:
 	int size;
 	Cell ***shape;
 	string name;
-	void initializeShape(int);
+	void initializeShape();
 
 public:
-	Continent();
 	Continent(int size, string name);
+	Continent(int, string, int, int, int, int);
 	Cell*** getShape();
 	int getSize();
 	string getName();
