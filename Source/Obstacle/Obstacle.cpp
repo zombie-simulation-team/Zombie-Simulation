@@ -9,7 +9,19 @@
 
 Obstacle::Obstacle()
 {
-	defence = 0;
+	defense = maxDefense;
+}
+
+Obstacle::Obstacle(int x, int y, int defense, CellColor_e color)
+	: Cell(x, y, color)
+{
+	this->defense = defense;
+}
+
+Obstacle::Obstacle(int x, int y, CellColor_e color)
+	: Cell(x, y, color)
+{
+	this->defense = maxDefense;
 }
 
 Obstacle::~Obstacle()
@@ -17,29 +29,24 @@ Obstacle::~Obstacle()
 
 }
 
-void Obstacle::setDefence(int amount)
+void Obstacle::setDefense(int amount)
 {
-	if(amount >= minDefence && amount <= maxDefence)
+	if(amount >= minDefense && amount <= maxDefense)
 	{
-		defence = amount;
+		defense = amount;
 	}
-	else if(amount > maxDefence)
+	else if(amount > maxDefense)
 	{
-		defence = maxDefence;
+		defense = maxDefense;
 	}
-	else if(amount < minDefence)
+	else if(amount < minDefense)
 	{
-		defence = minDefence;
+		defense = minDefense;
 	}
 }
 
-int Obstacle::getDefence()
+int Obstacle::getDefense()
 {
-	return defence;
-}
-
-void Obstacle::tick()
-{
-	//do-nothing
+	return defense;
 }
 
