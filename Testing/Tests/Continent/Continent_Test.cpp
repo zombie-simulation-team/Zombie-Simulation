@@ -6,7 +6,6 @@
 #include "CppUTestExt/MockSupport.h"
 #include "CppUTest/TestHarness.h"
 #include "Continent.h"
-#include <iostream>
 
 enum
 {
@@ -19,7 +18,7 @@ TEST_GROUP(ContinentTest)
 
 	void setup()
 	{
-		continent = new Continent(ContinentSize, "America");
+		continent = new Continent(ContinentSize, NorthAmerica, 3, 2, 4, 5);
 	}
 
 	void teardown()
@@ -55,23 +54,24 @@ TEST_GROUP(ContinentTest)
 TEST(ContinentTest, ShouldInitializeAContinentWithEmptyCells)
 {
 	int expectedSize = ContinentSize;
-	string expectedName = "America";
+	std::string expectedName = "North America";
 
 	int actualSize = continent->getSize();
-	string actualName = continent->getName();
+	std::string actualName = continent->getName();
 
 	Cell ***actualShape = continent->getShape();
 
 	CHECK_EQUAL(expectedSize, actualSize);
+	CHECK_EQUAL(expectedName, actualName);
 	CheckShape(actualShape, actualSize);
 }
 
 TEST(ContinentTest, ShouldSetContinentNameToEurope)
 {
-	continent->setName("Europe");
+	continent->setName(Europe);
 
-	string expectedName = "Europe";
-	string actualName = continent->getName();
+	std::string expectedName = "Europe";
+	std::string actualName = continent->getName();
 
 	CHECK_EQUAL(expectedName, actualName);
 }

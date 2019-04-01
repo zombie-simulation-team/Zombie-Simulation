@@ -7,21 +7,18 @@
 
 #include "Continent.h"
 
-Continent::Continent(int size, string name)
-{
-	this->size = size;
-	this->name = name;
-	initializeShape();
-}
-
 Continent::Continent(
 		int size,
-		string name,
-		int hCount,			//human count
-		int zCount,			//zombie count
-		int tCount,			//trap count
-		int rCount) 		//resource count
-	: Environment(hCount, zCount, tCount, rCount)
+		Continents_e name,
+		int humanCount,
+		int zombieCount,
+		int trapCount,
+		int resourceCount)
+	: Environment(
+			humanCount,
+			zombieCount,
+			trapCount,
+			resourceCount)
 {
 	this->size = size;
 	this->name = name;
@@ -62,9 +59,26 @@ int Continent::getSize()
 	return size;
 }
 
-string Continent::getName()
+std::string Continent::getName()
 {
-	return name;
+	switch(name)
+	{
+		case Africa:
+			return "Africa";
+		case Antartica:
+			return "Antartica";
+		case Asia:
+			return "Asia";
+		case Australia:
+			return "Australia";
+		case Europe:
+			return "Europe";
+		case NorthAmerica:
+			return "North America";
+		case SouthAmerica:
+			return "South America";
+	}
+	return "";
 }
 
 Cell*** Continent::getShape()
@@ -72,7 +86,7 @@ Cell*** Continent::getShape()
 	return shape;
 }
 
-void Continent::setName(string name)
+void Continent::setName(Continents_e name)
 {
 	this->name = name;
 }

@@ -14,23 +14,26 @@
 #include "Cell.h"
 #include "EmptyCell.h"
 
-using namespace std;
-
 class Continent: public Environment
 {
 private:
 	int size;
 	Cell ***shape;
-	string name;
+	Continents_e name;
 	void initializeShape();
 
 public:
-	Continent(int size, string name);
-	Continent(int, string, int, int, int, int);
+	Continent(
+			int size,
+			Continents_e name,
+			int humanCount,
+			int zombieCount,
+			int trapCount,
+			int resourceCount);
 	Cell*** getShape();
 	int getSize();
-	string getName();
-	void setName(string);
+	std::string getName();
+	void setName(Continents_e name);
 	void tick();
 	virtual ~Continent();
 };

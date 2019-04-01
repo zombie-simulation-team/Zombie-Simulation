@@ -8,11 +8,6 @@
 #include "EnvironmentForTest.h"
 #include <stdio.h>
 
-EnvironmentForTest::EnvironmentForTest()
-	: Environment()
-{
-}
-
 EnvironmentForTest::EnvironmentForTest(
 		int hCount,			//human count
 		int zCount,			//zombie count

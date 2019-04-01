@@ -7,24 +7,16 @@
 
 #include "Environment.h"
 
-Environment::Environment()
-{
-	humanCount = 0;
-	zombieCount = 0;
-	resourceCount = 0;
-	trapCount = 0;
-}
-
 Environment::Environment(
-		int hCount,			//human count
-		int zCount,			//zombie count
-		int tCount,			//trap count
-		int rCount)			//resource count
+		int humanCount,
+		int zombieCount,
+		int trapCount,
+		int resourceCount)
 {
-	humanCount = hCount;
-	zombieCount = zCount;
-	resourceCount = rCount;
-	trapCount = tCount;
+	this->humanCount = humanCount;
+	this->zombieCount = zombieCount;
+	this->trapCount = trapCount;
+	this->resourceCount = resourceCount;
 }
 
 Environment::~Environment() {}
@@ -34,7 +26,7 @@ void Environment::setHumanCount(int count)
 	humanCount = count;
 }
 
-void Environment::setZombiCount(int count)
+void Environment::setZombieCount(int count)
 {
 	zombieCount = count;
 }
@@ -54,7 +46,7 @@ int Environment::getHumanCount()
 	return humanCount;
 }
 
-int Environment::getZombiCount()
+int Environment::getZombieCount()
 {
 	return zombieCount;
 }
