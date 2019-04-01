@@ -42,6 +42,7 @@ SRC_DIRS += \
 	Source/Resource/ \
 	Source/Trap/ \
 	Source/EmptyCell/ \
+	Source/Continent/ \
 	Source/Actor/ \
 	Source/Zombie/ \
 
@@ -53,6 +54,7 @@ TEST_SRC_DIRS += \
 	Testing/Tests/Resource \
 	Testing/Tests/Trap \
 	Testing/Tests/EmptyCell \
+	Testing/Tests/Continent \
 	Testing/Tests/Actor \
 	Testing/Tests/Zombie \
 
