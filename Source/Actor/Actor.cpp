@@ -39,13 +39,13 @@ void Actor::changeDefense(int value)
 {
 	defense += value;                 // increment or decrement defense
 
-	if(defense > maxDefense)
+	if(defense > actorMaxDefense)
 	{
-		defense = maxDefense;
+		defense = actorMaxDefense;
 	}
-	else if(defense < minDefense)
+	else if(defense < actorMinDefense)
 	{
-		defense = minDefense;
+		defense = actorMinDefense;
 	}
 }
 
@@ -53,12 +53,12 @@ void Actor::changeHealth(int value)
 {
 	health += value;                 // increment or decrement health
 
-	if( health > maxHealth)
+	if( health > actorMaxHealth)
 	{
-		health = maxHealth;
+		health = actorMaxHealth;
 	}
-	else if(health < minHealth)
+	else if(health < actorMinHealth)
 	{
-		health = minHealth;
+		health = actorMinHealth;
 	}
 }

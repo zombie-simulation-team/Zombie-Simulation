@@ -43,6 +43,7 @@ SRC_DIRS += \
 	Source/Trap/ \
 	Source/EmptyCell/ \
 	Source/Actor/ \
+	Source/Human/ \
 
 TEST_SRC_DIRS += \
 	Testing/Tests/ \
