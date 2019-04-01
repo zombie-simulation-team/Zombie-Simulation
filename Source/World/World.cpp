@@ -100,3 +100,11 @@ World::RandomContinentOrder(){
     allContinentArr[randElm2] = temp;
    }
 }
+
+Continent::~Continent()
+{
+	for(int i = 0; i < numOfContinents; i++) {
+		delete[] continents[i];
+	}
+	delete[] continents;
+}

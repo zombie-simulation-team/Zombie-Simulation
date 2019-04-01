@@ -29,7 +29,7 @@ public:
     void setDays();
     void Draw();
     void tick();
-
+    virtual ~World();
 };
 
 
