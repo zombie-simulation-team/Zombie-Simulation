@@ -34,14 +34,14 @@ public:
 	Cell(int x, int y, bool valid);
 	Cell(int x, int y);
 	virtual ~Cell();
-	void setX(int x);
-	void setY(int y);
-	void setColor(CellColor_e color);
-	int getX();
-	int getY();
-	bool isValid();
-	CellColor_e getColor();
-	virtual void tick() = 0;
+	void SetX(int x);
+	void SetY(int y);
+	void SetColor(CellColor_e color);
+	int GetX();
+	int GetY();
+	bool IsValid();
+	CellColor_e GetColor();
+	virtual void Tick() = 0;
 };
 
 #endif

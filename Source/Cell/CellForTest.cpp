@@ -34,7 +34,7 @@ CellForTest::CellForTest(int x, int y) : Cell(x, y)
 CellForTest::~CellForTest() {
 }
 
-void CellForTest::tick()
+void CellForTest::Tick()
 {
 	//do-nothing
 }

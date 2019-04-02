@@ -36,7 +36,7 @@ Continent::~Continent()
 	delete[] shape;
 }
 
-void Continent::tick()
+void Continent::Tick()
 {
 
 }
@@ -54,12 +54,12 @@ void Continent::initializeShape()
 	}
 }
 
-int Continent::getSize()
+int Continent::GetSize()
 {
 	return size;
 }
 
-std::string Continent::getName()
+std::string Continent::GetName()
 {
 	switch(name)
 	{
@@ -81,12 +81,12 @@ std::string Continent::getName()
 	return "";
 }
 
-Cell*** Continent::getShape()
+Cell*** Continent::GetShape()
 {
 	return shape;
 }
 
-void Continent::setName(Continents_e name)
+void Continent::SetName(Continents_e name)
 {
 	this->name = name;
 }

@@ -23,7 +23,7 @@ Trap::~Trap()
 {
 }
 
-void Trap::setAttack(int amount)
+void Trap::SetAttack(int amount)
 {
 	if(amount >= minAttack && amount <= maxAttack)
 	{
@@ -39,12 +39,12 @@ void Trap::setAttack(int amount)
 	}
 }
 
-int Trap::getAttack()
+int Trap::GetAttack()
 {
 	return attack;
 }
 
-void Trap::tick()
+void Trap::Tick()
 {
 	//do nothing
 }

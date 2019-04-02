@@ -29,7 +29,7 @@ Obstacle::~Obstacle()
 
 }
 
-void Obstacle::setDefense(int amount)
+void Obstacle::SetDefense(int amount)
 {
 	if(amount >= minDefense && amount <= maxDefense)
 	{
@@ -45,7 +45,7 @@ void Obstacle::setDefense(int amount)
 	}
 }
 
-int Obstacle::getDefense()
+int Obstacle::GetDefense()
 {
 	return defense;
 }
