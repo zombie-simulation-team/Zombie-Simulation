@@ -26,9 +26,9 @@ public:
 	Obstacle(int x, int y, int defense, CellColor_e color);
 	Obstacle(int x, int y, CellColor_e color);
 	virtual ~Obstacle();
-	virtual void tick() = 0;
-	void setDefense(int);
-	int getDefense(void);
+	virtual void Tick() = 0;
+	void SetDefense(int);
+	int GetDefense(void);
 };
 
 #endif /* OBSTACLE_H_ */

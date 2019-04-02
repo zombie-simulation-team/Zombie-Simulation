@@ -20,7 +20,7 @@ ObstacleForTest::~ObstacleForTest() {
 	// TODO Auto-generated destructor stub
 }
 
-void ObstacleForTest::tick()
+void ObstacleForTest::Tick()
 {
 
 }
