@@ -23,12 +23,12 @@ Resource::~Resource()
 {
 }
 
-int Resource::getFood()
+int Resource::GetFood()
 {
 	return food;
 }
 
-void Resource::setFood(int amount)
+void Resource::SetFood(int amount)
 {
 	if(amount >= minFood && amount <= maxFood)
 	{
@@ -44,7 +44,7 @@ void Resource::setFood(int amount)
 	}
 }
 
-void Resource::tick()
+void Resource::Tick()
 {
 	//do nothing
 }
