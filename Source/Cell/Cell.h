@@ -24,6 +24,8 @@ class Cell
 private:
 	int xPos;
 	int yPos;
+	int nextX;
+	int nextY;
 	CellColor_e color;
 	bool is_valid;
 
@@ -36,9 +38,13 @@ public:
 	virtual ~Cell();
 	void setX(int x);
 	void setY(int y);
+	void setNextX(int x);
+	void setNextY(int y);
 	void setColor(CellColor_e color);
 	int getX();
 	int getY();
+	int getNextX();
+	int getNextY();
 	bool isValid();
 	CellColor_e getColor();
 	virtual void tick() = 0;
