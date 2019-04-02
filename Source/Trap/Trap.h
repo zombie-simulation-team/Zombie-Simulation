@@ -26,9 +26,9 @@ private:
 public:
 	Trap(int x, int y);
 	Trap(int x, int y, int amount);
-	void setAttack(int amount);
-	int getAttack();
-	void tick();
+	void SetAttack(int amount);
+	int GetAttack();
+	void Tick();
 	virtual ~Trap();
 };
 
