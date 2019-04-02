@@ -35,6 +35,7 @@ public:
 	std::string getName();
 	void setName(Continents_e name);
 	void tick();
+	void CheckMove(Cell *cell);
 	virtual ~Continent();
 };
 

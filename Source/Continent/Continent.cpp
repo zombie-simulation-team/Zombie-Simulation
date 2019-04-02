@@ -91,3 +91,34 @@ void Continent::setName(Continents_e name)
 	this->name = name;
 }
 
+void Continent::CheckMove(Cell *cell)
+{
+	if((cell->getNextX() >= 0 && cell->getNextX() < size) &&
+			(cell->getNextY() >= 0 && cell->getNextY() < size))
+	{
+		Cell *targetCell = shape[cell->getNextX()][cell->getNextY()];
+
+		if(targetCell->getColor() == Transparent)
+		{
+			int x = cell->getX();
+			int y = cell->getY();
+
+			cell->setX(cell->getNextX());
+			cell->setY(cell->getNextY());
+
+			shape[cell->getNextX()][cell->getNextY()] = cell;
+			cell->setNextX(-1);
+			cell->setNextY(-1);
+
+			targetCell->setX(x);
+			targetCell->setY(y);
+			shape[x][y] = targetCell;
+		}
+	}
+	else
+	{
+		cell->setNextX(-1);
+		cell->setNextY(-1);
+	}
+}
+
