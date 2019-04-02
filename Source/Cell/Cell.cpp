@@ -51,37 +51,37 @@ Cell::~Cell()
 {
 }
 
-int Cell::getX()
+int Cell::GetX()
 {
 	return xPos;
 }
 
-int Cell::getY()
+int Cell::GetY()
 {
 	return yPos;
 }
 
-CellColor_e Cell::getColor()
+CellColor_e Cell::GetColor()
 {
 	return color;
 }
 
-void Cell::setX(int x)
+void Cell::SetX(int x)
 {
 	xPos = x;
 }
 
-void Cell::setY(int y)
+void Cell::SetY(int y)
 {
 	yPos = y;
 }
 
-void Cell::setColor(CellColor_e color)
+void Cell::SetColor(CellColor_e color)
 {
 	this->color = color;
 }
 
-bool Cell::isValid()
+bool Cell::IsValid()
 {
 	return is_valid;
 }

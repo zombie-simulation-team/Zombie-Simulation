@@ -15,7 +15,7 @@ class ObstacleForTest: public Obstacle
 public:
 	ObstacleForTest();
 	ObstacleForTest(int, int, int, CellColor_e);
-	void tick();
+	void Tick();
 	virtual ~ObstacleForTest();
 };
 

@@ -30,11 +30,11 @@ public:
 			int zombieCount,
 			int trapCount,
 			int resourceCount);
-	Cell*** getShape();
-	int getSize();
-	std::string getName();
-	void setName(Continents_e name);
-	void tick();
+	Cell*** GetShape();
+	int GetSize();
+	std::string GetName();
+	void SetName(Continents_e name);
+	void Tick();
 	virtual ~Continent();
 };
 

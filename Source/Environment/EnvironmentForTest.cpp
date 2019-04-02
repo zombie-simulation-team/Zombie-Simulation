@@ -19,7 +19,7 @@ EnvironmentForTest::EnvironmentForTest(
 
 EnvironmentForTest::~EnvironmentForTest(){}
 
-void EnvironmentForTest::tick()
+void EnvironmentForTest::Tick()
 {
 	//do-nothing
 }

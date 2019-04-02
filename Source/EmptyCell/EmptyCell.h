@@ -16,7 +16,7 @@ public:
 	EmptyCell();
 	EmptyCell(int x, int y, CellColor_e color, bool valid);
 	EmptyCell(int x, int y, bool valid);
-	void tick();
+	void Tick();
 	virtual ~EmptyCell();
 };
 
