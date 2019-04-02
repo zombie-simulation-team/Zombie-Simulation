@@ -56,10 +56,10 @@ TEST(ContinentTest, ShouldInitializeAContinentWithEmptyCells)
 	int expectedSize = ContinentSize;
 	std::string expectedName = "North America";
 
-	int actualSize = continent->getSize();
-	std::string actualName = continent->getName();
+	int actualSize = continent->GetSize();
+	std::string actualName = continent->GetName();
 
-	Cell ***actualShape = continent->getShape();
+	Cell ***actualShape = continent->GetShape();
 
 	CHECK_EQUAL(expectedSize, actualSize);
 	CHECK_EQUAL(expectedName, actualName);
@@ -68,10 +68,10 @@ TEST(ContinentTest, ShouldInitializeAContinentWithEmptyCells)
 
 TEST(ContinentTest, ShouldSetContinentNameToEurope)
 {
-	continent->setName(Europe);
+	continent->SetName(Europe);
 
 	std::string expectedName = "Europe";
-	std::string actualName = continent->getName();
+	std::string actualName = continent->GetName();
 
 	CHECK_EQUAL(expectedName, actualName);
 }
