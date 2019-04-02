@@ -39,9 +39,9 @@ TEST_GROUP(ContinentTest)
 				expectedX = i;
 				expectedY = j;
 
-				int actualX = emptyCell->getX();
-				int actualY = emptyCell->getY();
-				bool actualIsValid = emptyCell->isValid();
+				int actualX = emptyCell->GetX();
+				int actualY = emptyCell->GetY();
+				bool actualIsValid = emptyCell->IsValid();
 
 				CHECK_EQUAL(expectedX, actualX);
 				CHECK_EQUAL(expectedY, actualY);
