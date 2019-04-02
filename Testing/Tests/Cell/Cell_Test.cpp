@@ -31,10 +31,10 @@ TEST(CellTest, ShouldInitializeACell)
 	int expectedColor = Transparent;
 	bool expectedIsValid = true;
 
-	int actualX = cell->getX();
-	int actualY = cell->getY();
-	int actualColor = cell->getColor();
-	bool actualIsValid = cell->isValid();
+	int actualX = cell->GetX();
+	int actualY = cell->GetY();
+	int actualColor = cell->GetColor();
+	bool actualIsValid = cell->IsValid();
 
 	CHECK_EQUAL(expectedX, actualX);
 	CHECK_EQUAL(expectedY, actualY);
@@ -51,10 +51,10 @@ TEST(CellTest, ShouldInitializeCellWithPositionColorAndValidity)
 	int expectedColor = Black;
 	int expectedIsValid = true;
 
-	int actualX = myCell->getX();
-	int actualY = myCell->getY();
-	int actualColor = myCell->getColor();
-	int actualIsValid = myCell->isValid();
+	int actualX = myCell->GetX();
+	int actualY = myCell->GetY();
+	int actualColor = myCell->GetColor();
+	int actualIsValid = myCell->IsValid();
 
 	CHECK_EQUAL(expectedX, actualX);
 	CHECK_EQUAL(expectedY, actualY);
@@ -73,10 +73,10 @@ TEST(CellTest, ShouldInitializeCellWithPositionAndColor)
 	int expectedColor = Green;
 	int expectedIsValid = true;
 
-	int actualX = myCell->getX();
-	int actualY = myCell->getY();
-	int actualColor = myCell->getColor();
-	int actualIsValid = myCell->isValid();
+	int actualX = myCell->GetX();
+	int actualY = myCell->GetY();
+	int actualColor = myCell->GetColor();
+	int actualIsValid = myCell->IsValid();
 
 	CHECK_EQUAL(expectedX, actualX);
 	CHECK_EQUAL(expectedY, actualY);
@@ -95,10 +95,10 @@ TEST(CellTest, ShouldInitializeCellWithPositionAndValidity)
 	int expectedColor = Transparent;
 	int expectedIsValid = false;
 
-	int actualX = myCell->getX();
-	int actualY = myCell->getY();
-	int actualColor = myCell->getColor();
-	int actualIsValid = myCell->isValid();
+	int actualX = myCell->GetX();
+	int actualY = myCell->GetY();
+	int actualColor = myCell->GetColor();
+	int actualIsValid = myCell->IsValid();
 
 	CHECK_EQUAL(expectedX, actualX);
 	CHECK_EQUAL(expectedY, actualY);
@@ -117,10 +117,10 @@ TEST(CellTest, ShouldInitializeCellOnlyWithPositionOnly)
 	int expectedColor = Transparent;
 	int expectedIsValid = true;
 
-	int actualX = myCell->getX();
-	int actualY = myCell->getY();
-	int actualColor = myCell->getColor();
-	int actualIsValid = myCell->isValid();
+	int actualX = myCell->GetX();
+	int actualY = myCell->GetY();
+	int actualColor = myCell->GetColor();
+	int actualIsValid = myCell->IsValid();
 
 	CHECK_EQUAL(expectedX, actualX);
 	CHECK_EQUAL(expectedY, actualY);
@@ -134,9 +134,9 @@ TEST(CellTest, ShouldSetCellXPosition)
 {
 	int expectedX = 20;
 
-	cell->setX(20);
+	cell->SetX(20);
 
-	int actualX = cell->getX();
+	int actualX = cell->GetX();
 
 	CHECK_EQUAL(expectedX, actualX);
 }
@@ -145,9 +145,9 @@ TEST(CellTest, ShouldSetCellYPosition)
 {
 	int expectedY = 20;
 
-	cell->setY(20);
+	cell->SetY(20);
 
-	int actualY = cell->getY();
+	int actualY = cell->GetY();
 
 	CHECK_EQUAL(expectedY, actualY);
 }
@@ -156,9 +156,9 @@ TEST(CellTest, ShouldSetCellColor)
 {
 	int expectedColor = Red;
 
-	cell->setColor(Red);
+	cell->SetColor(Red);
 
-	int actualColor = cell->getColor();
+	int actualColor = cell->GetColor();
 
 	CHECK_EQUAL(expectedColor, actualColor);
 }
@@ -169,7 +169,7 @@ TEST(CellTest, ShouldSetAnInvalidCell)
 
 	int expectedIsValid = false;
 
-	int actualIsValid = myCell->isValid();
+	int actualIsValid = myCell->IsValid();
 
 	CHECK_EQUAL(expectedIsValid, actualIsValid);
 
