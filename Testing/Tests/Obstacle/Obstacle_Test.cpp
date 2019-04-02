@@ -28,9 +28,9 @@ TEST(ObstacleTest, ShouldInitializeAnObstacle)
 	int expectedX = 0;
 	int expectedY = 0;
 
-	int actualDefense = obstacle->getDefense();
-	int actualX = obstacle->getX();
-	int actualY = obstacle->getY();
+	int actualDefense = obstacle->GetDefense();
+	int actualX = obstacle->GetX();
+	int actualY = obstacle->GetY();
 
 	CHECK_EQUAL(expectedDefense, actualDefense);
 	CHECK_EQUAL(expectedX, actualX);
@@ -41,8 +41,8 @@ TEST(ObstacleTest, ShouldSetDefenseOfAnObstacle)
 {
 	int expectedDefense = 60;
 
-	obstacle->setDefense(60);
-	int actualDefense = obstacle->getDefense();
+	obstacle->SetDefense(60);
+	int actualDefense = obstacle->GetDefense();
 
 	CHECK_EQUAL(expectedDefense, actualDefense);
 }
@@ -51,8 +51,8 @@ TEST(ObstacleTest, ShouldSetDefenseLessThanOrEqualToMaximum)
 {
 	int expectedDefense = 100;
 
-	obstacle->setDefense(150);
-	int actualDefense = obstacle->getDefense();
+	obstacle->SetDefense(150);
+	int actualDefense = obstacle->GetDefense();
 
 	CHECK_EQUAL(expectedDefense, actualDefense);
 }
@@ -61,8 +61,8 @@ TEST(ObstacleTest, ShouldSetDefenseGreaterThanOrEqualToMinimum)
 {
 	int expectedDefense = 0;
 
-	obstacle->setDefense(-100);
-	int actualDefense = obstacle->getDefense();
+	obstacle->SetDefense(-100);
+	int actualDefense = obstacle->GetDefense();
 
 	CHECK_EQUAL(expectedDefense, actualDefense);
 }
@@ -76,10 +76,10 @@ TEST(ObstacleTest, ShouldInitializeAnObstacleWithPositionAndDefense)
 	int expectedY = 10;
 	CellColor_e expectedColor = White;
 
-	int actualDefense = theObstacle->getDefense();
-	int actualX = theObstacle->getX();
-	int actualY = theObstacle->getY();
-	int actualColor = theObstacle->getColor();
+	int actualDefense = theObstacle->GetDefense();
+	int actualX = theObstacle->GetX();
+	int actualY = theObstacle->GetY();
+	int actualColor = theObstacle->GetColor();
 
 	CHECK_EQUAL(expectedDefense, actualDefense);
 	CHECK_EQUAL(expectedX, actualX);

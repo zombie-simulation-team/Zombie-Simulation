@@ -26,7 +26,7 @@ EmptyCell::~EmptyCell()
 
 }
 
-void EmptyCell::tick()
+void EmptyCell::Tick()
 {
 	//do nothing
 }

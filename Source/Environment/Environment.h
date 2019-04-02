@@ -34,15 +34,15 @@ public:
 			int trapCount,
 			int resourceCount);
 	virtual ~Environment();
-	void setZombieCount(int zombieCount);
-	void setHumanCount(int humanCount);
-	void setTrapCount(int trapCount);
-	void setResourceCount(int resourceCount);
-	int getZombieCount();
-	int getHumanCount();
-	int getTrapCount();
-	int getResourceCount();
-	virtual void tick() = 0;
+	void SetZombieCount(int zombieCount);
+	void SetHumanCount(int humanCount);
+	void SetTrapCount(int trapCount);
+	void SetResourceCount(int resourceCount);
+	int GetZombieCount();
+	int GetHumanCount();
+	int GetTrapCount();
+	int GetResourceCount();
+	virtual void Tick() = 0;
 };
 
 #endif /* ENVIRONMENT_H_ */

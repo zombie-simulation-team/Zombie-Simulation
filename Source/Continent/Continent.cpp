@@ -36,7 +36,7 @@ Continent::~Continent()
 	delete[] shape;
 }
 
-void Continent::tick()
+void Continent::Tick()
 {
 
 }
@@ -54,12 +54,12 @@ void Continent::initializeShape()
 	}
 }
 
-int Continent::getSize()
+int Continent::GetSize()
 {
 	return size;
 }
 
-std::string Continent::getName()
+std::string Continent::GetName()
 {
 	switch(name)
 	{
@@ -81,44 +81,44 @@ std::string Continent::getName()
 	return "";
 }
 
-Cell*** Continent::getShape()
+Cell*** Continent::GetShape()
 {
 	return shape;
 }
 
-void Continent::setName(Continents_e name)
+void Continent::SetName(Continents_e name)
 {
 	this->name = name;
 }
 
 void Continent::CheckMove(Cell *cell)
 {
-	if((cell->getNextX() >= 0 && cell->getNextX() < size) &&
-			(cell->getNextY() >= 0 && cell->getNextY() < size))
+	if((cell->GetNextX() >= 0 && cell->GetNextX() < size) &&
+			(cell->GetNextY() >= 0 && cell->GetNextY() < size))
 	{
-		Cell *targetCell = shape[cell->getNextX()][cell->getNextY()];
+		Cell *targetCell = shape[cell->GetNextX()][cell->GetNextY()];
 
-		if(targetCell->getColor() == Transparent)
+		if(targetCell->GetColor() == Transparent)
 		{
-			int x = cell->getX();
-			int y = cell->getY();
+			int x = cell->GetX();
+			int y = cell->GetY();
 
-			cell->setX(cell->getNextX());
-			cell->setY(cell->getNextY());
+			cell->SetX(cell->GetNextX());
+			cell->SetY(cell->GetNextY());
 
-			shape[cell->getNextX()][cell->getNextY()] = cell;
-			cell->setNextX(-1);
-			cell->setNextY(-1);
+			shape[cell->GetNextX()][cell->GetNextY()] = cell;
+			cell->SetNextX(-1);
+			cell->SetNextY(-1);
 
-			targetCell->setX(x);
-			targetCell->setY(y);
+			targetCell->SetX(x);
+			targetCell->SetY(y);
 			shape[x][y] = targetCell;
 		}
 	}
 	else
 	{
-		cell->setNextX(-1);
-		cell->setNextY(-1);
+		cell->SetNextX(-1);
+		cell->SetNextY(-1);
 	}
 }
 

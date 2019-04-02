@@ -21,42 +21,42 @@ Environment::Environment(
 
 Environment::~Environment() {}
 
-void Environment::setHumanCount(int count)
+void Environment::SetHumanCount(int count)
 {
 	humanCount = count;
 }
 
-void Environment::setZombieCount(int count)
+void Environment::SetZombieCount(int count)
 {
 	zombieCount = count;
 }
 
-void Environment::setResourceCount(int count)
+void Environment::SetResourceCount(int count)
 {
 	resourceCount = count;
 }
 
-void Environment::setTrapCount(int count)
+void Environment::SetTrapCount(int count)
 {
 	trapCount = count;
 }
 
-int Environment::getHumanCount()
+int Environment::GetHumanCount()
 {
 	return humanCount;
 }
 
-int Environment::getZombieCount()
+int Environment::GetZombieCount()
 {
 	return zombieCount;
 }
 
-int Environment::getResourceCount()
+int Environment::GetResourceCount()
 {
 	return resourceCount;
 }
 
-int Environment::getTrapCount()
+int Environment::GetTrapCount()
 {
 	return trapCount;
 }

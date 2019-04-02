@@ -24,39 +24,39 @@ TEST_GROUP(EnvironmentTest)
 
 TEST(EnvironmentTest, ShouldInitializeDefaultEnvironment)
 {
-	CHECK_EQUAL(0, environment->getHumanCount());
-	CHECK_EQUAL(0, environment->getZombieCount());
-	CHECK_EQUAL(0, environment->getTrapCount());
-	CHECK_EQUAL(0, environment->getResourceCount());
+	CHECK_EQUAL(0, environment->GetHumanCount());
+	CHECK_EQUAL(0, environment->GetZombieCount());
+	CHECK_EQUAL(0, environment->GetTrapCount());
+	CHECK_EQUAL(0, environment->GetResourceCount());
 }
 
 TEST(EnvironmentTest, ShouldSetCountForEnvironmentObjects)
 {
-	//Test setting and getting human count
-	environment->setHumanCount(1000);
+	//Test setting and Getting human count
+	environment->SetHumanCount(1000);
 	int expected = 1000;
-	int actual = environment->getHumanCount();
+	int actual = environment->GetHumanCount();
 
 	CHECK_EQUAL(expected, actual);
 
-	//Test setting and getting Zombie count
-	environment->setZombieCount(500);
+	//Test setting and Getting Zombie count
+	environment->SetZombieCount(500);
 	expected = 500;
-	actual = environment->getZombieCount();
+	actual = environment->GetZombieCount();
 
 	CHECK_EQUAL(expected, actual);
 
-	//Test setting and getting trap count
-	environment->setTrapCount(20);
+	//Test setting and Getting trap count
+	environment->SetTrapCount(20);
 	expected = 20;
-	actual = environment->getTrapCount();
+	actual = environment->GetTrapCount();
 
 	CHECK_EQUAL(expected, actual);
 
-	//Test setting and getting resources count
-	environment->setResourceCount(100);
+	//Test setting and Getting resources count
+	environment->SetResourceCount(100);
 	expected = 100;
-	actual = environment->getResourceCount();
+	actual = environment->GetResourceCount();
 
 	CHECK_EQUAL(expected, actual);
 }
@@ -70,10 +70,10 @@ TEST(EnvironmentTest, ShouldInitializeAnEnvironmentWithActorsAndObstaclesCount)
 	int expectedTraps = 4;
 	int expectedResources = 6;
 
-	CHECK_EQUAL(expectedHumans, env->getHumanCount());
-	CHECK_EQUAL(expectedZombies, env->getZombieCount());
-	CHECK_EQUAL(expectedTraps, env->getTrapCount());
-	CHECK_EQUAL(expectedResources, env->getResourceCount());
+	CHECK_EQUAL(expectedHumans, env->GetHumanCount());
+	CHECK_EQUAL(expectedZombies, env->GetZombieCount());
+	CHECK_EQUAL(expectedTraps, env->GetTrapCount());
+	CHECK_EQUAL(expectedResources, env->GetResourceCount());
 
 	delete env;
 }

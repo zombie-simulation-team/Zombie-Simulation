@@ -36,18 +36,18 @@ public:
 	Cell(int x, int y, bool valid);
 	Cell(int x, int y);
 	virtual ~Cell();
-	void setX(int x);
-	void setY(int y);
-	void setNextX(int x);
-	void setNextY(int y);
-	void setColor(CellColor_e color);
-	int getX();
-	int getY();
-	int getNextX();
-	int getNextY();
-	bool isValid();
-	CellColor_e getColor();
-	virtual void tick() = 0;
+	void SetX(int x);
+	void SetY(int y);
+	void SetColor(CellColor_e color);
+	int GetX();
+	int GetY();
+	bool IsValid();
+	CellColor_e GetColor();
+	virtual void Tick() = 0;
+	void SetNextX(int x);
+	void SetNextY(int y);
+	int GetNextX();
+	int GetNextY();
 };
 
 #endif

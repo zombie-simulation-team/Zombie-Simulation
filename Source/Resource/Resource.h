@@ -26,9 +26,9 @@ private:
 public:
 	Resource(int x, int y);
 	Resource(int x, int y, int food);
-	void tick();
-	int getFood();
-	void setFood(int amount);
+	void Tick();
+	int GetFood();
+	void SetFood(int amount);
 	virtual ~Resource();
 };
 

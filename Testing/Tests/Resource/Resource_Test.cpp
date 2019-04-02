@@ -27,8 +27,8 @@ TEST(ResourceTest, ShouldInitializeADefaultResource)
 	int expectedFood = 50;
 	CellColor_e expectedColor = White;
 
-	int actualFood = resource->getFood();
-	CellColor_e actualColor = resource->getColor();
+	int actualFood = resource->GetFood();
+	CellColor_e actualColor = resource->GetColor();
 
 	CHECK_EQUAL(expectedFood, actualFood);
 	CHECK_EQUAL(expectedColor, actualColor);
@@ -38,9 +38,9 @@ TEST(ResourceTest, ShouldSetFoodValue)
 {
 	int expectedFood = 60;
 
-	resource->setFood(60);
+	resource->SetFood(60);
 
-	int actualFood = resource->getFood();
+	int actualFood = resource->GetFood();
 
 	CHECK_EQUAL(expectedFood, actualFood);
 }
@@ -49,9 +49,9 @@ TEST(ResourceTest, ShouldSetFoodEqualToMaximumFood)
 {
 	int expectedFood = 100;
 
-	resource->setFood(160);
+	resource->SetFood(160);
 
-	int actualFood = resource->getFood();
+	int actualFood = resource->GetFood();
 
 	CHECK_EQUAL(expectedFood, actualFood);
 }
@@ -60,9 +60,9 @@ TEST(ResourceTest, ShouldSetFoodEqualToMinimumFood)
 {
 	int expectedFood = 0;
 
-	resource->setFood(-160);
+	resource->SetFood(-160);
 
-	int actualFood = resource->getFood();
+	int actualFood = resource->GetFood();
 
 	CHECK_EQUAL(expectedFood, actualFood);
 }
@@ -76,10 +76,10 @@ TEST(ResourceTest, ShouldInitializeARessurceWithPositionAndFood)
 	int expectedY = 9;
 	CellColor_e expectedColor = White;
 
-	int actualFood = theResource->getFood();
-	int actualX = theResource->getX();
-	int actualY = theResource->getY();
-	int actualColor = theResource->getColor();
+	int actualFood = theResource->GetFood();
+	int actualX = theResource->GetX();
+	int actualY = theResource->GetY();
+	int actualColor = theResource->GetColor();
 
 	CHECK_EQUAL(expectedFood, actualFood);
 	CHECK_EQUAL(expectedX, actualX);
