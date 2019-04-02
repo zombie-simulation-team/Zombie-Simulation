@@ -28,12 +28,12 @@ public:
 	Actor();
 	Actor(int x, int y, CellColor_e color , int healthValue, int defenseValue);
 	virtual ~Actor();
-	virtual void move(Cell* cell) = 0;
-	virtual void attack(Cell* cell) = 0;
-	int getDefense();
-	int getHealth();
-	void changeDefense(int);
-	void changeHealth(int);
+	virtual void Move(Cell* cell) = 0;
+	virtual void Attack(Cell* cell) = 0;
+	int GetDefense();
+	int GetHealth();
+	void ChangeDefense(int);
+	void ChangeHealth(int);
 };
 
 #endif /* ACTOR_H_ */

@@ -5,8 +5,19 @@
  *      Author: javiervega
  */
 
-#ifndef SOURCE_ENVIRONMENT_ENVIRONMENT_H_
-#define SOURCE_ENVIRONMENT_ENVIRONMENT_H_
+#ifndef ENVIRONMENT_H_
+#define ENVIRONMENT_H_
+
+typedef enum Continents_e
+{
+	Africa,
+	Antartica,
+	Asia,
+	Australia,
+	Europe,
+	NorthAmerica,
+	SouthAmerica
+} Continents_e;
 
 class Environment
 {
@@ -17,17 +28,21 @@ private:
 	int resourceCount;
 
 public:
-	Environment();
+	Environment(
+			int humanCount,
+			int zombieCount,
+			int trapCount,
+			int resourceCount);
 	virtual ~Environment();
-	void setZombiCount(int);
-	void setHumanCount(int);
-	void setTrapCount(int);
-	void setResourceCount(int);
-	int getZombiCount();
-	int getHumanCount();
-	int getTrapCount();
-	int getResourceCount();
-	virtual void tick() = 0;
+	void SetZombieCount(int zombieCount);
+	void SetHumanCount(int humanCount);
+	void SetTrapCount(int trapCount);
+	void SetResourceCount(int resourceCount);
+	int GetZombieCount();
+	int GetHumanCount();
+	int GetTrapCount();
+	int GetResourceCount();
+	virtual void Tick() = 0;
 };
 
-#endif /* SOURCE_ENVIRONMENT_ENVIRONMENT_H_ */
+#endif /* ENVIRONMENT_H_ */

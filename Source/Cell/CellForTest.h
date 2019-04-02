@@ -19,7 +19,7 @@ public:
 	CellForTest(int, int, bool);
 	CellForTest(int, int);
 	virtual ~CellForTest();
-	void tick();
+	void Tick();
 };
 
 #endif /* CELLFORTEST_H */

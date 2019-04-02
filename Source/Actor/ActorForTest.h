@@ -16,9 +16,9 @@ public:
 	ActorForTest();
 	ActorForTest(int,int, CellColor_e, int, int);
 	virtual ~ActorForTest();
-	void move(Cell*);
-	void attack(Cell*);
-	void tick();
+	void Move(Cell*);
+	void Attack(Cell*);
+	void Tick();
 };
 
 #endif	/* ACTOR_FORTEST_H_ */

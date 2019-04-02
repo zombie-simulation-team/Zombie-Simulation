@@ -13,7 +13,7 @@ TEST_GROUP(EnvironmentTest)
 
 	void setup()
 	{
-		environment = new EnvironmentForTest();
+		environment = new EnvironmentForTest(0, 0, 0, 0);
 	}
 
 	void teardown()
@@ -22,48 +22,59 @@ TEST_GROUP(EnvironmentTest)
 	}
 };
 
-TEST(EnvironmentTest, ShouldInitializeEnvironment)
+TEST(EnvironmentTest, ShouldInitializeDefaultEnvironment)
 {
-	CHECK_EQUAL(0, environment->getHumanCount());
-	CHECK_EQUAL(0, environment->getZombiCount());
-	CHECK_EQUAL(0, environment->getTrapCount());
-	CHECK_EQUAL(0, environment->getResourceCount());
+	CHECK_EQUAL(0, environment->GetHumanCount());
+	CHECK_EQUAL(0, environment->GetZombieCount());
+	CHECK_EQUAL(0, environment->GetTrapCount());
+	CHECK_EQUAL(0, environment->GetResourceCount());
 }
 
 TEST(EnvironmentTest, ShouldSetCountForEnvironmentObjects)
 {
-	//Test setting and getting human count
-	environment->setHumanCount(1000);
+	//Test setting and Getting human count
+	environment->SetHumanCount(1000);
 	int expected = 1000;
-	int actual = environment->getHumanCount();
+	int actual = environment->GetHumanCount();
 
 	CHECK_EQUAL(expected, actual);
 
-	//Test setting and getting zombi count
-	environment->setZombiCount(500);
+	//Test setting and Getting Zombie count
+	environment->SetZombieCount(500);
 	expected = 500;
-	actual = environment->getZombiCount();
+	actual = environment->GetZombieCount();
 
 	CHECK_EQUAL(expected, actual);
 
-	//Test setting and getting trap count
-	environment->setTrapCount(20);
+	//Test setting and Getting trap count
+	environment->SetTrapCount(20);
 	expected = 20;
-	actual = environment->getTrapCount();
+	actual = environment->GetTrapCount();
 
 	CHECK_EQUAL(expected, actual);
 
-	//Test setting and getting resources count
-	environment->setResourceCount(100);
+	//Test setting and Getting resources count
+	environment->SetResourceCount(100);
 	expected = 100;
-	actual = environment->getResourceCount();
+	actual = environment->GetResourceCount();
 
 	CHECK_EQUAL(expected, actual);
 }
 
-TEST(EnvironmentTest, ShouldTickEnvironmentOnce)
+TEST(EnvironmentTest, ShouldInitializeAnEnvironmentWithActorsAndObstaclesCount)
 {
-	mock().expectOneCall("tick").onObject(environment);
-	mock().actualCall("tick").onObject(environment);
-	mock().checkExpectations();
+	EnvironmentForTest *env = new EnvironmentForTest(10, 20, 4, 6);
+
+	int expectedHumans = 10;
+	int expectedZombies = 20;
+	int expectedTraps = 4;
+	int expectedResources = 6;
+
+	CHECK_EQUAL(expectedHumans, env->GetHumanCount());
+	CHECK_EQUAL(expectedZombies, env->GetZombieCount());
+	CHECK_EQUAL(expectedTraps, env->GetTrapCount());
+	CHECK_EQUAL(expectedResources, env->GetResourceCount());
+
+	delete env;
 }
+

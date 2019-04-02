@@ -29,10 +29,10 @@ TEST(EmptyCellTest, ShouldInitializeAnEmptyCell)
 	int expectedColor = Transparent;
 	bool expectedIsValid = true;
 
-	CHECK_EQUAL(expectedX, empty->getX());
-	CHECK_EQUAL(expectedY, empty->getY());
-	CHECK_EQUAL(expectedColor, empty->getColor());
-	CHECK_EQUAL(expectedIsValid, empty->isValid());
+	CHECK_EQUAL(expectedX, empty->GetX());
+	CHECK_EQUAL(expectedY, empty->GetY());
+	CHECK_EQUAL(expectedColor, empty->GetColor());
+	CHECK_EQUAL(expectedIsValid, empty->IsValid());
 }
 
 TEST(EmptyCellTest, ShouldInitializeAnInvalidEmptyCell)
@@ -44,10 +44,10 @@ TEST(EmptyCellTest, ShouldInitializeAnInvalidEmptyCell)
 	int expectedColor = Transparent;
 	bool expectedIsValid = false;
 
-	CHECK_EQUAL(expectedX, myEmptyCell->getX());
-	CHECK_EQUAL(expectedY, myEmptyCell->getY());
-	CHECK_EQUAL(expectedColor, myEmptyCell->getColor());
-	CHECK_EQUAL(expectedIsValid, myEmptyCell->isValid());
+	CHECK_EQUAL(expectedX, myEmptyCell->GetX());
+	CHECK_EQUAL(expectedY, myEmptyCell->GetY());
+	CHECK_EQUAL(expectedColor, myEmptyCell->GetColor());
+	CHECK_EQUAL(expectedIsValid, myEmptyCell->IsValid());
 
 	delete myEmptyCell;
 }
@@ -61,17 +61,17 @@ TEST(EmptyCellTest, ShouldInitializeAnInvalidEmptyCellWithColor)
 	int expectedColor = Black;
 	bool expectedIsValid = false;
 
-	CHECK_EQUAL(expectedX, myEmptyCell->getX());
-	CHECK_EQUAL(expectedY, myEmptyCell->getY());
-	CHECK_EQUAL(expectedColor, myEmptyCell->getColor());
-	CHECK_EQUAL(expectedIsValid, myEmptyCell->isValid());
+	CHECK_EQUAL(expectedX, myEmptyCell->GetX());
+	CHECK_EQUAL(expectedY, myEmptyCell->GetY());
+	CHECK_EQUAL(expectedColor, myEmptyCell->GetColor());
+	CHECK_EQUAL(expectedIsValid, myEmptyCell->IsValid());
 
 	delete myEmptyCell;
 }
 
 TEST(EmptyCellTest, ShouldTickEmptyCellOnce)
 {
-	mock().expectOneCall("tick").onObject(empty);
-	mock().actualCall("tick").onObject(empty);
+	mock().expectOneCall("Tick").onObject(empty);
+	mock().actualCall("Tick").onObject(empty);
 	mock().checkExpectations();
 }

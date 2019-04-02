@@ -39,11 +39,11 @@ TEST(ActorTest, ShouldInitializeAnActor)
 	int expectedX = 4;
 	int expectedY = 5;
 
-	int actualDefense = actor->getDefense();
-	int actualHealth = actor->getHealth();
-	CellColor_e actualColor = actor->getColor();
-	int actualX = actor->getX();
-	int actualY = actor->getY();
+	int actualDefense = actor->GetDefense();
+	int actualHealth = actor->GetHealth();
+	CellColor_e actualColor = actor->GetColor();
+	int actualX = actor->GetX();
+	int actualY = actor->GetY();
 
 	CHECK_EQUAL(expectedDefense, actualDefense);
 	CHECK_EQUAL(expectedHealth, actualHealth);
@@ -56,9 +56,9 @@ TEST(ActorTest, ShouldDecrementHealthByFifty)
 {
 	int expectedHealth = 50;
 
-	actor->changeHealth(-50);
+	actor->ChangeHealth(-50);
 
-	int actualHealth = actor->getHealth();
+	int actualHealth = actor->GetHealth();
 
 	CHECK_EQUAL(expectedHealth, actualHealth);
 }
@@ -67,9 +67,9 @@ TEST(ActorTest, ShouldNotIncrementHealthAboveMaximumHealth)
 {
 	int expectedHealth = MaximumHealth;
 
-	actor->changeHealth(40);
+	actor->ChangeHealth(40);
 
-	int actualHealth = actor->getHealth();
+	int actualHealth = actor->GetHealth();
 
 	CHECK_EQUAL(expectedHealth, actualHealth);
 }
@@ -78,9 +78,9 @@ TEST(ActorTest, ShouldNotDecrementHealthBelowMinimumHealth)
 {
 	int expectedHealth = MinimumHealth;
 
-	actor->changeHealth(-300);
+	actor->ChangeHealth(-300);
 
-	int actualHealth = actor->getHealth();
+	int actualHealth = actor->GetHealth();
 
 	CHECK_EQUAL(expectedHealth, actualHealth);
 }
@@ -89,9 +89,9 @@ TEST(ActorTest, ShouldNotIncrementDefenseAboveMaximumDefense)
 {
 	int expectedDefense = MaximumDefense;
 
-	actor->changeDefense(100);
+	actor->ChangeDefense(100);
 
-	int actualDefense = actor->getDefense();
+	int actualDefense = actor->GetDefense();
 
 	CHECK_EQUAL(expectedDefense, actualDefense);
 }
@@ -100,9 +100,9 @@ TEST(ActorTest, ShouldNotDecrementDefenseBelowMinimumDefense)
 {
 	int expectedDefense = MinimumDefense;
 
-	actor->changeDefense(-300);
+	actor->ChangeDefense(-300);
 
-	int actualDefense = actor->getDefense();
+	int actualDefense = actor->GetDefense();
 
 	CHECK_EQUAL(expectedDefense, actualDefense);
 }

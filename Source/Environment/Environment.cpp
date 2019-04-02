@@ -7,52 +7,56 @@
 
 #include "Environment.h"
 
-Environment::Environment()
+Environment::Environment(
+		int humanCount,
+		int zombieCount,
+		int trapCount,
+		int resourceCount)
 {
-	humanCount = 0;
-	zombieCount = 0;
-	resourceCount = 0;
-	trapCount = 0;
+	this->humanCount = humanCount;
+	this->zombieCount = zombieCount;
+	this->trapCount = trapCount;
+	this->resourceCount = resourceCount;
 }
 
 Environment::~Environment() {}
 
-void Environment::setHumanCount(int count)
+void Environment::SetHumanCount(int count)
 {
 	humanCount = count;
 }
 
-void Environment::setZombiCount(int count)
+void Environment::SetZombieCount(int count)
 {
 	zombieCount = count;
 }
 
-void Environment::setResourceCount(int count)
+void Environment::SetResourceCount(int count)
 {
 	resourceCount = count;
 }
 
-void Environment::setTrapCount(int count)
+void Environment::SetTrapCount(int count)
 {
 	trapCount = count;
 }
 
-int Environment::getHumanCount()
+int Environment::GetHumanCount()
 {
 	return humanCount;
 }
 
-int Environment::getZombiCount()
+int Environment::GetZombieCount()
 {
 	return zombieCount;
 }
 
-int Environment::getResourceCount()
+int Environment::GetResourceCount()
 {
 	return resourceCount;
 }
 
-int Environment::getTrapCount()
+int Environment::GetTrapCount()
 {
 	return trapCount;
 }
