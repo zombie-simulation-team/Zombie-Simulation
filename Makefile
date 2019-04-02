@@ -44,6 +44,7 @@ SRC_DIRS += \
 	Source/EmptyCell/ \
 	Source/Continent/ \
 	Source/Actor/ \
+	Source/Human/ \
 
 TEST_SRC_DIRS += \
 	Testing/Tests/ \

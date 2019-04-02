@@ -12,10 +12,10 @@
 
 enum
 {
-	maxHealth = 100,
-	maxDefense = 100,
-	minHealth = 0,
-	minDefense = 0
+	actorMaxHealth = 100,
+	actorMaxDefense = 100,
+	actorMinHealth = 0,
+	actorMinDefense = 0
 };
 
 class Actor: public Cell
