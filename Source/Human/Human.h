@@ -8,30 +8,29 @@
 #ifndef HUMAN_H_
 #define HUMAN_H_
 
-// humans interact with other cells
 #include "Actor.h"
 #include "Resource.h"
 #include "Trap.h"
 
 enum
 {
-  attackZombieDefense = -10,
-  attackZombieHealth = -20
+	attackZombieDefense = -10,
+	attackZombieHealth = -20
 };
 
 class Human: public Actor
 {
 private:
-  void eat(Resource *cell);
-	void defend(Cell *cell);
+	void Eat(Resource *cell);
+	void Defend(Cell *cell);
 
 public:
-  Human();
-  Human(int, int, int, int);
-  virtual ~Human();
-  void move(Cell *cell);
-  void attack(Cell *cell);
-  void tick();
+	Human();
+	Human(int, int, int, int);
+	virtual ~Human();
+	void Move(Cell *cell);
+	void Attack(Cell *cell);
+	void Tick();
 };
 
 #endif

@@ -21,12 +21,12 @@ Human::~Human()
 {
 }
 
-void Human::eat(Resource *cell)
+void Human::Eat(Resource *cell)
 {
-  this->changeHealth(cell->getFood()); // casting down to a derived class in the inheretance structure
+  this->ChangeHealth(cell->GetFood()); // casting down to a derived class in the inheretance structure
 }
 
-void Human::defend(Cell *cell)
+void Human::Defend(Cell *cell)
 {
   // need the code for assigning the trap to the location of the cell in the array
   // Optional implementation
@@ -34,10 +34,10 @@ void Human::defend(Cell *cell)
   // arena[Continent#][cell->getX()][cell->getY()] = new Trap(cell->getX(), cell->getY(), defaultAttack);
 }
 
-void Human::move(Cell *cell)
+void Human::Move(Cell *cell)
 {
   // needs to be done
-  CellColor_e color = cell->getColor();
+  CellColor_e color = cell->GetColor();
 
   switch(color)
   {
@@ -53,7 +53,7 @@ void Human::move(Cell *cell)
 
 }
 
-void Human::attack(Cell *cell) // humans only attack zombies
+void Human::Attack(Cell *cell) // humans only attack zombies
 {
   // needs more stuff after logic class is done
   // optional implementation
@@ -76,7 +76,7 @@ void Human::attack(Cell *cell) // humans only attack zombies
   // }
 }
 
-void Human::tick()
+void Human::Tick()
 {
 // needs to be done
 }
