@@ -40,11 +40,11 @@ TEST(ZombieTest, ShouldInitializeAZombie)
 	int expectedX = 3;
 	int expectedY = 3;
 
-	int actualDefense = zombie->getDefense();
-	int actualHealth = zombie->getHealth();
-	CellColor_e actualColor = zombie->getColor();
-	int actualX = zombie->getX();
-	int actualY = zombie->getY();
+	int actualDefense = zombie->GetDefense();
+	int actualHealth = zombie->GetHealth();
+	CellColor_e actualColor = zombie->GetColor();
+	int actualX = zombie->GetX();
+	int actualY = zombie->GetY();
 
 	CHECK_EQUAL(expectedDefense, actualDefense);
 	CHECK_EQUAL(expectedHealth, actualHealth);
@@ -60,8 +60,8 @@ TEST(ZombieTest, ShouldInitializeAZombieWithGivenHealthAndDefense)
 	int expectedDefense = SomeDefenseValue;
 	int expectedHealth = SomeHealthValue;
 
-	int actualDefense = testZombie->getDefense();
-	int actualHealth = testZombie->getHealth();
+	int actualDefense = testZombie->GetDefense();
+	int actualHealth = testZombie->GetHealth();
 
 	CHECK_EQUAL(expectedDefense, actualDefense);
 	CHECK_EQUAL(expectedHealth, actualHealth);

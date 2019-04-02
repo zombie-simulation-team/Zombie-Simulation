@@ -25,17 +25,17 @@ Actor::~Actor()
 	health = defense = 0;
 }
 
-int Actor::getDefense()
+int Actor::GetDefense()
 {
 	return defense;
 }
 
-int Actor::getHealth()
+int Actor::GetHealth()
 {
 	return health;
 }
 
-void Actor::changeDefense(int value)
+void Actor::ChangeDefense(int value)
 {
 	defense += value;                 // increment or decrement defense
 
@@ -49,7 +49,7 @@ void Actor::changeDefense(int value)
 	}
 }
 
-void Actor::changeHealth(int value)
+void Actor::ChangeHealth(int value)
 {
 	health += value;                 // increment or decrement health
 

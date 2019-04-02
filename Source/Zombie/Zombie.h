@@ -27,9 +27,9 @@ public:
 	Zombie(int x, int y);
 	Zombie(int x, int y, int healthValue, int defenseValue);
 	virtual ~Zombie();
-	void attack(Cell *cell);
-	void move(Cell *cell);
-	void tick();
+	void Attack(Cell *cell);
+	void Move(Cell *cell);
+	void Tick();
 };
 
 #endif /* ZOMBIE_H_ */

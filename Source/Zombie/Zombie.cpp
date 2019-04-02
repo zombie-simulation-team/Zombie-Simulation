@@ -26,36 +26,36 @@ Zombie::~Zombie()
 {
 }
 
-void Zombie::move(Cell *cell)
+void Zombie::Move(Cell *cell)
 {
 }
 
-void Zombie::attack(Cell *cell)
+void Zombie::Attack(Cell *cell)
 {
 }
 
-void Zombie::tick()
+void Zombie::Tick()
 {
 	int randNum = rand() % 4 + 1;
 
 	if(randNum == 1)
 	{
-		this->setNextX(this->getX());
-		this->setNextY(this->getY() - 1);
+		this->SetNextX(this->GetX());
+		this->SetNextY(this->GetY() - 1);
 	}
 	else if(randNum == 2)
 	{
-		this->setNextX(this->getX() + 1);
-		this->setNextY(this->getY());
+		this->SetNextX(this->GetX() + 1);
+		this->SetNextY(this->GetY());
 	}
 	else if (randNum == 3)
 	{
-		this->setNextX(this->getX());
-		this->setNextY(this->getY() + 1);
+		this->SetNextX(this->GetX());
+		this->SetNextY(this->GetY() + 1);
 	}
 	else if(randNum == 4)
 	{
-		this->setNextX(this->getX() - 1);
-		this->setNextY(this->getY());
+		this->SetNextX(this->GetX() - 1);
+		this->SetNextY(this->GetY());
 	}
 }

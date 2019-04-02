@@ -19,17 +19,17 @@ ActorForTest::ActorForTest(int x,int y, CellColor_e color, int health, int defen
 
 ActorForTest::~ActorForTest(){}
 
-void ActorForTest::move(Cell* cell)
+void ActorForTest::Move(Cell* cell)
 {
 	//needs development
 }
 
-void ActorForTest::attack(Cell* cell)
+void ActorForTest::Attack(Cell* cell)
 {
 	//needs development
 }
 
-void ActorForTest::tick()
+void ActorForTest::Tick()
 {
 	//needs development
 }
