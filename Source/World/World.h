@@ -5,11 +5,15 @@
 #ifndef ZOMBIE_SIMULATION_WORLD_H
 #define ZOMBIE_SIMULATION_WORLD_H
 
-#include "Continents.h" 
+#include "Continent.h"
 #include "Environment.h"
 #include<string>
 #include <stdlib.h>  
+
 using namespace std; 
+
+enum Map_e {
+} Map_e;
 
 class World: public Environment {
 private:
@@ -18,15 +22,15 @@ private:
     int dayElapsed;
     int continentCount;
     Continents_e allContinentArr [7];
-    void randomContinentOrder();
+    void RandomContinentOrder();
+
 public:
     World();
-    // This will be the user selected starting Continent
     World(int numOfContinents);
     World(Continents_e startingContinent);
     World(int numOfContinents,Continents_e startingContinent);
-    int getDays();
-    void setDays();
+    int GetDays();
+    void SetDays();
     void Draw();
     void tick();
     virtual ~World();
