@@ -6,15 +6,24 @@
 */
 
 #include "Human.h"
-
+#include <stdlib.h>
+#include <time.h>
 
 Human::Human(): Actor()
 {
+  srand(time(NULL));
+}
+
+Human::Human(int x, int y)
+  : Actor(x, y, Blue, humanDefaultHealth, humanDefaultDefense)
+{
+  srand(time(NULL));
 }
 
 Human::Human(int x, int y, int health, int defense)
   :Actor(x,y,Blue,health,defense)                  // Blue color for human cell for now;
 {
+  srand(time(NULL));
 }
 
 Human::~Human()
@@ -23,7 +32,7 @@ Human::~Human()
 
 void Human::Eat(Resource *cell)
 {
-  this->ChangeHealth(cell->GetFood()); // casting down to a derived class in the inheretance structure
+  this->ChangeHealth(cell->GetFood()); //update human health
 }
 
 void Human::Defend(Cell *cell)
@@ -74,9 +83,78 @@ void Human::Attack(Cell *cell) // humans only attack zombies
   // delete arena[Continent#][x][y]
   // arena[Continent#][x][y]  = new EmptyCell(x,y,color,true);
   // }
+
 }
 
 void Human::Tick()
 {
-// needs to be done
+// needs to be finished
+  while(!(this->IsLegalMove())) // find a valid cell
+  {
+    this->SetNextCell();
+  }
+
+}
+
+void Human::SetNextCell()
+{
+  //Posible cells to move starting from 1 on the 12 o'clock position and going clockwise
+  /*
+    ->origin is at upper-left corner
+    ->rows increment down
+    ->columns increment to the right
+
+    8   1   2
+      \ | /
+    7 - C - 3
+      / | \
+    6   5   4
+
+  */
+
+  int randNumber = rand() % 7 + 1;
+  switch (randNumber) {
+    case 1:                             // x(row)--
+      this->SetNextX(this->GetX() - 1);
+      this->SetNextY(this->GetY());
+      break;
+
+    case 2:                             // x(row)-- , y(col)++
+    this->SetNextX(this->GetX() - 1);
+    this->SetNextY(this->GetY() + 1);
+      break;
+
+    case 3:                             // y(col)++
+      this->SetNextX(this->GetX());
+      this->SetNextY(this->GetY() + 1);
+      break;
+
+    case 4:                             // x(row)++ , y(col)++
+      this->SetNextX(this->GetX() + 1);
+      this->SetNextY(this->GetY() + 1);
+      break;
+
+    case 5:                             // x(row)++
+      this->SetNextX(this->GetX() + 1);
+      this->SetNextY(this->GetY());
+      break;
+
+    case 6:                             // x(row)++ , y(col)--
+      this->SetNextX(this->GetX() + 1);
+      this->SetNextY(this->GetY() - 1);
+      break;
+
+    case 7:                             // y(col)--
+      this->SetNextX(this->GetX());
+      this->SetNextY(this->GetY() - 1);
+      break;
+
+    case 8:                             // x(row)--, y(col)--
+      this->SetNextX(this->GetX() - 1);
+      this->SetNextY(this->GetY() - 1);
+      break;
+
+    default:                            // no change
+      break;
+  }
 }
