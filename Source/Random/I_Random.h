@@ -19,6 +19,4 @@ public:
 	virtual int GenerateRandom(int start, int end) = 0;
 };
 
-std::unique_ptr<I_Random> MakeRandom();
-
 #endif /* RANDOM_H_ */
