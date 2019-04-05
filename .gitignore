@@ -23,3 +23,5 @@ Testing/CppUTest/autom4te.cache/
 Testing/CppUTest/CppUTestExtTests
 Testing/CppUTest/CppUTestTests
 .DS_Store
+.idea/*
+.vscode/*
