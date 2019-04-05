@@ -9,13 +9,22 @@
 #define ACTOR_H_
 
 #include "Cell.h"
+#include "I_Random.h"
 
 enum
 {
 	maxHealth = 100,
 	maxDefense = 100,
 	minHealth = 0,
-	minDefense = 0
+	minDefense = 0,
+	MoveUp = 1,
+	MoveRightUp = 2,
+	MoveRight = 3,
+	MoveRightDown = 4,
+	MoveDown = 5,
+	MoveLeftDown = 6,
+	MoveLeft = 7,
+	MoveLeftUp = 8
 };
 
 class Actor: public Cell
@@ -23,12 +32,18 @@ class Actor: public Cell
 private:
 	int health;
 	int defense;
+	I_Random *randomGenerator;
 
 public:
-	Actor();
-	Actor(int x, int y, CellColor_e color , int healthValue, int defenseValue);
+	Actor(
+		int x,
+		int y,
+		CellColor_e color ,
+		int healthValue,
+		int defenseValue,
+		I_Random *randomGenerator);
 	virtual ~Actor();
-	virtual void Move(Cell* cell) = 0;
+	virtual void Move();
 	virtual void Attack(Cell* cell) = 0;
 	int GetDefense();
 	int GetHealth();
