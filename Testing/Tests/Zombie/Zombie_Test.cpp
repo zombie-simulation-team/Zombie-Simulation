@@ -6,8 +6,7 @@
 #include "CppUTestExt/MockSupport.h"
 #include "CppUTest/TestHarness.h"
 #include "Zombie.h"
-#include "I_Random.h"
-#include "FakeRandomGenerator.h"
+
 
 enum
 {
@@ -22,13 +21,11 @@ enum
 TEST_GROUP(ZombieTest)
 {
 	Zombie *zombie;
-	FakeRandomGenerator *random;
 	I_Random *r;
 
 	void setup()
 	{
-		random = new FakeRandomGenerator();
-		r = (I_Random *)random;
+
 		zombie = new Zombie(X,Y, r);
 	}
 
@@ -38,7 +35,6 @@ TEST_GROUP(ZombieTest)
 		mock().clear();
 
 		delete zombie;
-		delete random;
 	}
 };
 
@@ -77,132 +73,4 @@ TEST(ZombieTest, ShouldInitializeAZombieWithGivenHealthAndDefense)
 	CHECK_EQUAL(expectedHealth, actualHealth);
 
 	delete testZombie;
-}
-
-TEST(ZombieTest, ShouldMoveZombieUp)
-{
-	random->SetRandomNumber(1);
-
-	int expectedNextX = X;
-	int expectedNextY = Y - 1;
-
-	zombie->Tick();
-
-	int actualNextX = zombie->GetNextX();
-	int actualNextY = zombie->GetNextY();
-
-	CHECK_EQUAL(expectedNextX, actualNextX);
-	CHECK_EQUAL(expectedNextY, actualNextY);
-}
-
-TEST(ZombieTest, ShouldMoveZombieRightUp)
-{
-	random->SetRandomNumber(2);
-
-	int expectedNextX = X + 1;
-	int expectedNextY = Y - 1;
-
-	zombie->Tick();
-
-	int actualNextX = zombie->GetNextX();
-	int actualNextY = zombie->GetNextY();
-
-	CHECK_EQUAL(expectedNextX, actualNextX);
-	CHECK_EQUAL(expectedNextY, actualNextY);
-}
-
-TEST(ZombieTest, ShouldMoveZombieRight)
-{
-	random->SetRandomNumber(3);
-
-	int expectedNextX = X + 1;
-	int expectedNextY = Y;
-
-	zombie->Tick();
-
-	int actualNextX = zombie->GetNextX();
-	int actualNextY = zombie->GetNextY();
-
-	CHECK_EQUAL(expectedNextX, actualNextX);
-	CHECK_EQUAL(expectedNextY, actualNextY);
-}
-
-TEST(ZombieTest, ShouldMoveZombieRightDown)
-{
-	random->SetRandomNumber(4);
-
-	int expectedNextX = X + 1;
-	int expectedNextY = Y + 1;
-
-	zombie->Tick();
-
-	int actualNextX = zombie->GetNextX();
-	int actualNextY = zombie->GetNextY();
-
-	CHECK_EQUAL(expectedNextX, actualNextX);
-	CHECK_EQUAL(expectedNextY, actualNextY);
-}
-
-TEST(ZombieTest, ShouldMoveZombieDown)
-{
-	random->SetRandomNumber(5);
-
-	int expectedNextX = X;
-	int expectedNextY = Y + 1;
-
-	zombie->Tick();
-
-	int actualNextX = zombie->GetNextX();
-	int actualNextY = zombie->GetNextY();
-
-	CHECK_EQUAL(expectedNextX, actualNextX);
-	CHECK_EQUAL(expectedNextY, actualNextY);
-}
-
-TEST(ZombieTest, ShouldMoveZombieLeftDown)
-{
-	random->SetRandomNumber(6);
-
-	int expectedNextX = X - 1;
-	int expectedNextY = Y + 1;
-
-	zombie->Tick();
-
-	int actualNextX = zombie->GetNextX();
-	int actualNextY = zombie->GetNextY();
-
-	CHECK_EQUAL(expectedNextX, actualNextX);
-	CHECK_EQUAL(expectedNextY, actualNextY);
-}
-
-TEST(ZombieTest, ShouldMoveZombieLeft)
-{
-	random->SetRandomNumber(7);
-
-	int expectedNextX = X - 1;
-	int expectedNextY = Y;
-
-	zombie->Tick();
-
-	int actualNextX = zombie->GetNextX();
-	int actualNextY = zombie->GetNextY();
-
-	CHECK_EQUAL(expectedNextX, actualNextX);
-	CHECK_EQUAL(expectedNextY, actualNextY);
-}
-
-TEST(ZombieTest, ShouldMoveZombieLeftUp)
-{
-	random->SetRandomNumber(8);
-
-	int expectedNextX = X - 1;
-	int expectedNextY = Y - 1;
-
-	zombie->Tick();
-
-	int actualNextX = zombie->GetNextX();
-	int actualNextY = zombie->GetNextY();
-
-	CHECK_EQUAL(expectedNextX, actualNextX);
-	CHECK_EQUAL(expectedNextY, actualNextY);
 }
