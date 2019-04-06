@@ -106,7 +106,6 @@ int Cell::GetNextY()
 	return nextY;
 }
 
-
 void Cell::SetColor(CellColor_e color)
 {
 	this->color = color;

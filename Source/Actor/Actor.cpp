@@ -21,7 +21,6 @@ Actor::Actor(
 	this->randomGenerator = randomGenerator;
 }
 
-
 Actor::~Actor()
 {
 	health = defense = 0;
@@ -39,7 +38,7 @@ int Actor::GetHealth()
 
 void Actor::ChangeDefense(int value)
 {
-	defense += value;                 // increment or decrement defense
+	defense += value;
 
 	if(defense > maxDefense)
 	{
@@ -53,7 +52,7 @@ void Actor::ChangeDefense(int value)
 
 void Actor::ChangeHealth(int value)
 {
-	health += value;                 // increment or decrement health
+	health += value;
 
 	if( health > maxHealth)
 	{
