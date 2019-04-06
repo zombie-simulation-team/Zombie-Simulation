@@ -8,10 +8,9 @@
 #include "Zombie.h"
 
 Zombie::Zombie(int x, int y, I_Random *randomGenerator)
-	: Actor(x, y, color, defaultHealth, defaultDefense, randomGenerator)
+	: Actor(x, y, color, DefaultHealth, DefaultDefense, randomGenerator)
 {
-	travel = defaultTravelAmount;
-	this->random = random;
+	travel = DefaultTravelAmount;
 }
 
 Zombie::Zombie(
@@ -22,8 +21,7 @@ Zombie::Zombie(
 		I_Random *randomGenerator)
 	: Actor(x, y, color, healthValue, defenseValue, randomGenerator)
 {
-	travel = defaultTravelAmount;
-	this->random = random;
+	travel = DefaultTravelAmount;
 }
 
 Zombie::~Zombie()
@@ -35,4 +33,5 @@ void Zombie::Attack(Cell *cell)
 
 void Zombie::Tick()
 {
+	this->Move();
 }

@@ -12,9 +12,9 @@
 
 enum
 {
-	defaultHealth = 100,
-	defaultDefense = 100,
-	defaultTravelAmount = 1
+	DefaultHealth = 100,
+	DefaultDefense = 100,
+	DefaultTravelAmount = 1
 };
 
 class Zombie: public Actor
@@ -22,16 +22,18 @@ class Zombie: public Actor
 private:
 	int travel;
 	static const CellColor_e color = Red;
-	I_Random *random;
 
 public:
-	Zombie(int x, int y, I_Random *random);
+	Zombie(
+		int x,
+		int y,
+		I_Random *randomGenerator);
 	Zombie(
 		int x,
 		int y,
 		int healthValue,
 		int defenseValue,
-		I_Random *random);
+		I_Random *randomGenerator);
 	virtual ~Zombie();
 	void Attack(Cell *cell);
 	void Tick();

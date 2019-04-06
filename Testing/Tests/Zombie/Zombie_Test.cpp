@@ -6,12 +6,10 @@
 #include "CppUTestExt/MockSupport.h"
 #include "CppUTest/TestHarness.h"
 #include "Zombie.h"
-
+#include "FakeRandomGenerator.h"
 
 enum
 {
-	DefaultHealth = 100,
-	DefaultDefense = 100,
 	SomeDefenseValue = 60,
 	SomeHealthValue = 40,
 	X = 3,
@@ -21,19 +19,15 @@ enum
 TEST_GROUP(ZombieTest)
 {
 	Zombie *zombie;
-	I_Random *r;
+	I_Random *randomGenerator;
 
 	void setup()
 	{
-
-		zombie = new Zombie(X,Y, r);
+		zombie = new Zombie(X,Y, randomGenerator);
 	}
 
 	void teardown()
 	{
-		mock().checkExpectations();
-		mock().clear();
-
 		delete zombie;
 	}
 };
@@ -61,7 +55,12 @@ TEST(ZombieTest, ShouldInitializeAZombie)
 
 TEST(ZombieTest, ShouldInitializeAZombieWithGivenHealthAndDefense)
 {
-	Zombie *testZombie = new Zombie(8, 7, SomeHealthValue, SomeDefenseValue, r);
+	Zombie *testZombie = new Zombie(
+			8,
+			7,
+			SomeHealthValue,
+			SomeDefenseValue,
+			randomGenerator);
 
 	int expectedDefense = SomeDefenseValue;
 	int expectedHealth = SomeHealthValue;
@@ -73,4 +72,30 @@ TEST(ZombieTest, ShouldInitializeAZombieWithGivenHealthAndDefense)
 	CHECK_EQUAL(expectedHealth, actualHealth);
 
 	delete testZombie;
+}
+
+TEST(ZombieTest, ShouldMoveAZombieToTheRight)
+{
+	FakeRandomGenerator *fake = new FakeRandomGenerator();
+	fake->SetRandomNumber(3);
+	randomGenerator = (I_Random *)fake;
+
+	Zombie *testZombie = new Zombie(
+			X,
+			Y,
+			SomeHealthValue,
+			SomeDefenseValue,
+			randomGenerator);
+
+	int expectedX = X + 1;
+	int expectedY = Y;
+
+	int actualX = 4;
+	int actualY = 3;
+
+	CHECK_EQUAL(expectedX, actualX);
+	CHECK_EQUAL(expectedY, actualY);
+
+	delete testZombie;
+	delete fake;
 }
