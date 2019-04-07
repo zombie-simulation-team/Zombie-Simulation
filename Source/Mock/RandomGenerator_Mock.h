@@ -9,17 +9,17 @@
 #define FAKERANDOMGENERATOR_H_
 
 #include "I_Random.h"
+#include "CppUTestExt/MockSupport.h"
 
-class FakeRandomGenerator: public I_Random
+class RandomGenerator_Mock: public I_Random
 {
 private:
 	int randomValue;
 
 public:
-	FakeRandomGenerator();
-	virtual ~FakeRandomGenerator();
+	RandomGenerator_Mock();
+	virtual ~RandomGenerator_Mock();
 	int GenerateRandom(int start, int end);
-	void SetRandomNumber(int value);
 };
 
 #endif /* FAKERANDOMGENERATOR_H_ */

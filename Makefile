@@ -46,7 +46,7 @@ SRC_DIRS += \
 	Source/Actor/ \
 	Source/Zombie/ \
 	Source/Random/ \
-	Source/FakeRandom/ \
+	Source/Mock/ \
 
 TEST_SRC_DIRS += \
 	Testing/Tests/ \
