@@ -10,13 +10,10 @@
 
 #include "Cell.h"
 #include "I_Random.h"
+#include "Utils.h"
 
 enum
 {
-	maxHealth = 100,
-	maxDefense = 100,
-	minHealth = 0,
-	minDefense = 0,
 	MoveUp = 1,
 	MoveRightUp = 2,
 	MoveRight = 3,
