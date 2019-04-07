@@ -10,13 +10,6 @@
 
 #include "Actor.h"
 
-enum
-{
-	DefaultHealth = 100,
-	DefaultDefense = 100,
-	DefaultTravelAmount = 1
-};
-
 class Zombie: public Actor
 {
 private:
