@@ -7,7 +7,7 @@
 #include "CppUTest/TestHarness.h"
 #include "ActorForTest.h"
 #include "I_Random.h"
-#include "FakeRandomGenerator.h"
+#include "RandomGenerator_Mock.h"
 
 enum
 {
@@ -23,25 +23,35 @@ enum
 TEST_GROUP(ActorTest)
 {
 	ActorForTest *actor;
-	FakeRandomGenerator *random;
-	I_Random *r;
+	RandomGenerator_Mock *randomGeneratorMock;
+	I_Random *randInterface;
 
 	void setup()
 	{
-		random = new FakeRandomGenerator();
-		r = (I_Random *)random;
+		randomGeneratorMock = new RandomGenerator_Mock();
+		randInterface = (I_Random *)randomGeneratorMock;
 		actor = new ActorForTest(
 				X,
 				Y,
 				Green,
 				MaximumHealth,
-				SomeDefenseValue, r);
+				SomeDefenseValue,
+				randInterface);
 	}
 
 	void teardown()
 	{
 		delete actor;
-		delete random;
+		delete randomGeneratorMock;
+	}
+
+	void RandomGeneratorShouldBeCalledAndReturn(int val)
+	{
+		mock().expectOneCall("GenerateRandom")
+					.onObject(randomGeneratorMock)
+					.withParameter("start", 1)
+					.withParameter("end", 8)
+					.andReturnValue(val);
 	}
 };
 
@@ -121,10 +131,9 @@ TEST(ActorTest, ShouldNotDecrementDefenseBelowMinimumDefense)
 	CHECK_EQUAL(expectedDefense, actualDefense);
 }
 
-
 TEST(ActorTest, ShouldMoveActorUp)
 {
-	random->SetRandomNumber(1);
+	RandomGeneratorShouldBeCalledAndReturn(1);
 
 	int expectedNextX = X;
 	int expectedNextY = Y - 1;
@@ -140,7 +149,7 @@ TEST(ActorTest, ShouldMoveActorUp)
 
 TEST(ActorTest, ShouldMoveActorRightUp)
 {
-	random->SetRandomNumber(2);
+	RandomGeneratorShouldBeCalledAndReturn(2);
 
 	int expectedNextX = X + 1;
 	int expectedNextY = Y - 1;
@@ -156,7 +165,7 @@ TEST(ActorTest, ShouldMoveActorRightUp)
 
 TEST(ActorTest, ShouldMoveActorRight)
 {
-	random->SetRandomNumber(3);
+	RandomGeneratorShouldBeCalledAndReturn(3);
 
 	int expectedNextX = X + 1;
 	int expectedNextY = Y;
@@ -172,7 +181,7 @@ TEST(ActorTest, ShouldMoveActorRight)
 
 TEST(ActorTest, ShouldMoveActorRightDown)
 {
-	random->SetRandomNumber(4);
+	RandomGeneratorShouldBeCalledAndReturn(4);
 
 	int expectedNextX = X + 1;
 	int expectedNextY = Y + 1;
@@ -188,7 +197,7 @@ TEST(ActorTest, ShouldMoveActorRightDown)
 
 TEST(ActorTest, ShouldMoveActorDown)
 {
-	random->SetRandomNumber(5);
+	RandomGeneratorShouldBeCalledAndReturn(5);
 
 	int expectedNextX = X;
 	int expectedNextY = Y + 1;
@@ -204,7 +213,7 @@ TEST(ActorTest, ShouldMoveActorDown)
 
 TEST(ActorTest, ShouldMoveActorLeftDown)
 {
-	random->SetRandomNumber(6);
+	RandomGeneratorShouldBeCalledAndReturn(6);
 
 	int expectedNextX = X - 1;
 	int expectedNextY = Y + 1;
@@ -220,7 +229,7 @@ TEST(ActorTest, ShouldMoveActorLeftDown)
 
 TEST(ActorTest, ShouldMoveActorLeft)
 {
-	random->SetRandomNumber(7);
+	RandomGeneratorShouldBeCalledAndReturn(7);
 
 	int expectedNextX = X - 1;
 	int expectedNextY = Y;
@@ -236,7 +245,7 @@ TEST(ActorTest, ShouldMoveActorLeft)
 
 TEST(ActorTest, ShouldMoveActorLeftUp)
 {
-	random->SetRandomNumber(8);
+	RandomGeneratorShouldBeCalledAndReturn(8);
 
 	int expectedNextX = X - 1;
 	int expectedNextY = Y - 1;
