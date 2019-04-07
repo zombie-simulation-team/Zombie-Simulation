@@ -6,7 +6,8 @@
 #include "CppUTestExt/MockSupport.h"
 #include "CppUTest/TestHarness.h"
 #include "Zombie.h"
-#include "FakeRandomGenerator.h"
+
+#include "RandomGenerator_Mock.h"
 
 enum
 {
@@ -72,30 +73,4 @@ TEST(ZombieTest, ShouldInitializeAZombieWithGivenHealthAndDefense)
 	CHECK_EQUAL(expectedHealth, actualHealth);
 
 	delete testZombie;
-}
-
-TEST(ZombieTest, ShouldMoveAZombieToTheRight)
-{
-	FakeRandomGenerator *fake = new FakeRandomGenerator();
-	fake->SetRandomNumber(3);
-	randomGenerator = (I_Random *)fake;
-
-	Zombie *testZombie = new Zombie(
-			X,
-			Y,
-			SomeHealthValue,
-			SomeDefenseValue,
-			randomGenerator);
-
-	int expectedX = X + 1;
-	int expectedY = Y;
-
-	int actualX = 4;
-	int actualY = 3;
-
-	CHECK_EQUAL(expectedX, actualX);
-	CHECK_EQUAL(expectedY, actualY);
-
-	delete testZombie;
-	delete fake;
 }
