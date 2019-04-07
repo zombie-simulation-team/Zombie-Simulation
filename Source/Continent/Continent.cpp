@@ -85,6 +85,7 @@ void Continent::InitializeShape(
 
 	InitializeZombies(zombieCount);
 	InitializeTraps(trapCount);
+	InitializeResources(resourceCount);
 }
 
 int Continent::GetSize()
@@ -129,15 +130,17 @@ void Continent::CheckMove(Cell *cell)
 	if((cell->GetNextX() >= 0 && cell->GetNextX() < size) &&
 			(cell->GetNextY() >= 0 && cell->GetNextY() < size))
 	{
+		int x = cell->GetX();
+		int y = cell->GetY();
+
 		Cell *targetCell = shape[cell->GetNextY()][cell->GetNextX()];
 
 		bool isNextPositionEmpty = targetCell->GetColor() == Transparent;
+		bool isZombieMovingToATrap = cell->GetColor() == Red &&
+				targetCell->GetColor() == Black;
 
 		if(isNextPositionEmpty)
 		{
-			int x = cell->GetX();
-			int y = cell->GetY();
-
 			cell->SetX(cell->GetNextX());
 			cell->SetY(cell->GetNextY());
 
@@ -149,11 +152,23 @@ void Continent::CheckMove(Cell *cell)
 			targetCell->SetY(y);
 			shape[y][x] = targetCell;
 		}
+		else if(isZombieMovingToATrap)
+		{
+			delete shape[y][x];
+
+			shape[y][x] = new EmptyCell(x, y, true);
+		}
 	}
 	else
 	{
 		cell->SetNextX(-1);
 		cell->SetNextY(-1);
+
+		if(cell->GetColor() == Red || cell->GetColor() == Green)
+		{
+			cell->Tick();
+			CheckMove(cell);
+		}
 	}
 }
 
@@ -161,8 +176,14 @@ void Continent::InitializeZombies(int zombieCount)
 {
 	while(zombieCount > 0)
 	{
-		int x = randomGenerator->GenerateRandom(0, size - 1);
-		int y = randomGenerator->GenerateRandom(0, size - 1);
+		int x = 0;
+		int y = 0;
+
+		do
+		{
+			x = randomGenerator->GenerateRandom(0, size - 1);
+			y = randomGenerator->GenerateRandom(0, size - 1);
+		} while(shape[y][x]->GetColor() != Transparent);
 
 		delete shape[y][x];
 
@@ -176,14 +197,41 @@ void Continent::InitializeTraps(int trapCount)
 {
 	while(trapCount > 0)
 	{
-		int x = randomGenerator->GenerateRandom(0, size - 1);
-		int y = randomGenerator->GenerateRandom(0, size - 1);
+		int x = 0;
+		int y = 0;
+
+		do
+		{
+			x = randomGenerator->GenerateRandom(0, size - 1);
+			y = randomGenerator->GenerateRandom(0, size - 1);
+		} while(shape[y][x]->GetColor() != Transparent);
 
 		delete shape[y][x];
 
 		shape[y][x] = new Trap(x, y);
 
 		trapCount--;
+	}
+}
+
+void Continent::InitializeResources(int resourceCount)
+{
+	while(resourceCount > 0)
+	{
+		int x = 0;
+		int y = 0;
+
+		do
+		{
+			x = randomGenerator->GenerateRandom(0, size - 1);
+			y = randomGenerator->GenerateRandom(0, size - 1);
+		} while(shape[y][x]->GetColor() != Transparent);
+
+		delete shape[y][x];
+
+		shape[y][x] = new Resource(x, y);
+
+		resourceCount--;
 	}
 }
 

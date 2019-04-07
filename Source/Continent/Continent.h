@@ -16,6 +16,7 @@
 #include "RandomGenerator.h"
 #include "Zombie.h"
 #include "Trap.h"
+#include "Resource.h"
 
 class Continent: public Environment
 {
@@ -26,6 +27,7 @@ private:
 	I_Random *randomGenerator;
 	void InitializeZombies(int zombieCount);
 	void InitializeTraps(int trapCount);
+	void InitializeResources(int resourceCount);
 	void InitializeShape(
 			int humanCount,
 			int zombieCount,

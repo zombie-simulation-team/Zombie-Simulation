@@ -12,11 +12,12 @@ enum
 {
 	ValueToMoveDown = MoveDown,
 	ValueToMoveLeft = MoveLeft,
+	ValueToMoveRight = MoveRight,
 	ContinentSize = 10,
 	HumanCount = 2,
 	ZombieCount = 1,
 	TrapCount = 1,
-	ResourceCount = 2,
+	ResourceCount = 1,
 	SomeX = 7,
 	SomeY = 3,
 	AnotherX = 9,
@@ -106,6 +107,20 @@ TEST_GROUP(ContinentTest)
 					.withParameter("end", ContinentSize - 1)
 					.andReturnValue(y);
 	}
+	void ExpectResourceToBeInitializedWithPosition(int x, int y)
+	{
+		mock().expectOneCall("GenerateRandom")
+					.onObject(randomGeneratorMock)
+					.withParameter("start", 0)
+					.withParameter("end", ContinentSize - 1)
+					.andReturnValue(x);
+
+		mock().expectOneCall("GenerateRandom")
+					.onObject(randomGeneratorMock)
+					.withParameter("start", 0)
+					.withParameter("end", ContinentSize - 1)
+					.andReturnValue(y);
+	}
 
 	void RandomGeneratorShouldBeCalledAndReturn(int val)
 	{
@@ -158,10 +173,10 @@ TEST(ContinentTest, ShouldInitializeAContinentWithAZombie)
 			0,
 			randInterface);
 
-	Cell ***actualShape = cont->GetShape();
+	Cell ***shape = cont->GetShape();
 
-	int actualX = actualShape[3][3]->GetX();
-	int actualY = actualShape[3][3]->GetY();
+	int actualX = shape[3][3]->GetX();
+	int actualY = shape[3][3]->GetY();
 
 	CHECK_EQUAL(expectedX, actualX);
 	CHECK_EQUAL(expectedY, actualY);
@@ -182,7 +197,7 @@ TEST(ContinentTest, ShouldTickTheContinentAndAZombieMoveDownOneCell)
 			0,
 			randInterface);
 
-	Cell ***actualShape = cont->GetShape();
+	Cell ***shape = cont->GetShape();
 
 	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveDown);
 
@@ -192,9 +207,9 @@ TEST(ContinentTest, ShouldTickTheContinentAndAZombieMoveDownOneCell)
 	int expectedY = SomeY + 1;
 	int expectedColor = Red;
 
-	int actualColor = actualShape[SomeY + 1][SomeX]->GetColor();
-	int actualX = actualShape[SomeY + 1][SomeX]->GetX();
-	int actualY = actualShape[SomeY + 1][SomeX]->GetY();
+	int actualColor = shape[SomeY + 1][SomeX]->GetColor();
+	int actualX = shape[SomeY + 1][SomeX]->GetX();
+	int actualY = shape[SomeY + 1][SomeX]->GetY();
 
 	CHECK_EQUAL(expectedColor, actualColor);
 	CHECK_EQUAL(expectedX, actualX);
@@ -216,7 +231,7 @@ TEST(ContinentTest, ShouldTickTheContinentAndAZombieMoveLeftOneCell)
 			0,
 			randInterface);
 
-	Cell ***actualShape = cont->GetShape();
+	Cell ***shape = cont->GetShape();
 
 	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveLeft);
 
@@ -226,9 +241,9 @@ TEST(ContinentTest, ShouldTickTheContinentAndAZombieMoveLeftOneCell)
 	int expectedY = AnotherY;
 	int expectedColor = Red;
 
-	int actualColor = actualShape[AnotherY][AnotherX - 1]->GetColor();
-	int actualX = actualShape[AnotherY][AnotherX - 1]->GetX();
-	int actualY = actualShape[AnotherY][AnotherX - 1]->GetY();
+	int actualColor = shape[AnotherY][AnotherX - 1]->GetColor();
+	int actualX = shape[AnotherY][AnotherX - 1]->GetX();
+	int actualY = shape[AnotherY][AnotherX - 1]->GetY();
 
 	CHECK_EQUAL(expectedColor, actualColor);
 	CHECK_EQUAL(expectedX, actualX);
@@ -260,6 +275,132 @@ TEST(ContinentTest, ShouldInitializeAContinentWithOneZombieAndOneTrap)
 	int trapColor = Black;
 	actualColor = actualShape[SomeTrapY][SomeTrapX]->GetColor();
 	CHECK_EQUAL(trapColor, actualColor);
+
+	delete cont;
+}
+
+TEST(ContinentTest, ShouldAttemptToMoveZombieToAnInvalidPosition)
+{
+	ExpectZombieToBeInitializedWithPosition(AnotherX, AnotherY);
+
+	Continent *cont = new Continent(
+			ContinentSize,
+			NorthAmerica,
+			0,
+			ZombieCount,
+			0,
+			0,
+			randInterface);
+
+	Cell ***shape = cont->GetShape();
+
+	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveRight);
+	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveLeft);
+
+	cont->Tick();
+
+	int expectedX = AnotherX - 1;
+	int expectedY = AnotherY;
+	int expectedColor = Red;
+
+	int actualColor = shape[AnotherY][AnotherX - 1]->GetColor();
+	int actualX = shape[AnotherY][AnotherX - 1]->GetX();
+	int actualY = shape[AnotherY][AnotherX - 1]->GetY();
+
+	CHECK_EQUAL(expectedColor, actualColor);
+	CHECK_EQUAL(expectedX, actualX);
+	CHECK_EQUAL(expectedY, actualY);
+
+	delete cont;
+}
+
+TEST(ContinentTest, ShouldDestroyZombieWhenMovesIntoATrap)
+{
+	ExpectZombieToBeInitializedWithPosition(4, 5);
+	ExpectTrapToBeInitializedWithPosition(5, 5);
+
+	Continent *cont = new Continent(
+			ContinentSize,
+			NorthAmerica,
+			0,
+			ZombieCount,
+			TrapCount,
+			0,
+			randInterface);
+
+	Cell ***shape = cont->GetShape();
+
+	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveRight);
+
+	cont->Tick();
+
+	int expectedColor = Transparent;
+	int actualColor = shape[5][4]->GetColor();
+	CHECK_EQUAL(expectedColor, actualColor);
+
+	expectedColor = Black;
+	actualColor = shape[5][5]->GetColor();
+	CHECK_EQUAL(expectedColor, actualColor);
+
+	delete cont;
+}
+
+TEST(ContinentTest, ShouldNotInitializeTrapAtPositionOfAZombie)
+{
+	ExpectZombieToBeInitializedWithPosition(4, 5);
+	ExpectTrapToBeInitializedWithPosition(4, 5);
+	ExpectTrapToBeInitializedWithPosition(5, 7);
+
+	Continent *cont = new Continent(
+			ContinentSize,
+			NorthAmerica,
+			0,
+			ZombieCount,
+			TrapCount,
+			0,
+			randInterface);
+
+	Cell ***shape = cont->GetShape();
+
+	int expectedColor = Red;
+	int actualColor = shape[5][4]->GetColor();
+	CHECK_EQUAL(expectedColor, actualColor);
+
+	expectedColor = Black;
+	actualColor = shape[7][5]->GetColor();
+	CHECK_EQUAL(expectedColor, actualColor);
+
+	delete cont;
+}
+
+TEST(ContinentTest, ShouldInitializeOneTrapOneZombieOneResource)
+{
+	ExpectZombieToBeInitializedWithPosition(4, 5);
+	ExpectTrapToBeInitializedWithPosition(3, 5);
+	ExpectResourceToBeInitializedWithPosition(5, 7);
+
+	Continent *cont = new Continent(
+			ContinentSize,
+			NorthAmerica,
+			0,
+			ZombieCount,
+			TrapCount,
+			ResourceCount,
+			randInterface);
+
+	Cell ***shape = cont->GetShape();
+
+	int expectedColor = Red;
+	int actualColor = shape[5][4]->GetColor();
+	CHECK_EQUAL(expectedColor, actualColor);
+
+	expectedColor = Black;
+	actualColor = shape[5][3]->GetColor();
+	CHECK_EQUAL(expectedColor, actualColor);
+
+	expectedColor = White;
+	actualColor = shape[7][5]->GetColor();
+	CHECK_EQUAL(expectedColor, actualColor);
 
 	delete cont;
 }
