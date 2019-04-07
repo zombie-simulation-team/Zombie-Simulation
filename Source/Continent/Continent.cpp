@@ -13,7 +13,8 @@ Continent::Continent(
 		int humanCount,
 		int zombieCount,
 		int trapCount,
-		int resourceCount)
+		int resourceCount,
+		I_Random *randomGenerator)
 	: Environment(
 			humanCount,
 			zombieCount,
@@ -22,36 +23,68 @@ Continent::Continent(
 {
 	this->size = size;
 	this->name = name;
-	initializeShape();
+	this->randomGenerator = randomGenerator;
+
+	InitializeShape(
+			humanCount,
+			zombieCount,
+			trapCount,
+			resourceCount);
 }
 
 Continent::~Continent()
 {
-	for(int i = 0; i < size; i++) {
-		for(int j = 0; j < size; j++) {
-			delete shape[i][j];
+	for(int y = 0; y < size; y++) {
+		for(int x = 0; x < size; x++) {
+			delete shape[y][x];
 		}
-		delete[] shape[i];
+		delete[] shape[y];
 	}
 	delete[] shape;
 }
 
 void Continent::Tick()
 {
+	Cell **list = new Cell*[size*size];
 
+	int count = 0;
+	for(int y = 0; y < size; y++) {
+		for(int x = 0; x < size; x++) {
+			Cell *current = shape[y][x];
+
+			list[count] = current;
+			count++;
+		}
+	}
+
+	for(int i = 0; i < count; i++)
+	{
+		Cell *current = list[i];
+		current->Tick();
+
+		CheckMove(current);
+	}
+	delete[] list;
 }
 
-void Continent::initializeShape()
+void Continent::InitializeShape(
+		int humanCount,
+		int zombieCount,
+		int trapCount,
+		int resourceCount)
 {
 	shape = new Cell**[size];
 
-	for(int i = 0; i < size; i++) {
-		shape[i] = new Cell*[size];
+	for(int y = 0; y < size; y++) {
+		shape[y] = new Cell*[size];
 
-		for(int j = 0; j < size; j++) {
-			shape[i][j] = new EmptyCell(i, j, true);
+		for(int x = 0; x < size; x++) {
+			shape[y][x] = new EmptyCell(y, x, true);
 		}
 	}
+
+	InitializeZombies(zombieCount);
+	InitializeTraps(trapCount);
 }
 
 int Continent::GetSize()
@@ -96,9 +129,11 @@ void Continent::CheckMove(Cell *cell)
 	if((cell->GetNextX() >= 0 && cell->GetNextX() < size) &&
 			(cell->GetNextY() >= 0 && cell->GetNextY() < size))
 	{
-		Cell *targetCell = shape[cell->GetNextX()][cell->GetNextY()];
+		Cell *targetCell = shape[cell->GetNextY()][cell->GetNextX()];
 
-		if(targetCell->GetColor() == Transparent)
+		bool isNextPositionEmpty = targetCell->GetColor() == Transparent;
+
+		if(isNextPositionEmpty)
 		{
 			int x = cell->GetX();
 			int y = cell->GetY();
@@ -106,19 +141,49 @@ void Continent::CheckMove(Cell *cell)
 			cell->SetX(cell->GetNextX());
 			cell->SetY(cell->GetNextY());
 
-			shape[cell->GetNextX()][cell->GetNextY()] = cell;
+			shape[cell->GetNextY()][cell->GetNextX()] = cell;
 			cell->SetNextX(-1);
 			cell->SetNextY(-1);
 
 			targetCell->SetX(x);
 			targetCell->SetY(y);
-			shape[x][y] = targetCell;
+			shape[y][x] = targetCell;
 		}
 	}
 	else
 	{
 		cell->SetNextX(-1);
 		cell->SetNextY(-1);
+	}
+}
+
+void Continent::InitializeZombies(int zombieCount)
+{
+	while(zombieCount > 0)
+	{
+		int x = randomGenerator->GenerateRandom(0, size - 1);
+		int y = randomGenerator->GenerateRandom(0, size - 1);
+
+		delete shape[y][x];
+
+		shape[y][x] = new Zombie(x, y,randomGenerator);
+
+		zombieCount--;
+	}
+}
+
+void Continent::InitializeTraps(int trapCount)
+{
+	while(trapCount > 0)
+	{
+		int x = randomGenerator->GenerateRandom(0, size - 1);
+		int y = randomGenerator->GenerateRandom(0, size - 1);
+
+		delete shape[y][x];
+
+		shape[y][x] = new Trap(x, y);
+
+		trapCount--;
 	}
 }
 

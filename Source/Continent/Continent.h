@@ -9,10 +9,13 @@
 #define CONTINENT_H_
 
 #include <iostream>
-#include <string>
 #include "Environment.h"
 #include "Cell.h"
 #include "EmptyCell.h"
+#include "I_Random.h"
+#include "RandomGenerator.h"
+#include "Zombie.h"
+#include "Trap.h"
 
 class Continent: public Environment
 {
@@ -20,7 +23,14 @@ private:
 	int size;
 	Cell ***shape;
 	Continents_e name;
-	void initializeShape();
+	I_Random *randomGenerator;
+	void InitializeZombies(int zombieCount);
+	void InitializeTraps(int trapCount);
+	void InitializeShape(
+			int humanCount,
+			int zombieCount,
+			int trapCount,
+			int resourceCount);
 
 public:
 	Continent(
@@ -29,7 +39,8 @@ public:
 			int humanCount,
 			int zombieCount,
 			int trapCount,
-			int resourceCount);
+			int resourceCount,
+			I_Random *randomGenerator);
 	Cell*** GetShape();
 	int GetSize();
 	std::string GetName();
