@@ -7,14 +7,9 @@
 
 #include "RandomGenerator_Mock.h"
 
-RandomGenerator_Mock::RandomGenerator_Mock()
-{
-	randomValue = 0;
-}
+RandomGenerator_Mock::RandomGenerator_Mock() {}
 
-RandomGenerator_Mock::~RandomGenerator_Mock()
-{
-}
+RandomGenerator_Mock::~RandomGenerator_Mock() {}
 
 int RandomGenerator_Mock::GenerateRandom(int start, int end)
 {

@@ -13,9 +13,6 @@
 
 class RandomGenerator_Mock: public I_Random
 {
-private:
-	int randomValue;
-
 public:
 	RandomGenerator_Mock();
 	virtual ~RandomGenerator_Mock();
