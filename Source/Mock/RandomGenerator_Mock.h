@@ -5,8 +5,8 @@
  *      Author: javiervega
  */
 
-#ifndef FAKERANDOMGENERATOR_H_
-#define FAKERANDOMGENERATOR_H_
+#ifndef RANDOMGENERATOR_MOCK_H_
+#define RANDOMGENERATOR_MOCK_H_
 
 #include "I_Random.h"
 #include "CppUTestExt/MockSupport.h"
@@ -19,4 +19,4 @@ public:
 	int GenerateRandom(int start, int end);
 };
 
-#endif /* FAKERANDOMGENERATOR_H_ */
+#endif /* RANDOMGENERATOR_MOCK_H_ */

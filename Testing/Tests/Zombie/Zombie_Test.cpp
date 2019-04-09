@@ -6,7 +6,6 @@
 #include "CppUTestExt/MockSupport.h"
 #include "CppUTest/TestHarness.h"
 #include "Zombie.h"
-
 #include "RandomGenerator_Mock.h"
 
 enum
