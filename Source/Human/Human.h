@@ -10,7 +10,6 @@
 
 #include "Actor.h"
 #include "Resource.h"
-#include "Trap.h"
 
 enum
 {
@@ -25,10 +24,8 @@ private:
 	void Defend(Cell *cell);
 
 public:
-	Human();
-	Human(int, int, int, int);
+	Human(int x, int y, int health, int defense, I_Random *randomGenerator);
 	virtual ~Human();
-	void Move(Cell *cell);
 	void Attack(Cell *cell);
 	void Tick();
 };

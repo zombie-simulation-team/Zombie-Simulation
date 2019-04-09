@@ -11,6 +11,8 @@ Cell::Cell()
 {
 	xPos = 0;
 	yPos = 0;
+	nextX = -1;
+	nextY = -1;
 	color = Transparent;
 	is_valid = true;
 }
@@ -19,6 +21,8 @@ Cell::Cell(int x, int y, CellColor_e color, bool valid)
 {
 	xPos = x;
 	yPos = y;
+	nextX = -1;
+	nextY = -1;
 	this->color = color;
 	is_valid = valid;
 }
@@ -27,6 +31,8 @@ Cell::Cell(int x, int y, CellColor_e color)
 {
 	xPos = x;
 	yPos = y;
+	nextX = -1;
+	nextY = -1;
 	this->color = color;
 	is_valid = true;
 }
@@ -35,6 +41,8 @@ Cell::Cell(int x, int y, bool valid)
 {
 	xPos = x;
 	yPos = y;
+	nextX = -1;
+	nextY = -1;
 	is_valid = valid;
 	color = Transparent;
 }
@@ -43,6 +51,8 @@ Cell::Cell(int x, int y)
 {
 	xPos = x;
 	yPos = y;
+	nextX = -1;
+	nextY = -1;
 	color = Transparent;
 	is_valid = true;
 }
@@ -74,6 +84,26 @@ void Cell::SetX(int x)
 void Cell::SetY(int y)
 {
 	yPos = y;
+}
+
+void Cell::SetNextX(int x)
+{
+	nextX = x;
+}
+
+void Cell::SetNextY(int y)
+{
+	nextY = y;
+}
+
+int Cell::GetNextX()
+{
+	return nextX;
+}
+
+int Cell::GetNextY()
+{
+	return nextY;
 }
 
 void Cell::SetColor(CellColor_e color)

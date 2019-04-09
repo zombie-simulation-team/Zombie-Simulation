@@ -7,13 +7,8 @@
 
 #include "Human.h"
 
-
-Human::Human(): Actor()
-{
-}
-
-Human::Human(int x, int y, int health, int defense)
-  :Actor(x,y,Blue,health,defense)                  // Blue color for human cell for now;
+Human::Human(int x, int y, int health, int defense, I_Random *randomGenerator)
+	:Actor(x,y,Blue,health,defense, randomGenerator)
 {
 }
 
@@ -32,25 +27,6 @@ void Human::Defend(Cell *cell)
   // Optional implementation
   // delete array[Continent#][cell->getX()][cell->getY()];
   // arena[Continent#][cell->getX()][cell->getY()] = new Trap(cell->getX(), cell->getY(), defaultAttack);
-}
-
-void Human::Move(Cell *cell)
-{
-  // needs to be done
-  CellColor_e color = cell->GetColor();
-
-  switch(color)
-  {
-    case Transparent : // empty cell
-      break;
-
-    case Green:         // resource cell(can be changed)
-      break;
-
-    default:
-      break;
-  }
-
 }
 
 void Human::Attack(Cell *cell) // humans only attack zombies

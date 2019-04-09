@@ -9,12 +9,7 @@
 #define OBSTACLE_H_
 
 #include "Cell.h"
-
-enum
-{
-	maxDefense = 100,
-	minDefense = 0
-};
+#include "Utils.h"
 
 class Obstacle: public Cell
 {

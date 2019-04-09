@@ -13,10 +13,8 @@
 class ActorForTest: public Actor
 {
 public:
-	ActorForTest();
-	ActorForTest(int,int, CellColor_e, int, int);
+	ActorForTest(int,int, CellColor_e, int, int, I_Random *);
 	virtual ~ActorForTest();
-	void Move(Cell*);
 	void Attack(Cell*);
 	void Tick();
 };
