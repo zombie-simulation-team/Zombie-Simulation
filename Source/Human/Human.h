@@ -14,20 +14,25 @@
 enum
 {
 	attackZombieDefense = -10,
-	attackZombieHealth = -20
+	attackZombieHealth = -20,
+	humanDefaultHealth = 100,
+	humanDefaultDefense = 100
 };
 
 class Human: public Actor
 {
 private:
-	void Eat(Resource *cell);
+	//void Eat(Resource *cell);
 	void Defend(Cell *cell);
 
 public:
+	Human(int x, int y, I_Random *randomGenerator);
 	Human(int x, int y, int health, int defense, I_Random *randomGenerator);
 	virtual ~Human();
 	void Attack(Cell *cell);
 	void Tick();
+	void SetNextCell();
+	void Eat(Resource *cell); // public for now so that it can be tested
 };
 
 #endif

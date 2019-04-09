@@ -8,6 +8,9 @@
 #ifndef CELL_H
 #define CELL_H
 
+#define X_LIMIT 100			//temporarily saved in class. Need to get value from other class
+#define Y_LIMIT 0
+
 typedef enum CellColor_e
 {
 	Transparent,
@@ -48,6 +51,7 @@ public:
 	void SetNextY(int y);
 	int GetNextX();
 	int GetNextY();
+	bool IsLegalMove();
 };
 
 #endif
