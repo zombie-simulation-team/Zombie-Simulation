@@ -10,7 +10,7 @@
 Actor::Actor(
 		int x,
 		int y,
-		CellColor_e color ,
+		CellColor_e color,
 		int healthValue,
 		int defenseValue,
 		I_Random *randomGenerator)
@@ -23,7 +23,6 @@ Actor::Actor(
 
 Actor::~Actor()
 {
-	health = defense = 0;
 }
 
 int Actor::GetDefense()
