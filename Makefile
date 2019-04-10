@@ -43,6 +43,11 @@ SRC_DIRS += \
 	Source/Trap/ \
 	Source/EmptyCell/ \
 	Source/Continent/ \
+	Source/Actor/ \
+	Source/Zombie/ \
+	Source/Random/ \
+	Source/Mock/ \
+	Source/Utils/ \
 
 TEST_SRC_DIRS += \
 	Testing/Tests/ \
@@ -53,6 +58,8 @@ TEST_SRC_DIRS += \
 	Testing/Tests/Trap \
 	Testing/Tests/EmptyCell \
 	Testing/Tests/Continent \
+	Testing/Tests/Actor \
+	Testing/Tests/Zombie \
 
 INCLUDE_DIRS += \
 	$(SRC_DIRS) \

@@ -9,7 +9,7 @@
 
 Obstacle::Obstacle()
 {
-	defense = maxDefense;
+	defense = MaxDefense;
 }
 
 Obstacle::Obstacle(int x, int y, int defense, CellColor_e color)
@@ -21,7 +21,7 @@ Obstacle::Obstacle(int x, int y, int defense, CellColor_e color)
 Obstacle::Obstacle(int x, int y, CellColor_e color)
 	: Cell(x, y, color)
 {
-	this->defense = maxDefense;
+	this->defense = MaxDefense;
 }
 
 Obstacle::~Obstacle()
@@ -31,17 +31,17 @@ Obstacle::~Obstacle()
 
 void Obstacle::SetDefense(int amount)
 {
-	if(amount >= minDefense && amount <= maxDefense)
+	if(amount >= MinDefense && amount <= MaxDefense)
 	{
 		defense = amount;
 	}
-	else if(amount > maxDefense)
+	else if(amount > MaxDefense)
 	{
-		defense = maxDefense;
+		defense = MaxDefense;
 	}
-	else if(amount < minDefense)
+	else if(amount < MinDefense)
 	{
-		defense = minDefense;
+		defense = MinDefense;
 	}
 }
 
