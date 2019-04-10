@@ -78,6 +78,7 @@ TEST_GROUP(ContinentTest)
 			}
 		}
 	}
+
 	void ExpectZombieToBeInitializedWithPosition(int x, int y)
 	{
 		mock().expectOneCall("GenerateRandom")
@@ -107,6 +108,7 @@ TEST_GROUP(ContinentTest)
 					.withParameter("end", ContinentSize - 1)
 					.andReturnValue(y);
 	}
+
 	void ExpectResourceToBeInitializedWithPosition(int x, int y)
 	{
 		mock().expectOneCall("GenerateRandom")
