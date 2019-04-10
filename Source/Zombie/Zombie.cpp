@@ -34,4 +34,5 @@ void Zombie::Attack(Cell *cell)
 void Zombie::Tick()
 {
 	this->Move();
+	this->ChangeHealth(-10);
 }

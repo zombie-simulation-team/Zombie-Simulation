@@ -19,16 +19,35 @@ enum
 TEST_GROUP(ZombieTest)
 {
 	Zombie *zombie;
-	I_Random *randomGenerator;
+	I_Random *randomGeneratorInterface;
+	RandomGenerator_Mock *randomGeneratorMock;
 
 	void setup()
 	{
-		zombie = new Zombie(X,Y, randomGenerator);
+		randomGeneratorMock = new RandomGenerator_Mock();
+		randomGeneratorInterface = (I_Random *)randomGeneratorMock;
+
+		zombie = new Zombie(X,Y, randomGeneratorInterface);
 	}
 
 	void teardown()
 	{
 		delete zombie;
+		delete randomGeneratorMock;
+	}
+
+	void RandomGeneratorShouldBeCalledAndReturn(int val)
+	{
+		mock().expectOneCall("GenerateRandom")
+					.onObject(randomGeneratorMock)
+					.withParameter("start", 1)
+					.withParameter("end", 8)
+					.andReturnValue(val);
+	}
+
+	void ZombieHealthShouldBeZero(int expected, int actual)
+	{
+		CHECK_EQUAL(expected, actual);
 	}
 };
 
@@ -60,7 +79,7 @@ TEST(ZombieTest, ShouldInitializeAZombieWithGivenHealthAndDefense)
 			7,
 			SomeHealthValue,
 			SomeDefenseValue,
-			randomGenerator);
+			randomGeneratorInterface);
 
 	int expectedDefense = SomeDefenseValue;
 	int expectedHealth = SomeHealthValue;
@@ -73,3 +92,46 @@ TEST(ZombieTest, ShouldInitializeAZombieWithGivenHealthAndDefense)
 
 	delete testZombie;
 }
+
+TEST(ZombieTest, ShouldDecrementHealthByTwentyAfterOneTick)
+{
+	Zombie *testZombie = new Zombie(4, 3, randomGeneratorInterface);
+
+	RandomGeneratorShouldBeCalledAndReturn(MoveDown);
+
+	testZombie->Tick();
+
+	int expectedHealth = DefaultHealth - 10;
+	int actualHealth = testZombie->GetHealth();
+
+	CHECK_EQUAL(expectedHealth, actualHealth);
+
+	delete testZombie;
+}
+
+TEST(ZombieTest, ShouldDecrementHealthToZero)
+{
+	Zombie *testZombie = new Zombie(1, 1, randomGeneratorInterface);
+
+	int expectedHealth;
+	int actualHealth;
+
+	for(int i = 1; i <= 10; i++)
+	{
+		RandomGeneratorShouldBeCalledAndReturn(MoveDown);
+
+		testZombie->Tick();
+
+		expectedHealth = DefaultHealth - (10 * i);
+		actualHealth = testZombie->GetHealth();
+
+		CHECK_EQUAL(expectedHealth, actualHealth);
+	}
+
+	expectedHealth = 0;
+
+	ZombieHealthShouldBeZero(expectedHealth, actualHealth);
+
+	delete testZombie;
+}
+
