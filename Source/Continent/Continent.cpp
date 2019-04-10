@@ -86,6 +86,7 @@ void Continent::InitializeShape(
 	InitializeZombies(zombieCount);
 	InitializeTraps(trapCount);
 	InitializeResources(resourceCount);
+	InitializeHumans(humanCount);
 }
 
 int Continent::GetSize()
@@ -232,6 +233,27 @@ void Continent::InitializeResources(int resourceCount)
 		shape[y][x] = new Resource(x, y);
 
 		resourceCount--;
+	}
+}
+
+void Continent::InitializeHumans(int humanCount)
+{
+	while(humanCount > 0)
+	{
+		int x = 0;
+		int y = 0;
+
+		do
+		{
+			x = randomGenerator->GenerateRandom(0, size - 1);
+			y = randomGenerator->GenerateRandom(0, size - 1);
+		} while(shape[y][x]->GetColor() != Transparent);
+
+		delete shape[y][x];
+
+		shape[y][x] = new Human(x, y, randomGenerator);
+
+		humanCount--;
 	}
 }
 

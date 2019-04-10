@@ -14,7 +14,7 @@ enum
 	ValueToMoveLeft = MoveLeft,
 	ValueToMoveRight = MoveRight,
 	ContinentSize = 10,
-	HumanCount = 2,
+	HumanCount = 1,
 	ZombieCount = 1,
 	TrapCount = 1,
 	ResourceCount = 1,
@@ -78,6 +78,7 @@ TEST_GROUP(ContinentTest)
 			}
 		}
 	}
+
 	void ExpectZombieToBeInitializedWithPosition(int x, int y)
 	{
 		mock().expectOneCall("GenerateRandom")
@@ -107,6 +108,7 @@ TEST_GROUP(ContinentTest)
 					.withParameter("end", ContinentSize - 1)
 					.andReturnValue(y);
 	}
+
 	void ExpectResourceToBeInitializedWithPosition(int x, int y)
 	{
 		mock().expectOneCall("GenerateRandom")
@@ -129,6 +131,21 @@ TEST_GROUP(ContinentTest)
 					.withParameter("start", 1)
 					.withParameter("end", 8)
 					.andReturnValue(val);
+	}
+
+	void ExpectHumanToBeInitializedWithPosition(int x, int y)
+	{
+		mock().expectOneCall("GenerateRandom")
+					.onObject(randomGeneratorMock)
+					.withParameter("start", 0)
+					.withParameter("end", ContinentSize - 1)
+					.andReturnValue(x);
+
+		mock().expectOneCall("GenerateRandom")
+					.onObject(randomGeneratorMock)
+					.withParameter("start", 0)
+					.withParameter("end", ContinentSize - 1)
+					.andReturnValue(y);
 	}
 };
 
@@ -373,16 +390,17 @@ TEST(ContinentTest, ShouldNotInitializeTrapAtPositionOfAZombie)
 	delete cont;
 }
 
-TEST(ContinentTest, ShouldInitializeOneTrapOneZombieOneResource)
+TEST(ContinentTest, ShouldInitializeOneTrapOneZombieOneResourceAndOneHuman)
 {
 	ExpectZombieToBeInitializedWithPosition(4, 5);
 	ExpectTrapToBeInitializedWithPosition(3, 5);
 	ExpectResourceToBeInitializedWithPosition(5, 7);
+	ExpectHumanToBeInitializedWithPosition(7, 9);
 
 	Continent *cont = new Continent(
 			ContinentSize,
 			NorthAmerica,
-			0,
+			HumanCount,
 			ZombieCount,
 			TrapCount,
 			ResourceCount,
@@ -402,5 +420,10 @@ TEST(ContinentTest, ShouldInitializeOneTrapOneZombieOneResource)
 	actualColor = shape[7][5]->GetColor();
 	CHECK_EQUAL(expectedColor, actualColor);
 
+	expectedColor = Green;
+	actualColor = shape[9][7]->GetColor();
+	CHECK_EQUAL(expectedColor, actualColor);
+
 	delete cont;
 }
+

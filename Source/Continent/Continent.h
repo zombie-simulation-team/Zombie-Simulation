@@ -17,6 +17,7 @@
 #include "Zombie.h"
 #include "Trap.h"
 #include "Resource.h"
+#include "Human.h"
 
 class Continent: public Environment
 {
@@ -28,6 +29,7 @@ private:
 	void InitializeZombies(int zombieCount);
 	void InitializeTraps(int trapCount);
 	void InitializeResources(int resourceCount);
+	void InitializeHumans(int humanCount);
 	void InitializeShape(
 			int humanCount,
 			int zombieCount,
