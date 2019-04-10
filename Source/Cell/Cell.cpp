@@ -115,3 +115,11 @@ bool Cell::IsValid()
 {
 	return is_valid;
 }
+bool Cell::IsLegalMove()
+{
+
+  int x = this->GetNextX();
+  int y = this->GetNextY();
+
+  return (x < 0 || x > X_LIMIT || y < 0 || y > Y_LIMIT); // LIMIT numbers come from arena size
+}

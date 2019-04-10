@@ -14,6 +14,10 @@
 
 enum
 {
+	ActorMaxHealth = 100,
+	ActorMaxDefense = 100,
+	ActorMinHealth = 0,
+	ActorMinDefense = 0,
 	MoveUp = 1,
 	MoveRightUp = 2,
 	MoveRight = 3,
