@@ -41,7 +41,7 @@ TEST(HumanTest, ShouldInitializeAHuman)
 {
 	int expectedDefense = DefaultDefense;
 	int expectedHealth = DefaultHealth;
-	CellColor_e expectedColor = Blue;
+	CellColor_e expectedColor = Green;
 	int expectedX = 3;
 	int expectedY = 3;
 

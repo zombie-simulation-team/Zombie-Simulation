@@ -10,12 +10,12 @@
 #include <time.h>
 
 Human::Human(int x, int y, int health, int defense, I_Random *randomGenerator)
-	:Actor(x,y,Blue,health,defense, randomGenerator)
+	:Actor(x , y, Green, health, defense, randomGenerator)
 {
 }
 
 Human::Human(int x, int y, I_Random *randomGenerator)
-  : Actor(x, y, Blue, humanDefaultHealth, humanDefaultDefense, randomGenerator)
+  : Actor(x, y, Green, humanDefaultHealth, humanDefaultDefense, randomGenerator)
 {
 }
 
