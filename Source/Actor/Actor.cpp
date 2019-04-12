@@ -63,6 +63,13 @@ void Actor::ChangeHealth(int value)
 	}
 }
 
+/*
+	8   1   2
+	  \ | /
+	7 - C - 3
+	  / | \
+	6   5   4
+  */
 void Actor::Move()
 {
 	int randNum = randomGenerator->GenerateRandom(1,8);
