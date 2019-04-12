@@ -44,7 +44,15 @@ Cell::Cell(int x, int y, bool valid)
 	nextX = -1;
 	nextY = -1;
 	is_valid = valid;
-	color = Transparent;
+
+	if(is_valid)
+	{
+		color = Grey;
+	}
+	else
+	{
+		color = Transparent;
+	}
 }
 
 Cell::Cell(int x, int y)
