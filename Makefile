@@ -48,6 +48,7 @@ SRC_DIRS += \
 	Source/Random/ \
 	Source/Mock/ \
 	Source/Utils/ \
+	Source/World/ \
 
 TEST_SRC_DIRS += \
 	Testing/Tests/ \
@@ -60,6 +61,7 @@ TEST_SRC_DIRS += \
 	Testing/Tests/Continent \
 	Testing/Tests/Actor \
 	Testing/Tests/Zombie \
+	Testing/Tests/World \
 
 INCLUDE_DIRS += \
 	$(SRC_DIRS) \

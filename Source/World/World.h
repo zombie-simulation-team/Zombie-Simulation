@@ -2,39 +2,36 @@
 // Am I god if I have created the World Class? - god
 //
 
-#ifndef ZOMBIE_SIMULATION_WORLD_H
-#define ZOMBIE_SIMULATION_WORLD_H
+#ifndef WORLD_H
+#define WORLD_H
 
 #include "Continent.h"
 #include "Environment.h"
-#include<string>
-#include <stdlib.h>  
+#include "RandomGenerator.h"
 
 using namespace std; 
 
-enum Map_e {
-} Map_e;
-
-class World: public Environment {
+class World : public Environment
+{
 private:
-    int numOfContinents;
-    Continent ** continents;
-    int dayElapsed;
-    int continentCount;
-    Continents_e allContinentArr [7];
-    void RandomContinentOrder();
+	int numOfContinents;
+	Continent ** continents;
+	int dayElapsed;
+	int continentCount;
+	//Continents_e allContinentArr [7];
+	void RandomContinentOrder();
+	static const int DefaultContinentSize = 20;
 
 public:
-    World();
-    World(int numOfContinents);
-    World(Continents_e startingContinent);
-    World(int numOfContinents,Continents_e startingContinent);
-    int GetDays();
-    void SetDays();
-    void Draw();
-    void tick();
-    virtual ~World();
+//	World();
+	World(int numOfContinents);
+	World(Continents_e startingContinent);
+	World(int numOfContinents, Continents_e startingContinent, I_Random *randomInterface);
+	int GetDays();
+	void SetDays();
+	void Draw();
+	void Tick();
+	virtual ~World();
 };
 
-
-#endif //ZOMBIE_SIMULATION_WORLD_H
+#endif // WORLD_H
