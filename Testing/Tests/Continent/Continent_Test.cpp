@@ -351,7 +351,7 @@ TEST(ContinentTest, ShouldDestroyZombieWhenMovesIntoATrap)
 
 	cont->Tick();
 
-	int expectedColor = Transparent;
+	int expectedColor = Grey;
 	int actualColor = shape[5][4]->GetColor();
 	CHECK_EQUAL(expectedColor, actualColor);
 
@@ -426,4 +426,3 @@ TEST(ContinentTest, ShouldInitializeOneTrapOneZombieOneResourceAndOneHuman)
 
 	delete cont;
 }
-

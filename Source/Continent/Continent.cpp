@@ -136,7 +136,7 @@ void Continent::CheckMove(Cell *cell)
 
 		Cell *targetCell = shape[cell->GetNextY()][cell->GetNextX()];
 
-		bool isNextPositionEmpty = targetCell->GetColor() == Transparent;
+		bool isNextPositionEmpty = targetCell->GetColor() == Grey;
 		bool isZombieMovingToATrap = cell->GetColor() == Red &&
 				targetCell->GetColor() == Black;
 
@@ -184,7 +184,7 @@ void Continent::InitializeZombies(int zombieCount)
 		{
 			x = randomGenerator->GenerateRandom(0, size - 1);
 			y = randomGenerator->GenerateRandom(0, size - 1);
-		} while(shape[y][x]->GetColor() != Transparent);
+		} while(shape[y][x]->GetColor() != Grey);
 
 		delete shape[y][x];
 
@@ -205,7 +205,7 @@ void Continent::InitializeTraps(int trapCount)
 		{
 			x = randomGenerator->GenerateRandom(0, size - 1);
 			y = randomGenerator->GenerateRandom(0, size - 1);
-		} while(shape[y][x]->GetColor() != Transparent);
+		} while(shape[y][x]->GetColor() != Grey);
 
 		delete shape[y][x];
 
@@ -226,7 +226,7 @@ void Continent::InitializeResources(int resourceCount)
 		{
 			x = randomGenerator->GenerateRandom(0, size - 1);
 			y = randomGenerator->GenerateRandom(0, size - 1);
-		} while(shape[y][x]->GetColor() != Transparent);
+		} while(shape[y][x]->GetColor() != Grey);
 
 		delete shape[y][x];
 
@@ -247,7 +247,7 @@ void Continent::InitializeHumans(int humanCount)
 		{
 			x = randomGenerator->GenerateRandom(0, size - 1);
 			y = randomGenerator->GenerateRandom(0, size - 1);
-		} while(shape[y][x]->GetColor() != Transparent);
+		} while(shape[y][x]->GetColor() != Grey);
 
 		delete shape[y][x];
 
