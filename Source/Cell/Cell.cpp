@@ -123,6 +123,32 @@ bool Cell::IsValid()
 {
 	return is_valid;
 }
+
+bool Cell::IsHuman()
+{
+	return this->color == Green;
+}
+
+bool Cell::IsZombie()
+{
+	return this->color == Red;
+}
+
+bool Cell::IsResource()
+{
+	return this->color == White;
+}
+
+bool Cell::IsTrap()
+{
+	return this->color == Black;
+}
+
+bool Cell::IsEmpty()
+{
+	return this->color == Grey;
+}
+
 bool Cell::IsLegalMove()
 {
 

@@ -52,6 +52,11 @@ public:
 	int GetNextX();
 	int GetNextY();
 	bool IsLegalMove();
+	bool IsHuman();
+	bool IsZombie();
+	bool IsResource();
+	bool IsTrap();
+	bool IsEmpty();
 };
 
 #endif
