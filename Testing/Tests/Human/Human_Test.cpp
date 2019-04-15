@@ -8,6 +8,9 @@
 #include "Resource.h"
 #include "RandomGenerator_Mock.h"
 
+#define Times
+#define AndReturn
+
 enum
 {
 	SomeDefenseValue = 30,
@@ -34,6 +37,32 @@ TEST_GROUP(HumanTest)
 	{
 		delete human;
 		delete randomGeneratorMock;
+	}
+
+	void RandomGeneratorShouldBeCalledAndReturn(int val)
+	{
+		mock().expectOneCall("GenerateRandom")
+					.onObject(randomGeneratorMock)
+					.withParameter("start", 1)
+					.withParameter("end", 8)
+					.andReturnValue(val);
+	}
+
+	void RandomGeneratorShouldBeCalled(int n, int val)
+	{
+		mock().expectNCalls(n, "GenerateRandom")
+					.onObject(randomGeneratorMock)
+					.withParameter("start", 1)
+					.withParameter("end", 8)
+					.andReturnValue(val);
+	}
+
+	void ShouldTick(Human *human, int n)
+	{
+		for(int i = 0; i < n; i++)
+		{
+			human->Tick();
+		}
 	}
 };
 
@@ -89,4 +118,35 @@ TEST(HumanTest, ShouldIncreaseHumanHealthBy20WhenFindingResourceCellToEat)
   delete testHuman;
   delete resource;
 
+}
+
+TEST(HumanTest, ShouldDecrementHealthByTwentyAfterOneTick)
+{
+	Human *testHuman = new Human(4, 3, randInterface);
+
+	RandomGeneratorShouldBeCalledAndReturn(MoveDown);
+
+	testHuman->Tick();
+
+	int expectedHealth = DefaultHealth - 20;
+	int actualHealth = testHuman->GetHealth();
+
+	CHECK_EQUAL(expectedHealth, actualHealth);
+
+	delete testHuman;
+}
+
+TEST(HumanTest, ShouldDecrementHealthToZeroAfter5Tick)
+{
+	Human *testHuman = new Human(4, 3, randInterface);
+
+	RandomGeneratorShouldBeCalled(5 Times, AndReturn MoveDown);
+
+	ShouldTick(testHuman, 5 Times);
+
+	int expectedHealth = 0;
+	int actualHealth = testHuman->GetHealth();
+	CHECK_EQUAL(expectedHealth, actualHealth);
+
+	delete testHuman;
 }
