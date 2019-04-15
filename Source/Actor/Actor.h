@@ -33,6 +33,8 @@ class Actor: public Cell
 private:
 	int health;
 	int defense;
+	int nextX;
+	int nextY;
 	I_Random *randomGenerator;
 
 public:
@@ -50,6 +52,12 @@ public:
 	int GetHealth();
 	void ChangeDefense(int);
 	void ChangeHealth(int);
+	void SetNextX(int x);
+	void SetNextY(int y);
+	int GetNextX();
+	int GetNextY();
+	void SetNextPosition(int nextX, int nextY);
+	void ResetNextPosition();
 };
 
 #endif /* ACTOR_H_ */
