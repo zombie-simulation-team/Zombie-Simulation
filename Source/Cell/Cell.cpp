@@ -11,8 +11,6 @@ Cell::Cell()
 {
 	xPos = 0;
 	yPos = 0;
-	nextX = -1;
-	nextY = -1;
 	color = Transparent;
 	is_valid = true;
 }
@@ -21,8 +19,6 @@ Cell::Cell(int x, int y, CellColor_e color, bool valid)
 {
 	xPos = x;
 	yPos = y;
-	nextX = -1;
-	nextY = -1;
 	this->color = color;
 	is_valid = valid;
 }
@@ -31,8 +27,6 @@ Cell::Cell(int x, int y, CellColor_e color)
 {
 	xPos = x;
 	yPos = y;
-	nextX = -1;
-	nextY = -1;
 	this->color = color;
 	is_valid = true;
 }
@@ -41,8 +35,6 @@ Cell::Cell(int x, int y, bool valid)
 {
 	xPos = x;
 	yPos = y;
-	nextX = -1;
-	nextY = -1;
 	is_valid = valid;
 
 	if(is_valid)
@@ -59,8 +51,6 @@ Cell::Cell(int x, int y)
 {
 	xPos = x;
 	yPos = y;
-	nextX = -1;
-	nextY = -1;
 	color = Transparent;
 	is_valid = true;
 }
@@ -92,26 +82,6 @@ void Cell::SetX(int x)
 void Cell::SetY(int y)
 {
 	yPos = y;
-}
-
-void Cell::SetNextX(int x)
-{
-	nextX = x;
-}
-
-void Cell::SetNextY(int y)
-{
-	nextY = y;
-}
-
-int Cell::GetNextX()
-{
-	return nextX;
-}
-
-int Cell::GetNextY()
-{
-	return nextY;
 }
 
 void Cell::SetColor(CellColor_e color)
@@ -149,11 +119,8 @@ bool Cell::IsEmpty()
 	return this->color == Grey;
 }
 
-bool Cell::IsLegalMove()
+void Cell::SetPosition(int x, int y)
 {
-
-  int x = this->GetNextX();
-  int y = this->GetNextY();
-
-  return (x < 0 || x > X_LIMIT || y < 0 || y > Y_LIMIT); // LIMIT numbers come from arena size
+	SetX(x);
+	SetY(y);
 }

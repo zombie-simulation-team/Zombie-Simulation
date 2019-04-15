@@ -8,9 +8,6 @@
 #ifndef CELL_H
 #define CELL_H
 
-#define X_LIMIT 100			//temporarily saved in class. Need to get value from other class
-#define Y_LIMIT 0
-
 typedef enum CellColor_e
 {
 	Transparent,
@@ -27,8 +24,6 @@ class Cell
 private:
 	int xPos;
 	int yPos;
-	int nextX;
-	int nextY;
 	CellColor_e color;
 	bool is_valid;
 
@@ -47,16 +42,12 @@ public:
 	bool IsValid();
 	CellColor_e GetColor();
 	virtual void Tick() = 0;
-	void SetNextX(int x);
-	void SetNextY(int y);
-	int GetNextX();
-	int GetNextY();
-	bool IsLegalMove();
 	bool IsHuman();
 	bool IsZombie();
 	bool IsResource();
 	bool IsTrap();
 	bool IsEmpty();
+	void SetPosition(int x, int y);
 };
 
 #endif
