@@ -128,48 +128,150 @@ void Continent::SetName(Continents_e name)
 
 void Continent::CheckMove(Cell *cell)
 {
-	if((cell->GetNextX() >= 0 && cell->GetNextX() < size) &&
-			(cell->GetNextY() >= 0 && cell->GetNextY() < size))
+	if(!cell->IsZombie() && !cell->IsHuman())
 	{
-		int x = cell->GetX();
-		int y = cell->GetY();
+		return;
+	}
 
-		Cell *targetCell = shape[cell->GetNextY()][cell->GetNextX()];
+	Actor *current = dynamic_cast<Actor*>(cell);
 
-		bool isNextPositionEmpty = targetCell->GetColor() == Grey;
-		bool isZombieMovingToATrap = cell->GetColor() == Red &&
-				targetCell->GetColor() == Black;
+	int nextX = current->GetNextX();
+	int nextY = current->GetNextY();
 
-		if(isNextPositionEmpty)
+	if((nextX >= 0 && nextX < size) && (nextY >= 0 && nextY < size))
+	{
+		int currentX = current->GetX();
+		int currentY = current->GetY();
+
+		Cell *next = shape[nextY][nextX];
+
+		if(current->IsZombie())
 		{
-			cell->SetX(cell->GetNextX());
-			cell->SetY(cell->GetNextY());
+			Zombie *zombie = dynamic_cast<Zombie*>(current);
 
-			shape[cell->GetNextY()][cell->GetNextX()] = cell;
-			cell->SetNextX(-1);
-			cell->SetNextY(-1);
+			if(zombie->GetHealth() == 0)
+			{
+				delete shape[currentY][currentX];
+				shape[currentY][currentX] = new EmptyCell(currentX, currentY, true);
+			}
+			else if(next->IsZombie())
+			{
+				current->ResetNextPosition();
+			}
+			else if(next->IsHuman())
+			{
+				delete shape[nextY][nextX];
+				shape[nextY][nextX] = new Zombie(nextX, nextY, randomGenerator);
 
-			targetCell->SetX(x);
-			targetCell->SetY(y);
-			shape[y][x] = targetCell;
+				current->ResetNextPosition();
+
+				this->SetZombieCount(this->GetZombieCount() + 1);
+			}
+			else if(next->IsTrap())
+			{
+				delete shape[currentY][currentX];
+
+				shape[currentY][currentX] = new EmptyCell(currentX, currentY, true);
+			}
+			else if(next->IsResource())
+			{
+				delete shape[nextY][nextX];
+
+				shape[nextY][nextX] = current;
+				current->SetNextPosition(nextX, nextY);
+				current->ResetNextPosition();
+
+				shape[currentY][currentX] = new EmptyCell(currentX, currentY, true);
+			}
+			else if(next->IsEmpty())
+			{
+				current->SetNextPosition(nextX, nextY);
+				current->SetPosition(nextX, nextY);
+
+				shape[nextY][nextX] = current;
+				current->ResetNextPosition();
+
+				next->SetPosition(currentX, currentY);
+				shape[currentY][currentX] = next;
+			}
 		}
-		else if(isZombieMovingToATrap)
+		else if(current->IsHuman())
 		{
-			delete shape[y][x];
+			Human *human = dynamic_cast<Human*>(current);
 
-			shape[y][x] = new EmptyCell(x, y, true);
+			if(human->GetHealth() == 0)
+			{
+				delete shape[currentY][currentX];
+				shape[currentY][currentX] = new EmptyCell(currentX, currentY, true);
+			}
+			else if(next->IsHuman())
+			{
+				current->ResetNextPosition();
+				current->Move();
+				CheckMove(current);
+			}
+			else if(next->IsZombie())
+			{
+				delete shape[nextY][nextX];
+
+				shape[nextY][nextX] = current;
+				current->SetPosition(nextX, nextY);
+				current->ResetNextPosition();
+
+				shape[currentY][currentX] = new EmptyCell(currentX, currentY, true);
+			}
+			else if(next->IsResource())
+			{
+				Resource *resource = dynamic_cast<Resource*>(next);
+
+				int food = resource->GetFood();
+				human->ChangeHealth(food);
+
+				delete shape[nextY][nextX];
+
+				shape[nextY][nextX] = current;
+				current->SetPosition(nextX, nextY);
+				current->ResetNextPosition();
+
+				shape[currentY][currentX] = new EmptyCell(currentX, currentY, true);
+			}
+			else if(next->IsEmpty())
+			{
+				shape[nextY][nextX] = current;
+				current->ResetNextPosition();
+				current->SetPosition(nextX, nextY);
+
+
+				next->SetPosition(currentX, currentY);
+				shape[currentY][currentX] = next;
+			}
+			else if(next->IsTrap())
+			{
+				current->ResetNextPosition();
+
+				human->Move();
+				CheckMove(current);
+			}
 		}
 	}
 	else
 	{
-		cell->SetNextX(-1);
-		cell->SetNextY(-1);
-
-		if(cell->GetColor() == Red || cell->GetColor() == Green)
+		if(current->IsHuman())
 		{
-			cell->Tick();
-			CheckMove(cell);
+			Human *human = dynamic_cast<Human*>(current);
+
+			human->Move();
+			CheckMove(current);
 		}
+		else if(current->IsZombie())
+		{
+			Zombie *zombie = dynamic_cast<Zombie*>(current);
+
+			zombie->Move();
+			CheckMove(current);
+		}
+
+		current->ResetNextPosition();
 	}
 }
 
