@@ -435,6 +435,10 @@ TEST(ContinentTest, ShouldConvertHuamnToZombieWhenZombieMovesUpToItsPlace)
 	int actualZombieCount = cont->GetZombieCount();
 	CHECK_EQUAL(expectedZombieCount, actualZombieCount);
 
+	int expectedHumanCount = 0;
+	int actualHumanCount = cont->GetHumanCount();
+	CHECK_EQUAL(expectedHumanCount, actualHumanCount);
+
 	delete cont;
 }
 

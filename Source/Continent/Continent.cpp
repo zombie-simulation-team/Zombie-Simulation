@@ -165,6 +165,7 @@ void Continent::CheckMove(Cell *cell)
 
 				current->ResetNextPosition();
 
+				this->SetHumanCount(this->GetHumanCount() - 1);
 				this->SetZombieCount(this->GetZombieCount() + 1);
 			}
 			else if(next->IsTrap())
