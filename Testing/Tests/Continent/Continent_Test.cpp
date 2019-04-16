@@ -306,6 +306,10 @@ TEST(ContinentTest, ShouldDestroyZombieWhenMovesIntoATrap)
 	actual = shape[5][5]->IsTrap();
 	CHECK_EQUAL(expected, actual);
 
+	int expectedZombieCount = 0;
+	int actualZombieCount = cont->GetZombieCount();
+	CHECK_EQUAL(expectedZombieCount, actualZombieCount);
+
 	delete cont;
 }
 
@@ -356,16 +360,36 @@ TEST(ContinentTest, ShouldInitializeOneTrapOneZombieOneResourceAndOneHuman)
 
 	bool expected = true;
 	bool actual = shape[5][4]->IsZombie();
+
+	int expectedZombieCount = 1;
+	int actualZombieCount = cont->GetZombieCount();
+
 	CHECK_EQUAL(expected, actual);
+	CHECK_EQUAL(expectedZombieCount, actualZombieCount);
 
 	actual= shape[5][3]->IsTrap();
+
+	int expectedTrapCount = 1;
+	int actualTrapCount = cont->GetTrapCount();
+
 	CHECK_EQUAL(expected, actual);
+	CHECK_EQUAL(expectedTrapCount, actualTrapCount);
 
 	actual = shape[7][5]->IsResource();
+
+	int expectedResourceCount = 1;
+	int actualResourceCount = cont->GetResourceCount();
+
 	CHECK_EQUAL(expected, actual);
+	CHECK_EQUAL(expectedResourceCount, actualResourceCount);
 
 	actual = shape[9][7]->IsHuman();
+
+	int expectedHumanCount = 1;
+	int actualHumanCount = cont->GetHumanCount();
+
 	CHECK_EQUAL(expected, actual);
+	CHECK_EQUAL(expectedHumanCount, actualHumanCount);
 
 	delete cont;
 }
@@ -398,6 +422,10 @@ TEST(ContinentTest, ShouldDestroyResourceWhenZombieMovesToItsPlace)
 
 	actual = shape[5][4]->IsEmpty();
 	CHECK_EQUAL(expected, actual);
+
+	int expectedResourceCount = 0;
+	int actualResourceCount = cont->GetResourceCount();
+	CHECK_EQUAL(expectedResourceCount, actualResourceCount);
 
 	delete cont;
 }
@@ -471,6 +499,10 @@ TEST(ContinentTest, ShouldDestroyAZombieWhenAHumanMovesToItsPlace)
 	actual = shape[4][4]->IsEmpty();
 	CHECK_EQUAL(expected, actual);
 
+	int expectedZombieCount = 0;
+	int actualZombieCount = cont->GetZombieCount();
+	CHECK_EQUAL(expectedZombieCount, actualZombieCount);
+
 	delete cont;
 }
 
@@ -513,6 +545,10 @@ TEST(ContinentTest, ShouldDestroyAZombieWhenItsHealthDropsDownToZero)
 	bool actual = cell->IsZombie();
 	CHECK_EQUAL(expected, actual);
 
+	int expectedZombieCount = 0;
+	int actualZombieCount = cont->GetZombieCount();
+	CHECK_EQUAL(expectedZombieCount, actualZombieCount);
+
 	delete cont;
 }
 
@@ -545,6 +581,10 @@ TEST(ContinentTest, ShouldDestroyAHumanWhenItsHealthDropsDownToZero)
 	bool expected = false;
 	bool actual = cell->IsHuman();
 	CHECK_EQUAL(expected, actual);
+
+	int expectedHumanCount = 0;
+	int actualHumanCount = cont->GetHumanCount();
+	CHECK_EQUAL(expectedHumanCount, actualHumanCount);
 
 	delete cont;
 }

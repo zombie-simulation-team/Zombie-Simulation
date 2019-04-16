@@ -153,6 +153,8 @@ void Continent::CheckMove(Cell *cell)
 			{
 				delete shape[currentY][currentX];
 				shape[currentY][currentX] = new EmptyCell(currentX, currentY, true);
+
+				this->SetZombieCount(this->GetZombieCount() - 1);
 			}
 			else if(next->IsZombie())
 			{
@@ -173,6 +175,8 @@ void Continent::CheckMove(Cell *cell)
 				delete shape[currentY][currentX];
 
 				shape[currentY][currentX] = new EmptyCell(currentX, currentY, true);
+
+				this->SetZombieCount(this->GetZombieCount() - 1);
 			}
 			else if(next->IsResource())
 			{
@@ -183,6 +187,8 @@ void Continent::CheckMove(Cell *cell)
 				current->ResetNextPosition();
 
 				shape[currentY][currentX] = new EmptyCell(currentX, currentY, true);
+
+				this->SetResourceCount(this->GetResourceCount() - 1);
 			}
 			else if(next->IsEmpty())
 			{
@@ -204,6 +210,8 @@ void Continent::CheckMove(Cell *cell)
 			{
 				delete shape[currentY][currentX];
 				shape[currentY][currentX] = new EmptyCell(currentX, currentY, true);
+
+				this->SetHumanCount(this->GetHumanCount() - 1);
 			}
 			else if(next->IsHuman())
 			{
@@ -220,6 +228,8 @@ void Continent::CheckMove(Cell *cell)
 				current->ResetNextPosition();
 
 				shape[currentY][currentX] = new EmptyCell(currentX, currentY, true);
+
+				this->SetZombieCount(this->GetZombieCount() - 1);
 			}
 			else if(next->IsResource())
 			{
