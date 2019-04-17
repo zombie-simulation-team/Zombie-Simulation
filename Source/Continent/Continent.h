@@ -52,6 +52,7 @@ public:
 	void Tick();
 	void CheckMove(Cell *cell);
 	virtual ~Continent();
+	bool Finished();
 };
 
 #endif /* CONTINENT_H_ */

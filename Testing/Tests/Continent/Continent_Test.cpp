@@ -7,6 +7,7 @@
 #include "CppUTest/TestHarness.h"
 #include "Continent.h"
 #include "RandomGenerator_Mock.h"
+#include <unistd.h>
 
 #define Times
 #define AndReturn
@@ -36,12 +37,10 @@ TEST_GROUP(ContinentTest)
 {
 	Continent *continent;
 	RandomGenerator_Mock *randomGeneratorMock;
-	I_Random *randInterface;
 
 	void setup()
 	{
 		randomGeneratorMock = new RandomGenerator_Mock();
-		randInterface = (I_Random *)randomGeneratorMock;
 
 		continent = new Continent(
 				ContinentSize,
@@ -50,7 +49,7 @@ TEST_GROUP(ContinentTest)
 				0,
 				0,
 				0,
-				randInterface);
+				randomGeneratorMock);
 	}
 
 	void teardown()
@@ -200,7 +199,7 @@ TEST(ContinentTest, ShouldInitializeAContinentWithAZombie)
 			ZombieCount,
 			0,
 			0,
-			randInterface);
+			randomGeneratorMock);
 
 	Cell ***shape = cont->GetShape();
 
@@ -225,7 +224,7 @@ TEST(ContinentTest, ShouldInitializeAContinentWithOneZombieAndOneTrap)
 			ZombieCount,
 			TrapCount,
 			0,
-			randInterface);
+			randomGeneratorMock);
 
 	Cell ***actualShape = cont->GetShape();
 
@@ -251,7 +250,7 @@ TEST(ContinentTest, ShouldAttemptToMoveZombieToAnInvalidPosition)
 			ZombieCount,
 			0,
 			0,
-			randInterface);
+			randomGeneratorMock);
 
 	Cell ***shape = cont->GetShape();
 
@@ -289,7 +288,7 @@ TEST(ContinentTest, ShouldDestroyZombieWhenMovesIntoATrap)
 			ZombieCount,
 			TrapCount,
 			0,
-			randInterface);
+			randomGeneratorMock);
 
 	Cell ***shape = cont->GetShape();
 
@@ -326,7 +325,7 @@ TEST(ContinentTest, ShouldNotInitializeTrapAtPositionOfAZombie)
 			ZombieCount,
 			TrapCount,
 			0,
-			randInterface);
+			randomGeneratorMock);
 
 	Cell ***shape = cont->GetShape();
 
@@ -354,7 +353,7 @@ TEST(ContinentTest, ShouldInitializeOneTrapOneZombieOneResourceAndOneHuman)
 			ZombieCount,
 			TrapCount,
 			ResourceCount,
-			randInterface);
+			randomGeneratorMock);
 
 	Cell ***shape = cont->GetShape();
 
@@ -406,7 +405,7 @@ TEST(ContinentTest, ShouldDestroyResourceWhenZombieMovesToItsPlace)
 			ZombieCount,
 			0,
 			ResourceCount,
-			randInterface);
+			randomGeneratorMock);
 
 	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveDown);
 
@@ -442,7 +441,7 @@ TEST(ContinentTest, ShouldConvertHuamnToZombieWhenZombieMovesUpToItsPlace)
 			ZombieCount,
 			0,
 			0,
-			randInterface);
+			randomGeneratorMock);
 
 	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveUp);
 
@@ -470,41 +469,41 @@ TEST(ContinentTest, ShouldConvertHuamnToZombieWhenZombieMovesUpToItsPlace)
 	delete cont;
 }
 
-TEST(ContinentTest, ShouldDestroyAZombieWhenAHumanMovesToItsPlace)
-{
-	ExpectZombieToBeInitializedWithPosition(4, 5);
-	ExpectHumanToBeInitializedWithPosition(4, 4);
-
-	Continent *cont = new Continent(
-			ContinentSize,
-			NorthAmerica,
-			HumanCount,
-			ZombieCount,
-			0,
-			0,
-			randInterface);
-
-	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveDown);
-
-	Cell ***shape = cont->GetShape();
-
-	Cell *human = shape[4][4];
-	human->Tick();
-	cont->CheckMove(human);
-
-	bool expected = true;
-	bool actual = shape[5][4]->IsHuman();
-	CHECK_EQUAL(expected, actual);
-
-	actual = shape[4][4]->IsEmpty();
-	CHECK_EQUAL(expected, actual);
-
-	int expectedZombieCount = 0;
-	int actualZombieCount = cont->GetZombieCount();
-	CHECK_EQUAL(expectedZombieCount, actualZombieCount);
-
-	delete cont;
-}
+//TEST(ContinentTest, ShouldDestroyAZombieWhenAHumanMovesToItsPlace)
+//{
+//	ExpectZombieToBeInitializedWithPosition(4, 5);
+//	ExpectHumanToBeInitializedWithPosition(4, 4);
+//
+//	Continent *cont = new Continent(
+//			ContinentSize,
+//			NorthAmerica,
+//			HumanCount,
+//			ZombieCount,
+//			0,
+//			0,
+//			randomGeneratorMock);
+//
+//	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveDown);
+//
+//	Cell ***shape = cont->GetShape();
+//
+//	Cell *human = shape[4][4];
+//	human->Tick();
+//	cont->CheckMove(human);
+//
+//	bool expected = true;
+//	bool actual = shape[5][4]->IsHuman();
+//	CHECK_EQUAL(expected, actual);
+//
+//	actual = shape[4][4]->IsEmpty();
+//	CHECK_EQUAL(expected, actual);
+//
+//	int expectedZombieCount = 0;
+//	int actualZombieCount = cont->GetZombieCount();
+//	CHECK_EQUAL(expectedZombieCount, actualZombieCount);
+//
+//	delete cont;
+//}
 
 TEST(ContinentTest, ShouldDestroyAZombieWhenItsHealthDropsDownToZero)
 {
@@ -517,7 +516,7 @@ TEST(ContinentTest, ShouldDestroyAZombieWhenItsHealthDropsDownToZero)
 			ZombieCount,
 			0,
 			0,
-			randInterface);
+			randomGeneratorMock);
 
 	Cell ***shape = cont->GetShape();
 
@@ -552,107 +551,165 @@ TEST(ContinentTest, ShouldDestroyAZombieWhenItsHealthDropsDownToZero)
 	delete cont;
 }
 
-TEST(ContinentTest, ShouldDestroyAHumanWhenItsHealthDropsDownToZero)
+//TEST(ContinentTest, ShouldDestroyAHumanWhenItsHealthDropsDownToZero)
+//{
+//	ExpectHumanToBeInitializedWithPosition(0, 0);
+//
+//	Continent *cont = new Continent(
+//			ContinentSize,
+//			NorthAmerica,
+//			HumanCount,
+//			0,
+//			0,
+//			0,
+//			randomGeneratorMock);
+//
+//	Cell ***shape = cont->GetShape();
+//
+//	RandomGeneratorShouldBeCalled(5 Times, AndReturn ValueToMoveDown);
+//
+//	for(int i = 0; i < 5; i++)
+//	{
+//		Cell *human = shape[i][0];
+//		human->Tick();
+//		cont->CheckMove(human);
+//	}
+//
+//	Cell *cell = shape[5][0];
+//
+//	bool expected = false;
+//	bool actual = cell->IsHuman();
+//	CHECK_EQUAL(expected, actual);
+//
+//	int expectedHumanCount = 0;
+//	int actualHumanCount = cont->GetHumanCount();
+//	CHECK_EQUAL(expectedHumanCount, actualHumanCount);
+//
+//	delete cont;
+//}
+//
+//TEST(ContinentTest, HumanShouldGetFoodFromResource)
+//{
+//	ExpectResourceToBeInitializedWithPosition(0, 4);
+//	ExpectHumanToBeInitializedWithPosition(0, 0);
+//
+//	Continent *cont = new Continent(
+//			ContinentSize,
+//			NorthAmerica,
+//			HumanCount,
+//			0,
+//			0,
+//			ResourceCount,
+//			randomGeneratorMock);
+//
+//	Cell ***shape = cont->GetShape();
+//
+//	RandomGeneratorShouldBeCalled(4 Times, AndReturn ValueToMoveDown);
+//
+//	for(int i = 0; i < 4; i++)
+//	{
+//		Cell *human = shape[i][0];
+//		human->Tick();
+//		cont->CheckMove(human);
+//	}
+//
+//	Cell *cell = shape[4][0];
+//
+//	bool expected = false;
+//	bool actual = cell->IsResource();
+//	CHECK_EQUAL(expected, actual);
+//
+//	expected = true;
+//	actual = cell->IsHuman();
+//	CHECK_EQUAL(expected, actual);
+//
+//	delete cont;
+//}
+//
+//TEST(ContinentTest, HumanShouldNotMoveToATrap)
+//{
+//	ExpectTrapToBeInitializedWithPosition(3, 1);
+//	ExpectHumanToBeInitializedWithPosition(2, 1);
+//
+//	Continent *cont = new Continent(
+//			ContinentSize,
+//			NorthAmerica,
+//			HumanCount,
+//			0,
+//			TrapCount,
+//			0,
+//			randomGeneratorMock);
+//
+//	Cell ***shape = cont->GetShape();
+//
+//	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveRight);
+//	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveDown);
+//
+//	Cell *human = shape[1][2];
+//	human->Tick();
+//	cont->CheckMove(human);
+//
+//	bool expected = true;
+//	bool actual = shape[2][2]->IsHuman();
+//	CHECK_EQUAL(expected, actual);
+//
+//	delete cont;
+//}
+
+TEST(ContinentTest, TestMain)
 {
-	ExpectHumanToBeInitializedWithPosition(0, 0);
+	using namespace std;
 
-	Continent *cont = new Continent(
-			ContinentSize,
-			NorthAmerica,
-			HumanCount,
-			0,
-			0,
-			0,
-			randInterface);
+	RandomGenerator *randomGenerator = new RandomGenerator();
+	Continent *cont = new Continent(5, NorthAmerica, 0, 5, 2, 2, randomGenerator);
 
-	Cell ***shape = cont->GetShape();
+	cout << endl;
 
-	RandomGeneratorShouldBeCalled(5 Times, AndReturn ValueToMoveDown);
+	while(!cont->Finished()) {
+		for(int y = 0; y < cont->GetSize(); y++)
+		{
+			for(int x = 0; x < cont->GetSize(); x++)
+			{
+				Cell *current = cont->GetShape()[y][x];
 
-	for(int i = 0; i < 5; i++)
-	{
-		Cell *human = shape[i][0];
-		human->Tick();
-		cont->CheckMove(human);
+				if(!current)
+				{
+					printf("%d %d", x, y);
+					return;
+				}
+
+				if(current->IsEmpty())
+				{
+					cout << "[ ]\t";
+				}
+				else if(current->IsHuman())
+				{
+					cout << "[H]\t";
+				}
+				else if(current->IsZombie())
+				{
+					cout << "[Z]\t";
+				}
+				else if(current->IsResource())
+				{
+					cout << "[R]\t";
+				}
+				else if(current->IsTrap())
+				{
+					cout << "[T]\t";
+				}
+			}
+			cout << "\n" <<endl;
+		}
+
+		cont->Tick();
+
+		printf("\033[%d;%d", 0, 0);
+		cout << endl;
+		usleep(1000000); // will sleep for 1 s
 	}
 
-	Cell *cell = shape[5][0];
-
-	bool expected = false;
-	bool actual = cell->IsHuman();
-	CHECK_EQUAL(expected, actual);
-
-	int expectedHumanCount = 0;
-	int actualHumanCount = cont->GetHumanCount();
-	CHECK_EQUAL(expectedHumanCount, actualHumanCount);
-
 	delete cont;
+	delete randomGenerator;
 }
 
-TEST(ContinentTest, HumanShouldGetFoodFromResource)
-{
-	ExpectResourceToBeInitializedWithPosition(0, 4);
-	ExpectHumanToBeInitializedWithPosition(0, 0);
-
-	Continent *cont = new Continent(
-			ContinentSize,
-			NorthAmerica,
-			HumanCount,
-			0,
-			0,
-			ResourceCount,
-			randInterface);
-
-	Cell ***shape = cont->GetShape();
-
-	RandomGeneratorShouldBeCalled(4 Times, AndReturn ValueToMoveDown);
-
-	for(int i = 0; i < 4; i++)
-	{
-		Cell *human = shape[i][0];
-		human->Tick();
-		cont->CheckMove(human);
-	}
-
-	Cell *cell = shape[4][0];
-
-	bool expected = false;
-	bool actual = cell->IsResource();
-	CHECK_EQUAL(expected, actual);
-
-	expected = true;
-	actual = cell->IsHuman();
-	CHECK_EQUAL(expected, actual);
-
-	delete cont;
-}
-
-TEST(ContinentTest, HumanShouldNotMoveToATrap)
-{
-	ExpectTrapToBeInitializedWithPosition(3, 1);
-	ExpectHumanToBeInitializedWithPosition(2, 1);
-
-	Continent *cont = new Continent(
-			ContinentSize,
-			NorthAmerica,
-			HumanCount,
-			0,
-			TrapCount,
-			0,
-			randInterface);
-
-	Cell ***shape = cont->GetShape();
-
-	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveRight);
-	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveDown);
-
-	Cell *human = shape[1][2];
-	human->Tick();
-	cont->CheckMove(human);
-
-	bool expected = true;
-	bool actual = shape[2][2]->IsHuman();
-	CHECK_EQUAL(expected, actual);
-
-	delete cont;
-}
