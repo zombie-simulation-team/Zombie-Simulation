@@ -6,7 +6,6 @@
  */
 
 #include "Continent.h"
-#include <stack>
 
 Continent::Continent(
 		int size,
@@ -47,18 +46,11 @@ Continent::~Continent()
 void Continent::Tick()
 {
 	Cell **list = new Cell*[size*size];
-	std::stack<Cell*> s;
 
 	int count = 0;
 	for(int y = 0; y < size; y++) {
 		for(int x = 0; x < size; x++) {
 			Cell *current = shape[y][x];
-
-			if(!current)
-			{
-				printf("%d %d", x, y);
-				return;
-			}
 
 			list[count] = current;
 //			s.push(current);
@@ -77,11 +69,6 @@ void Continent::Tick()
 	for(int i = 0; i < count; i++)
 	{
 		Cell *current = list[i];
-		if(!current)
-		{
-			printf("Error: Null pointer at Tick");
-			return;
-		}
 		current->Tick();
 
 		CheckMove(current);
@@ -134,6 +121,8 @@ std::string Continent::GetName()
 			return "North America";
 		case SouthAmerica:
 			return "South America";
+		default:
+			break;
 	}
 	return "";
 }
@@ -150,12 +139,6 @@ void Continent::SetName(Continents_e name)
 
 void Continent::CheckMove(Cell *cell)
 {
-	if(!cell)
-	{
-		printf("Error: CheckMove null pointer");
-		return;
-	}
-
 	if(!cell->IsZombie() && !cell->IsHuman())
 	{
 		return;
@@ -173,20 +156,9 @@ void Continent::CheckMove(Cell *cell)
 
 		Cell *next = shape[nextY][nextX];
 
-		if(!next)
-		{
-			printf("Error: CheckMove next.");
-			return;
-		}
-
 		if(current->IsZombie())
 		{
 			Zombie *zombie = dynamic_cast<Zombie*>(current);
-			if(!zombie)
-			{
-				printf("Error: CheckMove null pointer");
-				return;
-			}
 
 			if(zombie->GetHealth() == 0)
 			{
@@ -317,11 +289,6 @@ void Continent::CheckMove(Cell *cell)
 		else if(current->IsZombie())
 		{
 			Zombie *zombie = dynamic_cast<Zombie*>(current);
-			if(!zombie)
-			{
-				printf("Error: CheckMove null pointer");
-				return;
-			}
 
 			zombie->Move();
 			CheckMove(current);
