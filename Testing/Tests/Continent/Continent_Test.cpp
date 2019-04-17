@@ -7,6 +7,7 @@
 #include "CppUTest/TestHarness.h"
 #include "Continent.h"
 #include "RandomGenerator_Mock.h"
+#include <stdio.h>
 #include <unistd.h>
 
 #define Times
@@ -656,60 +657,60 @@ TEST(ContinentTest, ShouldDestroyAZombieWhenItsHealthDropsDownToZero)
 //	delete cont;
 //}
 
-TEST(ContinentTest, TestMain)
-{
-	using namespace std;
-
-	RandomGenerator *randomGenerator = new RandomGenerator();
-	Continent *cont = new Continent(5, NorthAmerica, 0, 5, 2, 2, randomGenerator);
-
-	cout << endl;
-
-	while(!cont->Finished()) {
-		for(int y = 0; y < cont->GetSize(); y++)
-		{
-			for(int x = 0; x < cont->GetSize(); x++)
-			{
-				Cell *current = cont->GetShape()[y][x];
-
-				if(!current)
-				{
-					printf("%d %d", x, y);
-					return;
-				}
-
-				if(current->IsEmpty())
-				{
-					cout << "[ ]\t";
-				}
-				else if(current->IsHuman())
-				{
-					cout << "[H]\t";
-				}
-				else if(current->IsZombie())
-				{
-					cout << "[Z]\t";
-				}
-				else if(current->IsResource())
-				{
-					cout << "[R]\t";
-				}
-				else if(current->IsTrap())
-				{
-					cout << "[T]\t";
-				}
-			}
-			cout << "\n" <<endl;
-		}
-
-		cont->Tick();
-
-		printf("\033[%d;%d", 0, 0);
-		cout << endl;
-		usleep(1000000); // will sleep for 1 s
-	}
-
-	delete cont;
-	delete randomGenerator;
-}
+//TEST(ContinentTest, TestMain)
+//{
+//	using namespace std;
+//
+//	RandomGenerator *randomGenerator = new RandomGenerator();
+//	Continent *cont = new Continent(5, NorthAmerica, 0, 5, 2, 2, randomGenerator);
+//
+//	cout << endl;
+//
+//	while(!cont->Finished()) {
+//		for(int y = 0; y < cont->GetSize(); y++)
+//		{
+//			for(int x = 0; x < cont->GetSize(); x++)
+//			{
+//				Cell *current = cont->GetShape()[y][x];
+//
+//				if(!current)
+//				{
+//					printf("%d %d", x, y);
+//					return;
+//				}
+//
+//				if(current->IsEmpty())
+//				{
+//					cout << "[ ]\t";
+//				}
+//				else if(current->IsHuman())
+//				{
+//					cout << "[H]\t";
+//				}
+//				else if(current->IsZombie())
+//				{
+//					cout << "[Z]\t";
+//				}
+//				else if(current->IsResource())
+//				{
+//					cout << "[R]\t";
+//				}
+//				else if(current->IsTrap())
+//				{
+//					cout << "[T]\t";
+//				}
+//			}
+//			cout << "\n" <<endl;
+//		}
+//
+//		cont->Tick();
+//
+//		printf("\033[%d;%d", 0, 0);
+//		cout << endl;
+//		usleep(1000000); // will sleep for 1 s
+//	}
+//
+//	delete cont;
+//	delete randomGenerator;
+//}
 
