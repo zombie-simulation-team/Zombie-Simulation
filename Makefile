@@ -31,7 +31,6 @@ CPPUTEST_USE_EXTENSIONS = Y
 # C and C++ Compiler Flags
 CPPUTEST_WARNINGFLAGS += -Wall
 CPPUTEST_WARNINGFLAGS += -Werror
-CPPUTEST_WARNINGFLAGS += -Wfatal-errors
 CPPUTEST_WARNINGFLAGS += -Wswitch-default
 CPPUTEST_WARNINGFLAGS += -Wno-format-nonliteral
 CPPUTEST_WARNINGFLAGS += -Wno-sign-conversion
