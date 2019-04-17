@@ -35,6 +35,7 @@ private:
 	int defense;
 	int nextX;
 	int nextY;
+	bool moved;
 	I_Random *randomGenerator;
 
 public:
@@ -58,6 +59,8 @@ public:
 	int GetNextY();
 	void SetNextPosition(int nextX, int nextY);
 	void ResetNextPosition();
+	bool HasMoved();
+	void SetMove(bool value);
 };
 
 #endif /* ACTOR_H_ */

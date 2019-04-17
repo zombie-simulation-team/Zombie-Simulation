@@ -21,6 +21,7 @@ Actor::Actor(
 	this->randomGenerator = randomGenerator;
 	nextX = -1;
 	nextY = -1;
+	moved = false;
 }
 
 Actor::~Actor()
@@ -148,4 +149,14 @@ void Actor::SetNextPosition(int x, int y)
 {
 	SetNextX(x);
 	SetNextY(y);
+}
+
+bool Actor::HasMoved()
+{
+	return moved;
+}
+
+void Actor::SetMove(bool value)
+{
+	moved = value;
 }
