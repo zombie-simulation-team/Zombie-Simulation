@@ -35,5 +35,8 @@ void Human::Attack(Cell *cell) {}
 void Human::Tick()
 {
 	this->Move();
-	this->ChangeHealth(-20);
+	if(!this->HasMoved())
+	{
+		this->ChangeHealth(-20);
+	}
 }
