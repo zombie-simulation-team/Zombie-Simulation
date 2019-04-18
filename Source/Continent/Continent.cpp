@@ -25,6 +25,8 @@ Continent::Continent(
 	this->name = name;
 	this->randomGenerator = randomGenerator;
 
+	positions = new CellPosition_t[size * size];
+
 	InitializeShape(
 			humanCount,
 			zombieCount,
@@ -41,39 +43,37 @@ Continent::~Continent()
 		delete[] shape[y];
 	}
 	delete[] shape;
+
+	delete []positions;
 }
 
 void Continent::Tick()
 {
-	Cell **list = new Cell*[size*size];
-
-	int count = 0;
-	for(int y = 0; y < size; y++) {
-		for(int x = 0; x < size; x++) {
-			Cell *current = shape[y][x];
-
-			list[count] = current;
-//			s.push(current);
-			count++;
-		}
-	}
-
-//	while(!s.empty())
-//	{
-//		Cell *current = s.top();
-//		current->Tick();
-//		CheckMove(current);
-//		s.pop();
-//	}
+	int count = size * size;
 
 	for(int i = 0; i < count; i++)
 	{
-		Cell *current = list[i];
-		current->Tick();
+		int x = positions[i].x;
+		int y = positions[i].y;
 
+		Cell *current = shape[y][x];
+		current->Tick();
 		CheckMove(current);
 	}
-	delete[] list;
+
+	for(int i = 0; i < count; i++)
+	{
+		int x = positions[i].x;
+		int y = positions[i].y;
+
+		Cell *current = shape[y][x];
+
+		if(current->IsHuman() || current->IsZombie())
+		{
+			Actor *actor = dynamic_cast<Actor*>(current);
+			actor->SetMove(false);
+		}
+	}
 }
 
 void Continent::InitializeShape(
@@ -84,11 +84,16 @@ void Continent::InitializeShape(
 {
 	shape = new Cell**[size];
 
+	int index = 0;
 	for(int y = 0; y < size; y++) {
 		shape[y] = new Cell*[size];
 
 		for(int x = 0; x < size; x++) {
 			shape[y][x] = new EmptyCell(y, x, true);
+
+			positions[index].x = x;
+			positions[index].y = y;
+			index++;
 		}
 	}
 
@@ -146,6 +151,11 @@ void Continent::CheckMove(Cell *cell)
 
 	Actor *current = dynamic_cast<Actor*>(cell);
 
+	if(current->HasMoved())
+	{
+		return;
+	}
+
 	int nextX = current->GetNextX();
 	int nextY = current->GetNextY();
 
@@ -162,7 +172,7 @@ void Continent::CheckMove(Cell *cell)
 
 			if(zombie->GetHealth() == 0)
 			{
-				delete shape[currentY][currentX];
+				delete current;
 				shape[currentY][currentX] = new EmptyCell(currentX, currentY, true);
 
 				this->SetZombieCount(this->GetZombieCount() - 1);
@@ -171,22 +181,24 @@ void Continent::CheckMove(Cell *cell)
 			{
 				current->ResetNextPosition();
 
-				current->Move();
-				CheckMove(current);
+				zombie->Move();
+				CheckMove(zombie);
+				current->SetMove(true);
 			}
 			else if(next->IsHuman())
 			{
-				delete shape[nextY][nextX];
+				delete next;
 				shape[nextY][nextX] = new Zombie(nextX, nextY, randomGenerator);
 
 				current->ResetNextPosition();
 
 				this->SetHumanCount(this->GetHumanCount() - 1);
 				this->SetZombieCount(this->GetZombieCount() + 1);
+				current->SetMove(true);
 			}
 			else if(next->IsTrap())
 			{
-				delete shape[currentY][currentX];
+				delete current;
 
 				shape[currentY][currentX] = new EmptyCell(currentX, currentY, true);
 
@@ -194,15 +206,84 @@ void Continent::CheckMove(Cell *cell)
 			}
 			else if(next->IsResource())
 			{
-				delete shape[nextY][nextX];
+				delete next;
+				next = NULL;
 
 				shape[nextY][nextX] = current;
 				current->SetPosition(nextX, nextY);
 				current->ResetNextPosition();
 
-				shape[currentY][currentX] = new EmptyCell(currentX, currentY, true);
+				next = new EmptyCell(currentX, currentY, true);
+				shape[currentY][currentX] = next;
 
 				this->SetResourceCount(this->GetResourceCount() - 1);
+				current->SetMove(true);
+			}
+			else if(next->IsEmpty())
+			{
+				delete next;
+				next = NULL;
+
+				shape[nextY][nextX] = current;
+				current->SetPosition(nextX, nextY);
+				current->ResetNextPosition();
+
+				next = new EmptyCell(currentX, currentY, true);
+				shape[currentY][currentX] = next;
+
+				current->SetMove(true);
+			}
+		}
+		else if(current->IsHuman())
+		{
+			Human *human = dynamic_cast<Human*>(current);
+
+			if(human->GetHealth() == 0)
+			{
+				delete shape[currentY][currentX];
+				shape[currentY][currentX] = new EmptyCell(currentX, currentY, true);
+
+				this->SetHumanCount(this->GetHumanCount() - 1);
+			}
+			else if(next->IsHuman())
+			{
+				current->ResetNextPosition();
+				current->Move();
+				CheckMove(current);
+
+				current->SetMove(true);
+			}
+			else if(next->IsZombie())
+			{
+				delete next;
+
+				shape[nextY][nextX] = current;
+				current->SetPosition(nextX, nextY);
+				current->ResetNextPosition();
+
+				next = new EmptyCell(currentX, currentY, true);
+				shape[currentY][currentX] = next;
+
+				this->SetZombieCount(this->GetZombieCount() - 1);
+
+				current->SetMove(true);
+			}
+			else if(next->IsResource())
+			{
+				Resource *resource = dynamic_cast<Resource*>(next);
+
+				int food = resource->GetFood();
+				human->ChangeHealth(food);
+
+				delete next;
+
+				shape[nextY][nextX] = current;
+				current->SetPosition(nextX, nextY);
+				current->ResetNextPosition();
+
+				next = new EmptyCell(currentX, currentY, true);
+				shape[currentY][currentX] = next;
+				current->SetMove(true);
 			}
 			else if(next->IsEmpty())
 			{
@@ -212,70 +293,19 @@ void Continent::CheckMove(Cell *cell)
 
 				next->SetPosition(currentX, currentY);
 				shape[currentY][currentX] = next;
+
+				current->SetMove(true);
+			}
+			else if(next->IsTrap())
+			{
+				current->ResetNextPosition();
+
+				human->Move();
+				CheckMove(current);
+
+				current->SetMove(true);
 			}
 		}
-//		else if(current->IsHuman())
-//		{
-//			Human *human = dynamic_cast<Human*>(current);
-//
-//			if(human->GetHealth() == 0)
-//			{
-//				delete shape[currentY][currentX];
-//				shape[currentY][currentX] = new EmptyCell(currentX, currentY, true);
-//
-//				this->SetHumanCount(this->GetHumanCount() - 1);
-//			}
-//			else if(next->IsHuman())
-//			{
-//				current->ResetNextPosition();
-//				current->Move();
-//				CheckMove(current);
-//			}
-//			else if(next->IsZombie())
-//			{
-//				delete shape[nextY][nextX];
-//
-//				shape[nextY][nextX] = current;
-//				current->SetPosition(nextX, nextY);
-//
-//				current->ResetNextPosition();
-//
-//				shape[currentY][currentX] = new EmptyCell(currentX, currentY, true);
-//
-//				this->SetZombieCount(this->GetZombieCount() - 1);
-//			}
-//			else if(next->IsResource())
-//			{
-//				Resource *resource = dynamic_cast<Resource*>(next);
-//
-//				int food = resource->GetFood();
-//				human->ChangeHealth(food);
-//
-//				delete shape[nextY][nextX];
-//
-//				shape[nextY][nextX] = current;
-//				current->SetPosition(nextX, nextY);
-//				current->ResetNextPosition();
-//
-//				shape[currentY][currentX] = new EmptyCell(currentX, currentY, true);
-//			}
-//			else if(next->IsEmpty())
-//			{
-//				shape[nextY][nextX] = current;
-//				current->SetPosition(nextX, nextY);
-//				current->ResetNextPosition();
-//
-//				next->SetPosition(currentX, currentY);
-//				shape[currentY][currentX] = next;
-//			}
-//			else if(next->IsTrap())
-//			{
-//				current->ResetNextPosition();
-//
-//				human->Move();
-//				CheckMove(current);
-//			}
-//		}
 	}
 	else
 	{
@@ -284,14 +314,14 @@ void Continent::CheckMove(Cell *cell)
 			Human *human = dynamic_cast<Human*>(current);
 
 			human->Move();
-			CheckMove(current);
+			CheckMove(human);
 		}
 		else if(current->IsZombie())
 		{
 			Zombie *zombie = dynamic_cast<Zombie*>(current);
 
 			zombie->Move();
-			CheckMove(current);
+			CheckMove(zombie);
 		}
 
 		current->ResetNextPosition();
@@ -388,10 +418,10 @@ bool Continent::Finished()
 	{
 		return true;
 	}
-//	else if(this->GetHumanCount() == 0)
-//	{
-//		return true;
-//	}
+	else if(this->GetHumanCount() == 0)
+	{
+		return true;
+	}
 	else
 	{
 		return false;

@@ -25,6 +25,7 @@ private:
 	int size;
 	Cell ***shape;
 	Continents_e name;
+	CellPosition_t *positions;
 	I_Random *randomGenerator;
 	void InitializeZombies(int zombieCount);
 	void InitializeTraps(int trapCount);
