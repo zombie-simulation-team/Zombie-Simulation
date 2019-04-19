@@ -24,7 +24,8 @@ matrix:
         apt-get update && apt-get -y upgrade;
         apt-get install -y build-essential;
         apt-get install -y git;
-        git clone --depth=50 https://github.com/nanoterran/ZombiSimulation.git; cd ZombiSimulation/;
+        git clone --depth=50 https://github.com/nanoterran/Zombie-Simulation.git;
+        cd Zombie-Simulation/;
         make -j8"
 
 script:
