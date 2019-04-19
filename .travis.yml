@@ -1,18 +1,31 @@
-language: cpp
-dist: trusty
+sudo: required
 
 matrix:
   include:
-    - os: osx
-      osx_image: xcode10.2
-      compiler: clang
     - os: linux
-
-cpp:
- - "stable"
-
-compiler:
- - gcc
+      dist: trusty
+      language: cpp
+      compiler: gcc
+    - os: osx
+      language: cpp
+      osx_iamge: xcode10.2
+      compiler: clang
+      cpp:
+       - "stable"
+    - os: linux
+      services: docker
+      language: bash
+      compiler: gcc
+      before_install:
+        - docker pull multiarch/debian-debootstrap:armhf-stretch
+        - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+        - docker ps -a
+        - docker run -it --rm multiarch/debian-debootstrap:armhf-stretch /bin/sh -c "
+        apt-get update && apt-get -y upgrade;
+        apt-get install -y build-essential;
+        apt-get install -y git;
+        git clone --depth=50 https://github.com/nanoterran/ZombiSimulation.git; cd ZombiSimulation/;
+        make -j8"
 
 script:
  - make -j8
