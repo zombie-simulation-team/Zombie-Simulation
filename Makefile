@@ -122,6 +122,10 @@ $(CPPUTEST_HOME)/lib/libCppUTest.a:
 	cd $(CPPUTEST_HOME) ; ./configure
 	make -C $(CPPUTEST_HOME)
 
+# Deletes CppUtest Automatically
+upgrade:
+	rm -rf $(CPPUTEST_HOME)/lib
+
 # Cleans everything
 distclean: clean upgrade
 	make -C $(CPPUTEST_HOME) clean distclean
