@@ -7,8 +7,8 @@ matrix:
       language: cpp
       compiler: gcc
     - os: osx
-      language: cpp
       osx_iamge: xcode10.2
+      language: cpp
       compiler: clang
     - os: linux
       services: docker
