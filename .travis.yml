@@ -10,8 +10,6 @@ matrix:
       language: cpp
       osx_iamge: xcode10.2
       compiler: clang
-      cpp:
-       - "stable"
     - os: linux
       services: docker
       language: bash
@@ -20,7 +18,7 @@ matrix:
         - docker pull multiarch/debian-debootstrap:armhf-stretch
         - docker run --rm --privileged multiarch/qemu-user-static:register --reset
         - docker ps -a
-        - docker run -it --rm multiarch/debian-debootstrap:armhf-stretch /bin/sh -c "apt-get update && apt-get -y upgrade; apt-get install -y build-essential; apt-get install -y git; git clone --depth=50 https://github.com/zombie-simulation-team/Zombie-Simulation.git; cd Zombie-Simulation/; make -j8"
+        - docker run -it --rm multiarch/debian-debootstrap:armhf-stretch /bin/sh -c "apt-get update && apt-get -y upgrade; apt-get install -y build-essential; apt-get install -y git; echo "Cloning Repository"; git clone --depth=50 --branch="$TRAVIS_BRANCH" https://github.com/zombie-simulation-team/Zombie-Simulation.git; cd Zombie-Simulation/; git checkout -qf $TRAVIS_COMMIT; make -j8"
 
 script:
  - make -j8
