@@ -22,7 +22,6 @@ enum
 class Human: public Actor
 {
 private:
-	//void Eat(Resource *cell);
 	void Defend(Cell *cell);
 	static const CellColor_e color = Green;
 

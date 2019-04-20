@@ -8,8 +8,8 @@
 #ifndef HUMAN_H_
 #define HUMAN_H_
 
-#include "../Actor/Actor.h"
-#include "../Resource/Resource.h"
+#include "Actor.h"
+#include "Resource.h"
 
 enum
 {
@@ -22,7 +22,6 @@ enum
 class Human: public Actor
 {
 private:
-	//void Eat(Resource *cell);
 	void Defend(Cell *cell);
 	static const CellColor_e color = Green;
 

@@ -8,7 +8,7 @@
 #ifndef ZOMBIE_H_
 #define ZOMBIE_H_
 
-#include "../Actor/Actor.h"
+#include "Actor.h"
 
 class Zombie: public Actor
 {

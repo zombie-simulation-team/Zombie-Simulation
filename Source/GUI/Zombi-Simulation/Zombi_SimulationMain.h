@@ -18,7 +18,7 @@
 #include <wx/statusbr.h>
 #include <wx/frame.h>
 //*)
-#include "Continent/Continent.h"
+#include "Continent.h"
 
 
 class Zombi_SimulationFrame: public wxFrame
@@ -27,10 +27,6 @@ class Zombi_SimulationFrame: public wxFrame
 
         Zombi_SimulationFrame(wxWindow* parent,wxWindowID id = -1);
         virtual ~Zombi_SimulationFrame();
-
-
-
-
 
     private:
         Continent *continent;

@@ -23,6 +23,8 @@ Testing/CppUTest/autom4te.cache/
 Testing/CppUTest/CppUTestExtTests
 Testing/CppUTest/CppUTestTests
 .DS_Store
-**/bin
-**/obj
-**/wx_pch.h.gch
+Source/GUI/Zombi-Simulation/bin/
+Source/GUI/Zombi-Simulation/obj/
+Source/GUI/Zombi-Simulation/wx_pch.h.gch/
+Source/GUI/Zombi-Simulation/Zombi-Simulation.depend
+Source/GUI/Zombi-Simulation/*.layout

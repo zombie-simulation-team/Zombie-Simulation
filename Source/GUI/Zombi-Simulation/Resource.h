@@ -8,7 +8,7 @@
 #ifndef RESOURCE_H_
 #define RESOURCE_H_
 
-#include "../Obstacle/Obstacle.h"
+#include "Obstacle.h"
 
 enum
 {

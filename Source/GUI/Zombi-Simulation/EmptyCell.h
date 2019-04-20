@@ -8,7 +8,7 @@
 #ifndef EMPTYCELL_H_
 #define EMPTYCELL_H_
 
-#include "../Cell/Cell.h"
+#include "Cell.h"
 
 class EmptyCell: public Cell
 {

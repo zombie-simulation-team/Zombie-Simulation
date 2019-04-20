@@ -8,9 +8,9 @@
 #ifndef ACTOR_H_
 #define ACTOR_H_
 
-#include "../Cell/Cell.h"
-#include "../Random/I_Random.h"
-#include "../Utils/Utils.h"
+#include "Cell.h"
+#include "I_Random.h"
+#include "Utils.h"
 
 enum
 {

@@ -40,6 +40,7 @@
 		<Linker>
 			<Add option="`wx-config --libs`" />
 		</Linker>
+<<<<<<< HEAD
 		<Unit filename="Actor/Actor.cpp" />
 		<Unit filename="Actor/Actor.h" />
 		<Unit filename="Actor/ActorForTest.cpp" />
@@ -70,12 +71,36 @@
 		<Unit filename="Trap/Trap.cpp" />
 		<Unit filename="Trap/Trap.h" />
 		<Unit filename="Utils/Utils.h" />
+=======
+		<Unit filename="Actor.h" />
+		<Unit filename="Actor.cpp" />
+		<Unit filename="Cell.h" />
+		<Unit filename="Cell.cpp" />
+		<Unit filename="Continent.h" />
+		<Unit filename="Continent.cpp" />
+		<Unit filename="EmptyCell.h" />
+		<Unit filename="EmptyCell.cpp" />
+		<Unit filename="Environment.h" />
+		<Unit filename="Environment.cpp" />
+		<Unit filename="Human.h" />
+		<Unit filename="Human.cpp" />
+		<Unit filename="Obstacle.h" />
+		<Unit filename="Obstacle.cpp" />
+		<Unit filename="RandomGenerator.h" />
+		<Unit filename="RandomGenerator.cpp" />
+		<Unit filename="I_Random.h" />
+		<Unit filename="Resource.h" />
+		<Unit filename="Resource.cpp" />
+		<Unit filename="Trap.h" />
+		<Unit filename="Trap.cpp" />
+		<Unit filename="Utils.h" />
+>>>>>>> 9bfddc91333c6f8a56bbaad9afbc9c043a9aa85f
 		<Unit filename="Zombi_SimulationApp.cpp" />
 		<Unit filename="Zombi_SimulationApp.h" />
 		<Unit filename="Zombi_SimulationMain.cpp" />
 		<Unit filename="Zombi_SimulationMain.h" />
-		<Unit filename="Zombie/Zombie.cpp" />
-		<Unit filename="Zombie/Zombie.h" />
+		<Unit filename="Zombie.h" />
+		<Unit filename="Zombie.cpp" />
 		<Unit filename="wx_pch.h">
 			<Option compile="1" />
 			<Option weight="0" />
