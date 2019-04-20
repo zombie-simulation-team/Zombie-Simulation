@@ -4,12 +4,22 @@
 		<id_arg>0</id_arg>
 		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
 			<object class="sizeritem">
-				<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
-					<size>596,430</size>
-					<object class="wxStaticBitmap" name="ID_STATICBITMAP1" variable="StaticBitmap1" member="yes">
-						<bitmap>./Map.png</bitmap>
+				<object class="wxPanel" name="ID_PANEL1" variable="BackgroundPanel" member="yes">
+					<size>732,421</size>
+					<bg>wxSYS_COLOUR_BTNSHADOW</bg>
+					<handler function="OnBackgroundPanelPaint" entry="EVT_PAINT" />
+					<object class="wxPanel" name="ID_PANEL2" variable="ConfigPanel" member="yes">
+						<pos>0,320</pos>
+						<size>712,88</size>
+						<object class="wxButton" name="ID_BUTTON1" variable="StartButton" member="yes">
+							<label>Start</label>
+							<pos>24,32</pos>
+							<handler function="OnStartButtonClick" entry="EVT_BUTTON" />
+						</object>
+					</object>
+					<object class="wxPanel" name="ID_PANEL3" variable="DisplayPanel" member="yes">
 						<pos>0,0</pos>
-						<size>784,416</size>
+						<size>700,300</size>
 					</object>
 				</object>
 				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>

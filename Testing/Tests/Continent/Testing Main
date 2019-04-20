@@ -1,0 +1,52 @@
+TEST(ContinentTest, TestMain)
+{
+	using namespace std;
+
+	RandomGenerator *randomGenerator = new RandomGenerator();
+	Continent *cont = new Continent(5, NorthAmerica, 5, 3, 2, 3, randomGenerator);
+
+	cout << endl;
+
+	int tick = 1;
+	while(!cont->Finished()) {
+		cout << "tick: " << tick << endl;
+		for(int y = 0; y < cont->GetSize(); y++)
+		{
+			for(int x = 0; x < cont->GetSize(); x++)
+			{
+				Cell *current = cont->GetShape()[y][x];
+
+				if(current->IsEmpty())
+				{
+					cout << "[ (" << x << ", " << y << ")]\t";
+				}
+				else if(current->IsHuman())
+				{
+					cout << "[H(" << x << ", " << y << ")]\t";
+				}
+				else if(current->IsZombie())
+				{
+					cout << "[Z(" << x << ", " << y << ")]\t";
+				}
+				else if(current->IsResource())
+				{
+					cout << "[R(" << x << ", " << y << ")]\t";
+				}
+				else if(current->IsTrap())
+				{
+					cout << "[T(" << x << ", " << y << ")]\t";
+				}
+			}
+			cout << "\n\n" << endl;
+		}
+
+		cont->Tick();
+		tick++;
+
+		cout << "\n\n" << endl;
+		usleep(1000000); // will sleep for 1 s
+	}
+
+	delete cont;
+	delete randomGenerator;
+}

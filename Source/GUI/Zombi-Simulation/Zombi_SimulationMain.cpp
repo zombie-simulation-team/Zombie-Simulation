@@ -12,10 +12,9 @@
 #include <wx/msgdlg.h>
 
 //(*InternalHeaders(Zombi_SimulationFrame)
+#include <wx/settings.h>
 #include <wx/string.h>
 #include <wx/intl.h>
-#include <wx/bitmap.h>
-#include <wx/image.h>
 //*)
 
 //helper functions
@@ -45,7 +44,9 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 }
 
 //(*IdInit(Zombi_SimulationFrame)
-const long Zombi_SimulationFrame::ID_STATICBITMAP1 = wxNewId();
+const long Zombi_SimulationFrame::ID_BUTTON1 = wxNewId();
+const long Zombi_SimulationFrame::ID_PANEL2 = wxNewId();
+const long Zombi_SimulationFrame::ID_PANEL3 = wxNewId();
 const long Zombi_SimulationFrame::ID_PANEL1 = wxNewId();
 const long Zombi_SimulationFrame::ID_MENUITEM1 = wxNewId();
 const long Zombi_SimulationFrame::idMenuAbout = wxNewId();
@@ -69,9 +70,12 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
 
     Create(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
     BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
-    Panel1 = new wxPanel(this, ID_PANEL1, wxDefaultPosition, wxSize(596,430), wxTAB_TRAVERSAL, _T("ID_PANEL1"));
-    StaticBitmap1 = new wxStaticBitmap(Panel1, ID_STATICBITMAP1, wxBitmap(wxImage(_T("./Map.png")).Rescale(wxSize(784,416).GetWidth(),wxSize(784,416).GetHeight())), wxPoint(0,0), wxSize(784,416), wxSIMPLE_BORDER, _T("ID_STATICBITMAP1"));
-    BoxSizer1->Add(Panel1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BackgroundPanel = new wxPanel(this, ID_PANEL1, wxDefaultPosition, wxSize(732,421), wxTAB_TRAVERSAL, _T("ID_PANEL1"));
+    BackgroundPanel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNSHADOW));
+    ConfigPanel = new wxPanel(BackgroundPanel, ID_PANEL2, wxPoint(0,320), wxSize(712,88), wxTAB_TRAVERSAL, _T("ID_PANEL2"));
+    StartButton = new wxButton(ConfigPanel, ID_BUTTON1, _("Start"), wxPoint(24,32), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
+    DisplayPanel = new wxPanel(BackgroundPanel, ID_PANEL3, wxPoint(0,0), wxSize(700,300), wxTAB_TRAVERSAL, _T("ID_PANEL3"));
+    BoxSizer1->Add(BackgroundPanel, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     SetSizer(BoxSizer1);
     MenuBar1 = new wxMenuBar();
     Menu1 = new wxMenu();
@@ -92,6 +96,8 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
     BoxSizer1->Fit(this);
     BoxSizer1->SetSizeHints(this);
 
+    Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnStartButtonClick);
+    BackgroundPanel->Connect(wxEVT_PAINT,(wxObjectEventFunction)&Zombi_SimulationFrame::OnBackgroundPanelPaint,0,this);
     Connect(ID_MENUITEM1,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnAbout);
     //*)
@@ -112,4 +118,32 @@ void Zombi_SimulationFrame::OnAbout(wxCommandEvent& event)
 {
     wxString msg = wxbuildinfo(long_f);
     wxMessageBox(msg, _("Welcome to..."));
+}
+
+void Zombi_SimulationFrame::OnBackgroundPanelPaint(wxPaintEvent& event)
+{
+}
+
+void Zombi_SimulationFrame::render(wxDC& dc)
+{
+    //dc.SetPen(wxPen());wxClientDC dc(DisplayPanel);
+    for(int i = 0; i <= width ; i+=squareSize)
+    {
+
+        dc.DrawLine(i, 0, i,length);
+    }
+
+    for(int i = 0; i <= length ; i+=squareSize)
+    {
+
+        dc.DrawLine(0, i, width, i);
+    }
+
+
+}
+
+void Zombi_SimulationFrame::OnStartButtonClick(wxCommandEvent& event)
+{
+    wxClientDC dc(DisplayPanel);
+    render(dc);
 }
