@@ -22,15 +22,13 @@ enum
 TEST_GROUP(HumanTest)
 {
 	Human *human;
-	I_Random *randInterface;
 	RandomGenerator_Mock *randomGeneratorMock;
 
 	void setup()
 	{
 		randomGeneratorMock = new RandomGenerator_Mock();
-		randInterface = (I_Random *)randomGeneratorMock;
 
-		human = new Human(X,Y, randInterface);
+		human = new Human(X,Y, randomGeneratorMock);
 	}
 
 	void teardown()
@@ -89,7 +87,7 @@ TEST(HumanTest, ShouldInitializeAHuman)
 
 TEST(HumanTest, ShouldInitializeAHumanWithGivenHealthAndDefense)
 {
-	Human *testHuman = new Human(8, 7, SomeHealthValue, SomeDefenseValue, randInterface);
+	Human *testHuman = new Human(8, 7, SomeHealthValue, SomeDefenseValue, randomGeneratorMock);
 
 	int expectedDefense = SomeDefenseValue;
 	int expectedHealth = SomeHealthValue;
@@ -107,7 +105,7 @@ TEST(HumanTest, ShouldIncreaseHumanHealthBy20WhenFindingResourceCellToEat)
 {
   Resource *resource = new Resource(4,4,20);
 
-  Human *testHuman = new Human(5,6, SomeHealthValue, SomeDefenseValue, randInterface);
+  Human *testHuman = new Human(5,6, SomeHealthValue, SomeDefenseValue, randomGeneratorMock);
 
   int expectedHealthChange = testHuman->GetHealth() + 20;
   testHuman->Eat(resource);
@@ -122,7 +120,7 @@ TEST(HumanTest, ShouldIncreaseHumanHealthBy20WhenFindingResourceCellToEat)
 
 TEST(HumanTest, ShouldDecrementHealthByTwentyAfterOneTick)
 {
-	Human *testHuman = new Human(4, 3, randInterface);
+	Human *testHuman = new Human(4, 3, randomGeneratorMock);
 
 	RandomGeneratorShouldBeCalledAndReturn(MoveDown);
 
@@ -138,7 +136,7 @@ TEST(HumanTest, ShouldDecrementHealthByTwentyAfterOneTick)
 
 TEST(HumanTest, ShouldDecrementHealthToZeroAfter5Tick)
 {
-	Human *testHuman = new Human(4, 3, randInterface);
+	Human *testHuman = new Human(4, 3, randomGeneratorMock);
 
 	RandomGeneratorShouldBeCalled(5 Times, AndReturn MoveDown);
 

@@ -24,19 +24,17 @@ TEST_GROUP(ActorTest)
 {
 	ActorForTest *actor;
 	RandomGenerator_Mock *randomGeneratorMock;
-	I_Random *randInterface;
 
 	void setup()
 	{
 		randomGeneratorMock = new RandomGenerator_Mock();
-		randInterface = (I_Random *)randomGeneratorMock;
 		actor = new ActorForTest(
 				X,
 				Y,
 				Green,
 				MaximumHealth,
 				SomeDefenseValue,
-				randInterface);
+				randomGeneratorMock);
 	}
 
 	void teardown()

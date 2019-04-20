@@ -22,15 +22,13 @@ enum
 TEST_GROUP(ZombieTest)
 {
 	Zombie *zombie;
-	I_Random *randomGeneratorInterface;
 	RandomGenerator_Mock *randomGeneratorMock;
 
 	void setup()
 	{
 		randomGeneratorMock = new RandomGenerator_Mock();
-		randomGeneratorInterface = (I_Random *)randomGeneratorMock;
 
-		zombie = new Zombie(X,Y, randomGeneratorInterface);
+		zombie = new Zombie(X,Y, randomGeneratorMock);
 	}
 
 	void teardown()
@@ -99,7 +97,7 @@ TEST(ZombieTest, ShouldInitializeAZombieWithGivenHealthAndDefense)
 			7,
 			SomeHealthValue,
 			SomeDefenseValue,
-			randomGeneratorInterface);
+			randomGeneratorMock);
 
 	int expectedDefense = SomeDefenseValue;
 	int expectedHealth = SomeHealthValue;
@@ -115,7 +113,7 @@ TEST(ZombieTest, ShouldInitializeAZombieWithGivenHealthAndDefense)
 
 TEST(ZombieTest, ShouldDecrementHealthByTenAfterOneTick)
 {
-	Zombie *testZombie = new Zombie(4, 3, randomGeneratorInterface);
+	Zombie *testZombie = new Zombie(4, 3, randomGeneratorMock);
 
 	RandomGeneratorShouldBeCalledAndReturn(MoveDown);
 
@@ -131,7 +129,7 @@ TEST(ZombieTest, ShouldDecrementHealthByTenAfterOneTick)
 
 TEST(ZombieTest, ShouldDecrementHealthToZero)
 {
-	Zombie *testZombie = new Zombie(1, 1, randomGeneratorInterface);
+	Zombie *testZombie = new Zombie(1, 1, randomGeneratorMock);
 
 	RandomGeneratorShouldBeCalled(10 Times, AndReturn MoveDown);
 
