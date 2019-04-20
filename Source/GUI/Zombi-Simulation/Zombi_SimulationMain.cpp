@@ -60,9 +60,9 @@ END_EVENT_TABLE()
 
 Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
 {
-    RandomGeneratorObject = new RandomGenerator();
+    randomGenerator = new RandomGenerator();
 
-    continent = new Continent(NorthAmericaSize, NorthAmerica, humans, zombies, traps, resources, RandomGeneratorObject, 1);
+    continent = new Continent(NorthAmericaSize, NorthAmerica, humans, zombies, traps, resources, randomGenerator, 1);
     //(*Initialize(Zombi_SimulationFrame)
     wxMenuItem* MenuItem2;
     wxMenuItem* MenuItem1;

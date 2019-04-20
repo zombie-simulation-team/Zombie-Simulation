@@ -1814,3 +1814,223 @@
 1555796567 source:/home/ubuntu/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombie/Zombie.cpp
 	"Zombie.h"
 
+1555800802 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/wx_pch.h
+	<wx/wxprec.h>
+	<wx/wx.h>
+
+1555795272 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Actor/Actor.cpp
+	"Actor.h"
+
+1555795272 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Actor/Actor.h
+	"Cell.h"
+	"I_Random.h"
+	"Utils.h"
+
+1555181664 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Actor/ActorForTest.cpp
+	"ActorForTest.h"
+
+1555181664 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Actor/ActorForTest.h
+	"Actor.h"
+
+1555795272 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Cell/Cell.cpp
+	"Cell.h"
+
+1555795272 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Cell/Cell.h
+
+1555181664 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Cell/CellForTest.cpp
+	"CellForTest.h"
+
+1554375612 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Cell/CellForTest.h
+	"Cell.h"
+
+1555800457 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Continent/Continent.cpp
+	"Continent.h"
+
+1555800457 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Continent/Continent.h
+	<iostream>
+	"Environment.h"
+	"Cell.h"
+	"EmptyCell.h"
+	"I_Random.h"
+	"RandomGenerator.h"
+	"Zombie.h"
+	"Trap.h"
+	"Resource.h"
+	"Human.h"
+
+1554375612 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/EmptyCell/EmptyCell.cpp
+	"EmptyCell.h"
+
+1554375612 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/EmptyCell/EmptyCell.h
+	"Cell.h"
+
+1554375612 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Environment/Environment.cpp
+	"Environment.h"
+
+1554375612 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Environment/Environment.h
+
+1554375612 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Environment/EnvironmentForTest.cpp
+	"EnvironmentForTest.h"
+	<stdio.h>
+
+1554375612 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Environment/EnvironmentForTest.h
+	"Environment.h"
+
+1555800802 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Human/Human.cpp
+	"Human.h"
+	<stdlib.h>
+	<time.h>
+
+1555800802 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Human/Human.h
+	"../Actor/Actor.h"
+	"../Resource/Resource.h"
+
+1555800802 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Resource/Resource.h
+	"../Obstacle/Obstacle.h"
+
+1555800802 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Obstacle/Obstacle.h
+	"../Cell/Cell.h"
+	"../Utils/Utils.h"
+
+1555800802 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Utils/Utils.h
+
+1555800802 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Obstacle/Obstacle.cpp
+	"Obstacle.h"
+
+1555800802 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Obstacle/ObstacleForTest.cpp
+	"ObstacleForTest.h"
+
+1555800802 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Obstacle/ObstacleForTest.h
+	"Obstacle.h"
+
+1555800802 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Random/RandomGenerator.cpp
+	"RandomGenerator.h"
+	<stdlib.h>
+	<time.h>
+
+1555800802 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Random/RandomGenerator.h
+	"I_Random.h"
+
+1555800802 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Random/I_Random.h
+
+1555800802 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Resource/Resource.cpp
+	"Resource.h"
+
+1555800802 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Trap/Trap.cpp
+	"Trap.h"
+
+1555800802 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Trap/Trap.h
+	"../Obstacle/Obstacle.h"
+
+1555800802 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationApp.cpp
+	"wx_pch.h"
+	"Zombi_SimulationApp.h"
+	"Zombi_SimulationMain.h"
+	<wx/image.h>
+
+1555800802 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/wx_pch.h
+	<wx/wxprec.h>
+	<wx/wx.h>
+
+1555800802 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationApp.h
+	<wx/app.h>
+
+1555801416 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationMain.h
+	<wx/sizer.h>
+	<wx/button.h>
+	<wx/menu.h>
+	<wx/panel.h>
+	<wx/statusbr.h>
+	<wx/frame.h>
+	"Continent.h"
+
+1555795272 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Actor.cpp
+	"Actor.h"
+
+1555795272 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Actor.h
+	"Cell.h"
+	"I_Random.h"
+	"Utils.h"
+
+1555795272 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Cell.h
+
+1555181664 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/I_Random.h
+
+1555795272 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Utils.h
+
+1555795272 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Cell.cpp
+	"Cell.h"
+
+1555800457 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Continent.cpp
+	"Continent.h"
+
+1555800457 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Continent.h
+	<iostream>
+	"Environment.h"
+	"Cell.h"
+	"EmptyCell.h"
+	"I_Random.h"
+	"RandomGenerator.h"
+	"Zombie.h"
+	"Trap.h"
+	"Resource.h"
+	"Human.h"
+
+1554375612 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Environment.h
+
+1554375612 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/EmptyCell.h
+	"Cell.h"
+
+1555181664 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/RandomGenerator.h
+	"I_Random.h"
+
+1555181664 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombie.h
+	"Actor.h"
+
+1554375612 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Trap.h
+	"Obstacle.h"
+
+1555181664 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Obstacle.h
+	"Cell.h"
+	"Utils.h"
+
+1554375612 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Resource.h
+	"Obstacle.h"
+
+1555800457 /home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Human.h
+	"Actor.h"
+	"Resource.h"
+
+1554375612 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/EmptyCell.cpp
+	"EmptyCell.h"
+
+1555795272 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Human.cpp
+	"Human.h"
+	<stdlib.h>
+	<time.h>
+
+1555181664 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Obstacle.cpp
+	"Obstacle.h"
+
+1555181664 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/RandomGenerator.cpp
+	"RandomGenerator.h"
+	<stdlib.h>
+	<time.h>
+
+1554375612 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Resource.cpp
+	"Resource.h"
+
+1554375612 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Trap.cpp
+	"Trap.h"
+
+1555801001 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationMain.cpp
+	"wx_pch.h"
+	"Zombi_SimulationMain.h"
+	<wx/msgdlg.h>
+	<wx/settings.h>
+	<wx/string.h>
+	<wx/intl.h>
+
+1555795272 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombie.cpp
+	"Zombie.h"
+

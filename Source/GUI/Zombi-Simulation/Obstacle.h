@@ -8,8 +8,8 @@
 #ifndef OBSTACLE_H_
 #define OBSTACLE_H_
 
-#include "../Cell/Cell.h"
-#include "../Utils/Utils.h"
+#include "Cell.h"
+#include "Utils.h"
 
 class Obstacle: public Cell
 {

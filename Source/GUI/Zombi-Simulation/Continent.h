@@ -9,15 +9,15 @@
 #define CONTINENT_H_
 
 #include <iostream>
-#include "../Environment/Environment.h"
-#include "../Cell/Cell.h"
-#include "../EmptyCell/EmptyCell.h"
-#include "../Random/I_Random.h"
-#include "../Random/RandomGenerator.h"
-#include "../Zombie/Zombie.h"
-#include "../Trap/Trap.h"
-#include "../Resource/Resource.h"
-#include "../Human/Human.h"
+#include "Environment.h"
+#include "Cell.h"
+#include "EmptyCell.h"
+#include "I_Random.h"
+#include "RandomGenerator.h"
+#include "Zombie.h"
+#include "Trap.h"
+#include "Resource.h"
+#include "Human.h"
 
 class Continent: public Environment
 {
@@ -25,8 +25,9 @@ private:
 	int size;
 	Cell ***shape;
 	Continents_e name;
-	CellPosition_t *positions;
 	I_Random *randomGenerator;
+	CellPosition_t *positions;
+	int randomizationLevel;
 	void InitializeZombies(int zombieCount);
 	void InitializeTraps(int trapCount);
 	void InitializeResources(int resourceCount);
@@ -36,6 +37,7 @@ private:
 			int zombieCount,
 			int trapCount,
 			int resourceCount);
+	void ShuffleCellTickOrder();
 
 public:
 	Continent(
@@ -45,7 +47,8 @@ public:
 			int zombieCount,
 			int trapCount,
 			int resourceCount,
-			I_Random *randomGenerator);
+			I_Random *randomGenerator,
+			int randomizationLevel = 0);
 	Cell*** GetShape();
 	int GetSize();
 	std::string GetName();

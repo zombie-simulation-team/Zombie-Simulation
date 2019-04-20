@@ -8,7 +8,7 @@
 #ifndef TRAP_H_
 #define TRAP_H_
 
-#include "../Obstacle/Obstacle.h"
+#include "Obstacle.h"
 
 enum
 {
