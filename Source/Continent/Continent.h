@@ -17,6 +17,7 @@
 #include "Zombie.h"
 #include "Trap.h"
 #include "Resource.h"
+#include "Human.h"
 
 class Continent: public Environment
 {
@@ -25,14 +26,18 @@ private:
 	Cell ***shape;
 	Continents_e name;
 	I_Random *randomGenerator;
+	CellPosition_t *positions;
+	int randomizationLevel;
 	void InitializeZombies(int zombieCount);
 	void InitializeTraps(int trapCount);
 	void InitializeResources(int resourceCount);
+	void InitializeHumans(int humanCount);
 	void InitializeShape(
 			int humanCount,
 			int zombieCount,
 			int trapCount,
 			int resourceCount);
+	void ShuffleCellTickOrder();
 
 public:
 	Continent(
@@ -42,7 +47,8 @@ public:
 			int zombieCount,
 			int trapCount,
 			int resourceCount,
-			I_Random *randomGenerator);
+			I_Random *randomGenerator,
+			int randomizationLevel = 0);
 	Cell*** GetShape();
 	int GetSize();
 	std::string GetName();
@@ -50,6 +56,7 @@ public:
 	void Tick();
 	void CheckMove(Cell *cell);
 	virtual ~Continent();
+	bool Finished();
 };
 
 #endif /* CONTINENT_H_ */

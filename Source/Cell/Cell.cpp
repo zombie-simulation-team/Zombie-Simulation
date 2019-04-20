@@ -11,8 +11,6 @@ Cell::Cell()
 {
 	xPos = 0;
 	yPos = 0;
-	nextX = -1;
-	nextY = -1;
 	color = Transparent;
 	is_valid = true;
 }
@@ -21,8 +19,6 @@ Cell::Cell(int x, int y, CellColor_e color, bool valid)
 {
 	xPos = x;
 	yPos = y;
-	nextX = -1;
-	nextY = -1;
 	this->color = color;
 	is_valid = valid;
 }
@@ -31,8 +27,6 @@ Cell::Cell(int x, int y, CellColor_e color)
 {
 	xPos = x;
 	yPos = y;
-	nextX = -1;
-	nextY = -1;
 	this->color = color;
 	is_valid = true;
 }
@@ -41,18 +35,22 @@ Cell::Cell(int x, int y, bool valid)
 {
 	xPos = x;
 	yPos = y;
-	nextX = -1;
-	nextY = -1;
 	is_valid = valid;
-	color = Transparent;
+
+	if(is_valid)
+	{
+		color = Grey;
+	}
+	else
+	{
+		color = Transparent;
+	}
 }
 
 Cell::Cell(int x, int y)
 {
 	xPos = x;
 	yPos = y;
-	nextX = -1;
-	nextY = -1;
 	color = Transparent;
 	is_valid = true;
 }
@@ -86,26 +84,6 @@ void Cell::SetY(int y)
 	yPos = y;
 }
 
-void Cell::SetNextX(int x)
-{
-	nextX = x;
-}
-
-void Cell::SetNextY(int y)
-{
-	nextY = y;
-}
-
-int Cell::GetNextX()
-{
-	return nextX;
-}
-
-int Cell::GetNextY()
-{
-	return nextY;
-}
-
 void Cell::SetColor(CellColor_e color)
 {
 	this->color = color;
@@ -114,4 +92,35 @@ void Cell::SetColor(CellColor_e color)
 bool Cell::IsValid()
 {
 	return is_valid;
+}
+
+bool Cell::IsHuman()
+{
+	return this->color == Green;
+}
+
+bool Cell::IsZombie()
+{
+	return this->color == Red;
+}
+
+bool Cell::IsResource()
+{
+	return this->color == White;
+}
+
+bool Cell::IsTrap()
+{
+	return this->color == Black;
+}
+
+bool Cell::IsEmpty()
+{
+	return this->color == Grey;
+}
+
+void Cell::SetPosition(int x, int y)
+{
+	SetX(x);
+	SetY(y);
 }

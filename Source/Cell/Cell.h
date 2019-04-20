@@ -24,8 +24,6 @@ class Cell
 private:
 	int xPos;
 	int yPos;
-	int nextX;
-	int nextY;
 	CellColor_e color;
 	bool is_valid;
 
@@ -44,10 +42,12 @@ public:
 	bool IsValid();
 	CellColor_e GetColor();
 	virtual void Tick() = 0;
-	void SetNextX(int x);
-	void SetNextY(int y);
-	int GetNextX();
-	int GetNextY();
+	bool IsHuman();
+	bool IsZombie();
+	bool IsResource();
+	bool IsTrap();
+	bool IsEmpty();
+	void SetPosition(int x, int y);
 };
 
 #endif

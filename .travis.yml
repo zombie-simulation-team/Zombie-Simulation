@@ -1,18 +1,27 @@
-language: cpp
-dist: trusty
+sudo: required
 
 matrix:
   include:
+    - os: linux
+      dist: trusty
+      language: cpp
+      compiler: gcc
+      script:
+        - make -j8
     - os: osx
       osx_image: xcode10.2
+      language: cpp
       compiler: clang
+      script:
+        - make -j8
     - os: linux
-
+      services: docker
+      language: bash
+      compiler: gcc
+      before_install:
+        - docker pull multiarch/debian-debootstrap:armhf-stretch
+        - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+        - docker ps -a
+        - docker run -it --rm multiarch/debian-debootstrap:armhf-stretch /bin/sh -c "apt-get update && apt-get -y upgrade; apt-get install -y build-essential; apt-get install -y git; uname -a; git clone --depth=50 --branch="$TRAVIS_BRANCH" https://github.com/zombie-simulation-team/Zombie-Simulation.git; cd Zombie-Simulation/; git checkout -qf $TRAVIS_COMMIT; make -j8"
 cpp:
- - "stable"
-
-compiler:
- - gcc
-
-script:
- - make -j8
+  - "stable"

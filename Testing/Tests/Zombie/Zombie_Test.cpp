@@ -8,6 +8,9 @@
 #include "Zombie.h"
 #include "RandomGenerator_Mock.h"
 
+#define Times
+#define AndReturn
+
 enum
 {
 	SomeDefenseValue = 60,
@@ -19,16 +22,50 @@ enum
 TEST_GROUP(ZombieTest)
 {
 	Zombie *zombie;
-	I_Random *randomGenerator;
+	RandomGenerator_Mock *randomGeneratorMock;
 
 	void setup()
 	{
-		zombie = new Zombie(X,Y, randomGenerator);
+		randomGeneratorMock = new RandomGenerator_Mock();
+
+		zombie = new Zombie(X,Y, randomGeneratorMock);
 	}
 
 	void teardown()
 	{
 		delete zombie;
+		delete randomGeneratorMock;
+	}
+
+	void RandomGeneratorShouldBeCalledAndReturn(int val)
+	{
+		mock().expectOneCall("GenerateRandom")
+					.onObject(randomGeneratorMock)
+					.withParameter("start", 1)
+					.withParameter("end", 8)
+					.andReturnValue(val);
+	}
+
+	void ZombieHealthShouldBeZero(int expected, int actual)
+	{
+		CHECK_EQUAL(expected, actual);
+	}
+
+	void RandomGeneratorShouldBeCalled(int n, int val)
+	{
+		mock().expectNCalls(n, "GenerateRandom")
+					.onObject(randomGeneratorMock)
+					.withParameter("start", 1)
+					.withParameter("end", 8)
+					.andReturnValue(val);
+	}
+
+	void ShouldTick(Zombie *zombie, int n)
+	{
+		for(int i = 0; i < n; i++)
+		{
+			zombie->Tick();
+		}
 	}
 };
 
@@ -60,7 +97,7 @@ TEST(ZombieTest, ShouldInitializeAZombieWithGivenHealthAndDefense)
 			7,
 			SomeHealthValue,
 			SomeDefenseValue,
-			randomGenerator);
+			randomGeneratorMock);
 
 	int expectedDefense = SomeDefenseValue;
 	int expectedHealth = SomeHealthValue;
@@ -73,3 +110,35 @@ TEST(ZombieTest, ShouldInitializeAZombieWithGivenHealthAndDefense)
 
 	delete testZombie;
 }
+
+TEST(ZombieTest, ShouldDecrementHealthByTenAfterOneTick)
+{
+	Zombie *testZombie = new Zombie(4, 3, randomGeneratorMock);
+
+	RandomGeneratorShouldBeCalledAndReturn(MoveDown);
+
+	testZombie->Tick();
+
+	int expectedHealth = DefaultHealth - 10;
+	int actualHealth = testZombie->GetHealth();
+
+	CHECK_EQUAL(expectedHealth, actualHealth);
+
+	delete testZombie;
+}
+
+TEST(ZombieTest, ShouldDecrementHealthToZero)
+{
+	Zombie *testZombie = new Zombie(1, 1, randomGeneratorMock);
+
+	RandomGeneratorShouldBeCalled(10 Times, AndReturn MoveDown);
+
+	ShouldTick(testZombie, 10 Times);
+
+	int expectedHealth = 0;
+	int actualHealth = testZombie->GetHealth();
+	CHECK_EQUAL(expectedHealth, actualHealth);
+
+	delete testZombie;
+}
+

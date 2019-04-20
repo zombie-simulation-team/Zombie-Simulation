@@ -175,3 +175,68 @@ TEST(CellTest, ShouldSetAnInvalidCell)
 
 	delete myCell;
 }
+
+TEST(CellTest, ShouldGetAZombieCell)
+{
+	CellForTest *myCell = new CellForTest(4, 5, Red, false);
+
+	int expected = true;
+
+	int actual = myCell->IsZombie();
+
+	CHECK_EQUAL(expected, actual);
+
+	delete myCell;
+}
+
+TEST(CellTest, ShouldGetAHumanCell)
+{
+	CellForTest *myCell = new CellForTest(4, 5, Green, false);
+
+	int expected = true;
+
+	int actual = myCell->IsHuman();
+
+	CHECK_EQUAL(expected, actual);
+
+	delete myCell;
+}
+
+TEST(CellTest, ShouldGetAResourceCell)
+{
+	CellForTest *myCell = new CellForTest(4, 5, White, false);
+
+	int expected = true;
+
+	int actual = myCell->IsResource();
+
+	CHECK_EQUAL(expected, actual);
+
+	delete myCell;
+}
+
+TEST(CellTest, ShouldGetATrapCell)
+{
+	CellForTest *myCell = new CellForTest(4, 5, Black, false);
+
+	int expected = true;
+
+	int actual = myCell->IsTrap();
+
+	CHECK_EQUAL(expected, actual);
+
+	delete myCell;
+}
+
+TEST(CellTest, ShouldGetAEmptyCell)
+{
+	CellForTest *myCell = new CellForTest(4, 5, Grey, false);
+
+	int expected = true;
+
+	int actual = myCell->IsEmpty();
+
+	CHECK_EQUAL(expected, actual);
+
+	delete myCell;
+}
