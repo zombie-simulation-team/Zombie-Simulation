@@ -25,8 +25,9 @@ private:
 	int size;
 	Cell ***shape;
 	Continents_e name;
-	CellPosition_t *positions;
 	I_Random *randomGenerator;
+	CellPosition_t *positions;
+	int randomizationLevel;
 	void InitializeZombies(int zombieCount);
 	void InitializeTraps(int trapCount);
 	void InitializeResources(int resourceCount);
@@ -36,6 +37,7 @@ private:
 			int zombieCount,
 			int trapCount,
 			int resourceCount);
+	void ShuffleCellTickOrder();
 
 public:
 	Continent(
@@ -45,7 +47,8 @@ public:
 			int zombieCount,
 			int trapCount,
 			int resourceCount,
-			I_Random *randomGenerator);
+			I_Random *randomGenerator,
+			int randomizationLevel = 0);
 	Cell*** GetShape();
 	int GetSize();
 	std::string GetName();

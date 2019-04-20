@@ -14,7 +14,8 @@ Continent::Continent(
 		int zombieCount,
 		int trapCount,
 		int resourceCount,
-		I_Random *randomGenerator)
+		I_Random *randomGenerator,
+		int randomizationLevel)
 	: Environment(
 			humanCount,
 			zombieCount,
@@ -25,6 +26,19 @@ Continent::Continent(
 	this->name = name;
 	this->randomGenerator = randomGenerator;
 
+	if(randomizationLevel < 0)
+	{
+		this->randomizationLevel = 0;
+	}
+	else if(randomizationLevel > 3)
+	{
+		this->randomizationLevel = 3;
+	}
+	else
+	{
+		this->randomizationLevel = randomizationLevel;
+	}
+
 	positions = new CellPosition_t[size * size];
 
 	InitializeShape(
@@ -32,6 +46,11 @@ Continent::Continent(
 			zombieCount,
 			trapCount,
 			resourceCount);
+
+	if(randomizationLevel > 0)
+	{
+		ShuffleCellTickOrder();
+	}
 }
 
 Continent::~Continent()
@@ -428,3 +447,20 @@ bool Continent::Finished()
 	}
 }
 
+void Continent::ShuffleCellTickOrder()
+{
+	int fullSize = size * size;
+
+	for(int r = 0; r < randomizationLevel; r++)
+	{
+		for (int i = 0; i < fullSize; i++)
+		{
+			int posOne = randomGenerator->GenerateRandom(0, fullSize - 1);
+			int posTwo = randomGenerator->GenerateRandom(0, fullSize - 1);
+
+			CellPosition_t temp = positions[posOne];
+			positions[posOne] = positions[posTwo];
+			positions[posTwo] = temp;
+		}
+	}
+}

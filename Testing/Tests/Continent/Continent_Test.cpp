@@ -7,11 +7,10 @@
 #include "CppUTest/TestHarness.h"
 #include "Continent.h"
 #include "RandomGenerator_Mock.h"
-#include <stdio.h>
-#include <unistd.h>
 
 #define Times
 #define AndReturn
+#define And
 
 enum
 {
@@ -32,6 +31,9 @@ enum
 	SomeZombieY = 7,
 	SomeTrapX = 8,
 	SomeTrapY = 1,
+	RandomizationLevelZero = 0,
+	RandomizationLevelOne = 1,
+	RandomizationLevelTwo = 2
 };
 
 TEST_GROUP(ContinentTest)
@@ -43,6 +45,7 @@ TEST_GROUP(ContinentTest)
 	{
 		randomGeneratorMock = new RandomGenerator_Mock();
 
+		mock().disable();
 		continent = new Continent(
 				ContinentSize,
 				NorthAmerica,
@@ -50,13 +53,16 @@ TEST_GROUP(ContinentTest)
 				0,
 				0,
 				0,
-				randomGeneratorMock);
+				randomGeneratorMock,
+				RandomizationLevelZero);
+		mock().enable();
 	}
 
 	void teardown()
 	{
 		delete continent;
 		delete randomGeneratorMock;
+		mock().clear();
 	}
 
 	void CheckShape(Cell ***actualShape)
@@ -136,6 +142,7 @@ TEST_GROUP(ContinentTest)
 					.withParameter("end", 8)
 					.andReturnValue(val);
 	}
+
 	void RandomGeneratorShouldBeCalled(int n, int val)
 	{
 		mock().expectNCalls(n, "GenerateRandom")
@@ -158,6 +165,21 @@ TEST_GROUP(ContinentTest)
 					.withParameter("start", 0)
 					.withParameter("end", ContinentSize - 1)
 					.andReturnValue(y);
+	}
+
+	void RandomGeneratorShouldBeCallToShuffleAndReturn(int val)
+	{
+		mock().expectOneCall("GenerateRandom")
+					.onObject(randomGeneratorMock)
+					.withParameter("start", 0)
+					.withParameter("end", 3)
+					.andReturnValue(val);
+	}
+
+	void SwapCellsAt(int c1, int c2)
+	{
+		RandomGeneratorShouldBeCallToShuffleAndReturn(c1);
+		RandomGeneratorShouldBeCallToShuffleAndReturn(c2);
 	}
 };
 
@@ -662,3 +684,46 @@ TEST(ContinentTest, HumanShouldNotMoveToATrap)
 	delete cont;
 }
 
+TEST(ContinentTest, ShouldShuffleThePositionForCellToBeTickedAtInitialization)
+{
+	SwapCellsAt(1, And 3);
+	SwapCellsAt(2, And 0);
+	SwapCellsAt(2, And 1);
+	SwapCellsAt(2, And 3);
+
+	Continent *cont = new Continent(
+			2,
+			NorthAmerica,
+			0,
+			0,
+			0,
+			0,
+			randomGeneratorMock,
+			RandomizationLevelOne);
+
+	delete cont;
+}
+
+TEST(ContinentTest, ShouldShuffleThePositionForCellToBeTickedTwiceAtInitialization)
+{
+	SwapCellsAt(1, And 3);
+	SwapCellsAt(2, And 0);
+	SwapCellsAt(2, And 1);
+	SwapCellsAt(2, And 3);
+	SwapCellsAt(0, And 1);
+	SwapCellsAt(1, And 3);
+	SwapCellsAt(2, And 0);
+	SwapCellsAt(2, And 1);
+
+	Continent *cont = new Continent(
+			2,
+			NorthAmerica,
+			0,
+			0,
+			0,
+			0,
+			randomGeneratorMock,
+			RandomizationLevelTwo);
+
+	delete cont;
+}
