@@ -58,8 +58,6 @@
 		<Unit filename="Environment/EnvironmentForTest.h" />
 		<Unit filename="Human/Human.cpp" />
 		<Unit filename="Human/Human.h" />
-		<Unit filename="Mock/RandomGenerator_Mock.cpp" />
-		<Unit filename="Mock/RandomGenerator_Mock.h" />
 		<Unit filename="Obstacle/Obstacle.cpp" />
 		<Unit filename="Obstacle/Obstacle.h" />
 		<Unit filename="Obstacle/ObstacleForTest.cpp" />

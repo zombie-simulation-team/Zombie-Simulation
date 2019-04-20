@@ -39,11 +39,16 @@ class Zombi_SimulationFrame: public wxFrame
         const static int length = 300;
         const static int squareSize = 10;
 
-        int NorthAmericaSize = 18;
-        int humans = 10;
-        int zombies = 10;
-        int traps = 10;
-        int resources = 10;
+        int NorthAmericaSize;
+        int SouthAmericaSize;
+        int EuropeSize;
+        int AustraliaSize;
+        int AsiaSize;
+        int AfricaSize;
+        int humans;
+        int zombies;
+        int traps;
+        int resources;
 
 
 
@@ -53,6 +58,7 @@ class Zombi_SimulationFrame: public wxFrame
         void OnBackgroundPanelPaint(wxPaintEvent& event);
         void OnStartButtonClick(wxCommandEvent& event);
         void render(wxDC& dc);
+        void renderContinents(wxDC &dc);
         //*)
 
         //(*Identifiers(Zombi_SimulationFrame)
