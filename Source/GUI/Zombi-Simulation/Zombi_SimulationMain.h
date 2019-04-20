@@ -18,6 +18,8 @@
 #include <wx/statusbr.h>
 #include <wx/frame.h>
 //*)
+#include "Continent/Continent.h"
+
 
 class Zombi_SimulationFrame: public wxFrame
 {
@@ -26,18 +28,24 @@ class Zombi_SimulationFrame: public wxFrame
         Zombi_SimulationFrame(wxWindow* parent,wxWindowID id = -1);
         virtual ~Zombi_SimulationFrame();
 
+
+
+
+
     private:
+        Continent *continent;
+        RandomGenerator *RandomGeneratorObject;
         const static int width = 700;
         const static int length = 300;
         const static int squareSize = 10;
-        enum Continent_Size{
-            NorthAmerica = 18,
-            SouthAmerica = 16,
-            Europe = 12,
-            Australia = 10,
-            Asia = 25,
-            Africa = 20
-        };
+
+        int NorthAmericaSize = 18;
+        int humans = 10;
+        int zombies = 10;
+        int traps = 10;
+        int resources = 10;
+
+
 
         //(*Handlers(Zombi_SimulationFrame)
         void OnQuit(wxCommandEvent& event);

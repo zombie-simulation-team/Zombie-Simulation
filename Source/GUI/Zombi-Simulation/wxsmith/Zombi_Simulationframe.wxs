@@ -5,12 +5,12 @@
 		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
 			<object class="sizeritem">
 				<object class="wxPanel" name="ID_PANEL1" variable="BackgroundPanel" member="yes">
-					<size>732,421</size>
+					<size>700,421</size>
 					<bg>wxSYS_COLOUR_BTNSHADOW</bg>
 					<handler function="OnBackgroundPanelPaint" entry="EVT_PAINT" />
 					<object class="wxPanel" name="ID_PANEL2" variable="ConfigPanel" member="yes">
 						<pos>0,320</pos>
-						<size>712,88</size>
+						<size>700,88</size>
 						<object class="wxButton" name="ID_BUTTON1" variable="StartButton" member="yes">
 							<label>Start</label>
 							<pos>24,32</pos>

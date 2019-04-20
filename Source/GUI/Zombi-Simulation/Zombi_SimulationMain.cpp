@@ -60,6 +60,9 @@ END_EVENT_TABLE()
 
 Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
 {
+    RandomGeneratorObject = new RandomGenerator();
+
+    continent = new Continent(NorthAmericaSize, NorthAmerica, humans, zombies, traps, resources, RandomGeneratorObject, 1);
     //(*Initialize(Zombi_SimulationFrame)
     wxMenuItem* MenuItem2;
     wxMenuItem* MenuItem1;
@@ -70,9 +73,9 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
 
     Create(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
     BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
-    BackgroundPanel = new wxPanel(this, ID_PANEL1, wxDefaultPosition, wxSize(732,421), wxTAB_TRAVERSAL, _T("ID_PANEL1"));
+    BackgroundPanel = new wxPanel(this, ID_PANEL1, wxDefaultPosition, wxSize(700,421), wxTAB_TRAVERSAL, _T("ID_PANEL1"));
     BackgroundPanel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNSHADOW));
-    ConfigPanel = new wxPanel(BackgroundPanel, ID_PANEL2, wxPoint(0,320), wxSize(712,88), wxTAB_TRAVERSAL, _T("ID_PANEL2"));
+    ConfigPanel = new wxPanel(BackgroundPanel, ID_PANEL2, wxPoint(0,320), wxSize(700,88), wxTAB_TRAVERSAL, _T("ID_PANEL2"));
     StartButton = new wxButton(ConfigPanel, ID_BUTTON1, _("Start"), wxPoint(24,32), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
     DisplayPanel = new wxPanel(BackgroundPanel, ID_PANEL3, wxPoint(0,0), wxSize(700,300), wxTAB_TRAVERSAL, _T("ID_PANEL3"));
     BoxSizer1->Add(BackgroundPanel, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
