@@ -27,4 +27,4 @@ Source/GUI/Zombi-Simulation/bin/
 Source/GUI/Zombi-Simulation/obj/
 Source/GUI/Zombi-Simulation/wx_pch.h.gch/
 Source/GUI/Zombi-Simulation/Zombi-Simulation.depend
-Source/GUI/Zombi-Simulation/*.layout
+Source/GUI/Zombi-Simulation/Zombi-Simulation.layout
