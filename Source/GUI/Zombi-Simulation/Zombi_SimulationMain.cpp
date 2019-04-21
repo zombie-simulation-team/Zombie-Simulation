@@ -10,11 +10,7 @@
 #include "wx_pch.h"
 #include "Zombi_SimulationMain.h"
 #include <wx/msgdlg.h>
-#define ZOMBIE_COLOR wxRED_BRUSH
-#define HUMAN_COLOR wxGREEN_BRUSH
-#define RESOURCE_COLOR wxWHITE_BRUSH
-#define TRAP_COLOR wxBLACK_BRUSH
-#define EMPTY_COLOR wxGREY_BRUSH
+
 
 #define ZOMBIE_ICON
 //(*InternalHeaders(Zombi_SimulationFrame)
@@ -149,8 +145,8 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
     StaticText2 = new wxStaticText(ConfigPanel, ID_STATICTEXT2, _("Humans %"), wxPoint(152,56), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
     StaticText3 = new wxStaticText(ConfigPanel, ID_STATICTEXT3, _("Traps %"), wxPoint(264,8), wxSize(64,17), 0, _T("ID_STATICTEXT3"));
     StaticText4 = new wxStaticText(ConfigPanel, ID_STATICTEXT4, _("Resources %"), wxPoint(264,56), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
-    HumanSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_HUMAN_SPINCTRL, _T("60"), wxPoint(168,72), wxSize(56,27), 0, 5, 100, 60, _T("ID_HUMAN_SPINCTRL"));
-    HumanSpinCtrl->SetValue(_T("60"));
+    HumanSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_HUMAN_SPINCTRL, _T("30"), wxPoint(168,72), wxSize(56,27), 0, 5, 100, 30, _T("ID_HUMAN_SPINCTRL"));
+    HumanSpinCtrl->SetValue(_T("30"));
     ContinentSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_CONTINENT_SPINCTRL, _T("4"), wxPoint(448,48), wxSize(63,27), 0, 1, 6, 4, _T("ID_CONTINENT_SPINCTRL"));
     ContinentSpinCtrl->SetValue(_T("4"));
     StaticText5 = new wxStaticText(ConfigPanel, ID_STATICTEXT5, _("Continents"), wxPoint(440,32), wxDefaultSize, 0, _T("ID_STATICTEXT5"));
@@ -284,7 +280,9 @@ void Zombi_SimulationFrame::render(wxDC& dc)
     for(int i = 0; i < totalContinents ; i++)
             renderContinentCells(dc,continent[i], continentSpec[i].x, continentSpec[i].y);
     SetStatusText(wxT("Done ticking"));
-    delete [] continent;
+    for(int j = 0 ; j< totalContinents ;j++)
+        delete continent[j];
+    delete []continent;
 }
 
 void Zombi_SimulationFrame::renderContinentCells(wxDC &dc, Continent *cont, int positionX, int positionY)

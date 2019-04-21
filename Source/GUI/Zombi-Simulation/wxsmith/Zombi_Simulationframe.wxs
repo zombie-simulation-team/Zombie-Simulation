@@ -20,7 +20,7 @@
 						</object>
 						<object class="wxSpinCtrl" name="ID_ZOMBIE_SPINCTRL" variable="ZombieSpinCtrl" member="yes">
 							<value>10</value>
-							<max>40</max>
+							<min>2</min>
 							<pos>168,24</pos>
 							<size>56,27</size>
 							<handler function="OnZombieSpinCtrlChange" entry="EVT_SPINCTRL" />
@@ -38,7 +38,6 @@
 						</object>
 						<object class="wxSpinCtrl" name="ID_RESOURCE_SPINCTRL" variable="ResourceSpinCtrl" member="yes">
 							<value>10</value>
-							<min>10</min>
 							<max>20</max>
 							<pos>264,72</pos>
 							<size>56,27</size>
@@ -58,7 +57,7 @@
 							<pos>264,56</pos>
 						</object>
 						<object class="wxSpinCtrl" name="ID_HUMAN_SPINCTRL" variable="HumanSpinCtrl" member="yes">
-							<value>60</value>
+							<value>30</value>
 							<min>5</min>
 							<pos>168,72</pos>
 							<size>56,27</size>
