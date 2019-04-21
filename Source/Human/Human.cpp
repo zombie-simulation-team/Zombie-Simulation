@@ -37,6 +37,6 @@ void Human::Tick()
 	this->Move();
 	if(!this->HasMoved())
 	{
-		this->ChangeHealth(-20);
+		this->ChangeHealth(-5);
 	}
 }

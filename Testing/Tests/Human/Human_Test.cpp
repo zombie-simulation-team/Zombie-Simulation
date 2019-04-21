@@ -118,7 +118,7 @@ TEST(HumanTest, ShouldIncreaseHumanHealthBy20WhenFindingResourceCellToEat)
 
 }
 
-TEST(HumanTest, ShouldDecrementHealthByTwentyAfterOneTick)
+TEST(HumanTest, ShouldDecrementHealthByFiveAfterOneTick)
 {
 	Human *testHuman = new Human(4, 3, randomGeneratorMock);
 
@@ -126,7 +126,7 @@ TEST(HumanTest, ShouldDecrementHealthByTwentyAfterOneTick)
 
 	testHuman->Tick();
 
-	int expectedHealth = DefaultHealth - 20;
+	int expectedHealth = DefaultHealth - 5;
 	int actualHealth = testHuman->GetHealth();
 
 	CHECK_EQUAL(expectedHealth, actualHealth);
@@ -134,13 +134,13 @@ TEST(HumanTest, ShouldDecrementHealthByTwentyAfterOneTick)
 	delete testHuman;
 }
 
-TEST(HumanTest, ShouldDecrementHealthToZeroAfter5Tick)
+TEST(HumanTest, ShouldDecrementHealthToZeroAfter20Tick)
 {
 	Human *testHuman = new Human(4, 3, randomGeneratorMock);
 
-	RandomGeneratorShouldBeCalled(5 Times, AndReturn MoveDown);
+	RandomGeneratorShouldBeCalled(20 Times, AndReturn MoveDown);
 
-	ShouldTick(testHuman, 5 Times);
+	ShouldTick(testHuman, 20 Times);
 
 	int expectedHealth = 0;
 	int actualHealth = testHuman->GetHealth();
