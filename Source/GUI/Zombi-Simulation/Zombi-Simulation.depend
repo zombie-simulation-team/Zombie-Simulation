@@ -1687,7 +1687,7 @@
 1555796652 /home/ubuntu/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationApp.h
 	<wx/app.h>
 
-1555803631 /home/ubuntu/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationMain.h
+1555812054 /home/ubuntu/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationMain.h
 	<wx/sizer.h>
 	<wx/button.h>
 	<wx/menu.h>
@@ -1695,8 +1695,10 @@
 	<wx/statusbr.h>
 	<wx/frame.h>
 	"Continent.h"
+	<wx/dcbuffer.h>
+	<wx/gdicmn.h>
 
-1555803388 source:/home/ubuntu/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationMain.cpp
+1555812928 source:/home/ubuntu/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationMain.cpp
 	"wx_pch.h"
 	"Zombi_SimulationMain.h"
 	<wx/msgdlg.h>
@@ -2118,4 +2120,9 @@
 
 1555803320 source:/home/ubuntu/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombie.cpp
 	"Zombie.h"
+
+1522244266 /usr/include/wx-3.0/wx/dcbuffer.h
+	"wx/dcmemory.h"
+	"wx/dcclient.h"
+	"wx/window.h"
 

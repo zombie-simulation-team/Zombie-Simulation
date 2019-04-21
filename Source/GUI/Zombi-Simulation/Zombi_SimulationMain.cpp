@@ -10,6 +10,11 @@
 #include "wx_pch.h"
 #include "Zombi_SimulationMain.h"
 #include <wx/msgdlg.h>
+#define ZOMBIE_COLOR wxRED_BRUSH
+#define HUMAN_COLOR wxGREEN_BRUSH
+#define RESOURCE_COLOR wxWHITE_BRUSH
+#define TRAP_COLOR wxBLACK_BRUSH
+#define EMPTY_COLOR wxGREY_BRUSH
 
 //(*InternalHeaders(Zombi_SimulationFrame)
 #include <wx/settings.h>
@@ -63,18 +68,19 @@ END_EVENT_TABLE()
 Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
 {
     RandomGeneratorObject = new RandomGenerator();
-    humans = 10;
+    humans = 20;
     zombies = 10;
-    traps = 10;
-    resources = 10;
+    traps = 2;
+    resources = 4;
     NorthAmericaSize = 10;
     SouthAmericaSize = 8;
     EuropeSize = 6;
     AustraliaSize = 4;
     AsiaSize = 20;
     AfricaSize = 18;
-
-    continent = new Continent( NorthAmericaSize, NorthAmerica, humans, zombies, traps, resources, RandomGeneratorObject);
+    continent = new Continent*[2];
+//    continent[0] = new Continent( NorthAmericaSize, NorthAmerica, humans, zombies, traps, resources, RandomGeneratorObject);
+//    continent[1] = new Continent( SouthAmericaSize, SouthAmerica, humans, zombies, traps, resources, RandomGeneratorObject);
     //(*Initialize(Zombi_SimulationFrame)
     wxMenuItem* MenuItem2;
     wxMenuItem* MenuItem1;
@@ -87,7 +93,7 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
     BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
     BackgroundPanel = new wxPanel(this, ID_PANEL1, wxDefaultPosition, wxSize(700,421), wxTAB_TRAVERSAL, _T("ID_PANEL1"));
     BackgroundPanel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNSHADOW));
-    ConfigPanel = new wxPanel(BackgroundPanel, ID_PANEL2, wxPoint(0,320), wxSize(700,88), wxTAB_TRAVERSAL, _T("ID_PANEL2"));
+    ConfigPanel = new wxPanel(BackgroundPanel, ID_PANEL2, wxPoint(0,320), wxSize(700,72), wxTAB_TRAVERSAL, _T("ID_PANEL2"));
     StartButton = new wxButton(ConfigPanel, ID_BUTTON1, _("Start"), wxPoint(24,32), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
     DisplayPanel = new wxPanel(BackgroundPanel, ID_PANEL3, wxPoint(0,0), wxSize(700,300), wxTAB_TRAVERSAL, _T("ID_PANEL3"));
     BoxSizer1->Add(BackgroundPanel, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
@@ -121,6 +127,8 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
 Zombi_SimulationFrame::~Zombi_SimulationFrame()
 {
     //(*Destroy(Zombi_SimulationFrame)
+       delete []continent;
+       delete RandomGeneratorObject;
     //*)
 }
 
@@ -141,18 +149,8 @@ void Zombi_SimulationFrame::OnBackgroundPanelPaint(wxPaintEvent& event)
 
 void Zombi_SimulationFrame::render(wxDC& dc)
 {
-    int NorthAmericaX = 0;
-    int NorthAmericaY = 0;
-    int SouthAmericaX = 0;
-    int SouthAmericaY = 200;
-    int EuropeX = 280;
-    int EuropeY = 20;
-    int AustraliaX = 630;
-    int AustraliaY = 250;
-    int AsiaSizeX = 500;
-    int AsiaSizeY = 0;
-    int AfricaX = 240;
-    int AfricaY = 100;
+    continent[0] = new Continent( NorthAmericaSize, NorthAmerica, humans, zombies, traps, resources, RandomGeneratorObject);
+    continent[1] = new Continent( SouthAmericaSize, SouthAmerica, humans, zombies, traps, resources, RandomGeneratorObject);
 
     //dc.SetPen(wxPen());wxClientDC dc(DisplayPanel);
     for(int i = 0; i <= width ; i+=squareSize)
@@ -161,11 +159,10 @@ void Zombi_SimulationFrame::render(wxDC& dc)
         dc.DrawLine(i, 0, i,length);
         for(int j = 0; j <= length ; j+=squareSize)
         {
-
             dc.DrawLine(0, j, width, j);
         }
     }
-
+    dc.Clear();
     dc.SetBrush(*wxGREY_BRUSH);
     dc.DrawRectangle(NorthAmericaX,NorthAmericaY, NorthAmericaSize*squareSize, NorthAmericaSize*squareSize);
     dc.DrawRectangle(SouthAmericaX,SouthAmericaY, SouthAmericaSize*squareSize, SouthAmericaSize*squareSize);
@@ -173,12 +170,64 @@ void Zombi_SimulationFrame::render(wxDC& dc)
     dc.DrawRectangle(AustraliaX,AustraliaY, AustraliaSize*squareSize, AustraliaSize*squareSize);
     dc.DrawRectangle(AsiaSizeX,AsiaSizeY, AsiaSize*squareSize, AsiaSize*squareSize);
     dc.DrawRectangle(AfricaX,AfricaY, AfricaSize*squareSize, AfricaSize*squareSize);
-    dc.SetBrush(*wxGREEN_BRUSH);
-    dc.DrawRectangle(50,50, 10, 10);
-}
-void Zombi_SimulationFrame::renderContinents(wxDC &dc)
-{
+    int loopCount = 0;
+    while(!continent[0]->Finished() && !continent[1]->Finished())
+    {
 
+        dc.Clear();
+        dc.SetBrush(*wxGREY_BRUSH);
+        dc.DrawRectangle(NorthAmericaX,NorthAmericaY, NorthAmericaSize*squareSize, NorthAmericaSize*squareSize);
+        dc.DrawRectangle(SouthAmericaX,SouthAmericaY, SouthAmericaSize*squareSize, SouthAmericaSize*squareSize);
+        dc.DrawRectangle(EuropeX,EuropeY, EuropeSize*squareSize, EuropeSize*squareSize);
+        dc.DrawRectangle(AustraliaX,AustraliaY, AustraliaSize*squareSize, AustraliaSize*squareSize);
+        dc.DrawRectangle(AsiaSizeX,AsiaSizeY, AsiaSize*squareSize, AsiaSize*squareSize);
+        dc.DrawRectangle(AfricaX,AfricaY, AfricaSize*squareSize, AfricaSize*squareSize);
+        renderContinentCells(dc, continent[0], NorthAmericaX, NorthAmericaY );
+        renderContinentCells(dc, continent[1], SouthAmericaX, SouthAmericaY );
+//        renderContinentCells(dc, continent[1], SouthAmericaX, SouthAmericaY );
+        continent[0]->Tick();
+        continent[1]->Tick();
+        wxSleep(2);
+        SetStatusText(wxString::Format(wxT("Loop:%i"), loopCount));
+        loopCount++;
+    }
+    renderContinentCells(dc, continent[0], NorthAmericaX, NorthAmericaY );
+    renderContinentCells(dc, continent[1], SouthAmericaX, SouthAmericaY );
+    SetStatusText(wxT("Done ticking"));
+}
+void Zombi_SimulationFrame::renderContinentCells(wxDC &dc, Continent *cont, int positionX, int positionY)
+{
+//    wxBufferedDC bufferedDC(&dc, wxSize(width,length));
+    for(int y  = 0 ; y < cont->GetSize(); y++ )
+    {
+        for(int x = 0; x< cont->GetSize(); x++)
+        {
+            Cell *current = cont->GetShape()[y][x];
+            if(current->IsEmpty())
+            {
+                dc.SetBrush(*EMPTY_COLOR);
+            }
+            else if(current->IsHuman())
+            {
+                dc.SetBrush(*HUMAN_COLOR);
+            }
+            else if(current->IsZombie())
+            {
+                dc.SetBrush(*ZOMBIE_COLOR);
+            }
+            else if(current->IsResource())
+            {
+                dc.SetBrush(*RESOURCE_COLOR);
+            }
+            else if(current->IsTrap())
+            {
+                dc.SetBrush(*TRAP_COLOR);
+            }
+//            bufferedDC.DrawRectangle(positionX+(x*squareSize), positionY+(y*squareSize), squareSize,squareSize);
+            dc.DrawRectangle(positionX+(x*squareSize), positionY+(y*squareSize), squareSize,squareSize);
+        }
+    }
+//    delete current;
 }
 void Zombi_SimulationFrame::OnStartButtonClick(wxCommandEvent& event)
 {
