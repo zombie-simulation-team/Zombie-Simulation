@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <wxsmith>
 	<object class="wxFrame" name="Zombi_SimulationFrame">
+		<title>Zombie Simulation</title>
 		<icon>./icons/biohazard.png</icon>
 		<id_arg>0</id_arg>
 		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
@@ -11,11 +12,70 @@
 					<handler function="OnBackgroundPanelPaint" entry="EVT_PAINT" />
 					<object class="wxPanel" name="ID_CONFIG_PANEL" variable="ConfigPanel" member="yes">
 						<pos>0,320</pos>
-						<size>700,88</size>
+						<size>700,104</size>
 						<object class="wxButton" name="ID_STAR_BUTTON" variable="StartButton" member="yes">
 							<label>Start</label>
 							<pos>24,32</pos>
 							<handler function="OnStartButtonClick" entry="EVT_BUTTON" />
+						</object>
+						<object class="wxSpinCtrl" name="ID_ZOMBIE_SPINCTRL" variable="ZombieSpinCtrl" member="yes">
+							<value>10</value>
+							<max>40</max>
+							<pos>168,24</pos>
+							<size>56,27</size>
+							<handler function="OnZombieSpinCtrlChange" entry="EVT_SPINCTRL" />
+						</object>
+						<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
+							<label>Zombies %</label>
+							<pos>152,8</pos>
+						</object>
+						<object class="wxSpinCtrl" name="ID_TRAP_SPINCTRL" variable="TrapSpinCtrl" member="yes">
+							<value>0</value>
+							<min>5</min>
+							<max>10</max>
+							<pos>264,24</pos>
+							<size>56,27</size>
+							<handler function="OnTrapSpinCtrlChange" entry="EVT_SPINCTRL" />
+						</object>
+						<object class="wxSpinCtrl" name="ID_RESOURCE_SPINCTRL" variable="ResourceSpinCtrl" member="yes">
+							<value>0</value>
+							<min>10</min>
+							<max>20</max>
+							<pos>264,72</pos>
+							<size>56,27</size>
+							<handler function="OnResourceSpinCtrlChange" entry="EVT_SPINCTRL" />
+						</object>
+						<object class="wxStaticText" name="ID_STATICTEXT2" variable="StaticText2" member="yes">
+							<label>Humans %</label>
+							<pos>152,56</pos>
+						</object>
+						<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticText3" member="yes">
+							<label>Traps %</label>
+							<pos>264,8</pos>
+							<size>64,17</size>
+						</object>
+						<object class="wxStaticText" name="ID_STATICTEXT4" variable="StaticText4" member="yes">
+							<label>Resources %</label>
+							<pos>264,56</pos>
+						</object>
+						<object class="wxSpinCtrl" name="ID_HUMAN_SPINCTRL" variable="HumanSpinCtrl" member="yes">
+							<value>60</value>
+							<min>5</min>
+							<pos>168,72</pos>
+							<size>56,27</size>
+							<handler function="OnHumanSpinCtrlChange" entry="EVT_SPINCTRL" />
+						</object>
+						<object class="wxSpinCtrl" name="ID_CONTINENT_SPINCTRL" variable="ContinentSpinCtrl" member="yes">
+							<value>4</value>
+							<min>1</min>
+							<max>6</max>
+							<pos>448,48</pos>
+							<size>63,27</size>
+							<handler function="OnContinentSpinCtrlChange" entry="EVT_SPINCTRL" />
+						</object>
+						<object class="wxStaticText" name="ID_STATICTEXT5" variable="StaticText5" member="yes">
+							<label>Continents</label>
+							<pos>440,32</pos>
 						</object>
 					</object>
 					<object class="wxPanel" name="ID_DISPALY_PANEL" variable="DisplayPanel" member="yes">

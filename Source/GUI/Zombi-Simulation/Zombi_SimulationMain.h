@@ -11,16 +11,25 @@
 #define ZOMBI_SIMULATIONMAIN_H
 
 //(*Headers(Zombi_SimulationFrame)
+#include <wx/spinctrl.h>
 #include <wx/sizer.h>
 #include <wx/button.h>
 #include <wx/menu.h>
 #include <wx/panel.h>
 #include <wx/statusbr.h>
 #include <wx/frame.h>
+#include <wx/stattext.h>
 //*)
 #include "Continent.h"
 #include <wx/dcbuffer.h>
 #include <wx/gdicmn.h>
+struct ContinentSpec
+{
+    int ContinentSize;
+    Continents_e name;
+    int x;
+    int y;
+};
 
 class Zombi_SimulationFrame: public wxFrame
 {
@@ -36,16 +45,21 @@ class Zombi_SimulationFrame: public wxFrame
         const static int length = 300;
         const static int squareSize = 16;
 
-        int NorthAmericaSize;
-        int SouthAmericaSize;
-        int EuropeSize;
-        int AustraliaSize;
-        int AsiaSize;
-        int AfricaSize;
+        ContinentSpec continentSpec[6];
+        static const int NorthAmericaSize = 10;
+        static const int SouthAmericaSize = 7;
+        static const int EuropeSize = 6;
+        static const int AustraliaSize = 4;
+        static const int AsiaSize = 13;
+        static const int AfricaSize = 11;
+
         int humans;
         int zombies;
         int traps;
         int resources;
+        int totalContinents;
+
+        bool initializeOK;
 
         static const int NorthAmericaX = 0;
         static const int NorthAmericaY = 0;
@@ -55,8 +69,8 @@ class Zombi_SimulationFrame: public wxFrame
         static const int EuropeY = 0;
         static const int AustraliaX = 624;
         static const int AustraliaY = 224;
-        static const int AsiaSizeX = 496;
-        static const int AsiaSizeY = 0;
+        static const int AsiaX = 496;
+        static const int AsiaY = 0;
         static const int AfricaX = 240;
         static const int AfricaY = 112;
 
@@ -67,10 +81,28 @@ class Zombi_SimulationFrame: public wxFrame
         void OnStartButtonClick(wxCommandEvent& event);
         void render(wxDC& dc);
         void renderContinentCells(wxDC& dc, Continent *cont, int positionX, int positionY);
+        void OnDisplayPanelPaint(wxPaintEvent& event);
+        void OnZombieSpinCtrlChange(wxSpinEvent& event);
+        void OnHumanSpinCtrlChange(wxSpinEvent& event);
+        void OnTrapSpinCtrlChange(wxSpinEvent& event);
+        void OnResourceSpinCtrlChange(wxSpinEvent& event);
+        void SetCellPercentageVariables();
+        void InitiliazeContinets();
+        void OnContinentSpinCtrlChange(wxSpinEvent& event);
         //*)
 
         //(*Identifiers(Zombi_SimulationFrame)
         static const long ID_STAR_BUTTON;
+        static const long ID_ZOMBIE_SPINCTRL;
+        static const long ID_STATICTEXT1;
+        static const long ID_TRAP_SPINCTRL;
+        static const long ID_RESOURCE_SPINCTRL;
+        static const long ID_STATICTEXT2;
+        static const long ID_STATICTEXT3;
+        static const long ID_STATICTEXT4;
+        static const long ID_HUMAN_SPINCTRL;
+        static const long ID_CONTINENT_SPINCTRL;
+        static const long ID_STATICTEXT5;
         static const long ID_CONFIG_PANEL;
         static const long ID_DISPALY_PANEL;
         static const long ID_BACKGROUND_PANEL;
@@ -81,9 +113,19 @@ class Zombi_SimulationFrame: public wxFrame
 
         //(*Declarations(Zombi_SimulationFrame)
         wxPanel* DisplayPanel;
+        wxSpinCtrl* HumanSpinCtrl;
         wxStatusBar* StatusBar1;
         wxPanel* ConfigPanel;
+        wxStaticText* StaticText1;
         wxButton* StartButton;
+        wxStaticText* StaticText3;
+        wxSpinCtrl* TrapSpinCtrl;
+        wxSpinCtrl* ZombieSpinCtrl;
+        wxSpinCtrl* ContinentSpinCtrl;
+        wxStaticText* StaticText4;
+        wxStaticText* StaticText5;
+        wxStaticText* StaticText2;
+        wxSpinCtrl* ResourceSpinCtrl;
         wxPanel* BackgroundPanel;
         //*)
 

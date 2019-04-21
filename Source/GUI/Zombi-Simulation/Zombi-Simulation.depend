@@ -1653,18 +1653,20 @@
 1555855856 /home/alex/Documents/Embedded_GUI/Project_git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationApp.h
 	<wx/app.h>
 
-1555863817 /home/alex/Documents/Embedded_GUI/Project_git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationMain.h
+1555883676 /home/alex/Documents/Embedded_GUI/Project_git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationMain.h
+	<wx/spinctrl.h>
 	<wx/sizer.h>
 	<wx/button.h>
 	<wx/menu.h>
 	<wx/panel.h>
 	<wx/statusbr.h>
 	<wx/frame.h>
+	<wx/stattext.h>
 	"Continent.h"
 	<wx/dcbuffer.h>
 	<wx/gdicmn.h>
 
-1555863960 source:/home/alex/Documents/Embedded_GUI/Project_git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationMain.cpp
+1555884484 source:/home/alex/Documents/Embedded_GUI/Project_git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationMain.cpp
 	"wx_pch.h"
 	"Zombi_SimulationMain.h"
 	<wx/msgdlg.h>
@@ -2218,4 +2220,42 @@
 	"Zombie.h"
 
 1555857755 /home/alex/Documents/Embedded_GUI/Project_git/Zombie-Simulation/Source/GUI/Zombi-Simulation/icons/zombie_16px.png
+
+1485352692 /usr/include/wx-3.0/wx/spinctrl.h
+	"wx/defs.h"
+	"wx/spinbutt.h"
+	"wx/msw/spinctrl.h"
+	"wx/os2/spinctrl.h"
+	"wx/gtk/spinctrl.h"
+	"wx/gtk1/spinctrl.h"
+	"wx/generic/spinctlg.h"
+
+1485352692 /usr/include/wx-3.0/wx/spinbutt.h
+	"wx/defs.h"
+	"wx/control.h"
+	"wx/event.h"
+	"wx/range.h"
+	"wx/univ/spinbutt.h"
+	"wx/msw/spinbutt.h"
+	"wx/motif/spinbutt.h"
+	"wx/gtk/spinbutt.h"
+	"wx/gtk1/spinbutt.h"
+	"wx/osx/spinbutt.h"
+	"wx/cocoa/spinbutt.h"
+	"wx/os2/spinbutt.h"
+
+1485352692 /usr/include/wx-3.0/wx/range.h
+	"wx/defs.h"
+
+1485352693 /usr/include/wx-3.0/wx/gtk/spinbutt.h
+
+1485352693 /usr/include/wx-3.0/wx/gtk/spinctrl.h
+
+1485352692 /usr/include/wx-3.0/wx/generic/spinctlg.h
+	"wx/compositewin.h"
+	"wx/textctrl.h"
+
+1485352691 /usr/include/wx-3.0/wx/compositewin.h
+	"wx/window.h"
+	"wx/containr.h"
 

@@ -40,7 +40,6 @@
 		<Linker>
 			<Add option="`wx-config --libs`" />
 		</Linker>
-		<Unit filename="Actor.h" />
 		<Unit filename="Actor.cpp" />
 		<Unit filename="Actor.h" />
 		<Unit filename="Cell.cpp" />
@@ -69,6 +68,15 @@
 		<Unit filename="Zombi_SimulationMain.h" />
 		<Unit filename="Zombie.cpp" />
 		<Unit filename="Zombie.h" />
+		<Unit filename="icons/Human_16px.png" />
+		<Unit filename="icons/Human_32px.png" />
+		<Unit filename="icons/harvest_16px.png" />
+		<Unit filename="icons/harvest_32px.png" />
+		<Unit filename="icons/trap_16px.png" />
+		<Unit filename="icons/trap_24px.png" />
+		<Unit filename="icons/trap_32px.png" />
+		<Unit filename="icons/zombie_16px.png" />
+		<Unit filename="icons/zombie_32px.png" />
 		<Unit filename="wx_pch.h">
 			<Option compile="1" />
 			<Option weight="0" />

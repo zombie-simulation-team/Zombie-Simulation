@@ -63,6 +63,16 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 
 //(*IdInit(Zombi_SimulationFrame)
 const long Zombi_SimulationFrame::ID_STAR_BUTTON = wxNewId();
+const long Zombi_SimulationFrame::ID_ZOMBIE_SPINCTRL = wxNewId();
+const long Zombi_SimulationFrame::ID_STATICTEXT1 = wxNewId();
+const long Zombi_SimulationFrame::ID_TRAP_SPINCTRL = wxNewId();
+const long Zombi_SimulationFrame::ID_RESOURCE_SPINCTRL = wxNewId();
+const long Zombi_SimulationFrame::ID_STATICTEXT2 = wxNewId();
+const long Zombi_SimulationFrame::ID_STATICTEXT3 = wxNewId();
+const long Zombi_SimulationFrame::ID_STATICTEXT4 = wxNewId();
+const long Zombi_SimulationFrame::ID_HUMAN_SPINCTRL = wxNewId();
+const long Zombi_SimulationFrame::ID_CONTINENT_SPINCTRL = wxNewId();
+const long Zombi_SimulationFrame::ID_STATICTEXT5 = wxNewId();
 const long Zombi_SimulationFrame::ID_CONFIG_PANEL = wxNewId();
 const long Zombi_SimulationFrame::ID_DISPALY_PANEL = wxNewId();
 const long Zombi_SimulationFrame::ID_BACKGROUND_PANEL = wxNewId();
@@ -79,31 +89,37 @@ END_EVENT_TABLE()
 Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
 {
     RandomGeneratorObject = new RandomGenerator();
-    humans = 15;
-    zombies = 5;
-    traps = 2;
-    resources = 4;
-    NorthAmericaSize = 10;
-    SouthAmericaSize = 7;
-    EuropeSize = 6;
-    AustraliaSize = 4;
-    AsiaSize = 13;
-    AfricaSize = 11;
-    continent = new Continent*[2];
-//    zombieBMP.SetHeight(squareSize);
-//    zombieBMP.SetWidth(squareSize);
-//
-//    humanBMP.SetHeight(squareSize);
-//    humanBMP.SetWidth(squareSize);
-//
-//    trapBMP.SetHeight(squareSize);
-//    trapBMP.SetWidth(squareSize);
-//
-//    resourceBMP.SetHeight(squareSize);
-//    resourceBMP.SetWidth(squareSize);
 
-//    continent[0] = new Continent( NorthAmericaSize, NorthAmerica, humans, zombies, traps, resources, RandomGeneratorObject);
-//    continent[1] = new Continent( SouthAmericaSize, SouthAmerica, humans, zombies, traps, resources, RandomGeneratorObject);
+    continentSpec[0].ContinentSize = NorthAmericaSize;
+    continentSpec[0].name = NorthAmerica;
+    continentSpec[0].x = NorthAmericaX;
+    continentSpec[0].y = NorthAmericaY;
+
+    continentSpec[1].ContinentSize = SouthAmerica;
+    continentSpec[1].name = SouthAmerica;
+    continentSpec[1].x = SouthAmericaX;
+    continentSpec[1].y = SouthAmericaY;
+
+    continentSpec[2].ContinentSize = EuropeSize;
+    continentSpec[2].name = Europe;
+    continentSpec[2].x = EuropeX;
+    continentSpec[2].y = EuropeY;
+
+    continentSpec[3].ContinentSize = AfricaSize;
+    continentSpec[3].name = Africa;
+    continentSpec[3].x = AfricaX;
+    continentSpec[3].y = AfricaY;
+
+    continentSpec[4].ContinentSize = AsiaSize;
+    continentSpec[4].name = Asia;
+    continentSpec[4].x = AsiaX;
+    continentSpec[4].y = AsiaY;
+
+    continentSpec[5].ContinentSize = AustraliaSize;
+    continentSpec[5].name = Australia;
+    continentSpec[5].x = AustraliaX;
+    continentSpec[5].y = AustraliaY;
+
     //(*Initialize(Zombi_SimulationFrame)
     wxMenuItem* MenuItem2;
     wxMenuItem* MenuItem1;
@@ -112,7 +128,7 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
     wxMenuBar* MenuBar1;
     wxMenu* Menu2;
 
-    Create(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
+    Create(parent, wxID_ANY, _("Zombie Simulation"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
     {
     	wxIcon FrameIcon;
     	FrameIcon.CopyFromBitmap(wxBitmap(wxImage(_T("./icons/biohazard.png"))));
@@ -121,8 +137,23 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
     BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
     BackgroundPanel = new wxPanel(this, ID_BACKGROUND_PANEL, wxDefaultPosition, wxSize(700,421), wxTAB_TRAVERSAL, _T("ID_BACKGROUND_PANEL"));
     BackgroundPanel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNSHADOW));
-    ConfigPanel = new wxPanel(BackgroundPanel, ID_CONFIG_PANEL, wxPoint(0,320), wxSize(700,88), wxTAB_TRAVERSAL, _T("ID_CONFIG_PANEL"));
+    ConfigPanel = new wxPanel(BackgroundPanel, ID_CONFIG_PANEL, wxPoint(0,320), wxSize(700,104), wxTAB_TRAVERSAL, _T("ID_CONFIG_PANEL"));
     StartButton = new wxButton(ConfigPanel, ID_STAR_BUTTON, _("Start"), wxPoint(24,32), wxDefaultSize, 0, wxDefaultValidator, _T("ID_STAR_BUTTON"));
+    ZombieSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_ZOMBIE_SPINCTRL, _T("10"), wxPoint(168,24), wxSize(56,27), 0, 0, 40, 10, _T("ID_ZOMBIE_SPINCTRL"));
+    ZombieSpinCtrl->SetValue(_T("10"));
+    StaticText1 = new wxStaticText(ConfigPanel, ID_STATICTEXT1, _("Zombies %"), wxPoint(152,8), wxDefaultSize, 0, _T("ID_STATICTEXT1"));
+    TrapSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_TRAP_SPINCTRL, _T("0"), wxPoint(264,24), wxSize(56,27), 0, 5, 10, 0, _T("ID_TRAP_SPINCTRL"));
+    TrapSpinCtrl->SetValue(_T("0"));
+    ResourceSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_RESOURCE_SPINCTRL, _T("0"), wxPoint(264,72), wxSize(56,27), 0, 10, 20, 0, _T("ID_RESOURCE_SPINCTRL"));
+    ResourceSpinCtrl->SetValue(_T("0"));
+    StaticText2 = new wxStaticText(ConfigPanel, ID_STATICTEXT2, _("Humans %"), wxPoint(152,56), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
+    StaticText3 = new wxStaticText(ConfigPanel, ID_STATICTEXT3, _("Traps %"), wxPoint(264,8), wxSize(64,17), 0, _T("ID_STATICTEXT3"));
+    StaticText4 = new wxStaticText(ConfigPanel, ID_STATICTEXT4, _("Resources %"), wxPoint(264,56), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
+    HumanSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_HUMAN_SPINCTRL, _T("60"), wxPoint(168,72), wxSize(56,27), 0, 5, 100, 60, _T("ID_HUMAN_SPINCTRL"));
+    HumanSpinCtrl->SetValue(_T("60"));
+    ContinentSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_CONTINENT_SPINCTRL, _T("4"), wxPoint(448,48), wxSize(63,27), 0, 1, 6, 4, _T("ID_CONTINENT_SPINCTRL"));
+    ContinentSpinCtrl->SetValue(_T("4"));
+    StaticText5 = new wxStaticText(ConfigPanel, ID_STATICTEXT5, _("Continents"), wxPoint(440,32), wxDefaultSize, 0, _T("ID_STATICTEXT5"));
     DisplayPanel = new wxPanel(BackgroundPanel, ID_DISPALY_PANEL, wxPoint(0,0), wxSize(700,300), wxTAB_TRAVERSAL, _T("ID_DISPALY_PANEL"));
     BoxSizer1->Add(BackgroundPanel, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     SetSizer(BoxSizer1);
@@ -146,10 +177,19 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
     BoxSizer1->SetSizeHints(this);
 
     Connect(ID_STAR_BUTTON,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnStartButtonClick);
+    Connect(ID_ZOMBIE_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnZombieSpinCtrlChange);
+    Connect(ID_TRAP_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnTrapSpinCtrlChange);
+    Connect(ID_RESOURCE_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnResourceSpinCtrlChange);
+    Connect(ID_HUMAN_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnHumanSpinCtrlChange);
+    Connect(ID_CONTINENT_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnContinentSpinCtrlChange);
     BackgroundPanel->Connect(wxEVT_PAINT,(wxObjectEventFunction)&Zombi_SimulationFrame::OnBackgroundPanelPaint,0,this);
     Connect(ID_MENUITEM1,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnAbout);
     //*)
+
+    SetCellPercentageVariables();
+
+
 }
 
 Zombi_SimulationFrame::~Zombi_SimulationFrame()
@@ -177,8 +217,18 @@ void Zombi_SimulationFrame::OnBackgroundPanelPaint(wxPaintEvent& event)
 
 void Zombi_SimulationFrame::render(wxDC& dc)
 {
-    continent[0] = new Continent( NorthAmericaSize, NorthAmerica, humans, zombies, traps, resources, RandomGeneratorObject);
-    continent[1] = new Continent( SouthAmericaSize, SouthAmerica, humans, zombies, traps, resources, RandomGeneratorObject);
+    if(initializeOK)
+    {
+        totalContinents = ContinentSpinCtrl->GetValue();
+        continent = new Continent*[totalContinents];
+        InitiliazeContinets();
+    }
+    else
+    {
+        wxMessageBox(wxString("You have a wrong setup. Pick the right values and try again"),wxString("Setup Error"));
+        return;
+    }
+
 
     //dc.SetPen(wxPen());wxClientDC dc(DisplayPanel);
     for(int i = 0; i <= width ; i+=squareSize)
@@ -190,40 +240,50 @@ void Zombi_SimulationFrame::render(wxDC& dc)
             dc.DrawLine(0, j, width, j);
         }
     }
+
     dc.Clear();
     dc.SetBrush(*wxGREY_BRUSH);
     dc.DrawRectangle(NorthAmericaX,NorthAmericaY, NorthAmericaSize*squareSize, NorthAmericaSize*squareSize);
     dc.DrawRectangle(SouthAmericaX,SouthAmericaY, SouthAmericaSize*squareSize, SouthAmericaSize*squareSize);
     dc.DrawRectangle(EuropeX,EuropeY, EuropeSize*squareSize, EuropeSize*squareSize);
     dc.DrawRectangle(AustraliaX,AustraliaY, AustraliaSize*squareSize, AustraliaSize*squareSize);
-    dc.DrawRectangle(AsiaSizeX,AsiaSizeY, AsiaSize*squareSize, AsiaSize*squareSize);
+    dc.DrawRectangle(AsiaX,AsiaY, AsiaSize*squareSize, AsiaSize*squareSize);
     dc.DrawRectangle(AfricaX,AfricaY, AfricaSize*squareSize, AfricaSize*squareSize);
 
     int loopCount = 0;
-    while(!continent[0]->Finished() && !continent[1]->Finished())
+    bool done = false;
+    while(!done)
     {
-
+        done = true;
         dc.Clear();
         dc.SetBrush(*wxGREY_BRUSH);
         dc.DrawRectangle(NorthAmericaX,NorthAmericaY, NorthAmericaSize*squareSize, NorthAmericaSize*squareSize);
         dc.DrawRectangle(SouthAmericaX,SouthAmericaY, SouthAmericaSize*squareSize, SouthAmericaSize*squareSize);
         dc.DrawRectangle(EuropeX,EuropeY, EuropeSize*squareSize, EuropeSize*squareSize);
         dc.DrawRectangle(AustraliaX,AustraliaY, AustraliaSize*squareSize, AustraliaSize*squareSize);
-        dc.DrawRectangle(AsiaSizeX,AsiaSizeY, AsiaSize*squareSize, AsiaSize*squareSize);
+        dc.DrawRectangle(AsiaX,AsiaY, AsiaSize*squareSize, AsiaSize*squareSize);
         dc.DrawRectangle(AfricaX,AfricaY, AfricaSize*squareSize, AfricaSize*squareSize);
-        renderContinentCells(dc, continent[0], NorthAmericaX, NorthAmericaY );
-        renderContinentCells(dc, continent[1], SouthAmericaX, SouthAmericaY );
-//        renderContinentCells(dc, continent[1], SouthAmericaX, SouthAmericaY );
-        wxSleep(3);
-        continent[0]->Tick();
-        continent[1]->Tick();
+
+
+        for(int i = 0; i < totalContinents ; i++)
+            renderContinentCells(dc,continent[i], continentSpec[i].x, continentSpec[i].y);
+
+        wxSleep(1);
+
+        for(int j = 0; j < totalContinents ; j++)
+            continent[j]->Tick();
+
+        for(int k = 0; k < totalContinents ; k++)
+            done = done && continent[k]->Finished();
 
         SetStatusText(wxString::Format(wxT("Loop:%i"), loopCount));
         loopCount++;
 
     }
-    renderContinentCells(dc, continent[0], NorthAmericaX, NorthAmericaY );
-    renderContinentCells(dc, continent[1], SouthAmericaX, SouthAmericaY );
+
+    for(int i = 0; i < totalContinents ; i++)
+            renderContinentCells(dc,continent[i], continentSpec[i].x, continentSpec[i].y);
+
     SetStatusText(wxT("Done ticking"));
 }
 
@@ -275,4 +335,69 @@ void Zombi_SimulationFrame::OnStartButtonClick(wxCommandEvent& event)
 {
     wxClientDC dc(DisplayPanel);
     render(dc);
+}
+
+
+
+void Zombi_SimulationFrame::OnZombieSpinCtrlChange(wxSpinEvent& event)
+{
+    SetCellPercentageVariables();
+}
+
+void Zombi_SimulationFrame::OnHumanSpinCtrlChange(wxSpinEvent& event)
+{
+    SetCellPercentageVariables();
+}
+
+void Zombi_SimulationFrame::OnTrapSpinCtrlChange(wxSpinEvent& event)
+{
+    SetCellPercentageVariables();
+}
+
+void Zombi_SimulationFrame::OnResourceSpinCtrlChange(wxSpinEvent& event)
+{
+    SetCellPercentageVariables();
+}
+
+void Zombi_SimulationFrame::SetCellPercentageVariables()
+{
+    humans = HumanSpinCtrl->GetValue();
+    zombies = ZombieSpinCtrl->GetValue();
+    traps = TrapSpinCtrl->GetValue();
+    resources = ResourceSpinCtrl->GetValue();
+    initializeOK = true;
+    int totalPercentage = humans+zombies+traps+resources;
+
+    if(totalPercentage > 100)
+    {
+        wxMessageBox(wxString("Total percent goes over 100"),wxString("Wrong Percentage"));
+        initializeOK = false;
+
+    }
+    else if(humans == 100 || zombies == 100)
+    {
+        wxMessageBox(wxString("Cannot select 100% of one type"),wxString("Wrong Percentage"));
+        initializeOK = false;
+    }
+
+}
+
+void Zombi_SimulationFrame::InitiliazeContinets()
+{
+    for(int i = 0; i < totalContinents ; i++)
+    {
+        int tmpContinentSize = continentSpec[i].ContinentSize;
+        Continents_e tmpName = continentSpec[i].name;
+        int tmpZombies = tmpContinentSize*zombies/100;
+        int tmpHumans = tmpContinentSize*humans/100;
+        int tmpTraps= tmpContinentSize*traps/100;
+        int tmpResources = tmpContinentSize*resources/100;
+
+        continent[i] = new Continent(tmpContinentSize,tmpName, tmpHumans, tmpZombies, tmpTraps, tmpResources, RandomGeneratorObject);
+    }
+}
+
+void Zombi_SimulationFrame::OnContinentSpinCtrlChange(wxSpinEvent& event)
+{
+    totalContinents = ContinentSpinCtrl->GetValue() + 1;
 }
