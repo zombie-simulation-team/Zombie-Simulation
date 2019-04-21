@@ -111,23 +111,7 @@ TEST(ZombieTest, ShouldInitializeAZombieWithGivenHealthAndDefense)
 	delete testZombie;
 }
 
-TEST(ZombieTest, ShouldDecrementHealthByTenAfterOneTick)
-{
-	Zombie *testZombie = new Zombie(4, 3, randomGeneratorMock);
-
-	RandomGeneratorShouldBeCalledAndReturn(MoveDown);
-
-	testZombie->Tick();
-
-	int expectedHealth = DefaultHealth - 10;
-	int actualHealth = testZombie->GetHealth();
-
-	CHECK_EQUAL(expectedHealth, actualHealth);
-
-	delete testZombie;
-}
-
-TEST(ZombieTest, ShouldDecrementHealthToZero)
+TEST(ZombieTest, ShouldNotDecrementZombieHealth)
 {
 	Zombie *testZombie = new Zombie(1, 1, randomGeneratorMock);
 
@@ -135,7 +119,7 @@ TEST(ZombieTest, ShouldDecrementHealthToZero)
 
 	ShouldTick(testZombie, 10 Times);
 
-	int expectedHealth = 0;
+	int expectedHealth = 100;
 	int actualHealth = testZombie->GetHealth();
 	CHECK_EQUAL(expectedHealth, actualHealth);
 

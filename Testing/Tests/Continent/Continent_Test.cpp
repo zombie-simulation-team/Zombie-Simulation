@@ -543,54 +543,6 @@ TEST(ContinentTest, ShouldDestroyAZombieWhenAHumanMovesToItsPlace)
 	delete cont;
 }
 
-TEST(ContinentTest, ShouldDestroyAZombieWhenItsHealthDropsDownToZero)
-{
-	ExpectZombieToBeInitializedWithPosition(0, 1);
-
-	Continent *cont = new Continent(
-			ContinentSize,
-			NorthAmerica,
-			0,
-			ZombieCount,
-			0,
-			0,
-			randomGeneratorMock);
-
-	Cell ***shape = cont->GetShape();
-
-	RandomGeneratorShouldBeCalled(5 Times, AndReturn ValueToMoveDown);
-
-	for(int i = 1; i < 6; i++)
-	{
-		Zombie *zombie = dynamic_cast<Zombie*>(shape[i][0]);
-		zombie->Tick();
-		cont->CheckMove(zombie);
-		zombie->SetMove(false);
-	}
-
-	RandomGeneratorShouldBeCalled(5 Times, AndReturn ValueToMoveRight);
-
-	for(int i = 0; i < 5; i++)
-	{
-		Zombie *zombie = dynamic_cast<Zombie*>(shape[6][i]);
-		zombie->Tick();
-		cont->CheckMove(zombie);
-		zombie->SetMove(false);
-	}
-
-	Cell *cell = shape[6][5];
-
-	bool expected = false;
-	bool actual = cell->IsZombie();
-	CHECK_EQUAL(expected, actual);
-
-	int expectedZombieCount = 0;
-	int actualZombieCount = cont->GetZombieCount();
-	CHECK_EQUAL(expectedZombieCount, actualZombieCount);
-
-	delete cont;
-}
-
 TEST(ContinentTest, ShouldDestroyAHumanWhenItsHealthDropsDownToZero)
 {
 	ExpectHumanToBeInitializedInLargerContinentWithPosition(0, 0);
