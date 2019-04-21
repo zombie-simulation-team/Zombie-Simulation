@@ -34,7 +34,7 @@ class Zombi_SimulationFrame: public wxFrame
         RandomGenerator *RandomGeneratorObject;
         const static int width = 700;
         const static int length = 300;
-        const static int squareSize = 10;
+        const static int squareSize = 16;
 
         int NorthAmericaSize;
         int SouthAmericaSize;
@@ -47,18 +47,18 @@ class Zombi_SimulationFrame: public wxFrame
         int traps;
         int resources;
 
-        int NorthAmericaX = 0;
-        int NorthAmericaY = 0;
-        int SouthAmericaX = 0;
-        int SouthAmericaY = 200;
-        int EuropeX = 280;
-        int EuropeY = 20;
-        int AustraliaX = 630;
-        int AustraliaY = 250;
-        int AsiaSizeX = 500;
-        int AsiaSizeY = 0;
-        int AfricaX = 240;
-        int AfricaY = 100;
+        static const int NorthAmericaX = 0;
+        static const int NorthAmericaY = 0;
+        static const int SouthAmericaX = 0;
+        static const int SouthAmericaY = 176;
+        static const int EuropeX = 272;
+        static const int EuropeY = 0;
+        static const int AustraliaX = 624;
+        static const int AustraliaY = 224;
+        static const int AsiaSizeX = 496;
+        static const int AsiaSizeY = 0;
+        static const int AfricaX = 240;
+        static const int AfricaY = 112;
 
         //(*Handlers(Zombi_SimulationFrame)
         void OnQuit(wxCommandEvent& event);
@@ -70,10 +70,10 @@ class Zombi_SimulationFrame: public wxFrame
         //*)
 
         //(*Identifiers(Zombi_SimulationFrame)
-        static const long ID_BUTTON1;
-        static const long ID_PANEL2;
-        static const long ID_PANEL3;
-        static const long ID_PANEL1;
+        static const long ID_STAR_BUTTON;
+        static const long ID_CONFIG_PANEL;
+        static const long ID_DISPALY_PANEL;
+        static const long ID_BACKGROUND_PANEL;
         static const long ID_MENUITEM1;
         static const long idMenuAbout;
         static const long ID_STATUSBAR1;
