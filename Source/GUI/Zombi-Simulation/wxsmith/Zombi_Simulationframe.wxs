@@ -30,15 +30,14 @@
 							<pos>152,8</pos>
 						</object>
 						<object class="wxSpinCtrl" name="ID_TRAP_SPINCTRL" variable="TrapSpinCtrl" member="yes">
-							<value>0</value>
-							<min>5</min>
+							<value>5</value>
 							<max>10</max>
 							<pos>264,24</pos>
 							<size>56,27</size>
 							<handler function="OnTrapSpinCtrlChange" entry="EVT_SPINCTRL" />
 						</object>
 						<object class="wxSpinCtrl" name="ID_RESOURCE_SPINCTRL" variable="ResourceSpinCtrl" member="yes">
-							<value>0</value>
+							<value>10</value>
 							<min>10</min>
 							<max>20</max>
 							<pos>264,72</pos>

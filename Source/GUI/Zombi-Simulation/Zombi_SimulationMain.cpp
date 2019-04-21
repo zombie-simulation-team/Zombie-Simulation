@@ -139,13 +139,13 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
     BackgroundPanel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNSHADOW));
     ConfigPanel = new wxPanel(BackgroundPanel, ID_CONFIG_PANEL, wxPoint(0,320), wxSize(700,104), wxTAB_TRAVERSAL, _T("ID_CONFIG_PANEL"));
     StartButton = new wxButton(ConfigPanel, ID_STAR_BUTTON, _("Start"), wxPoint(24,32), wxDefaultSize, 0, wxDefaultValidator, _T("ID_STAR_BUTTON"));
-    ZombieSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_ZOMBIE_SPINCTRL, _T("10"), wxPoint(168,24), wxSize(56,27), 0, 0, 40, 10, _T("ID_ZOMBIE_SPINCTRL"));
+    ZombieSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_ZOMBIE_SPINCTRL, _T("10"), wxPoint(168,24), wxSize(56,27), 0, 2, 100, 10, _T("ID_ZOMBIE_SPINCTRL"));
     ZombieSpinCtrl->SetValue(_T("10"));
     StaticText1 = new wxStaticText(ConfigPanel, ID_STATICTEXT1, _("Zombies %"), wxPoint(152,8), wxDefaultSize, 0, _T("ID_STATICTEXT1"));
-    TrapSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_TRAP_SPINCTRL, _T("0"), wxPoint(264,24), wxSize(56,27), 0, 5, 10, 0, _T("ID_TRAP_SPINCTRL"));
-    TrapSpinCtrl->SetValue(_T("0"));
-    ResourceSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_RESOURCE_SPINCTRL, _T("0"), wxPoint(264,72), wxSize(56,27), 0, 10, 20, 0, _T("ID_RESOURCE_SPINCTRL"));
-    ResourceSpinCtrl->SetValue(_T("0"));
+    TrapSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_TRAP_SPINCTRL, _T("5"), wxPoint(264,24), wxSize(56,27), 0, 0, 10, 5, _T("ID_TRAP_SPINCTRL"));
+    TrapSpinCtrl->SetValue(_T("5"));
+    ResourceSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_RESOURCE_SPINCTRL, _T("10"), wxPoint(264,72), wxSize(56,27), 0, 0, 20, 10, _T("ID_RESOURCE_SPINCTRL"));
+    ResourceSpinCtrl->SetValue(_T("10"));
     StaticText2 = new wxStaticText(ConfigPanel, ID_STATICTEXT2, _("Humans %"), wxPoint(152,56), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
     StaticText3 = new wxStaticText(ConfigPanel, ID_STATICTEXT3, _("Traps %"), wxPoint(264,8), wxSize(64,17), 0, _T("ID_STATICTEXT3"));
     StaticText4 = new wxStaticText(ConfigPanel, ID_STATICTEXT4, _("Resources %"), wxPoint(264,56), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
@@ -272,7 +272,7 @@ void Zombi_SimulationFrame::render(wxDC& dc)
 
         for(int j = 0; j < totalContinents ; j++)
             continent[j]->Tick();
-
+        wxSleep(1);
         for(int k = 0; k < totalContinents ; k++)
             done = done && continent[k]->Finished();
 
@@ -283,8 +283,8 @@ void Zombi_SimulationFrame::render(wxDC& dc)
 
     for(int i = 0; i < totalContinents ; i++)
             renderContinentCells(dc,continent[i], continentSpec[i].x, continentSpec[i].y);
-
     SetStatusText(wxT("Done ticking"));
+    delete [] continent;
 }
 
 void Zombi_SimulationFrame::renderContinentCells(wxDC &dc, Continent *cont, int positionX, int positionY)
@@ -388,10 +388,10 @@ void Zombi_SimulationFrame::InitiliazeContinets()
     {
         int tmpContinentSize = continentSpec[i].ContinentSize;
         Continents_e tmpName = continentSpec[i].name;
-        int tmpZombies = tmpContinentSize*zombies/100;
-        int tmpHumans = tmpContinentSize*humans/100;
-        int tmpTraps= tmpContinentSize*traps/100;
-        int tmpResources = tmpContinentSize*resources/100;
+        int tmpZombies       = (tmpContinentSize*tmpContinentSize)*zombies/100;
+        int tmpHumans        = (tmpContinentSize*tmpContinentSize)*humans/100;
+        int tmpTraps         = (tmpContinentSize*tmpContinentSize)*traps/100;
+        int tmpResources     = (tmpContinentSize*tmpContinentSize)*resources/100;
 
         continent[i] = new Continent(tmpContinentSize,tmpName, tmpHumans, tmpZombies, tmpTraps, tmpResources, RandomGeneratorObject);
     }
