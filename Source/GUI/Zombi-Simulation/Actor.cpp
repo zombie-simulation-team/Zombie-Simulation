@@ -22,6 +22,7 @@ Actor::Actor(
 	nextX = -1;
 	nextY = -1;
 	moved = false;
+	currMove = 0;
 }
 
 Actor::~Actor()
@@ -75,44 +76,52 @@ void Actor::ChangeHealth(int value)
   */
 void Actor::Move()
 {
-	int randNum = randomGenerator->GenerateRandom(1,8);
+    int nextMove;
+    if(currMove == 0){
+        nextMove = randomGenerator->GenerateRandom(1,8);
+        currMove = nextMove;
+    }else{
+        currMove = currMove%8 + 1;
+        nextMove = currMove;
+    }
 
-	if(randNum == MoveUp)
+
+	if(nextMove == MoveUp)
 	{
 		this->SetNextX(this->GetX());
 		this->SetNextY(this->GetY() - 1);
 	}
-	else if(randNum == MoveRightUp)
+	else if(nextMove == MoveRightUp)
 	{
 		this->SetNextX(this->GetX() + 1);
 		this->SetNextY(this->GetY() - 1);
 	}
-	else if (randNum == MoveRight)
+	else if (nextMove == MoveRight)
 	{
 		this->SetNextX(this->GetX() + 1);
 		this->SetNextY(this->GetY());
 	}
-	else if(randNum == MoveRightDown)
+	else if(nextMove == MoveRightDown)
 	{
 		this->SetNextX(this->GetX() + 1);
 		this->SetNextY(this->GetY() + 1);
 	}
-	else if(randNum == MoveDown)
+	else if(nextMove == MoveDown)
 	{
 		this->SetNextX(this->GetX());
 		this->SetNextY(this->GetY() + 1);
 	}
-	else if(randNum == MoveLeftDown)
+	else if(nextMove == MoveLeftDown)
 	{
 		this->SetNextX(this->GetX() - 1);
 		this->SetNextY(this->GetY() + 1);
 	}
-	else if(randNum == MoveLeft)
+	else if(nextMove == MoveLeft)
 	{
 		this->SetNextX(this->GetX() - 1);
 		this->SetNextY(this->GetY());
 	}
-	else if(randNum == MoveLeftUp)
+	else if(nextMove == MoveLeftUp)
 	{
 		this->SetNextX(this->GetX() - 1);
 		this->SetNextY(this->GetY() - 1);
@@ -138,7 +147,10 @@ int Actor::GetNextY()
 {
 	return nextY;
 }
-
+int Actor::GetCurrMove()
+{
+    return currMove;
+}
 void Actor::ResetNextPosition()
 {
 	nextX = -1;
