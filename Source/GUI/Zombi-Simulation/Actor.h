@@ -35,6 +35,7 @@ private:
 	int defense;
 	int nextX;
 	int nextY;
+	int currMove;
 	bool moved;
 	I_Random *randomGenerator;
 
@@ -57,6 +58,7 @@ public:
 	void SetNextY(int y);
 	int GetNextX();
 	int GetNextY();
+	int GetCurrMove();
 	void SetNextPosition(int nextX, int nextY);
 	void ResetNextPosition();
 	bool HasMoved();

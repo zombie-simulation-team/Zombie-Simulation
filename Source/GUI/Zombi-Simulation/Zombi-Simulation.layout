@@ -4,12 +4,21 @@
 	<ActiveTarget name="Debug" />
 	<File name="Cell.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
+<<<<<<< HEAD
 			<Cursor1 position="1040" topLine="77" />
 		</Cursor>
 	</File>
 	<File name="Actor.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="4" />
+=======
+			<Cursor1 position="7450" topLine="182" />
+		</Cursor>
+	</File>
+	<File name="Continent.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="354" topLine="0" />
+>>>>>>> 9133d505d0091c9b4dc7fba85b1fa7074e547923
 		</Cursor>
 	</File>
 	<File name="Zombi_SimulationMain.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -17,8 +26,9 @@
 			<Cursor1 position="1566" topLine="45" />
 		</Cursor>
 	</File>
-	<File name="Continent.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Zombi_SimulationMain.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
+<<<<<<< HEAD
 			<Cursor1 position="1175" topLine="72" />
 		</Cursor>
 	</File>
@@ -30,6 +40,9 @@
 	<File name="EmptyCell.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="386" topLine="0" />
+=======
+			<Cursor1 position="812" topLine="30" />
+>>>>>>> 9133d505d0091c9b4dc7fba85b1fa7074e547923
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
