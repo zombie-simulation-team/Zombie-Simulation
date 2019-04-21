@@ -40,6 +40,7 @@
 		<Linker>
 			<Add option="`wx-config --libs`" />
 		</Linker>
+		<Unit filename="Actor.h" />
 		<Unit filename="Actor.cpp" />
 		<Unit filename="Actor.h" />
 		<Unit filename="Cell.cpp" />
