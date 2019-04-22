@@ -185,6 +185,9 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_RESOURCE_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnResourceSpinCtrlChange);
     Connect(ID_HUMAN_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnHumanSpinCtrlChange);
     Connect(ID_CONTINENT_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnContinentSpinCtrlChange);
+    Connect(ID_SPINCTRL1,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnSpeedCtrlChange);
+    DisplayPanel->Connect(wxEVT_PAINT,(wxObjectEventFunction)&Zombi_SimulationFrame::OnDisplayPanelPaint,0,this);
+    DisplayPanel->Connect(wxEVT_ERASE_BACKGROUND,(wxObjectEventFunction)&Zombi_SimulationFrame::OnDisplayPanelEraseBackground,0,this);
     Connect(ID_MENUITEM1,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnAbout);
     //*)
@@ -291,7 +294,11 @@ void Zombi_SimulationFrame::render()
                 count++;
             }
         }
+<<<<<<< HEAD
         wxMilliSleep(speed * 10);
+=======
+         wxMilliSleep(speed * 10);
+>>>>>>> 3e39ce9c9b469722cf03a91998f7b0a33f35a85f
 
         SetStatusText(wxString::Format(wxT("Loop:%i"), loopCount));
         loopCount++;
@@ -424,7 +431,7 @@ void Zombi_SimulationFrame::OnContinentSpinCtrlChange(wxSpinEvent& event)
 
 void Zombi_SimulationFrame::OnSpeedCtrlChange(wxSpinEvent& event)
 {
-    speed = 11 - SpeedCtrl->GetValue() ;
+  SetCellPercentageVariables();
 }
 
 

@@ -79,6 +79,7 @@
 							<min>1</min>
 							<max>10</max>
 							<pos>568,48</pos>
+							<handler function="OnSpeedCtrlChange" entry="EVT_SPINCTRL" />
 						</object>
 						<object class="wxStaticText" name="ID_STATICTEXT6" variable="StaticText6" member="yes">
 							<label>Speed</label>

@@ -14,7 +14,7 @@ enum
 {
 	minFood = 0,
 	maxFood = 100,
-	defaultFood = 50
+	defaultFood = 100
 };
 
 class Resource: public Obstacle

@@ -225,17 +225,28 @@ void Continent::CheckMove(Cell *cell)
 			}
 			else if(next->IsResource())
 			{
-				delete next;
-				next = NULL;
+				Resource *resource = dynamic_cast<Resource*>(next);
 
-				shape[nextY][nextX] = current;
-				current->SetPosition(nextX, nextY);
-				current->ResetNextPosition();
+				if(resource->GetDefense() > 0)
+				{
+					resource->SetDefense(resource->GetDefense() - 50);
+					current->ResetNextPosition();
+					current->ResetDirections();
+				}
+				else
+				{
+					delete next;
+					next = NULL;
 
-				next = new EmptyCell(currentX, currentY, true);
-				shape[currentY][currentX] = next;
+					shape[nextY][nextX] = current;
+					current->SetPosition(nextX, nextY);
+					current->ResetNextPosition();
 
-				this->SetResourceCount(this->GetResourceCount() - 1);
+					next = new EmptyCell(currentX, currentY, true);
+					shape[currentY][currentX] = next;
+
+					this->SetResourceCount(this->GetResourceCount() - 1);
+				}
 				current->SetMove(true);
 			}
 			else if(next->IsEmpty())
@@ -292,16 +303,33 @@ void Continent::CheckMove(Cell *cell)
 				Resource *resource = dynamic_cast<Resource*>(next);
 
 				int food = resource->GetFood();
-				human->ChangeHealth(food);
 
-				delete next;
+				if(food > 0)
+				{
+					int foodNeeded = MaxHealth - human->GetHealth();
 
-				shape[nextY][nextX] = current;
-				current->SetPosition(nextX, nextY);
-				current->ResetNextPosition();
+					if(food >= foodNeeded)
+					{
+						resource->SetFood(food - foodNeeded);
+					}
+					else
+					{
+						foodNeeded = resource->GetFood();
+						resource->SetFood(0);
+					}
+					human->ChangeHealth(foodNeeded);
+				}
+				else
+				{
+					delete next;
 
-				next = new EmptyCell(currentX, currentY, true);
-				shape[currentY][currentX] = next;
+					shape[nextY][nextX] = current;
+					current->SetPosition(nextX, nextY);
+
+					next = new EmptyCell(currentX, currentY, true);
+					shape[currentY][currentX] = next;
+					current->ResetNextPosition();
+				}
 				current->SetMove(true);
 			}
 			else if(next->IsEmpty())
@@ -356,16 +384,37 @@ void Continent::CheckMove(Cell *cell)
 
 void Continent::InitializeZombies(int zombieCount)
 {
+	int count = 0;
+
 	while(zombieCount > 0)
 	{
 		int x = 0;
 		int y = 0;
-
-		do
+		if(count < 10)
 		{
-			x = randomGenerator->GenerateRandom(0, size - 1);
-			y = randomGenerator->GenerateRandom(0, size - 1);
-		} while(!shape[y][x]->IsEmpty());
+			do
+			{
+				x = randomGenerator->GenerateRandom(0, size - 1);
+				y = randomGenerator->GenerateRandom(0, size - 1);
+
+			} while(!shape[y][x]->IsEmpty());
+
+			count++;
+		}
+		else
+		{
+			for(int i = x; i < (size * size); i++)
+			{
+				CellPosition_t current = positions[i];
+
+				if(shape[current.y][current.x]->IsEmpty())
+				{
+					x = current.x;
+					y = current.y;
+					break;
+				}
+			}
+		}
 
 		delete shape[y][x];
 
@@ -377,16 +426,38 @@ void Continent::InitializeZombies(int zombieCount)
 
 void Continent::InitializeTraps(int trapCount)
 {
+	int count = 0;
+
 	while(trapCount > 0)
 	{
 		int x = 0;
 		int y = 0;
 
-		do
+		if(count < 10)
 		{
-			x = randomGenerator->GenerateRandom(0, size - 1);
-			y = randomGenerator->GenerateRandom(0, size - 1);
-		} while(!shape[y][x]->IsEmpty());
+			do
+			{
+				x = randomGenerator->GenerateRandom(0, size - 1);
+				y = randomGenerator->GenerateRandom(0, size - 1);
+
+			} while(!shape[y][x]->IsEmpty());
+
+			count++;
+		}
+		else
+		{
+			for(int i = x; i < (size * size); i++)
+			{
+				CellPosition_t current = positions[i];
+
+				if(shape[current.y][current.x]->IsEmpty())
+				{
+					x = current.x;
+					y = current.y;
+					break;
+				}
+			}
+		}
 
 		delete shape[y][x];
 
@@ -398,16 +469,37 @@ void Continent::InitializeTraps(int trapCount)
 
 void Continent::InitializeResources(int resourceCount)
 {
+	int count = 0;
 	while(resourceCount > 0)
 	{
 		int x = 0;
 		int y = 0;
 
-		do
+		if(count < 10)
 		{
-			x = randomGenerator->GenerateRandom(0, size - 1);
-			y = randomGenerator->GenerateRandom(0, size - 1);
-		} while(!shape[y][x]->IsEmpty());
+			do
+			{
+				x = randomGenerator->GenerateRandom(0, size - 1);
+				y = randomGenerator->GenerateRandom(0, size - 1);
+
+			} while(!shape[y][x]->IsEmpty());
+
+			count++;
+		}
+		else
+		{
+			for(int i = x; i < (size * size); i++)
+			{
+				CellPosition_t current = positions[i];
+
+				if(shape[current.y][current.x]->IsEmpty())
+				{
+					x = current.x;
+					y = current.y;
+					break;
+				}
+			}
+		}
 
 		delete shape[y][x];
 
@@ -419,19 +511,40 @@ void Continent::InitializeResources(int resourceCount)
 
 void Continent::InitializeHumans(int humanCount)
 {
+	int count = 0;
+
 	while(humanCount > 0)
 	{
 		int x = 0;
 		int y = 0;
 
-		do
+		if(count < 10)
 		{
-			x = randomGenerator->GenerateRandom(0, size - 1);
-			y = randomGenerator->GenerateRandom(0, size - 1);
-		} while(!shape[y][x]->IsEmpty());
+			do
+			{
+				x = randomGenerator->GenerateRandom(0, size - 1);
+				y = randomGenerator->GenerateRandom(0, size - 1);
+
+			} while(!shape[y][x]->IsEmpty());
+
+			count++;
+		}
+		else
+		{
+			for(int i = x; i < (size * size); i++)
+			{
+				CellPosition_t current = positions[i];
+
+				if(shape[current.y][current.x]->IsEmpty())
+				{
+					x = current.x;
+					y = current.y;
+					break;
+				}
+			}
+		}
 
 		delete shape[y][x];
-
 		shape[y][x] = new Human(x, y, randomGenerator);
 
 		humanCount--;
