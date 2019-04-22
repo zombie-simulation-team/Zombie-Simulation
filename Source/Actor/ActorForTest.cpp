@@ -16,6 +16,7 @@ ActorForTest::ActorForTest(
 		I_Random *randomGenerator)
 	: Actor(x, y, color, health, defense, randomGenerator)
 {
+	this->randomGenerator = randomGenerator;
 }
 
 ActorForTest::~ActorForTest(){}
@@ -27,5 +28,6 @@ void ActorForTest::Attack(Cell* cell)
 
 void ActorForTest::Tick()
 {
+	this->SetDirectionIndex(randomGenerator->GenerateRandom(MoveUp, MoveLeftUp));
 	this->Move();
 }
