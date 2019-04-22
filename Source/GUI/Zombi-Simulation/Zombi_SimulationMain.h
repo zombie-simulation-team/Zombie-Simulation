@@ -23,6 +23,7 @@
 #include "Continent.h"
 #include <wx/dcbuffer.h>
 #include <wx/gdicmn.h>
+
 struct ContinentSpec
 {
     int ContinentSize;
@@ -80,8 +81,8 @@ class Zombi_SimulationFrame: public wxFrame
         void OnAbout(wxCommandEvent& event);
         void OnBackgroundPanelPaint(wxPaintEvent& event);
         void OnStartButtonClick(wxCommandEvent& event);
-        void render(wxDC& dc);
-        void renderContinentCells(wxDC& dc, Continent *cont, int positionX, int positionY);
+        void render();
+        void renderContinentCells(wxDC *dc, Continent *cont, int positionX, int positionY);
         void OnDisplayPanelPaint(wxPaintEvent& event);
         void OnZombieSpinCtrlChange(wxSpinEvent& event);
         void OnHumanSpinCtrlChange(wxSpinEvent& event);
@@ -91,6 +92,7 @@ class Zombi_SimulationFrame: public wxFrame
         void InitiliazeContinets();
         void OnContinentSpinCtrlChange(wxSpinEvent& event);
         void OnSpeedCtrlChange(wxSpinEvent& event);
+        void OnDisplayPanelEraseBackground(wxEraseEvent& event);
         //*)
 
         //(*Identifiers(Zombi_SimulationFrame)

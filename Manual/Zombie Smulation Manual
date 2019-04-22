@@ -1,0 +1,21 @@
+The zombie simulation game consists of setting up the world continents filled with zombies and humans and let it play it to see who conquers it. The continents also contain traps that can kill the zombies and resources that help the humans. 
+
+Step to use the GUI
+1) Open the terminal and go to the GUI folder. Run the excecutable with the following command ./Zombie_Simulation
+
+2)The aplication loads with predefined values and clicking the "Start" button would run the simulation right away, but you can select any setup you like before running.
+
+Configuratin options for the simulation:
+--->Zombies %: Sets the percentage of zombies to populate the continents
+	       Zombies percentage cannot be over NUMBER NEEDED
+
+--->Humans %: Sets the percentage of humans to populate the continents
+	       Humans percentage cannot be over NUMBER NEEDED
+
+--->Traps %: Sets the percentage of traps to populate the continents. Maximum is 10.
+    
+--->Resources %: Sets the percentage of resources to populate the continents. Maximum is 20.
+
+--->Contient: Sets the amount of continents to use for the simulation. Maximum is 6. Minimum is 1.
+
+
