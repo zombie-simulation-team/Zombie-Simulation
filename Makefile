@@ -2,6 +2,7 @@
 SILENCE ?= @
 
 PROJECT_HOME_DIR ?= .
+BUILD_PROGRAM_DIR ?= ./Source/GUI/Zombi-Simulation/
 
 PROJECT_NAME ?= Zombie-Simulation
 COMPONENT_NAME ?= $(PROJECT_NAME)
@@ -125,6 +126,12 @@ $(CPPUTEST_HOME)/lib/libCppUTest.a:
 # Deletes CppUtest Automatically
 upgrade:
 	rm -rf $(CPPUTEST_HOME)/lib
+
+target:
+	make -C $(BUILD_PROGRAM_DIR)
+
+clean_target:
+	make -C $(BUILD_PROGRAM_DIR) clean
 
 # Cleans everything
 distclean: clean upgrade

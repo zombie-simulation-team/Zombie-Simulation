@@ -187,13 +187,13 @@ TEST_GROUP(ContinentTest)
 		mock().expectOneCall("GenerateRandom")
 					.onObject(randomGeneratorMock)
 					.withParameter("start", 0)
-					.withParameter("end", 24)
+					.withParameter("end", 119)
 					.andReturnValue(x);
 
 		mock().expectOneCall("GenerateRandom")
 					.onObject(randomGeneratorMock)
 					.withParameter("start", 0)
-					.withParameter("end", 24)
+					.withParameter("end", 119)
 					.andReturnValue(y);
 	}
 };
@@ -547,7 +547,7 @@ TEST(ContinentTest, ShouldDestroyAHumanWhenItsHealthDropsDownToZero)
 	ExpectHumanToBeInitializedInLargerContinentWithPosition(0, 0);
 
 	Continent *cont = new Continent(
-			25,
+			120,
 			NorthAmerica,
 			HumanCount,
 			0,
@@ -557,9 +557,9 @@ TEST(ContinentTest, ShouldDestroyAHumanWhenItsHealthDropsDownToZero)
 
 	Cell ***shape = cont->GetShape();
 
-	RandomGeneratorShouldBeCalled(20 Times, AndReturn ValueToMoveDown);
+	RandomGeneratorShouldBeCalled(100 Times, AndReturn ValueToMoveDown);
 
-	for(int i = 0; i < 20; i++)
+	for(int i = 0; i < 100; i++)
 	{
 		Human *human = dynamic_cast<Human*>(shape[i][0]);
 		human->Tick();
@@ -567,7 +567,7 @@ TEST(ContinentTest, ShouldDestroyAHumanWhenItsHealthDropsDownToZero)
 		human->SetMove(false);
 	}
 
-	Cell *cell = shape[20][0];
+	Cell *cell = shape[100][0];
 
 	bool expected = false;
 	bool actual = cell->IsHuman();
