@@ -126,9 +126,9 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
 
     Create(parent, wxID_ANY, _("Zombie Simulation"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
     {
-    	wxIcon FrameIcon;
-    	FrameIcon.CopyFromBitmap(wxBitmap(wxImage(_T("./icons/biohazard.png"))));
-    	SetIcon(FrameIcon);
+        wxIcon FrameIcon;
+        FrameIcon.CopyFromBitmap(wxBitmap(wxImage(_T("./icons/biohazard.png"))));
+        SetIcon(FrameIcon);
     }
     BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
     BackgroundPanel = new wxPanel(this, ID_BACKGROUND_PANEL, wxDefaultPosition, wxSize(700,421), wxTAB_TRAVERSAL, _T("ID_BACKGROUND_PANEL"));
@@ -191,8 +191,8 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
 Zombi_SimulationFrame::~Zombi_SimulationFrame()
 {
     //(*Destroy(Zombi_SimulationFrame)
-       delete []continent;
-       delete RandomGeneratorObject;
+    delete []continent;
+    delete RandomGeneratorObject;
     //*)
 }
 
@@ -248,7 +248,8 @@ void Zombi_SimulationFrame::render(wxDC& dc)
 
     int loopCount = 0;
     bool done = false;
-    while(!done)
+    int count = 1;
+    while(count < totalContinents)
     {
         done = true;
         dc.Clear();
@@ -265,12 +266,19 @@ void Zombi_SimulationFrame::render(wxDC& dc)
             renderContinentCells(dc,continent[i], continentSpec[i].x, continentSpec[i].y);
 
         wxSleep(1);
-
         for(int j = 0; j < totalContinents ; j++)
-            continent[j]->Tick();
+        {
+            if(!continent[j]->Finished())
+            {
+                count = 1;
+                continent[j]->Tick();
+            }else{
+                count++;
+            }
+        }
         wxSleep(1);
-        for(int k = 0; k < totalContinents ; k++)
-            done = done && continent[k]->Finished();
+//        for(int k = 0; k < totalContinents ; k++)
+//            done = done && continent[k]->Finished();
 
         SetStatusText(wxString::Format(wxT("Loop:%i"), loopCount));
         loopCount++;
@@ -278,9 +286,9 @@ void Zombi_SimulationFrame::render(wxDC& dc)
     }
 
     for(int i = 0; i < totalContinents ; i++)
-            renderContinentCells(dc,continent[i], continentSpec[i].x, continentSpec[i].y);
+        renderContinentCells(dc,continent[i], continentSpec[i].x, continentSpec[i].y);
     SetStatusText(wxT("Done ticking"));
-    for(int j = 0 ; j< totalContinents ;j++)
+    for(int j = 0 ; j< totalContinents ; j++)
         delete continent[j];
     delete []continent;
 }
