@@ -2272,19 +2272,19 @@
 
 1485352691 nr.h"
 
-1555796652 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/wx_pch.h
+1555893900 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/wx_pch.h
 	<wx/wxprec.h>
 	<wx/wx.h>
 
-1555803320 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Cell.cpp
+1555893900 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Cell.cpp
 	"Cell.h"
 
-1555803320 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Cell.h
+1555893900 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Cell.h
 
-1555803320 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Continent.cpp
+1555896432 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Continent.cpp
 	"Continent.h"
 
-1555803320 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Continent.h
+1555893900 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Continent.h
 	<iostream>
 	"Environment.h"
 	"Cell.h"
@@ -2296,96 +2296,98 @@
 	"Resource.h"
 	"Human.h"
 
-1555803320 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Environment.h
+1555893900 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Environment.h
 
-1555803320 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/EmptyCell.h
+1555893900 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/EmptyCell.h
 	"Cell.h"
 
-1555803320 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/I_Random.h
+1555893900 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/I_Random.h
 
-1555803320 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/RandomGenerator.h
+1555893900 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/RandomGenerator.h
 	"I_Random.h"
 
-1555803320 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombie.h
+1555896432 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombie.h
 	"Actor.h"
 
-1555881247 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Actor.h
+1555896432 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Actor.h
 	"Cell.h"
 	"I_Random.h"
 	"Utils.h"
 
-1555803320 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Utils.h
+1555893900 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Utils.h
 
-1555803320 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Trap.h
+1555893900 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Trap.h
 	"Obstacle.h"
 
-1555803320 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Obstacle.h
+1555893900 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Obstacle.h
 	"Cell.h"
 	"Utils.h"
 
-1555803320 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Resource.h
+1555893900 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Resource.h
 	"Obstacle.h"
 
-1555803320 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Human.h
+1555896432 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Human.h
 	"Actor.h"
 	"Resource.h"
 
-1555803320 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/EmptyCell.cpp
+1555893900 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/EmptyCell.cpp
 	"EmptyCell.h"
 
-1555803320 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Environment.cpp
+1555893900 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Environment.cpp
 	"Environment.h"
 
-1555803320 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Human.cpp
+1555896432 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Human.cpp
 	"Human.h"
 	<stdlib.h>
 	<time.h>
 
-1555803320 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Obstacle.cpp
+1555893900 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Obstacle.cpp
 	"Obstacle.h"
 
-1555803320 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/RandomGenerator.cpp
+1555893900 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/RandomGenerator.cpp
 	"RandomGenerator.h"
 	<stdlib.h>
 	<time.h>
 
-1555803320 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Resource.cpp
+1555893900 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Resource.cpp
 	"Resource.h"
 
-1555803320 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Trap.cpp
+1555893900 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Trap.cpp
 	"Trap.h"
 
-1555796652 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationApp.cpp
+1555893900 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationApp.cpp
 	"wx_pch.h"
 	"Zombi_SimulationApp.h"
 	"Zombi_SimulationMain.h"
 	<wx/image.h>
 
-1555796652 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/wx_pch.h
+1555893900 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/wx_pch.h
 	<wx/wxprec.h>
 	<wx/wx.h>
 
-1555796652 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationApp.h
+1555893900 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationApp.h
 	<wx/app.h>
 
-1555880122 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationMain.h
+1555897330 /home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationMain.h
+	<wx/spinctrl.h>
 	<wx/sizer.h>
 	<wx/button.h>
 	<wx/menu.h>
 	<wx/panel.h>
 	<wx/statusbr.h>
 	<wx/frame.h>
+	<wx/stattext.h>
 	"Continent.h"
 	<wx/dcbuffer.h>
 	<wx/gdicmn.h>
 
-1555803320 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombie.cpp
+1555896432 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombie.cpp
 	"Zombie.h"
 
-1555881358 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Actor.cpp
+1555896432 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Actor.cpp
 	"Actor.h"
 
-1555880122 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationMain.cpp
+1555897624 source:/home/ubuntu/Documents/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationMain.cpp
 	"wx_pch.h"
 	"Zombi_SimulationMain.h"
 	<wx/msgdlg.h>

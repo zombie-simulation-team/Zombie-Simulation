@@ -58,6 +58,7 @@ class Zombi_SimulationFrame: public wxFrame
         int traps;
         int resources;
         int totalContinents;
+        int speed;
 
         bool initializeOK;
 
@@ -89,6 +90,7 @@ class Zombi_SimulationFrame: public wxFrame
         void SetCellPercentageVariables();
         void InitiliazeContinets();
         void OnContinentSpinCtrlChange(wxSpinEvent& event);
+        void OnSpeedCtrlChange(wxSpinEvent& event);
         //*)
 
         //(*Identifiers(Zombi_SimulationFrame)
@@ -103,6 +105,8 @@ class Zombi_SimulationFrame: public wxFrame
         static const long ID_HUMAN_SPINCTRL;
         static const long ID_CONTINENT_SPINCTRL;
         static const long ID_STATICTEXT5;
+        static const long ID_SPINCTRL1;
+        static const long ID_STATICTEXT6;
         static const long ID_CONFIG_PANEL;
         static const long ID_DISPALY_PANEL;
         static const long ID_BACKGROUND_PANEL;
@@ -115,6 +119,7 @@ class Zombi_SimulationFrame: public wxFrame
         wxPanel* DisplayPanel;
         wxSpinCtrl* HumanSpinCtrl;
         wxStatusBar* StatusBar1;
+        wxSpinCtrl* SpeedCtrl;
         wxPanel* ConfigPanel;
         wxStaticText* StaticText1;
         wxButton* StartButton;
@@ -125,6 +130,7 @@ class Zombi_SimulationFrame: public wxFrame
         wxStaticText* StaticText4;
         wxStaticText* StaticText5;
         wxStaticText* StaticText2;
+        wxStaticText* StaticText6;
         wxSpinCtrl* ResourceSpinCtrl;
         wxPanel* BackgroundPanel;
         //*)
