@@ -15,6 +15,7 @@ class Zombie: public Actor
 private:
 	int travel;
 	static const CellColor_e color = Red;
+	I_Random *randomGenerator;
 
 public:
 	Zombie(

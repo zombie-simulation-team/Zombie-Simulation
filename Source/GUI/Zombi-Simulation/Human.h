@@ -24,6 +24,7 @@ class Human: public Actor
 private:
 	void Defend(Cell *cell);
 	static const CellColor_e color = Green;
+	I_Random *randomGenerator;
 
 public:
 	Human(int x, int y, I_Random *randomGenerator);

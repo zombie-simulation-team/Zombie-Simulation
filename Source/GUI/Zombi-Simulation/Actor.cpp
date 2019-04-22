@@ -22,7 +22,11 @@ Actor::Actor(
 	nextX = -1;
 	nextY = -1;
 	moved = false;
-	currMove = 0;
+	moveDirectionsIndex = 0;
+	for(int i = 0; i < MoveDirectionSize; i++)
+	{
+		moveDirections[i] = false;
+	}
 }
 
 Actor::~Actor()
@@ -68,64 +72,83 @@ void Actor::ChangeHealth(int value)
 }
 
 /*
-	8   1   2
+	7   0   1
 	  \ | /
-	7 - C - 3
+	6 - C - 2
 	  / | \
-	6   5   4
+	5   4   3
   */
 void Actor::Move()
 {
-    int nextMove;
-    if(currMove == 0){
-        nextMove = randomGenerator->GenerateRandom(1,8);
-        currMove = nextMove;
-    }else{
-        currMove = currMove%8 + 1;
-        nextMove = currMove;
-    }
+	if(moveDirections[moveDirectionsIndex] == true)
+	{
+		for(int i = moveDirectionsIndex; i < MoveDirectionSize + moveDirectionsIndex; i++)
+		{
+			if(moveDirections[i % MoveDirectionSize] == false)
+			{
+				moveDirectionsIndex = i % MoveDirectionSize;
+				break;
+			}
+		}
 
+		int count = 0;
+		for(int i = 0; i < MoveDirectionSize; i++)
+		{
+			if(moveDirections[i] == true)
+			{
+				count++;
+			}
+		}
 
-	if(nextMove == MoveUp)
+		if(count == MoveDirectionSize)
+		{
+			this->ResetNextPosition();
+			return;
+		}
+	}
+
+	if(moveDirectionsIndex == MoveUp)
 	{
 		this->SetNextX(this->GetX());
 		this->SetNextY(this->GetY() - 1);
 	}
-	else if(nextMove == MoveRightUp)
+	else if(moveDirectionsIndex == MoveRightUp)
 	{
 		this->SetNextX(this->GetX() + 1);
 		this->SetNextY(this->GetY() - 1);
 	}
-	else if (nextMove == MoveRight)
+	else if (moveDirectionsIndex == MoveRight)
 	{
 		this->SetNextX(this->GetX() + 1);
 		this->SetNextY(this->GetY());
 	}
-	else if(nextMove == MoveRightDown)
+	else if(moveDirectionsIndex == MoveRightDown)
 	{
 		this->SetNextX(this->GetX() + 1);
 		this->SetNextY(this->GetY() + 1);
 	}
-	else if(nextMove == MoveDown)
+	else if(moveDirectionsIndex == MoveDown)
 	{
 		this->SetNextX(this->GetX());
 		this->SetNextY(this->GetY() + 1);
 	}
-	else if(nextMove == MoveLeftDown)
+	else if(moveDirectionsIndex == MoveLeftDown)
 	{
 		this->SetNextX(this->GetX() - 1);
 		this->SetNextY(this->GetY() + 1);
 	}
-	else if(nextMove == MoveLeft)
+	else if(moveDirectionsIndex == MoveLeft)
 	{
 		this->SetNextX(this->GetX() - 1);
 		this->SetNextY(this->GetY());
 	}
-	else if(nextMove == MoveLeftUp)
+	else if(moveDirectionsIndex == MoveLeftUp)
 	{
 		this->SetNextX(this->GetX() - 1);
 		this->SetNextY(this->GetY() - 1);
 	}
+
+	moveDirections[moveDirectionsIndex] = true;
 }
 
 void Actor::SetNextX(int x)
@@ -147,10 +170,7 @@ int Actor::GetNextY()
 {
 	return nextY;
 }
-int Actor::GetCurrMove()
-{
-    return currMove;
-}
+
 void Actor::ResetNextPosition()
 {
 	nextX = -1;
@@ -171,4 +191,24 @@ bool Actor::HasMoved()
 void Actor::SetMove(bool value)
 {
 	moved = value;
+}
+
+void Actor::ChangeNextMoveIndex()
+{
+	moveDirectionsIndex = moveDirectionsIndex % MoveDirectionSize;
+}
+
+void Actor::SetDirectionIndex(int val)
+{
+	moveDirectionsIndex = val;
+}
+
+void Actor::ResetDirections()
+{
+	moveDirectionsIndex = 0;
+
+	for(int i = 0; i < MoveDirectionSize; i++)
+	{
+		moveDirections[i] = false;
+	}
 }

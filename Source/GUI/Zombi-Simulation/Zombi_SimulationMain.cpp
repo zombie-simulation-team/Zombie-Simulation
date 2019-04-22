@@ -264,11 +264,11 @@ void Zombi_SimulationFrame::render(wxDC& dc)
         for(int i = 0; i < totalContinents ; i++)
             renderContinentCells(dc,continent[i], continentSpec[i].x, continentSpec[i].y);
 
-        wxSleep(1);
+        wxUsleep(25);
 
         for(int j = 0; j < totalContinents ; j++)
             continent[j]->Tick();
-        wxSleep(1);
+        wxUsleep(50);
         for(int k = 0; k < totalContinents ; k++)
             done = done && continent[k]->Finished();
 

@@ -18,14 +18,15 @@ enum
 	ActorMaxDefense = 100,
 	ActorMinHealth = 0,
 	ActorMinDefense = 0,
-	MoveUp = 1,
-	MoveRightUp = 2,
-	MoveRight = 3,
-	MoveRightDown = 4,
-	MoveDown = 5,
-	MoveLeftDown = 6,
-	MoveLeft = 7,
-	MoveLeftUp = 8
+	MoveUp = 0,
+	MoveRightUp = 1,
+	MoveRight = 2,
+	MoveRightDown = 3,
+	MoveDown = 4,
+	MoveLeftDown = 5,
+	MoveLeft = 6,
+	MoveLeftUp = 7,
+	MoveDirectionSize = 8
 };
 
 class Actor: public Cell
@@ -35,9 +36,10 @@ private:
 	int defense;
 	int nextX;
 	int nextY;
-	int currMove;
 	bool moved;
 	I_Random *randomGenerator;
+	bool moveDirections[MoveDirectionSize];
+	int moveDirectionsIndex;
 
 public:
 	Actor(
@@ -58,11 +60,13 @@ public:
 	void SetNextY(int y);
 	int GetNextX();
 	int GetNextY();
-	int GetCurrMove();
 	void SetNextPosition(int nextX, int nextY);
 	void ResetNextPosition();
 	bool HasMoved();
 	void SetMove(bool value);
+	void SetDirectionIndex(int val);
+	void ChangeNextMoveIndex();
+	void ResetDirections();
 };
 
 #endif /* ACTOR_H_ */
