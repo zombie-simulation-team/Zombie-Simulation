@@ -268,7 +268,7 @@ void Zombi_SimulationFrame::render(wxDC& dc)
         for(int i = 0; i < totalContinents ; i++)
             renderContinentCells(dc,continent[i], continentSpec[i].x, continentSpec[i].y);
 
-        wxMilliSleep(speed * 100);
+        wxMilliSleep(speed * 10);
         for(int j = 0; j < totalContinents ; j++)
         {
             if(!continent[j]->Finished())
@@ -279,7 +279,7 @@ void Zombi_SimulationFrame::render(wxDC& dc)
                 count++;
             }
         }
-         wxMilliSleep(speed * 100);
+         wxMilliSleep(speed * 10);
 
         SetStatusText(wxString::Format(wxT("Loop:%i"), loopCount));
         loopCount++;
