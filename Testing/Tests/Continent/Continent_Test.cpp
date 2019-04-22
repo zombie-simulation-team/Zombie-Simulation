@@ -430,7 +430,7 @@ TEST(ContinentTest, ShouldInitializeOneTrapOneZombieOneResourceAndOneHuman)
 	delete cont;
 }
 
-TEST(ContinentTest, ShouldDestroyResourceWhenZombieMovesToItsPlace)
+TEST(ContinentTest, ShouldDecrementResourceDefenceWhenZombieMovesToItsPlace)
 {
 	ExpectZombieToBeInitializedWithPosition(4, 5);
 	ExpectResourceToBeInitializedWithPosition(4, 6);
@@ -451,6 +451,59 @@ TEST(ContinentTest, ShouldDestroyResourceWhenZombieMovesToItsPlace)
 	Cell *zombie  = shape[5][4];
 	zombie->Tick();
 	cont->CheckMove(zombie);
+
+	bool expected = true;
+	bool actual = shape[6][4]->IsResource();
+	CHECK_EQUAL(expected, actual);
+
+	actual = shape[5][4]->IsZombie();
+	CHECK_EQUAL(expected, actual);
+
+	int expectedResourceCount = 1;
+	int actualResourceCount = cont->GetResourceCount();
+	CHECK_EQUAL(expectedResourceCount, actualResourceCount);
+
+	Resource *resource = dynamic_cast<Resource*>(shape[6][4]);
+
+	int expectedResourceDefense = 50;
+	int actualResourceDefense = resource->GetDefense();
+	CHECK_EQUAL(expectedResourceDefense, actualResourceDefense);
+
+	delete cont;
+}
+
+TEST(ContinentTest, ShouldDestroyResourceWhenZombieMovesToItsTwoTimes)
+{
+	ExpectZombieToBeInitializedWithPosition(4, 5);
+	ExpectResourceToBeInitializedWithPosition(4, 6);
+
+	Continent *cont = new Continent(
+			ContinentSize,
+			NorthAmerica,
+			0,
+			ZombieCount,
+			0,
+			ResourceCount,
+			randomGeneratorMock);
+
+	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveDown);
+	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveDown);
+	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveDown);
+
+	Cell ***shape = cont->GetShape();
+
+	Actor *zombie  = dynamic_cast<Actor*>(shape[5][4]);
+	zombie->Tick();
+	cont->CheckMove(zombie);
+	zombie->SetMove(false);
+
+	zombie->Tick();
+	cont->CheckMove(zombie);
+	zombie->SetMove(false);
+
+	zombie->Tick();
+	cont->CheckMove(zombie);
+	zombie->SetMove(false);
 
 	bool expected = true;
 	bool actual = shape[6][4]->IsZombie();
@@ -580,7 +633,7 @@ TEST(ContinentTest, ShouldDestroyAHumanWhenItsHealthDropsDownToZero)
 	delete cont;
 }
 
-TEST(ContinentTest, HumanShouldGetFoodFromResource)
+TEST(ContinentTest, HumanShouldGetAmountOfNeededFoodFromResource)
 {
 	ExpectResourceToBeInitializedWithPosition(0, 4);
 	ExpectHumanToBeInitializedWithPosition(0, 0);
@@ -608,13 +661,24 @@ TEST(ContinentTest, HumanShouldGetFoodFromResource)
 
 	Cell *cell = shape[4][0];
 
-	bool expected = false;
+	bool expected = true;
 	bool actual = cell->IsResource();
 	CHECK_EQUAL(expected, actual);
 
 	expected = true;
-	actual = cell->IsHuman();
+	actual = shape[3][0]->IsHuman();
 	CHECK_EQUAL(expected, actual);
+
+	Human *human = dynamic_cast<Human*>(shape[3][0]);
+
+	int expectedHumanHealth = 100;
+	int actualHumanHealth = human->GetHealth();
+	CHECK_EQUAL(expectedHumanHealth, actualHumanHealth);
+
+	Resource *resource = dynamic_cast<Resource*>(shape[4][0]);
+	int expectedFood = 96;
+	int actualFood = resource->GetFood();
+	CHECK_EQUAL(expectedFood, actualFood);
 
 	delete cont;
 }
