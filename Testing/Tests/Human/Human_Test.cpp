@@ -41,8 +41,8 @@ TEST_GROUP(HumanTest)
 	{
 		mock().expectOneCall("GenerateRandom")
 					.onObject(randomGeneratorMock)
-					.withParameter("start", 1)
-					.withParameter("end", 8)
+					.withParameter("start", MoveUp)
+					.withParameter("end", MoveLeftUp)
 					.andReturnValue(val);
 	}
 
@@ -50,8 +50,8 @@ TEST_GROUP(HumanTest)
 	{
 		mock().expectNCalls(n, "GenerateRandom")
 					.onObject(randomGeneratorMock)
-					.withParameter("start", 1)
-					.withParameter("end", 8)
+					.withParameter("start", MoveUp)
+					.withParameter("end", MoveLeftUp)
 					.andReturnValue(val);
 	}
 
