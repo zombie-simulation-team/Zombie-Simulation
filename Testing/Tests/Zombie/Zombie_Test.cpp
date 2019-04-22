@@ -55,8 +55,8 @@ TEST_GROUP(ZombieTest)
 	{
 		mock().expectNCalls(n, "GenerateRandom")
 					.onObject(randomGeneratorMock)
-					.withParameter("start", 1)
-					.withParameter("end", 8)
+					.withParameter("start", MoveUp)
+					.withParameter("end", MoveLeftUp)
 					.andReturnValue(val);
 	}
 
