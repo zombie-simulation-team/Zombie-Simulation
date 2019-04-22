@@ -294,11 +294,7 @@ void Zombi_SimulationFrame::render()
                 count++;
             }
         }
-<<<<<<< HEAD
         wxMilliSleep(speed * 10);
-=======
-         wxMilliSleep(speed * 10);
->>>>>>> 3e39ce9c9b469722cf03a91998f7b0a33f35a85f
 
         SetStatusText(wxString::Format(wxT("Loop:%i"), loopCount));
         loopCount++;
