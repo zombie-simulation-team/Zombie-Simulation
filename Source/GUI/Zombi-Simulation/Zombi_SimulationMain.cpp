@@ -247,11 +247,9 @@ void Zombi_SimulationFrame::render(wxDC& dc)
     dc.DrawRectangle(AfricaX,AfricaY, AfricaSize*squareSize, AfricaSize*squareSize);
 
     int loopCount = 0;
-    bool done = false;
     int count = 1;
     while(count < totalContinents)
     {
-        done = true;
         dc.Clear();
         dc.SetBrush(*wxGREY_BRUSH);
         dc.DrawRectangle(NorthAmericaX,NorthAmericaY, NorthAmericaSize*squareSize, NorthAmericaSize*squareSize);
@@ -265,7 +263,7 @@ void Zombi_SimulationFrame::render(wxDC& dc)
         for(int i = 0; i < totalContinents ; i++)
             renderContinentCells(dc,continent[i], continentSpec[i].x, continentSpec[i].y);
 
-        wxSleep(1);
+        wxUsleep(1000);
         for(int j = 0; j < totalContinents ; j++)
         {
             if(!continent[j]->Finished())
