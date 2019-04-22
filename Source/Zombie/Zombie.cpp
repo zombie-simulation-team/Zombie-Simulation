@@ -11,6 +11,7 @@ Zombie::Zombie(int x, int y, I_Random *randomGenerator)
 	: Actor(x, y, color, DefaultHealth, DefaultDefense, randomGenerator)
 {
 	travel = DefaultTravelAmount;
+	this->randomGenerator = randomGenerator;
 }
 
 Zombie::Zombie(
@@ -22,6 +23,7 @@ Zombie::Zombie(
 	: Actor(x, y, color, healthValue, defenseValue, randomGenerator)
 {
 	travel = DefaultTravelAmount;
+	this->randomGenerator = randomGenerator;
 }
 
 Zombie::~Zombie()
@@ -33,9 +35,6 @@ void Zombie::Attack(Cell *cell)
 
 void Zombie::Tick()
 {
+	this->SetDirectionIndex(randomGenerator->GenerateRandom(MoveUp, MoveLeftUp));
 	this->Move();
-	if(!this->HasMoved())
-	{
-		this->ChangeHealth(-10);
-	}
 }

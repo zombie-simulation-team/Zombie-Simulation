@@ -47,8 +47,8 @@ TEST_GROUP(ActorTest)
 	{
 		mock().expectOneCall("GenerateRandom")
 					.onObject(randomGeneratorMock)
-					.withParameter("start", 1)
-					.withParameter("end", 8)
+					.withParameter("start", MoveUp)
+					.withParameter("end", MoveLeftUp)
 					.andReturnValue(val);
 	}
 };
@@ -131,7 +131,7 @@ TEST(ActorTest, ShouldNotDecrementDefenseBelowMinimumDefense)
 
 TEST(ActorTest, ShouldMoveActorUp)
 {
-	RandomGeneratorShouldBeCalledAndReturn(1);
+	RandomGeneratorShouldBeCalledAndReturn(MoveUp);
 
 	int expectedNextX = X;
 	int expectedNextY = Y - 1;
@@ -147,7 +147,7 @@ TEST(ActorTest, ShouldMoveActorUp)
 
 TEST(ActorTest, ShouldMoveActorRightUp)
 {
-	RandomGeneratorShouldBeCalledAndReturn(2);
+	RandomGeneratorShouldBeCalledAndReturn(MoveRightUp);
 
 	int expectedNextX = X + 1;
 	int expectedNextY = Y - 1;
@@ -163,7 +163,7 @@ TEST(ActorTest, ShouldMoveActorRightUp)
 
 TEST(ActorTest, ShouldMoveActorRight)
 {
-	RandomGeneratorShouldBeCalledAndReturn(3);
+	RandomGeneratorShouldBeCalledAndReturn(MoveRight);
 
 	int expectedNextX = X + 1;
 	int expectedNextY = Y;
@@ -179,7 +179,7 @@ TEST(ActorTest, ShouldMoveActorRight)
 
 TEST(ActorTest, ShouldMoveActorRightDown)
 {
-	RandomGeneratorShouldBeCalledAndReturn(4);
+	RandomGeneratorShouldBeCalledAndReturn(MoveRightDown);
 
 	int expectedNextX = X + 1;
 	int expectedNextY = Y + 1;
@@ -195,7 +195,7 @@ TEST(ActorTest, ShouldMoveActorRightDown)
 
 TEST(ActorTest, ShouldMoveActorDown)
 {
-	RandomGeneratorShouldBeCalledAndReturn(5);
+	RandomGeneratorShouldBeCalledAndReturn(MoveDown);
 
 	int expectedNextX = X;
 	int expectedNextY = Y + 1;
@@ -211,7 +211,7 @@ TEST(ActorTest, ShouldMoveActorDown)
 
 TEST(ActorTest, ShouldMoveActorLeftDown)
 {
-	RandomGeneratorShouldBeCalledAndReturn(6);
+	RandomGeneratorShouldBeCalledAndReturn(MoveLeftDown);
 
 	int expectedNextX = X - 1;
 	int expectedNextY = Y + 1;
@@ -227,7 +227,7 @@ TEST(ActorTest, ShouldMoveActorLeftDown)
 
 TEST(ActorTest, ShouldMoveActorLeft)
 {
-	RandomGeneratorShouldBeCalledAndReturn(7);
+	RandomGeneratorShouldBeCalledAndReturn(MoveLeft);
 
 	int expectedNextX = X - 1;
 	int expectedNextY = Y;
@@ -243,7 +243,7 @@ TEST(ActorTest, ShouldMoveActorLeft)
 
 TEST(ActorTest, ShouldMoveActorLeftUp)
 {
-	RandomGeneratorShouldBeCalledAndReturn(8);
+	RandomGeneratorShouldBeCalledAndReturn(MoveLeftUp);
 
 	int expectedNextX = X - 1;
 	int expectedNextY = Y - 1;

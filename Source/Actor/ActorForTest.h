@@ -12,6 +12,8 @@
 
 class ActorForTest: public Actor
 {
+private:
+	I_Random *randomGenerator;
 public:
 	ActorForTest(int,int, CellColor_e, int, int, I_Random *);
 	virtual ~ActorForTest();

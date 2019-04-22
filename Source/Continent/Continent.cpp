@@ -324,7 +324,14 @@ void Continent::CheckMove(Cell *cell)
 
 				current->SetMove(true);
 			}
+			current->ResetDirections();
 		}
+	}
+	else if(nextX == -1 && nextY == -1)
+	{
+		current->SetMove(true);
+		current->ResetDirections();
+		return;
 	}
 	else
 	{

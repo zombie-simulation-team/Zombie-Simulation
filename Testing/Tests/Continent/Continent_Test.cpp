@@ -138,8 +138,8 @@ TEST_GROUP(ContinentTest)
 	{
 		mock().expectOneCall("GenerateRandom")
 					.onObject(randomGeneratorMock)
-					.withParameter("start", 1)
-					.withParameter("end", 8)
+					.withParameter("start", MoveUp)
+					.withParameter("end", MoveLeftUp)
 					.andReturnValue(val);
 	}
 
@@ -147,8 +147,8 @@ TEST_GROUP(ContinentTest)
 	{
 		mock().expectNCalls(n, "GenerateRandom")
 					.onObject(randomGeneratorMock)
-					.withParameter("start", 1)
-					.withParameter("end", 8)
+					.withParameter("start", MoveUp)
+					.withParameter("end", MoveLeftUp)
 					.andReturnValue(val);
 	}
 
@@ -180,6 +180,21 @@ TEST_GROUP(ContinentTest)
 	{
 		RandomGeneratorShouldBeCallToShuffleAndReturn(c1);
 		RandomGeneratorShouldBeCallToShuffleAndReturn(c2);
+	}
+
+	void ExpectHumanToBeInitializedInLargerContinentWithPosition(int x, int y)
+	{
+		mock().expectOneCall("GenerateRandom")
+					.onObject(randomGeneratorMock)
+					.withParameter("start", 0)
+					.withParameter("end", 24)
+					.andReturnValue(x);
+
+		mock().expectOneCall("GenerateRandom")
+					.onObject(randomGeneratorMock)
+					.withParameter("start", 0)
+					.withParameter("end", 24)
+					.andReturnValue(y);
 	}
 };
 
@@ -278,19 +293,18 @@ TEST(ContinentTest, ShouldAttemptToMoveZombieToAnInvalidPosition)
 	Cell ***shape = cont->GetShape();
 
 	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveRight);
-	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveLeft);
 
 	Cell *zombie = shape[AnotherY][AnotherX];
 	zombie->Tick();
 	cont->CheckMove(zombie);
 
 	bool isZombie = true;
-	int expectedX = AnotherX - 1;
-	int expectedY = AnotherY;
+	int expectedX = AnotherX;
+	int expectedY = AnotherY + 1;
 
-	bool actualType = shape[AnotherY][AnotherX - 1]->IsZombie();
-	int actualX = shape[AnotherY][AnotherX - 1]->GetX();
-	int actualY = shape[AnotherY][AnotherX - 1]->GetY();
+	bool actualType = shape[AnotherY + 1][AnotherX]->IsZombie();
+	int actualX = shape[AnotherY + 1][AnotherX]->GetX();
+	int actualY = shape[AnotherY + 1][AnotherX]->GetY();
 
 	CHECK_EQUAL(isZombie, actualType);
 	CHECK_EQUAL(expectedX, actualX);
@@ -528,60 +542,12 @@ TEST(ContinentTest, ShouldDestroyAZombieWhenAHumanMovesToItsPlace)
 	delete cont;
 }
 
-TEST(ContinentTest, ShouldDestroyAZombieWhenItsHealthDropsDownToZero)
-{
-	ExpectZombieToBeInitializedWithPosition(0, 1);
-
-	Continent *cont = new Continent(
-			ContinentSize,
-			NorthAmerica,
-			0,
-			ZombieCount,
-			0,
-			0,
-			randomGeneratorMock);
-
-	Cell ***shape = cont->GetShape();
-
-	RandomGeneratorShouldBeCalled(5 Times, AndReturn ValueToMoveDown);
-
-	for(int i = 1; i < 6; i++)
-	{
-		Zombie *zombie = dynamic_cast<Zombie*>(shape[i][0]);
-		zombie->Tick();
-		cont->CheckMove(zombie);
-		zombie->SetMove(false);
-	}
-
-	RandomGeneratorShouldBeCalled(5 Times, AndReturn ValueToMoveRight);
-
-	for(int i = 0; i < 5; i++)
-	{
-		Zombie *zombie = dynamic_cast<Zombie*>(shape[6][i]);
-		zombie->Tick();
-		cont->CheckMove(zombie);
-		zombie->SetMove(false);
-	}
-
-	Cell *cell = shape[6][5];
-
-	bool expected = false;
-	bool actual = cell->IsZombie();
-	CHECK_EQUAL(expected, actual);
-
-	int expectedZombieCount = 0;
-	int actualZombieCount = cont->GetZombieCount();
-	CHECK_EQUAL(expectedZombieCount, actualZombieCount);
-
-	delete cont;
-}
-
 TEST(ContinentTest, ShouldDestroyAHumanWhenItsHealthDropsDownToZero)
 {
-	ExpectHumanToBeInitializedWithPosition(0, 0);
+	ExpectHumanToBeInitializedInLargerContinentWithPosition(0, 0);
 
 	Continent *cont = new Continent(
-			ContinentSize,
+			25,
 			NorthAmerica,
 			HumanCount,
 			0,
@@ -591,9 +557,9 @@ TEST(ContinentTest, ShouldDestroyAHumanWhenItsHealthDropsDownToZero)
 
 	Cell ***shape = cont->GetShape();
 
-	RandomGeneratorShouldBeCalled(5 Times, AndReturn ValueToMoveDown);
+	RandomGeneratorShouldBeCalled(20 Times, AndReturn ValueToMoveDown);
 
-	for(int i = 0; i < 5; i++)
+	for(int i = 0; i < 20; i++)
 	{
 		Human *human = dynamic_cast<Human*>(shape[i][0]);
 		human->Tick();
@@ -601,7 +567,7 @@ TEST(ContinentTest, ShouldDestroyAHumanWhenItsHealthDropsDownToZero)
 		human->SetMove(false);
 	}
 
-	Cell *cell = shape[5][0];
+	Cell *cell = shape[20][0];
 
 	bool expected = false;
 	bool actual = cell->IsHuman();
@@ -670,7 +636,6 @@ TEST(ContinentTest, HumanShouldNotMoveToATrap)
 	Cell ***shape = cont->GetShape();
 
 	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveRight);
-	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveDown);
 
 	Human *human = dynamic_cast<Human*>(shape[1][2]);
 	human->Tick();
@@ -678,7 +643,7 @@ TEST(ContinentTest, HumanShouldNotMoveToATrap)
 	human->SetMove(false);
 
 	bool expected = true;
-	bool actual = shape[2][2]->IsHuman();
+	bool actual = shape[2][3]->IsHuman();
 	CHECK_EQUAL(expected, actual);
 
 	delete cont;
@@ -724,6 +689,148 @@ TEST(ContinentTest, ShouldShuffleThePositionForCellToBeTickedTwiceAtInitializati
 			0,
 			randomGeneratorMock,
 			RandomizationLevelTwo);
+
+	delete cont;
+}
+
+TEST(ContinentTest, HumanShouldNotMoveWhenSuroundedByOtherHumansInACorner)
+{
+	ExpectHumanToBeInitializedWithPosition(0, 0);
+	ExpectHumanToBeInitializedWithPosition(1, 0);
+	ExpectHumanToBeInitializedWithPosition(0, 1);
+	ExpectHumanToBeInitializedWithPosition(1, 1);
+
+	Continent *cont = new Continent(
+			ContinentSize,
+			NorthAmerica,
+			4,
+			0,
+			0,
+			0,
+			randomGeneratorMock,
+			RandomizationLevelZero);
+
+	Cell ***shape = cont->GetShape();
+
+	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveRight);
+
+	Human *human = dynamic_cast<Human*>(shape[0][0]);
+	human->Tick();
+	cont->CheckMove(human);
+	human->SetMove(false);
+
+	bool expected = true;
+	bool actual = shape[0][0]->IsHuman();
+	CHECK_EQUAL(expected, actual);
+
+	delete cont;
+}
+
+TEST(ContinentTest, HumanShouldNotMoveWhenSuroundedByOtherHumans)
+{
+	ExpectHumanToBeInitializedWithPosition(0, 0);
+	ExpectHumanToBeInitializedWithPosition(0, 1);
+	ExpectHumanToBeInitializedWithPosition(1, 0);
+	ExpectHumanToBeInitializedWithPosition(1, 1);
+	ExpectHumanToBeInitializedWithPosition(2, 0);
+	ExpectHumanToBeInitializedWithPosition(2, 1);
+	ExpectHumanToBeInitializedWithPosition(2, 2);
+	ExpectHumanToBeInitializedWithPosition(1, 2);
+	ExpectHumanToBeInitializedWithPosition(0, 2);
+
+	Continent *cont = new Continent(
+			ContinentSize,
+			NorthAmerica,
+			9,
+			0,
+			0,
+			0,
+			randomGeneratorMock,
+			RandomizationLevelZero);
+
+	Cell ***shape = cont->GetShape();
+
+	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveRight);
+
+	Human *human = dynamic_cast<Human*>(shape[1][1]);
+	human->Tick();
+	cont->CheckMove(human);
+	human->SetMove(false);
+
+	bool expected = true;
+	bool actual = shape[1][1]->IsHuman();
+	CHECK_EQUAL(expected, actual);
+
+	delete cont;
+}
+
+TEST(ContinentTest, ZombieShouldNotMoveWhenSuroundedByOtherZombiesInACorner)
+{
+	ExpectZombieToBeInitializedWithPosition(0, 0);
+	ExpectZombieToBeInitializedWithPosition(1, 0);
+	ExpectZombieToBeInitializedWithPosition(0, 1);
+	ExpectZombieToBeInitializedWithPosition(1, 1);
+
+	Continent *cont = new Continent(
+			ContinentSize,
+			NorthAmerica,
+			0,
+			4,
+			0,
+			0,
+			randomGeneratorMock,
+			RandomizationLevelZero);
+
+	Cell ***shape = cont->GetShape();
+
+	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveRight);
+
+	Zombie *zombie = dynamic_cast<Zombie*>(shape[0][0]);
+	zombie->Tick();
+	cont->CheckMove(zombie);
+	zombie->SetMove(false);
+
+	bool expected = true;
+	bool actual = shape[0][0]->IsZombie();
+	CHECK_EQUAL(expected, actual);
+
+	delete cont;
+}
+
+TEST(ContinentTest, ZombieShouldNotMoveWhenSuroundedByOtherZombies)
+{
+	ExpectZombieToBeInitializedWithPosition(0, 0);
+	ExpectZombieToBeInitializedWithPosition(0, 1);
+	ExpectZombieToBeInitializedWithPosition(1, 0);
+	ExpectZombieToBeInitializedWithPosition(1, 1);
+	ExpectZombieToBeInitializedWithPosition(2, 0);
+	ExpectZombieToBeInitializedWithPosition(2, 1);
+	ExpectZombieToBeInitializedWithPosition(2, 2);
+	ExpectZombieToBeInitializedWithPosition(1, 2);
+	ExpectZombieToBeInitializedWithPosition(0, 2);
+
+	Continent *cont = new Continent(
+			ContinentSize,
+			NorthAmerica,
+			0,
+			9,
+			0,
+			0,
+			randomGeneratorMock,
+			RandomizationLevelZero);
+
+	Cell ***shape = cont->GetShape();
+
+	RandomGeneratorShouldBeCalledAndReturn(ValueToMoveRight);
+
+	Zombie *zombie = dynamic_cast<Zombie*>(shape[1][1]);
+	zombie->Tick();
+	cont->CheckMove(zombie);
+	zombie->SetMove(false);
+
+	bool expected = true;
+	bool actual = shape[1][1]->IsZombie();
+	CHECK_EQUAL(expected, actual);
 
 	delete cont;
 }
