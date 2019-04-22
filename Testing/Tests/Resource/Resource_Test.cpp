@@ -24,7 +24,7 @@ TEST_GROUP(ResourceTest)
 
 TEST(ResourceTest, ShouldInitializeADefaultResource)
 {
-	int expectedFood = 50;
+	int expectedFood = 100;
 	CellColor_e expectedColor = White;
 
 	int actualFood = resource->GetFood();
