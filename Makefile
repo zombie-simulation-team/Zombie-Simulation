@@ -2,7 +2,7 @@
 SILENCE ?= @
 
 PROJECT_HOME_DIR ?= .
-BUILD_PROGRAM_DIR ?= ./Source/GUI/Zombi-Simulation/
+BUILD_PROGRAM_DIR ?= ./Zombi-Simulation/
 
 PROJECT_NAME ?= Zombie-Simulation
 COMPONENT_NAME ?= $(PROJECT_NAME)
