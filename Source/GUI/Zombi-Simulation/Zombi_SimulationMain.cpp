@@ -185,6 +185,9 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_RESOURCE_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnResourceSpinCtrlChange);
     Connect(ID_HUMAN_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnHumanSpinCtrlChange);
     Connect(ID_CONTINENT_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnContinentSpinCtrlChange);
+    Connect(ID_SPINCTRL1,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnSpeedCtrlChange);
+    DisplayPanel->Connect(wxEVT_PAINT,(wxObjectEventFunction)&Zombi_SimulationFrame::OnDisplayPanelPaint,0,this);
+    DisplayPanel->Connect(wxEVT_ERASE_BACKGROUND,(wxObjectEventFunction)&Zombi_SimulationFrame::OnDisplayPanelEraseBackground,0,this);
     Connect(ID_MENUITEM1,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnAbout);
     //*)
@@ -276,11 +279,8 @@ void Zombi_SimulationFrame::render()
         for(int i = 0; i < totalContinents ; i++)
             renderContinentCells(dc,continent[i], continentSpec[i].x, continentSpec[i].y);
 
-<<<<<<< HEAD
         delete dc;
 
-=======
->>>>>>> 1fb2280836e6f69ce294e21293c8b1d9ef9cd883
         wxMilliSleep(speed * 10);
         for(int j = 0; j < totalContinents ; j++)
         {
@@ -294,11 +294,7 @@ void Zombi_SimulationFrame::render()
                 count++;
             }
         }
-<<<<<<< HEAD
-        wxMilliSleep(speed * 10);
-=======
          wxMilliSleep(speed * 10);
->>>>>>> 1fb2280836e6f69ce294e21293c8b1d9ef9cd883
 
         SetStatusText(wxString::Format(wxT("Loop:%i"), loopCount));
         loopCount++;
@@ -431,7 +427,7 @@ void Zombi_SimulationFrame::OnContinentSpinCtrlChange(wxSpinEvent& event)
 
 void Zombi_SimulationFrame::OnSpeedCtrlChange(wxSpinEvent& event)
 {
-    speed = 11 - SpeedCtrl->GetValue() ;
+  SetCellPercentageVariables();
 }
 
 
