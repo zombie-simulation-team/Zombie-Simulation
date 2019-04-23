@@ -256,6 +256,7 @@ void Zombi_SimulationFrame::render()
     int humanCount = 0;
     int loopCount = 0;
     int count = 1;
+
     while(count < totalContinents)
     {
         humanCount = 0;
@@ -270,7 +271,6 @@ void Zombi_SimulationFrame::render()
         dc->DrawRectangle(AustraliaX,AustraliaY, AustraliaSize*squareSize, AustraliaSize*squareSize);
         dc->DrawRectangle(AsiaX,AsiaY, AsiaSize*squareSize, AsiaSize*squareSize);
         dc->DrawRectangle(AfricaX,AfricaY, AfricaSize*squareSize, AfricaSize*squareSize);
-
 
         for(int i = 0; i < totalContinents ; i++)
             renderContinentCells(dc,continent[i], continentSpec[i].x, continentSpec[i].y);
