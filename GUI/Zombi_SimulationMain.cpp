@@ -449,7 +449,7 @@ void Zombi_SimulationFrame::OnLoadButtonClick(wxCommandEvent& event)
     TrapSpinCtrl->SetValue(traps);
     ResourceSpinCtrl->SetValue(resources);
     ContinentSpinCtrl->SetValue(totalContinents);
-    SpeedCtrl->SetValue(speed);
+    SpeedCtrl->SetValue(11 - speed);
 
     configFile.Close();
 }
@@ -476,7 +476,7 @@ void Zombi_SimulationFrame::OnSaveButtonClick(wxCommandEvent& event)
     traps = TrapSpinCtrl->GetValue();
     resources = ResourceSpinCtrl->GetValue();
     totalContinents = ContinentSpinCtrl->GetValue();
-    speed = SpeedCtrl->GetValue();
+    speed = 11 - SpeedCtrl->GetValue();
 
     configFile.Write(&humans, sizeof(int));
     configFile.Write(&zombies, sizeof(int));
