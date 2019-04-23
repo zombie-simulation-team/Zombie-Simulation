@@ -1,10 +1,8 @@
 /***************************************************************
- * Name:      Zombi_SimulationMain.h
- * Purpose:   Defines Application Frame
- * Author:    Alex ()
- * Created:   2019-04-19
- * Copyright: Alex ()
- * License:
+ * Name:      Zombie_Simulation App
+ * Author:    Alex, Javier, Gavin
+ * Created:   2019-04-23
+ * Copyright: Florida International University
  **************************************************************/
 
 #ifndef ZOMBI_SIMULATIONMAIN_H
@@ -15,11 +13,11 @@
 #include <wx/spinctrl.h>
 #include <wx/sizer.h>
 #include <wx/button.h>
-#include <wx/menu.h>
 #include <wx/panel.h>
 #include <wx/statusbr.h>
 #include <wx/frame.h>
 #include <wx/stattext.h>
+#include <wx/textctrl.h>
 #include <wx/statbmp.h>
 //*)
 #include "Continent.h"
@@ -62,6 +60,8 @@ class Zombi_SimulationFrame: public wxFrame
         int resources;
         int totalContinents;
         int speed;
+        int zombieWins;
+        int humanWins;
 
         bool initializeOK;
 
@@ -94,6 +94,8 @@ class Zombi_SimulationFrame: public wxFrame
         void OnContinentSpinCtrlChange(wxSpinEvent& event);
         void OnSpeedCtrlChange(wxSpinEvent& event);
         void OnDisplayPanelEraseBackground(wxEraseEvent& event);
+        void OnLoadButtonClick(wxCommandEvent& event);
+        void OnSaveButtonClick(wxCommandEvent& event);
         //*)
 
         //(*Identifiers(Zombi_SimulationFrame)
@@ -112,12 +114,14 @@ class Zombi_SimulationFrame: public wxFrame
         static const long ID_STATICTEXT6;
         static const long ID_GAUGE;
         static const long ID_STATICTEXT7;
+        static const long ID_BUTTON1;
+        static const long ID_BUTTON2;
+        static const long ID_STATICTEXT8;
+        static const long ID_TEXTCTRL1;
         static const long ID_CONFIG_PANEL;
         static const long ID_STATICBITMAP1;
         static const long ID_DISPALY_PANEL;
         static const long ID_BACKGROUND_PANEL;
-        static const long ID_MENUITEM1;
-        static const long idMenuAbout;
         static const long ID_STATUSBAR1;
         //*)
 
@@ -126,14 +130,18 @@ class Zombi_SimulationFrame: public wxFrame
         wxPanel* DisplayPanel;
         wxSpinCtrl* HumanSpinCtrl;
         wxStatusBar* StatusBar1;
+        wxButton* SaveButton;
         wxSpinCtrl* SpeedCtrl;
         wxPanel* ConfigPanel;
         wxStaticText* StaticText1;
         wxButton* StartButton;
         wxStaticText* StaticText3;
         wxSpinCtrl* TrapSpinCtrl;
+        wxStaticText* StaticText8;
         wxSpinCtrl* ZombieSpinCtrl;
+        wxTextCtrl* ScoreTextCtrl;
         wxStaticText* StaticText7;
+        wxButton* LoadButton;
         wxSpinCtrl* ContinentSpinCtrl;
         wxStaticText* StaticText4;
         wxStaticText* StaticText5;
