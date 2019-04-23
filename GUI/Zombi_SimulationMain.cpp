@@ -133,24 +133,25 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
     BackgroundPanel = new wxPanel(this, ID_BACKGROUND_PANEL, wxDefaultPosition, wxSize(700,-1), wxTAB_TRAVERSAL, _T("ID_BACKGROUND_PANEL"));
     BackgroundPanel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNSHADOW));
     ConfigPanel = new wxPanel(BackgroundPanel, ID_CONFIG_PANEL, wxPoint(0,300), wxSize(700,104), wxSIMPLE_BORDER|wxTAB_TRAVERSAL, _T("ID_CONFIG_PANEL"));
-    StartButton = new wxButton(ConfigPanel, ID_STAR_BUTTON, _("Start"), wxPoint(500,32), wxSize(150,50), 0, wxDefaultValidator, _T("ID_STAR_BUTTON"));
+    ConfigPanel->SetBackgroundColour(wxColour(225,216,216));
+    StartButton = new wxButton(ConfigPanel, ID_STAR_BUTTON, _("Start"), wxPoint(500,30), wxSize(150,50), 0, wxDefaultValidator, _T("ID_STAR_BUTTON"));
     StartButton->SetBackgroundColour(wxColour(161,209,75));
     ZombieSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_ZOMBIE_SPINCTRL, _T("10"), wxPoint(152,20), wxSize(56,27), 0, 2, 100, 10, _T("ID_ZOMBIE_SPINCTRL"));
     ZombieSpinCtrl->SetValue(_T("10"));
     StaticText1 = new wxStaticText(ConfigPanel, ID_STATICTEXT1, _("Zombies %"), wxPoint(152,2), wxDefaultSize, 0, _T("ID_STATICTEXT1"));
     TrapSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_TRAP_SPINCTRL, _T("5"), wxPoint(264,20), wxSize(56,27), 0, 0, 10, 5, _T("ID_TRAP_SPINCTRL"));
     TrapSpinCtrl->SetValue(_T("5"));
-    ResourceSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_RESOURCE_SPINCTRL, _T("10"), wxPoint(264,70), wxSize(56,27), 0, 0, 20, 10, _T("ID_RESOURCE_SPINCTRL"));
+    ResourceSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_RESOURCE_SPINCTRL, _T("10"), wxPoint(264,68), wxSize(56,27), 0, 0, 20, 10, _T("ID_RESOURCE_SPINCTRL"));
     ResourceSpinCtrl->SetValue(_T("10"));
     StaticText2 = new wxStaticText(ConfigPanel, ID_STATICTEXT2, _("Humans %"), wxPoint(152,50), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
     StaticText3 = new wxStaticText(ConfigPanel, ID_STATICTEXT3, _("Traps %"), wxPoint(264,2), wxSize(64,17), 0, _T("ID_STATICTEXT3"));
     StaticText4 = new wxStaticText(ConfigPanel, ID_STATICTEXT4, _("Resources %"), wxPoint(264,50), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
-    HumanSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_HUMAN_SPINCTRL, _T("30"), wxPoint(152,70), wxSize(56,27), 0, 5, 100, 30, _T("ID_HUMAN_SPINCTRL"));
+    HumanSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_HUMAN_SPINCTRL, _T("30"), wxPoint(152,68), wxSize(56,27), 0, 5, 100, 30, _T("ID_HUMAN_SPINCTRL"));
     HumanSpinCtrl->SetValue(_T("30"));
     ContinentSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_CONTINENT_SPINCTRL, _T("4"), wxPoint(380,20), wxSize(56,27), 0, 1, 6, 4, _T("ID_CONTINENT_SPINCTRL"));
     ContinentSpinCtrl->SetValue(_T("4"));
     StaticText5 = new wxStaticText(ConfigPanel, ID_STATICTEXT5, _("Continents"), wxPoint(380,2), wxDefaultSize, 0, _T("ID_STATICTEXT5"));
-    SpeedCtrl = new wxSpinCtrl(ConfigPanel, ID_SPINCTRL1, _T("1"), wxPoint(380,70), wxSize(56,27), 0, 1, 10, 1, _T("ID_SPINCTRL1"));
+    SpeedCtrl = new wxSpinCtrl(ConfigPanel, ID_SPINCTRL1, _T("1"), wxPoint(380,68), wxSize(56,27), 0, 1, 10, 1, _T("ID_SPINCTRL1"));
     SpeedCtrl->SetValue(_T("1"));
     StaticText6 = new wxStaticText(ConfigPanel, ID_STATICTEXT6, _("Speed"), wxPoint(380,50), wxDefaultSize, 0, _T("ID_STATICTEXT6"));
     LoadButton = new wxButton(ConfigPanel, ID_BUTTON1, _("Load"), wxPoint(30,14), wxSize(-1,27), 0, wxDefaultValidator, _T("ID_BUTTON1"));
@@ -284,14 +285,14 @@ void Zombi_SimulationFrame::render()
         }
          wxMilliSleep(speed * 10);
 
-        SetStatusText(wxString::Format(wxT("Loop:%i"), loopCount));
+        SetStatusText(wxString::Format(wxT("Day:%i"), loopCount));
         loopCount++;
 
     }
 
 //    for(int i = 0; i < totalContinents ; i++)
 //        renderContinentCells(dc,continent[i], continentSpec[i].x, continentSpec[i].y);
-    SetStatusText(wxT("Done ticking"));
+    SetStatusText(wxString::Format(wxT("Done ticking. Finished on Day: %i"), loopCount));
     for(int j = 0 ; j< totalContinents ; j++)
         delete continent[j];
     delete []continent;
@@ -425,9 +426,66 @@ void Zombi_SimulationFrame::OnDisplayPanelEraseBackground(wxEraseEvent& event)
 
 void Zombi_SimulationFrame::OnLoadButtonClick(wxCommandEvent& event)
 {
+    wxFileDialog loadFileDialog(this, wxT("Load a simulation saved configuration"), "", "",  "BIN files (*.bin)|*.bin", wxFD_OPEN|wxFD_FILE_MUST_EXIST);
 
+    if(loadFileDialog.ShowModal() == wxID_CANCEL){
+            return;
+    }
+    wxString fileName(loadFileDialog.GetPath());
+
+    wxFile configFile;
+    configFile.Open(fileName, wxFile::read);
+
+    configFile.Seek(0, wxFromStart);
+    configFile.Read(&humans, sizeof(int));
+    configFile.Read(&zombies, sizeof(int));
+    configFile.Read(&traps, sizeof(int));
+    configFile.Read(&resources, sizeof(int));
+    configFile.Read(&totalContinents, sizeof(int));
+    configFile.Read(&speed, sizeof(int));
+
+    HumanSpinCtrl->SetValue(humans);
+    ZombieSpinCtrl->SetValue(zombies);
+    TrapSpinCtrl->SetValue(traps);
+    ResourceSpinCtrl->SetValue(resources);
+    ContinentSpinCtrl->SetValue(totalContinents);
+    SpeedCtrl->SetValue(speed);
+
+    configFile.Close();
 }
 
 void Zombi_SimulationFrame::OnSaveButtonClick(wxCommandEvent& event)
 {
+    wxString defaultDir = wxGetCwd();
+    wxString defaultFilename = wxEmptyString;
+    wxFileDialog saveFileDialog(this, _("Save this simulation"), defaultDir, defaultFilename,  "BIN files (*.bin)|*.bin", wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
+
+    if (saveFileDialog.ShowModal() == wxID_CANCEL)
+    {
+        return;
+    }
+    wxString fileName = saveFileDialog.GetPath();
+
+    wxFile configFile;
+    configFile.Open(fileName, wxFile::write);
+
+    configFile.Seek(0, wxFromStart);
+
+    humans = HumanSpinCtrl->GetValue();
+    zombies = ZombieSpinCtrl->GetValue();
+    traps = TrapSpinCtrl->GetValue();
+    resources = ResourceSpinCtrl->GetValue();
+    totalContinents = ContinentSpinCtrl->GetValue();
+    speed = SpeedCtrl->GetValue();
+
+    configFile.Write(&humans, sizeof(int));
+    configFile.Write(&zombies, sizeof(int));
+    configFile.Write(&traps, sizeof(int));
+    configFile.Write(&resources, sizeof(int));
+    configFile.Write(&totalContinents, sizeof(int));
+    configFile.Write(&speed, sizeof(int));
+
+
+    configFile.Close();
+
 }

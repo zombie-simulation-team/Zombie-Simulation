@@ -18,10 +18,13 @@
 #include <wx/statusbr.h>
 #include <wx/frame.h>
 #include <wx/stattext.h>
+
 //*)
 #include "Continent.h"
 #include <wx/dcbuffer.h>
 #include <wx/gdicmn.h>
+#include <wx/msgdlg.h>
+#include <wx/file.h>
 
 struct ContinentSpec
 {
