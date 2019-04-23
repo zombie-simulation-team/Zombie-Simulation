@@ -14,13 +14,15 @@
 						<size>700,104</size>
 						<object class="wxButton" name="ID_STAR_BUTTON" variable="StartButton" member="yes">
 							<label>Start</label>
-							<pos>24,32</pos>
+							<pos>500,32</pos>
+							<size>150,50</size>
+							<bg>#A1D14B</bg>
 							<handler function="OnStartButtonClick" entry="EVT_BUTTON" />
 						</object>
 						<object class="wxSpinCtrl" name="ID_ZOMBIE_SPINCTRL" variable="ZombieSpinCtrl" member="yes">
 							<value>10</value>
 							<min>2</min>
-							<pos>168,24</pos>
+							<pos>152,24</pos>
 							<size>56,27</size>
 							<handler function="OnZombieSpinCtrlChange" entry="EVT_SPINCTRL" />
 						</object>
@@ -58,7 +60,7 @@
 						<object class="wxSpinCtrl" name="ID_HUMAN_SPINCTRL" variable="HumanSpinCtrl" member="yes">
 							<value>30</value>
 							<min>5</min>
-							<pos>168,72</pos>
+							<pos>152,72</pos>
 							<size>56,27</size>
 							<handler function="OnHumanSpinCtrlChange" entry="EVT_SPINCTRL" />
 						</object>
@@ -66,24 +68,37 @@
 							<value>4</value>
 							<min>1</min>
 							<max>6</max>
-							<pos>448,48</pos>
-							<size>63,27</size>
+							<pos>380,24</pos>
+							<size>56,27</size>
 							<handler function="OnContinentSpinCtrlChange" entry="EVT_SPINCTRL" />
 						</object>
 						<object class="wxStaticText" name="ID_STATICTEXT5" variable="StaticText5" member="yes">
 							<label>Continents</label>
-							<pos>440,32</pos>
+							<pos>380,8</pos>
 						</object>
 						<object class="wxSpinCtrl" name="ID_SPINCTRL1" variable="SpeedCtrl" member="yes">
 							<value>1</value>
 							<min>1</min>
 							<max>10</max>
-							<pos>568,48</pos>
+							<pos>380,72</pos>
+							<size>56,27</size>
 							<handler function="OnSpeedCtrlChange" entry="EVT_SPINCTRL" />
 						</object>
 						<object class="wxStaticText" name="ID_STATICTEXT6" variable="StaticText6" member="yes">
 							<label>Speed</label>
-							<pos>568,32</pos>
+							<pos>380,56</pos>
+						</object>
+						<object class="wxButton" name="ID_BUTTON1" variable="LoadButton" member="yes">
+							<label>Load</label>
+							<pos>30,24</pos>
+							<size>-1,27</size>
+							<handler function="OnLoadButtonClick" entry="EVT_BUTTON" />
+						</object>
+						<object class="wxButton" name="ID_BUTTON2" variable="SaveButton" member="yes">
+							<label>Save</label>
+							<pos>30,72</pos>
+							<size>-1,27</size>
+							<handler function="OnSaveButtonClick" entry="EVT_BUTTON" />
 						</object>
 					</object>
 					<object class="wxPanel" name="ID_DISPALY_PANEL" variable="DisplayPanel" member="yes">

@@ -14,7 +14,6 @@
 #include <wx/spinctrl.h>
 #include <wx/sizer.h>
 #include <wx/button.h>
-#include <wx/menu.h>
 #include <wx/panel.h>
 #include <wx/statusbr.h>
 #include <wx/frame.h>
@@ -93,6 +92,8 @@ class Zombi_SimulationFrame: public wxFrame
         void OnContinentSpinCtrlChange(wxSpinEvent& event);
         void OnSpeedCtrlChange(wxSpinEvent& event);
         void OnDisplayPanelEraseBackground(wxEraseEvent& event);
+        void OnLoadButtonClick(wxCommandEvent& event);
+        void OnSaveButtonClick(wxCommandEvent& event);
         //*)
 
         //(*Identifiers(Zombi_SimulationFrame)
@@ -109,11 +110,11 @@ class Zombi_SimulationFrame: public wxFrame
         static const long ID_STATICTEXT5;
         static const long ID_SPINCTRL1;
         static const long ID_STATICTEXT6;
+        static const long ID_BUTTON1;
+        static const long ID_BUTTON2;
         static const long ID_CONFIG_PANEL;
         static const long ID_DISPALY_PANEL;
         static const long ID_BACKGROUND_PANEL;
-        static const long ID_MENUITEM1;
-        static const long idMenuAbout;
         static const long ID_STATUSBAR1;
         //*)
 
@@ -121,6 +122,7 @@ class Zombi_SimulationFrame: public wxFrame
         wxPanel* DisplayPanel;
         wxSpinCtrl* HumanSpinCtrl;
         wxStatusBar* StatusBar1;
+        wxButton* SaveButton;
         wxSpinCtrl* SpeedCtrl;
         wxPanel* ConfigPanel;
         wxStaticText* StaticText1;
@@ -128,6 +130,7 @@ class Zombi_SimulationFrame: public wxFrame
         wxStaticText* StaticText3;
         wxSpinCtrl* TrapSpinCtrl;
         wxSpinCtrl* ZombieSpinCtrl;
+        wxButton* LoadButton;
         wxSpinCtrl* ContinentSpinCtrl;
         wxStaticText* StaticText4;
         wxStaticText* StaticText5;

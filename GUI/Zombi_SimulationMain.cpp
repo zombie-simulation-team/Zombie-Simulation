@@ -72,11 +72,11 @@ const long Zombi_SimulationFrame::ID_CONTINENT_SPINCTRL = wxNewId();
 const long Zombi_SimulationFrame::ID_STATICTEXT5 = wxNewId();
 const long Zombi_SimulationFrame::ID_SPINCTRL1 = wxNewId();
 const long Zombi_SimulationFrame::ID_STATICTEXT6 = wxNewId();
+const long Zombi_SimulationFrame::ID_BUTTON1 = wxNewId();
+const long Zombi_SimulationFrame::ID_BUTTON2 = wxNewId();
 const long Zombi_SimulationFrame::ID_CONFIG_PANEL = wxNewId();
 const long Zombi_SimulationFrame::ID_DISPALY_PANEL = wxNewId();
 const long Zombi_SimulationFrame::ID_BACKGROUND_PANEL = wxNewId();
-const long Zombi_SimulationFrame::ID_MENUITEM1 = wxNewId();
-const long Zombi_SimulationFrame::idMenuAbout = wxNewId();
 const long Zombi_SimulationFrame::ID_STATUSBAR1 = wxNewId();
 //*)
 
@@ -121,12 +121,7 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
 
 //    SetBackgroundStyle(wxBG_STYLE_PAINT); /// NEEDED FOR DOUBLE BUFFERING
     //(*Initialize(Zombi_SimulationFrame)
-    wxMenuItem* MenuItem2;
-    wxMenuItem* MenuItem1;
-    wxMenu* Menu1;
     wxBoxSizer* BoxSizer1;
-    wxMenuBar* MenuBar1;
-    wxMenu* Menu2;
 
     Create(parent, wxID_ANY, _("Zombie Simulation"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
     {
@@ -135,41 +130,34 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
     	SetIcon(FrameIcon);
     }
     BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
-    BackgroundPanel = new wxPanel(this, ID_BACKGROUND_PANEL, wxDefaultPosition, wxSize(700,421), wxTAB_TRAVERSAL, _T("ID_BACKGROUND_PANEL"));
+    BackgroundPanel = new wxPanel(this, ID_BACKGROUND_PANEL, wxDefaultPosition, wxSize(700,-1), wxTAB_TRAVERSAL, _T("ID_BACKGROUND_PANEL"));
     BackgroundPanel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNSHADOW));
-    ConfigPanel = new wxPanel(BackgroundPanel, ID_CONFIG_PANEL, wxPoint(0,320), wxSize(700,104), wxTAB_TRAVERSAL, _T("ID_CONFIG_PANEL"));
-    StartButton = new wxButton(ConfigPanel, ID_STAR_BUTTON, _("Start"), wxPoint(24,32), wxDefaultSize, 0, wxDefaultValidator, _T("ID_STAR_BUTTON"));
-    ZombieSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_ZOMBIE_SPINCTRL, _T("10"), wxPoint(168,24), wxSize(56,27), 0, 2, 100, 10, _T("ID_ZOMBIE_SPINCTRL"));
+    ConfigPanel = new wxPanel(BackgroundPanel, ID_CONFIG_PANEL, wxPoint(0,300), wxSize(700,104), wxSIMPLE_BORDER|wxTAB_TRAVERSAL, _T("ID_CONFIG_PANEL"));
+    StartButton = new wxButton(ConfigPanel, ID_STAR_BUTTON, _("Start"), wxPoint(500,32), wxSize(150,50), 0, wxDefaultValidator, _T("ID_STAR_BUTTON"));
+    StartButton->SetBackgroundColour(wxColour(161,209,75));
+    ZombieSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_ZOMBIE_SPINCTRL, _T("10"), wxPoint(152,20), wxSize(56,27), 0, 2, 100, 10, _T("ID_ZOMBIE_SPINCTRL"));
     ZombieSpinCtrl->SetValue(_T("10"));
-    StaticText1 = new wxStaticText(ConfigPanel, ID_STATICTEXT1, _("Zombies %"), wxPoint(152,8), wxDefaultSize, 0, _T("ID_STATICTEXT1"));
-    TrapSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_TRAP_SPINCTRL, _T("5"), wxPoint(264,24), wxSize(56,27), 0, 0, 10, 5, _T("ID_TRAP_SPINCTRL"));
+    StaticText1 = new wxStaticText(ConfigPanel, ID_STATICTEXT1, _("Zombies %"), wxPoint(152,2), wxDefaultSize, 0, _T("ID_STATICTEXT1"));
+    TrapSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_TRAP_SPINCTRL, _T("5"), wxPoint(264,20), wxSize(56,27), 0, 0, 10, 5, _T("ID_TRAP_SPINCTRL"));
     TrapSpinCtrl->SetValue(_T("5"));
-    ResourceSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_RESOURCE_SPINCTRL, _T("10"), wxPoint(264,72), wxSize(56,27), 0, 0, 20, 10, _T("ID_RESOURCE_SPINCTRL"));
+    ResourceSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_RESOURCE_SPINCTRL, _T("10"), wxPoint(264,70), wxSize(56,27), 0, 0, 20, 10, _T("ID_RESOURCE_SPINCTRL"));
     ResourceSpinCtrl->SetValue(_T("10"));
-    StaticText2 = new wxStaticText(ConfigPanel, ID_STATICTEXT2, _("Humans %"), wxPoint(152,56), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
-    StaticText3 = new wxStaticText(ConfigPanel, ID_STATICTEXT3, _("Traps %"), wxPoint(264,8), wxSize(64,17), 0, _T("ID_STATICTEXT3"));
-    StaticText4 = new wxStaticText(ConfigPanel, ID_STATICTEXT4, _("Resources %"), wxPoint(264,56), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
-    HumanSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_HUMAN_SPINCTRL, _T("30"), wxPoint(168,72), wxSize(56,27), 0, 5, 100, 30, _T("ID_HUMAN_SPINCTRL"));
+    StaticText2 = new wxStaticText(ConfigPanel, ID_STATICTEXT2, _("Humans %"), wxPoint(152,50), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
+    StaticText3 = new wxStaticText(ConfigPanel, ID_STATICTEXT3, _("Traps %"), wxPoint(264,2), wxSize(64,17), 0, _T("ID_STATICTEXT3"));
+    StaticText4 = new wxStaticText(ConfigPanel, ID_STATICTEXT4, _("Resources %"), wxPoint(264,50), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
+    HumanSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_HUMAN_SPINCTRL, _T("30"), wxPoint(152,70), wxSize(56,27), 0, 5, 100, 30, _T("ID_HUMAN_SPINCTRL"));
     HumanSpinCtrl->SetValue(_T("30"));
-    ContinentSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_CONTINENT_SPINCTRL, _T("4"), wxPoint(448,48), wxSize(63,27), 0, 1, 6, 4, _T("ID_CONTINENT_SPINCTRL"));
+    ContinentSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_CONTINENT_SPINCTRL, _T("4"), wxPoint(380,20), wxSize(56,27), 0, 1, 6, 4, _T("ID_CONTINENT_SPINCTRL"));
     ContinentSpinCtrl->SetValue(_T("4"));
-    StaticText5 = new wxStaticText(ConfigPanel, ID_STATICTEXT5, _("Continents"), wxPoint(440,32), wxDefaultSize, 0, _T("ID_STATICTEXT5"));
-    SpeedCtrl = new wxSpinCtrl(ConfigPanel, ID_SPINCTRL1, _T("1"), wxPoint(568,48), wxDefaultSize, 0, 1, 10, 1, _T("ID_SPINCTRL1"));
+    StaticText5 = new wxStaticText(ConfigPanel, ID_STATICTEXT5, _("Continents"), wxPoint(380,2), wxDefaultSize, 0, _T("ID_STATICTEXT5"));
+    SpeedCtrl = new wxSpinCtrl(ConfigPanel, ID_SPINCTRL1, _T("1"), wxPoint(380,70), wxSize(56,27), 0, 1, 10, 1, _T("ID_SPINCTRL1"));
     SpeedCtrl->SetValue(_T("1"));
-    StaticText6 = new wxStaticText(ConfigPanel, ID_STATICTEXT6, _("Speed"), wxPoint(568,32), wxDefaultSize, 0, _T("ID_STATICTEXT6"));
+    StaticText6 = new wxStaticText(ConfigPanel, ID_STATICTEXT6, _("Speed"), wxPoint(380,50), wxDefaultSize, 0, _T("ID_STATICTEXT6"));
+    LoadButton = new wxButton(ConfigPanel, ID_BUTTON1, _("Load"), wxPoint(30,14), wxSize(-1,27), 0, wxDefaultValidator, _T("ID_BUTTON1"));
+    SaveButton = new wxButton(ConfigPanel, ID_BUTTON2, _("Save"), wxPoint(30,62), wxSize(-1,27), 0, wxDefaultValidator, _T("ID_BUTTON2"));
     DisplayPanel = new wxPanel(BackgroundPanel, ID_DISPALY_PANEL, wxPoint(0,0), wxSize(700,300), wxTAB_TRAVERSAL, _T("ID_DISPALY_PANEL"));
     BoxSizer1->Add(BackgroundPanel, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     SetSizer(BoxSizer1);
-    MenuBar1 = new wxMenuBar();
-    Menu1 = new wxMenu();
-    MenuItem1 = new wxMenuItem(Menu1, ID_MENUITEM1, _("Quit\tAlt-F4"), _("Quit the application"), wxITEM_NORMAL);
-    Menu1->Append(MenuItem1);
-    MenuBar1->Append(Menu1, _("&File"));
-    Menu2 = new wxMenu();
-    MenuItem2 = new wxMenuItem(Menu2, idMenuAbout, _("About\tF1"), _("Show info about this application"), wxITEM_NORMAL);
-    Menu2->Append(MenuItem2);
-    MenuBar1->Append(Menu2, _("Help"));
-    SetMenuBar(MenuBar1);
     StatusBar1 = new wxStatusBar(this, ID_STATUSBAR1, 0, _T("ID_STATUSBAR1"));
     int __wxStatusBarWidths_1[1] = { -1 };
     int __wxStatusBarStyles_1[1] = { wxSB_NORMAL };
@@ -186,10 +174,10 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_HUMAN_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnHumanSpinCtrlChange);
     Connect(ID_CONTINENT_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnContinentSpinCtrlChange);
     Connect(ID_SPINCTRL1,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnSpeedCtrlChange);
+    Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnLoadButtonClick);
+    Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnSaveButtonClick);
     DisplayPanel->Connect(wxEVT_PAINT,(wxObjectEventFunction)&Zombi_SimulationFrame::OnDisplayPanelPaint,0,this);
     DisplayPanel->Connect(wxEVT_ERASE_BACKGROUND,(wxObjectEventFunction)&Zombi_SimulationFrame::OnDisplayPanelEraseBackground,0,this);
-    Connect(ID_MENUITEM1,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnQuit);
-    Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnAbout);
     //*)
 
     SetCellPercentageVariables();
@@ -432,5 +420,14 @@ void Zombi_SimulationFrame::OnSpeedCtrlChange(wxSpinEvent& event)
 
 
 void Zombi_SimulationFrame::OnDisplayPanelEraseBackground(wxEraseEvent& event)
+{
+}
+
+void Zombi_SimulationFrame::OnLoadButtonClick(wxCommandEvent& event)
+{
+
+}
+
+void Zombi_SimulationFrame::OnSaveButtonClick(wxCommandEvent& event)
 {
 }
