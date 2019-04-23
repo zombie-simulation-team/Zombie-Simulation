@@ -1,10 +1,8 @@
 /***************************************************************
- * Name:      Zombi_SimulationApp.h
- * Purpose:   Defines Application Class
- * Author:    Alex ()
- * Created:   2019-04-19
- * Copyright: Alex ()
- * License:
+ * Name:      Zombie_Simulation App
+ * Author:    Alex, Javier, Gavin
+ * Created:   2019-04-23
+ * Copyright: Florida International University
  **************************************************************/
 
 #ifndef ZOMBI_SIMULATIONAPP_H

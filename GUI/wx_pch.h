@@ -1,10 +1,8 @@
 /***************************************************************
- * Name:      wx_pch.h
- * Purpose:   Header to create Pre-Compiled Header (PCH)
- * Author:    Alex ()
- * Created:   2019-04-19
- * Copyright: Alex ()
- * License:   
+ * Name:      Zombie_Simulation App
+ * Author:    Alex, Javier, Gavin
+ * Created:   2019-04-23
+ * Copyright: Florida International University
  **************************************************************/
 
 #ifndef WX_PCH_H_INCLUDED

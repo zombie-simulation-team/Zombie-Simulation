@@ -1,12 +1,9 @@
 /***************************************************************
- * Name:      Zombi_SimulationApp.cpp
- * Purpose:   Code for Application Class
- * Author:    Alex ()
- * Created:   2019-04-19
- * Copyright: Alex ()
- * License:
+ * Name:      Zombie_Simulation App
+ * Author:    Alex, Javier, Gavin
+ * Created:   2019-04-23
+ * Copyright: Florida International University
  **************************************************************/
-
 #include "wx_pch.h"
 #include "Zombi_SimulationApp.h"
 
