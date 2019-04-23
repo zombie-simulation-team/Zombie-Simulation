@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<ZombieSimulation>
+
+    <simulationSettings>
+
+        <zombiePercentage>10</zombiePercentage>
+        <humanPercentage>35</humanPercentage>
+        <trapPercentage>4</trapPercentage>
+        <resourcePercentage>5</resourcePercentage>
+        <numOfContinents>3</numOfContinents>
+        <speed>2</speed>
+
+    </simulationSettings>
+
+    <savedData>
+
+        <zombieWins>1</zombieWins>
+        <humanWins>1</humanWins>
+        
+    </savedData>
+    
+</ZombieSimulation>

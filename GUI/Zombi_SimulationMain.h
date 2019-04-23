@@ -15,7 +15,6 @@
 #include <wx/spinctrl.h>
 #include <wx/sizer.h>
 #include <wx/button.h>
-#include <wx/menu.h>
 #include <wx/panel.h>
 #include <wx/statusbr.h>
 #include <wx/frame.h>
@@ -25,6 +24,8 @@
 #include "Continent.h"
 #include <wx/dcbuffer.h>
 #include <wx/gdicmn.h>
+#include <wx/msgdlg.h>
+#include <wx/file.h>
 
 struct ContinentSpec
 {
@@ -94,6 +95,8 @@ class Zombi_SimulationFrame: public wxFrame
         void OnContinentSpinCtrlChange(wxSpinEvent& event);
         void OnSpeedCtrlChange(wxSpinEvent& event);
         void OnDisplayPanelEraseBackground(wxEraseEvent& event);
+        void OnLoadButtonClick(wxCommandEvent& event);
+        void OnSaveButtonClick(wxCommandEvent& event);
         //*)
 
         //(*Identifiers(Zombi_SimulationFrame)
@@ -112,12 +115,12 @@ class Zombi_SimulationFrame: public wxFrame
         static const long ID_STATICTEXT6;
         static const long ID_GAUGE;
         static const long ID_STATICTEXT7;
+        static const long ID_BUTTON1;
+        static const long ID_BUTTON2;
         static const long ID_CONFIG_PANEL;
         static const long ID_STATICBITMAP1;
         static const long ID_DISPALY_PANEL;
         static const long ID_BACKGROUND_PANEL;
-        static const long ID_MENUITEM1;
-        static const long idMenuAbout;
         static const long ID_STATUSBAR1;
         //*)
 
@@ -126,6 +129,7 @@ class Zombi_SimulationFrame: public wxFrame
         wxPanel* DisplayPanel;
         wxSpinCtrl* HumanSpinCtrl;
         wxStatusBar* StatusBar1;
+        wxButton* SaveButton;
         wxSpinCtrl* SpeedCtrl;
         wxPanel* ConfigPanel;
         wxStaticText* StaticText1;
@@ -134,6 +138,7 @@ class Zombi_SimulationFrame: public wxFrame
         wxSpinCtrl* TrapSpinCtrl;
         wxSpinCtrl* ZombieSpinCtrl;
         wxStaticText* StaticText7;
+        wxButton* LoadButton;
         wxSpinCtrl* ContinentSpinCtrl;
         wxStaticText* StaticText4;
         wxStaticText* StaticText5;
