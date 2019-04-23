@@ -1653,7 +1653,8 @@
 1555855856 /home/alex/Documents/Embedded_GUI/Project_git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationApp.h
 	<wx/app.h>
 
-1555963626 /home/alex/Documents/Embedded_GUI/Project_git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationMain.h
+1555982895 /home/alex/Documents/Embedded_GUI/Project_git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationMain.h
+	<wx/gauge.h>
 	<wx/spinctrl.h>
 	<wx/sizer.h>
 	<wx/button.h>
@@ -1662,11 +1663,12 @@
 	<wx/statusbr.h>
 	<wx/frame.h>
 	<wx/stattext.h>
+	<wx/statbmp.h>
 	"Continent.h"
 	<wx/dcbuffer.h>
 	<wx/gdicmn.h>
 
-1555965911 source:/home/alex/Documents/Embedded_GUI/Project_git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationMain.cpp
+1555981081 source:/home/alex/Documents/Embedded_GUI/Project_git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Zombi_SimulationMain.cpp
 	"wx_pch.h"
 	"Zombi_SimulationMain.h"
 	<wx/msgdlg.h>
@@ -2160,7 +2162,7 @@
 1555855856 source:/home/alex/Documents/Embedded_GUI/Project_git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Cell.cpp
 	"Cell.h"
 
-1555950249 source:/home/alex/Documents/Embedded_GUI/Project_git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Continent.cpp
+1555971325 source:/home/alex/Documents/Embedded_GUI/Project_git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Continent.cpp
 	"Continent.h"
 
 1555855856 /home/alex/Documents/Embedded_GUI/Project_git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Continent.h
@@ -2193,7 +2195,7 @@
 	"Cell.h"
 	"Utils.h"
 
-1555855856 /home/alex/Documents/Embedded_GUI/Project_git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Resource.h
+1555971325 /home/alex/Documents/Embedded_GUI/Project_git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Resource.h
 	"Obstacle.h"
 
 1555950249 /home/alex/Documents/Embedded_GUI/Project_git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Human.h
@@ -2403,4 +2405,65 @@
 
 1555893490 source:/home/elnano/git/Zombie-Simulation/Source/GUI/Zombi-Simulation/Environment.cpp
 	"Environment.h"
+
+1485352693 /usr/include/wx-3.0/wx/richtext/richtextctrl.h
+	"wx/richtext/richtextbuffer.h"
+	"wx/scrolwin.h"
+	"wx/caret.h"
+	"wx/textctrl.h"
+	"wx/dnd.h"
+
+1485352693 /usr/include/wx-3.0/wx/richtext/richtextbuffer.h
+	"wx/defs.h"
+	"wx/list.h"
+	"wx/textctrl.h"
+	"wx/bitmap.h"
+	"wx/image.h"
+	"wx/cmdproc.h"
+	"wx/txtstrm.h"
+	"wx/variant.h"
+	"wx/position.h"
+	"wx/dataobj.h"
+
+1485352692 /usr/include/wx-3.0/wx/cmdproc.h
+	"wx/defs.h"
+	"wx/object.h"
+	"wx/list.h"
+
+1485352691 /usr/include/wx-3.0/wx/txtstrm.h
+	"wx/stream.h"
+	"wx/convauto.h"
+
+1485352692 /usr/include/wx-3.0/wx/position.h
+	"wx/gdicmn.h"
+
+1485352692 /usr/include/wx-3.0/wx/caret.h
+	"wx/defs.h"
+	"wx/gdicmn.h"
+	"wx/msw/caret.h"
+	"wx/generic/caret.h"
+
+1485352692 /usr/include/wx-3.0/wx/generic/caret.h
+	"wx/timer.h"
+	"wx/dc.h"
+	"wx/overlay.h"
+
+1485352692 /usr/include/wx-3.0/wx/overlay.h
+	"wx/defs.h"
+
+1485352692 /usr/include/wx-3.0/wx/dnd.h
+	"wx/defs.h"
+	"wx/dataobj.h"
+	"wx/cursor.h"
+	"wx/msw/ole/dropsrc.h"
+	"wx/msw/ole/droptgt.h"
+	"wx/motif/dnd.h"
+	"wx/x11/dnd.h"
+	"wx/gtk/dnd.h"
+	"wx/gtk1/dnd.h"
+	"wx/osx/dnd.h"
+	"wx/os2/dnd.h"
+
+1485352692 /usr/include/wx-3.0/wx/gtk/dnd.h
+	"wx/icon.h"
 

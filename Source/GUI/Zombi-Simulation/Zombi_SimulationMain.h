@@ -11,6 +11,7 @@
 #define ZOMBI_SIMULATIONMAIN_H
 
 //(*Headers(Zombi_SimulationFrame)
+#include <wx/gauge.h>
 #include <wx/spinctrl.h>
 #include <wx/sizer.h>
 #include <wx/button.h>
@@ -19,6 +20,7 @@
 #include <wx/statusbr.h>
 #include <wx/frame.h>
 #include <wx/stattext.h>
+#include <wx/statbmp.h>
 //*)
 #include "Continent.h"
 #include <wx/dcbuffer.h>
@@ -83,7 +85,6 @@ class Zombi_SimulationFrame: public wxFrame
         void OnStartButtonClick(wxCommandEvent& event);
         void render();
         void renderContinentCells(wxDC *dc, Continent *cont, int positionX, int positionY);
-        void OnDisplayPanelPaint(wxPaintEvent& event);
         void OnZombieSpinCtrlChange(wxSpinEvent& event);
         void OnHumanSpinCtrlChange(wxSpinEvent& event);
         void OnTrapSpinCtrlChange(wxSpinEvent& event);
@@ -92,7 +93,6 @@ class Zombi_SimulationFrame: public wxFrame
         void InitiliazeContinets();
         void OnContinentSpinCtrlChange(wxSpinEvent& event);
         void OnSpeedCtrlChange(wxSpinEvent& event);
-        void OnDisplayPanelEraseBackground(wxEraseEvent& event);
         //*)
 
         //(*Identifiers(Zombi_SimulationFrame)
@@ -109,7 +109,12 @@ class Zombi_SimulationFrame: public wxFrame
         static const long ID_STATICTEXT5;
         static const long ID_SPINCTRL1;
         static const long ID_STATICTEXT6;
+        static const long ID_GAUGE;
+        static const long ID_STATICTEXT7;
+        static const long ID_STATICTEXT8;
+        static const long ID_STATICTEXT9;
         static const long ID_CONFIG_PANEL;
+        static const long ID_STATICBITMAP1;
         static const long ID_DISPALY_PANEL;
         static const long ID_BACKGROUND_PANEL;
         static const long ID_MENUITEM1;
@@ -118,6 +123,7 @@ class Zombi_SimulationFrame: public wxFrame
         //*)
 
         //(*Declarations(Zombi_SimulationFrame)
+        wxStaticBitmap* WelcomeScreen;
         wxPanel* DisplayPanel;
         wxSpinCtrl* HumanSpinCtrl;
         wxStatusBar* StatusBar1;
@@ -127,13 +133,17 @@ class Zombi_SimulationFrame: public wxFrame
         wxButton* StartButton;
         wxStaticText* StaticText3;
         wxSpinCtrl* TrapSpinCtrl;
+        wxStaticText* StaticText8;
         wxSpinCtrl* ZombieSpinCtrl;
+        wxStaticText* StaticText7;
         wxSpinCtrl* ContinentSpinCtrl;
         wxStaticText* StaticText4;
         wxStaticText* StaticText5;
         wxStaticText* StaticText2;
         wxStaticText* StaticText6;
+        wxGauge* ProgressGauge;
         wxSpinCtrl* ResourceSpinCtrl;
+        wxStaticText* StaticText9;
         wxPanel* BackgroundPanel;
         //*)
 
