@@ -26,7 +26,7 @@ public:
 //	World();
 	World(int numOfContinents);
 	World(Continents_e startingContinent);
-	World(int numOfContinents, Continents_e startingContinent, I_Random *randomInterface);
+	World(int numOfContinents, I_Random *randomInterface);
 	int GetDays();
 	void SetDays();
 	void Draw();

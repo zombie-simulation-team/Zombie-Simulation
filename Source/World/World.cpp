@@ -89,15 +89,15 @@ int World::GetDays()
 }
 
 void World::SetDays(){
-    dayElapsed++;
+	dayElapsed++;
 }
 
 void World::Draw(){
-    //TODO: implement Draw
+	//TODO: implement Draw
 }
 
 void World::Tick(){
-    //TODO:implement Tick
+	//TODO:implement Tick
 }
 
 //Returns the 7 Continent in random order

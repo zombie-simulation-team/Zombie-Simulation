@@ -19,6 +19,9 @@ Actor::Actor(
 	health = healthValue;
 	defense = defenseValue;
 	this->randomGenerator = randomGenerator;
+	nextX = -1;
+	nextY = -1;
+	moved = false;
 }
 
 Actor::~Actor()
@@ -63,6 +66,13 @@ void Actor::ChangeHealth(int value)
 	}
 }
 
+/*
+	8   1   2
+	  \ | /
+	7 - C - 3
+	  / | \
+	6   5   4
+  */
 void Actor::Move()
 {
 	int randNum = randomGenerator->GenerateRandom(1,8);
@@ -107,4 +117,46 @@ void Actor::Move()
 		this->SetNextX(this->GetX() - 1);
 		this->SetNextY(this->GetY() - 1);
 	}
+}
+
+void Actor::SetNextX(int x)
+{
+	nextX = x;
+}
+
+void Actor::SetNextY(int y)
+{
+	nextY = y;
+}
+
+int Actor::GetNextX()
+{
+	return nextX;
+}
+
+int Actor::GetNextY()
+{
+	return nextY;
+}
+
+void Actor::ResetNextPosition()
+{
+	nextX = -1;
+	nextY = -1;
+}
+
+void Actor::SetNextPosition(int x, int y)
+{
+	SetNextX(x);
+	SetNextY(y);
+}
+
+bool Actor::HasMoved()
+{
+	return moved;
+}
+
+void Actor::SetMove(bool value)
+{
+	moved = value;
 }

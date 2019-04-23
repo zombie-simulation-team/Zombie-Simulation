@@ -14,6 +14,10 @@
 
 enum
 {
+	ActorMaxHealth = 100,
+	ActorMaxDefense = 100,
+	ActorMinHealth = 0,
+	ActorMinDefense = 0,
 	MoveUp = 1,
 	MoveRightUp = 2,
 	MoveRight = 3,
@@ -29,6 +33,9 @@ class Actor: public Cell
 private:
 	int health;
 	int defense;
+	int nextX;
+	int nextY;
+	bool moved;
 	I_Random *randomGenerator;
 
 public:
@@ -46,6 +53,14 @@ public:
 	int GetHealth();
 	void ChangeDefense(int);
 	void ChangeHealth(int);
+	void SetNextX(int x);
+	void SetNextY(int y);
+	int GetNextX();
+	int GetNextY();
+	void SetNextPosition(int nextX, int nextY);
+	void ResetNextPosition();
+	bool HasMoved();
+	void SetMove(bool value);
 };
 
 #endif /* ACTOR_H_ */
