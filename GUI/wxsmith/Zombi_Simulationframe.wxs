@@ -124,7 +124,7 @@
 					<object class="wxPanel" name="ID_DISPALY_PANEL" variable="DisplayPanel" member="yes">
 						<pos>0,0</pos>
 						<size>700,300</size>
-						<bg>#05B7F7</bg>
+						<bg>#58BBEE</bg>
 						<object class="wxStaticBitmap" name="ID_STATICBITMAP1" variable="WelcomeScreen" member="yes">
 							<bitmap>/home/ubuntu/Documents/Zombie-Simulation/GUI/icons/StartScreen.PNG</bitmap>
 							<pos>0,0</pos>

@@ -170,7 +170,7 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
     ScoreTextCtrl = new wxTextCtrl(ConfigPanel, ID_TEXTCTRL1, _("0 - 0"), wxPoint(615,5), wxSize(50,20), wxTE_READONLY|wxTE_CENTRE, wxDefaultValidator, _T("ID_TEXTCTRL1"));
     ScoreTextCtrl->SetMaxLength(10);
     DisplayPanel = new wxPanel(BackgroundPanel, ID_DISPALY_PANEL, wxPoint(0,0), wxSize(700,300), wxTAB_TRAVERSAL, _T("ID_DISPALY_PANEL"));
-    DisplayPanel->SetBackgroundColour(wxColour(5,183,247));
+    DisplayPanel->SetBackgroundColour(wxColour(88,187,238));
     WelcomeScreen = new wxStaticBitmap(DisplayPanel, ID_STATICBITMAP1, wxBitmap(wxImage(_T("/home/ubuntu/Documents/Zombie-Simulation/GUI/icons/StartScreen.PNG")).Rescale(wxSize(700,300).GetWidth(),wxSize(700,300).GetHeight())), wxPoint(0,0), wxSize(700,300), wxSIMPLE_BORDER, _T("ID_STATICBITMAP1"));
     BoxSizer1->Add(BackgroundPanel, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     SetSizer(BoxSizer1);
@@ -262,17 +262,13 @@ void Zombi_SimulationFrame::render()
         zombieCount = 0;
         wxBufferedDC *dc = new wxBufferedDC(&clientDC, wxSize(width,length));
         dc->Clear();
-        dc->SetBrush(*wxGREY_BRUSH);
+        dc->SetBrush(wxBrush( wxColour(185,185,185)));
+//        dc->SetBrush(*wxGREY_BRUSH);
         dc->DrawRectangle(NorthAmericaX,NorthAmericaY, NorthAmericaSize*squareSize, NorthAmericaSize*squareSize);
-        dc->SetBrush(*wxBLUE_BRUSH);
         dc->DrawRectangle(SouthAmericaX,SouthAmericaY, SouthAmericaSize*squareSize, SouthAmericaSize*squareSize);
-        dc->SetBrush(*wxRED_BRUSH);
         dc->DrawRectangle(EuropeX,EuropeY, EuropeSize*squareSize, EuropeSize*squareSize);
-        dc->SetBrush( wxBrush( wxColour(223,107,19)));
         dc->DrawRectangle(AustraliaX,AustraliaY, AustraliaSize*squareSize, AustraliaSize*squareSize);
-        dc->SetBrush(*wxGREEN_BRUSH);
         dc->DrawRectangle(AsiaX,AsiaY, AsiaSize*squareSize, AsiaSize*squareSize);
-        dc->SetBrush(wxBrush( wxColour(173,9,148)));
         dc->DrawRectangle(AfricaX,AfricaY, AfricaSize*squareSize, AfricaSize*squareSize);
 
 
