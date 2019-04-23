@@ -26,7 +26,7 @@
 
 wxBitmap zombieBMP("./icons/zombie_16px.png", wxBITMAP_TYPE_PNG);
 wxBitmap humanBMP("./icons/human_16px.png", wxBITMAP_TYPE_PNG);
-wxBitmap trapBMP("./icons/trap.png", wxBITMAP_TYPE_PNG);
+wxBitmap trapBMP("./icons/trap_16px.png", wxBITMAP_TYPE_PNG);
 wxBitmap resourceBMP("./icons/resource_16px.png", wxBITMAP_TYPE_PNG);
 
 
@@ -74,8 +74,6 @@ const long Zombi_SimulationFrame::ID_SPINCTRL1 = wxNewId();
 const long Zombi_SimulationFrame::ID_STATICTEXT6 = wxNewId();
 const long Zombi_SimulationFrame::ID_GAUGE = wxNewId();
 const long Zombi_SimulationFrame::ID_STATICTEXT7 = wxNewId();
-const long Zombi_SimulationFrame::ID_STATICTEXT8 = wxNewId();
-const long Zombi_SimulationFrame::ID_STATICTEXT9 = wxNewId();
 const long Zombi_SimulationFrame::ID_CONFIG_PANEL = wxNewId();
 const long Zombi_SimulationFrame::ID_STATICBITMAP1 = wxNewId();
 const long Zombi_SimulationFrame::ID_DISPALY_PANEL = wxNewId();
@@ -134,19 +132,18 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
     wxMenu* Menu2;
 
     Create(parent, wxID_ANY, _("Zombie Simulation"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
-    SetClientSize(wxSize(714,438));
+    SetClientSize(wxSize(705,430));
     {
     	wxIcon FrameIcon;
     	FrameIcon.CopyFromBitmap(wxBitmap(wxImage(_T("./icons/biohazard.png"))));
     	SetIcon(FrameIcon);
     }
     BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
-    BackgroundPanel = new wxPanel(this, ID_BACKGROUND_PANEL, wxDefaultPosition, wxSize(700,380), wxTAB_TRAVERSAL, _T("ID_BACKGROUND_PANEL"));
-    ConfigPanel = new wxPanel(BackgroundPanel, ID_CONFIG_PANEL, wxPoint(0,296), wxSize(700,96), wxSUNKEN_BORDER|wxTAB_TRAVERSAL, _T("ID_CONFIG_PANEL"));
+    BackgroundPanel = new wxPanel(this, ID_BACKGROUND_PANEL, wxDefaultPosition, wxSize(700,390), wxTAB_TRAVERSAL, _T("ID_BACKGROUND_PANEL"));
+    ConfigPanel = new wxPanel(BackgroundPanel, ID_CONFIG_PANEL, wxPoint(0,296), wxSize(704,96), wxSUNKEN_BORDER|wxTAB_TRAVERSAL, _T("ID_CONFIG_PANEL"));
     ConfigPanel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE));
     StartButton = new wxButton(ConfigPanel, ID_STAR_BUTTON, _("Start"), wxPoint(24,16), wxDefaultSize, 0, wxDefaultValidator, _T("ID_STAR_BUTTON"));
-    StartButton->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_HIGHLIGHT));
-    ZombieSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_ZOMBIE_SPINCTRL, _T("10"), wxPoint(144,24), wxSize(56,27), 0, 2, 100, 10, _T("ID_ZOMBIE_SPINCTRL"));
+    ZombieSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_ZOMBIE_SPINCTRL, _T("10"), wxPoint(144,24), wxSize(56,27), 0, 2, 80, 10, _T("ID_ZOMBIE_SPINCTRL"));
     ZombieSpinCtrl->SetValue(_T("10"));
     StaticText1 = new wxStaticText(ConfigPanel, ID_STATICTEXT1, _("Zombies %"), wxPoint(136,8), wxDefaultSize, 0, _T("ID_STATICTEXT1"));
     TrapSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_TRAP_SPINCTRL, _T("5"), wxPoint(312,24), wxSize(56,27), 0, 0, 10, 5, _T("ID_TRAP_SPINCTRL"));
@@ -156,7 +153,7 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
     StaticText2 = new wxStaticText(ConfigPanel, ID_STATICTEXT2, _("Humans %"), wxPoint(224,8), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
     StaticText3 = new wxStaticText(ConfigPanel, ID_STATICTEXT3, _("Traps %"), wxPoint(312,8), wxSize(64,17), 0, _T("ID_STATICTEXT3"));
     StaticText4 = new wxStaticText(ConfigPanel, ID_STATICTEXT4, _("Resources %"), wxPoint(384,8), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
-    HumanSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_HUMAN_SPINCTRL, _T("30"), wxPoint(232,24), wxSize(56,27), 0, 5, 100, 30, _T("ID_HUMAN_SPINCTRL"));
+    HumanSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_HUMAN_SPINCTRL, _T("30"), wxPoint(232,24), wxSize(56,27), 0, 5, 80, 30, _T("ID_HUMAN_SPINCTRL"));
     HumanSpinCtrl->SetValue(_T("30"));
     ContinentSpinCtrl = new wxSpinCtrl(ConfigPanel, ID_CONTINENT_SPINCTRL, _T("4"), wxPoint(504,24), wxSize(63,27), 0, 1, 6, 4, _T("ID_CONTINENT_SPINCTRL"));
     ContinentSpinCtrl->SetValue(_T("4"));
@@ -166,8 +163,6 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
     StaticText6 = new wxStaticText(ConfigPanel, ID_STATICTEXT6, _("Speed"), wxPoint(600,8), wxDefaultSize, 0, _T("ID_STATICTEXT6"));
     ProgressGauge = new wxGauge(ConfigPanel, ID_GAUGE, 100, wxPoint(112,56), wxDefaultSize, 0, wxDefaultValidator, _T("ID_GAUGE"));
     StaticText7 = new wxStaticText(ConfigPanel, ID_STATICTEXT7, _("Progress"), wxPoint(40,56), wxDefaultSize, 0, _T("ID_STATICTEXT7"));
-    StaticText8 = new wxStaticText(ConfigPanel, ID_STATICTEXT8, _("H"), wxPoint(240,64), wxDefaultSize, 0, _T("ID_STATICTEXT8"));
-    StaticText9 = new wxStaticText(ConfigPanel, ID_STATICTEXT9, _("Z"), wxPoint(328,64), wxDefaultSize, 0, _T("ID_STATICTEXT9"));
     DisplayPanel = new wxPanel(BackgroundPanel, ID_DISPALY_PANEL, wxPoint(0,0), wxSize(700,300), wxTAB_TRAVERSAL, _T("ID_DISPALY_PANEL"));
     DisplayPanel->SetBackgroundColour(wxColour(5,183,247));
     WelcomeScreen = new wxStaticBitmap(DisplayPanel, ID_STATICBITMAP1, wxBitmap(wxImage(_T("./icons/zombie-cartoon.jpg")).Rescale(wxSize(700,300).GetWidth(),wxSize(700,300).GetHeight())), wxPoint(0,0), wxSize(700,300), wxSIMPLE_BORDER, _T("ID_STATICBITMAP1"));
@@ -199,6 +194,7 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_HUMAN_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnHumanSpinCtrlChange);
     Connect(ID_CONTINENT_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnContinentSpinCtrlChange);
     Connect(ID_SPINCTRL1,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnSpeedCtrlChange);
+    DisplayPanel->Connect(wxEVT_ERASE_BACKGROUND,(wxObjectEventFunction)&Zombi_SimulationFrame::OnDisplayPanelEraseBackground,0,this);
     Connect(ID_MENUITEM1,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnAbout);
     //*)
@@ -259,12 +255,13 @@ void Zombi_SimulationFrame::render()
     ProgressGauge->SetValue(progress);
     int zombieCount = 0;
     int humanCount = 0;
-
     int loopCount = 0;
     int count = 1;
     while(count < totalContinents)
     {
 //        dc.Clear();
+        humanCount = 0;
+        zombieCount = 0;
         wxBufferedDC *dc = new wxBufferedDC(&clientDC, wxSize(width,length));
         dc->Clear();
         dc->SetBrush(*wxGREY_BRUSH);
@@ -298,12 +295,18 @@ void Zombi_SimulationFrame::render()
             }
             else
             {
+//                if(continent[j]->ZombiesWon())
+//                {
+//                    zombieWon++;
+//                }
+//                else if(Continent[j]->HumansWon())
+//                {
+//                    humanWon++;
+//                }
                 count++;
             }
         }
 
-//        HumanCountDisplay->WriteText(wxString::Format(wxT("%i"),humanCount));
-//        ZombieCountDisplay->WriteText(wxString::Format(wxT("%i"),zombieCount));
 
         wxMilliSleep(speed * 10);
 
@@ -313,13 +316,33 @@ void Zombi_SimulationFrame::render()
             ProgressGauge->SetValue(ProgressGauge->GetValue()+gaugeValue);
         }
 
-        SetStatusText(wxString::Format(wxT("Day:%i"), loopCount));
+        SetStatusText(wxString::Format(wxT("Day:%i    Humans:%i    Zombies:%i"), loopCount, humanCount, zombieCount));
         loopCount++;
 
     }
-
     ProgressGauge->SetValue(100);
-    SetStatusText(wxString::Format(wxT("Day: %i"), loopCount) + wxT(". End of Simulation."));
+    SetStatusText(wxString::Format(wxT("Day: %i    Humans:%i     Zombies:%i.   "), loopCount,humanCount, zombieCount) + wxT(" End of Simulation."));
+
+    int zombiePercent = ((double)zombieCount/(zombieCount+humanCount))*100;
+    int humanPercent = ((double)humanCount/(zombieCount+humanCount))*100;
+    wxString results;
+    wxString winner;
+    if( zombieCount > humanCount)
+    {
+        results.Append(wxString::Format(wxT("Zombies conquered %i percent of the World"),zombiePercent));
+        winner.Append("ZOMBIES WON");
+    }
+    else if( zombieCount < humanCount )
+    {
+        results.Append(wxString::Format(wxT("Humans saved %i percent of the World"),humanPercent));
+        winner.Append("HUMANS WON");
+    }
+    else
+    {
+        results.Append(wxT("Humans and Zombies got each half of the World"));
+        winner.Append("TIE");
+    }
+    wxMessageBox(results, winner);
 
     for(int j = 0 ; j< totalContinents ; j++)
         delete continent[j];
@@ -406,15 +429,20 @@ void Zombi_SimulationFrame::SetCellPercentageVariables()
     initializeOK = true;
     int totalPercentage = humans+zombies+traps+resources;
 
-    if(totalPercentage > 100)
+    if(totalPercentage > 75)
     {
-        wxMessageBox(wxString("Total percent goes over 100"),wxString("Wrong Percentage"));
+        wxMessageBox(wxString("Cannot fill the world over 75%. Need to leave some empty places to move"),wxString("Wrong Percentage"));
         initializeOK = false;
 
     }
-    else if(humans == 100 || zombies == 100)
+    else if(humans == 75 || zombies == 75)
     {
-        wxMessageBox(wxString("Cannot select 100% of one type"),wxString("Wrong Percentage"));
+        wxMessageBox(wxString("Cannot select all percentage of one type"),wxString("Wrong Percentage"));
+        initializeOK = false;
+    }
+    else if((humans + zombies)>75)
+    {
+        wxMessageBox(wxString("Cannot fill the world with 75% of zombies and humans only"),wxString("Wrong Percentage"));
         initializeOK = false;
     }
 
@@ -431,11 +459,15 @@ void Zombi_SimulationFrame::InitiliazeContinets()
         int tmpTraps         = (tmpContinentSize*tmpContinentSize)*traps/100;
         int tmpResources     = (tmpContinentSize*tmpContinentSize)*resources/100;
 
-        continent[i] = new Continent(tmpContinentSize,tmpName, tmpHumans, tmpZombies, tmpTraps, tmpResources, RandomGeneratorObject);
+        continent[i] = new Continent(tmpContinentSize, tmpName, tmpHumans, tmpZombies, tmpTraps, tmpResources, RandomGeneratorObject);
     }
 }
 
 void Zombi_SimulationFrame::OnContinentSpinCtrlChange(wxSpinEvent& event)
 {
     totalContinents = ContinentSpinCtrl->GetValue() + 1;
+}
+
+void Zombi_SimulationFrame::OnDisplayPanelEraseBackground(wxEraseEvent& event)
+{
 }

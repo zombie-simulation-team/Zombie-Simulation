@@ -93,6 +93,7 @@ class Zombi_SimulationFrame: public wxFrame
         void InitiliazeContinets();
         void OnContinentSpinCtrlChange(wxSpinEvent& event);
         void OnSpeedCtrlChange(wxSpinEvent& event);
+        void OnDisplayPanelEraseBackground(wxEraseEvent& event);
         //*)
 
         //(*Identifiers(Zombi_SimulationFrame)
@@ -111,8 +112,6 @@ class Zombi_SimulationFrame: public wxFrame
         static const long ID_STATICTEXT6;
         static const long ID_GAUGE;
         static const long ID_STATICTEXT7;
-        static const long ID_STATICTEXT8;
-        static const long ID_STATICTEXT9;
         static const long ID_CONFIG_PANEL;
         static const long ID_STATICBITMAP1;
         static const long ID_DISPALY_PANEL;
@@ -133,7 +132,6 @@ class Zombi_SimulationFrame: public wxFrame
         wxButton* StartButton;
         wxStaticText* StaticText3;
         wxSpinCtrl* TrapSpinCtrl;
-        wxStaticText* StaticText8;
         wxSpinCtrl* ZombieSpinCtrl;
         wxStaticText* StaticText7;
         wxSpinCtrl* ContinentSpinCtrl;
@@ -143,7 +141,6 @@ class Zombi_SimulationFrame: public wxFrame
         wxStaticText* StaticText6;
         wxGauge* ProgressGauge;
         wxSpinCtrl* ResourceSpinCtrl;
-        wxStaticText* StaticText9;
         wxPanel* BackgroundPanel;
         //*)
 

@@ -553,11 +553,11 @@ void Continent::InitializeHumans(int humanCount)
 
 bool Continent::Finished()
 {
-	if(this->GetZombieCount() == 0)
+	if(ZombiesWon())
 	{
 		return true;
 	}
-	else if(this->GetHumanCount() == 0)
+	else if(HumansWon())
 	{
 		return true;
 	}
@@ -583,4 +583,14 @@ void Continent::ShuffleCellTickOrder()
 			positions[posTwo] = temp;
 		}
 	}
+}
+
+bool Continent::HumansWon()
+{
+	return this->GetZombieCount() == 0;
+}
+
+bool Continent::ZombiesWon()
+{
+	return this->GetHumanCount() == 0;
 }

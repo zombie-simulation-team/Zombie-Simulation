@@ -3,15 +3,15 @@
 	<object class="wxFrame" name="Zombi_SimulationFrame">
 		<title>Zombie Simulation</title>
 		<icon>./icons/biohazard.png</icon>
-		<size>714,438</size>
+		<size>705,430</size>
 		<id_arg>0</id_arg>
 		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
 			<object class="sizeritem">
 				<object class="wxPanel" name="ID_BACKGROUND_PANEL" variable="BackgroundPanel" member="yes">
-					<size>700,380</size>
+					<size>700,390</size>
 					<object class="wxPanel" name="ID_CONFIG_PANEL" variable="ConfigPanel" member="yes">
 						<pos>0,296</pos>
-						<size>700,96</size>
+						<size>704,96</size>
 						<bg>wxSYS_COLOUR_BTNFACE</bg>
 						<style>wxSUNKEN_BORDER|wxTAB_TRAVERSAL</style>
 						<object class="wxButton" name="ID_STAR_BUTTON" variable="StartButton" member="yes">
@@ -94,14 +94,6 @@
 						<object class="wxStaticText" name="ID_STATICTEXT7" variable="StaticText7" member="yes">
 							<label>Progress</label>
 							<pos>40,56</pos>
-						</object>
-						<object class="wxStaticText" name="ID_STATICTEXT8" variable="StaticText8" member="yes">
-							<label>H</label>
-							<pos>240,64</pos>
-						</object>
-						<object class="wxStaticText" name="ID_STATICTEXT9" variable="StaticText9" member="yes">
-							<label>Z</label>
-							<pos>328,64</pos>
 						</object>
 					</object>
 					<object class="wxPanel" name="ID_DISPALY_PANEL" variable="DisplayPanel" member="yes">
