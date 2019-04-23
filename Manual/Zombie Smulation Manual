@@ -1,0 +1,33 @@
+The zombie simulation game consists of setting up the world continents filled with zombies and humans and let it play it to see who conquers it. The continents also contain traps that can kill the zombies and resources that help the humans. 
+
+Step to use the GUI
+1) Open the terminal and go to the GUI folder(Zombie-Simulation/Source/GUI/). Run the excecutable with the following command: "./Zombi_Simulation". If the application needs to be rebuild run "make" command from the GUI folder.
+
+2) The aplication loads with predefined values and clicking the "Start" button would run the simulation right away, but you can select any setup you like before running.
+
+3) Configuratin options for the simulation:
+--->Start button: Starts the game with the current configuration
+--->Zombies %: Sets the percentage of zombies to populate the continents
+
+--->Humans %: Sets the percentage of humans to populate the continents
+
+--->Traps %: Sets the percentage of traps to populate the continents. Maximum is 10.
+    
+--->Resources %: Sets the percentage of resources to populate the continents. Maximum is 20.
+
+   NOTE:
+	For the setup percentage, the sum of all percentages cannot go over 75% because the continents need empty cells for the zombies and humans to move.
+
+--->Contient: Sets the amount of continents to use for the simulation. Maximum is 6. Minimum is 1.
+
+--->Speed: Sets the speed at which the simulation will run starting from 1 to 10.
+
+4) Saving/Loading configuration buttons:
+
+-->Save button: Saves the current configuration of the game to a file in the "config" folder of the project folder
+
+-->Load button: Loads one the files with the previously saved configurations and set the respective parameters for the simulation.
+
+5) Results:
+	At the end of the simulation a pop up message would appear telling whether zombies or humans won and what percentage of the world was taken by humans or humans 
+ 

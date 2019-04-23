@@ -23,3 +23,13 @@ Testing/CppUTest/autom4te.cache/
 Testing/CppUTest/CppUTestExtTests
 Testing/CppUTest/CppUTestTests
 .DS_Store
+GUI/bin/
+GUI/obj/*
+GUI/wx_pch.h.gch/
+GUI/Zom.depend
+GUI/*.layout
+GUI/Zombi-Simulation.layout
+GUI/Zombi-Simulation.depend
+GUI/*.workspace
+GUI/*.workspace.layout
+GUI/build/

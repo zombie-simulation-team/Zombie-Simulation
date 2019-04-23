@@ -41,8 +41,8 @@ TEST_GROUP(HumanTest)
 	{
 		mock().expectOneCall("GenerateRandom")
 					.onObject(randomGeneratorMock)
-					.withParameter("start", 1)
-					.withParameter("end", 8)
+					.withParameter("start", MoveUp)
+					.withParameter("end", MoveLeftUp)
 					.andReturnValue(val);
 	}
 
@@ -50,8 +50,8 @@ TEST_GROUP(HumanTest)
 	{
 		mock().expectNCalls(n, "GenerateRandom")
 					.onObject(randomGeneratorMock)
-					.withParameter("start", 1)
-					.withParameter("end", 8)
+					.withParameter("start", MoveUp)
+					.withParameter("end", MoveLeftUp)
 					.andReturnValue(val);
 	}
 
@@ -118,7 +118,7 @@ TEST(HumanTest, ShouldIncreaseHumanHealthBy20WhenFindingResourceCellToEat)
 
 }
 
-TEST(HumanTest, ShouldDecrementHealthByTwentyAfterOneTick)
+TEST(HumanTest, ShouldDecrementHealthByOneAfterOneTick)
 {
 	Human *testHuman = new Human(4, 3, randomGeneratorMock);
 
@@ -126,7 +126,7 @@ TEST(HumanTest, ShouldDecrementHealthByTwentyAfterOneTick)
 
 	testHuman->Tick();
 
-	int expectedHealth = DefaultHealth - 20;
+	int expectedHealth = DefaultHealth - 1;
 	int actualHealth = testHuman->GetHealth();
 
 	CHECK_EQUAL(expectedHealth, actualHealth);
@@ -134,13 +134,13 @@ TEST(HumanTest, ShouldDecrementHealthByTwentyAfterOneTick)
 	delete testHuman;
 }
 
-TEST(HumanTest, ShouldDecrementHealthToZeroAfter5Tick)
+TEST(HumanTest, ShouldDecrementHealthToZeroAfter20Tick)
 {
 	Human *testHuman = new Human(4, 3, randomGeneratorMock);
 
-	RandomGeneratorShouldBeCalled(5 Times, AndReturn MoveDown);
+	RandomGeneratorShouldBeCalled(100 Times, AndReturn MoveDown);
 
-	ShouldTick(testHuman, 5 Times);
+	ShouldTick(testHuman, 100 Times);
 
 	int expectedHealth = 0;
 	int actualHealth = testHuman->GetHealth();
