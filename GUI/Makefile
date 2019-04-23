@@ -30,8 +30,9 @@ $(BUILD_DIR)/%.cpp.o: %.cpp
 
 # Cleans all the object files and program executable
 clean:
-	rm $(PROGRAM)
-	rm -r $(BUILD_DIR)
+	@echo "Removing $(BUILD_DIR) folder and $(PROGRAM)";
+	@rm -r $(BUILD_DIR);
+	@rm $(PROGRAM)
 
 # include all Dependencies
 -include $(DEP)
