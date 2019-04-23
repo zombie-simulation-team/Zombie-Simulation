@@ -57,6 +57,8 @@ public:
 	void CheckMove(Cell *cell);
 	virtual ~Continent();
 	bool Finished();
+	bool ZombiesWon();
+	bool HumansWon();
 };
 
 #endif /* CONTINENT_H_ */
