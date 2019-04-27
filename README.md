@@ -17,3 +17,7 @@ This project is an application that simulates an infectious disease, similar to 
 Because of our defined idea in making a light GUI we were able to obtain great performance on our implementation. At maximum we only used approximately 41MB(39,932KB) of memory, and in respect to the Beaglebone that represents only 8% of its 512MB of RAM. Those values can be obtained in the terminal after running some commands to display memory usage.
 
 <img src="images/Resources.png" width="600">
+
+### References
++ Testing Framework: [CppUTest](https://github.com/cpputest/cpputest)
++ Continuous Integration: [Travis CI](https://travis-ci.org/getting_started)
