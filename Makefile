@@ -57,6 +57,7 @@ CPPUTEST_LDFLAGS += -fprofile-arcs
 # mocks, stubs and fakes.  You can also just put them
 # in TEST_SRC_DIRS
 MOCKS_SRC_DIRS += \
+	Testing/Mock/ \
 
 # --- SRC_FILES ---
 # Use SRC_FILES to specifiy individual production
@@ -83,7 +84,6 @@ SRC_DIRS += \
 	Source/Actor/ \
 	Source/Zombie/ \
 	Source/Random/ \
-	Source/Mock/ \
 	Source/Utils/ \
 	Source/Human/ \
 
