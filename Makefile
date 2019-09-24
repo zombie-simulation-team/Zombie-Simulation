@@ -2,7 +2,7 @@
 SILENCE ?= @
 
 PROJECT_HOME_DIR ?= .
-BUILD_PROGRAM_DIR ?= ./GUI/
+TARGET_FILENAME ?= Target.mk
 
 PROJECT_NAME ?= Zombie-Simulation
 COMPONENT_NAME ?= $(PROJECT_NAME)
@@ -128,10 +128,10 @@ upgrade:
 	rm -rf $(CPPUTEST_HOME)/lib
 
 target:
-	make -C $(BUILD_PROGRAM_DIR)
+	make -f $(TARGET_FILENAME)
 
 clean_target:
-	make -C $(BUILD_PROGRAM_DIR) clean
+	make -f $(TARGET_FILENAME) clean
 
 # Cleans everything
 distclean: clean upgrade

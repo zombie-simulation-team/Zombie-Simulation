@@ -9,8 +9,6 @@
 #include "Zombi_SimulationMain.h"
 #include <wx/msgdlg.h>
 
-
-
 //(*InternalHeaders(Zombi_SimulationFrame)
 #include <wx/settings.h>
 #include <wx/string.h>
