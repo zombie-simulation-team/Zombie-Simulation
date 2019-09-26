@@ -32,7 +32,7 @@ SRC_DIRS += \
 	$(SOURCE_DIR)/Human/ \
 
 # Compiler 
-CXX = $(shell wx-config --cxx)
+CXX = g++
 INCLUDES = $(patsubst %,-I%, $(SRC_DIRS))
 CXXFLAGS = -c $(INCLUDES)
 
