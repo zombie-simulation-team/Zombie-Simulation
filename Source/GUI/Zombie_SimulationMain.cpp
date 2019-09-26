@@ -6,10 +6,10 @@
  **************************************************************/
 
 #include "wx_pch.h"
-#include "Zombi_SimulationMain.h"
+#include "Zombie_SimulationMain.h"
 #include <wx/msgdlg.h>
 
-//(*InternalHeaders(Zombi_SimulationFrame)
+//(*InternalHeaders(Zombie_SimulationFrame)
 #include <wx/settings.h>
 #include <wx/string.h>
 #include <wx/intl.h>
@@ -56,39 +56,39 @@ wxString wxbuildinfo(wxbuildinfoformat format)
     return wxbuild;
 }
 
-//(*IdInit(Zombi_SimulationFrame)
-const long Zombi_SimulationFrame::ID_STAR_BUTTON = wxNewId();
-const long Zombi_SimulationFrame::ID_ZOMBIE_SPINCTRL = wxNewId();
-const long Zombi_SimulationFrame::ID_STATICTEXT1 = wxNewId();
-const long Zombi_SimulationFrame::ID_TRAP_SPINCTRL = wxNewId();
-const long Zombi_SimulationFrame::ID_RESOURCE_SPINCTRL = wxNewId();
-const long Zombi_SimulationFrame::ID_STATICTEXT2 = wxNewId();
-const long Zombi_SimulationFrame::ID_STATICTEXT3 = wxNewId();
-const long Zombi_SimulationFrame::ID_STATICTEXT4 = wxNewId();
-const long Zombi_SimulationFrame::ID_HUMAN_SPINCTRL = wxNewId();
-const long Zombi_SimulationFrame::ID_CONTINENT_SPINCTRL = wxNewId();
-const long Zombi_SimulationFrame::ID_STATICTEXT5 = wxNewId();
-const long Zombi_SimulationFrame::ID_SPINCTRL1 = wxNewId();
-const long Zombi_SimulationFrame::ID_STATICTEXT6 = wxNewId();
-const long Zombi_SimulationFrame::ID_GAUGE = wxNewId();
-const long Zombi_SimulationFrame::ID_STATICTEXT7 = wxNewId();
-const long Zombi_SimulationFrame::ID_BUTTON1 = wxNewId();
-const long Zombi_SimulationFrame::ID_BUTTON2 = wxNewId();
-const long Zombi_SimulationFrame::ID_STATICTEXT8 = wxNewId();
-const long Zombi_SimulationFrame::ID_TEXTCTRL1 = wxNewId();
-const long Zombi_SimulationFrame::ID_CONFIG_PANEL = wxNewId();
-const long Zombi_SimulationFrame::ID_STATICBITMAP1 = wxNewId();
-const long Zombi_SimulationFrame::ID_DISPALY_PANEL = wxNewId();
-const long Zombi_SimulationFrame::ID_BACKGROUND_PANEL = wxNewId();
-const long Zombi_SimulationFrame::ID_STATUSBAR1 = wxNewId();
+//(*IdInit(Zombie_SimulationFrame)
+const long Zombie_SimulationFrame::ID_STAR_BUTTON = wxNewId();
+const long Zombie_SimulationFrame::ID_ZOMBIE_SPINCTRL = wxNewId();
+const long Zombie_SimulationFrame::ID_STATICTEXT1 = wxNewId();
+const long Zombie_SimulationFrame::ID_TRAP_SPINCTRL = wxNewId();
+const long Zombie_SimulationFrame::ID_RESOURCE_SPINCTRL = wxNewId();
+const long Zombie_SimulationFrame::ID_STATICTEXT2 = wxNewId();
+const long Zombie_SimulationFrame::ID_STATICTEXT3 = wxNewId();
+const long Zombie_SimulationFrame::ID_STATICTEXT4 = wxNewId();
+const long Zombie_SimulationFrame::ID_HUMAN_SPINCTRL = wxNewId();
+const long Zombie_SimulationFrame::ID_CONTINENT_SPINCTRL = wxNewId();
+const long Zombie_SimulationFrame::ID_STATICTEXT5 = wxNewId();
+const long Zombie_SimulationFrame::ID_SPINCTRL1 = wxNewId();
+const long Zombie_SimulationFrame::ID_STATICTEXT6 = wxNewId();
+const long Zombie_SimulationFrame::ID_GAUGE = wxNewId();
+const long Zombie_SimulationFrame::ID_STATICTEXT7 = wxNewId();
+const long Zombie_SimulationFrame::ID_BUTTON1 = wxNewId();
+const long Zombie_SimulationFrame::ID_BUTTON2 = wxNewId();
+const long Zombie_SimulationFrame::ID_STATICTEXT8 = wxNewId();
+const long Zombie_SimulationFrame::ID_TEXTCTRL1 = wxNewId();
+const long Zombie_SimulationFrame::ID_CONFIG_PANEL = wxNewId();
+const long Zombie_SimulationFrame::ID_STATICBITMAP1 = wxNewId();
+const long Zombie_SimulationFrame::ID_DISPALY_PANEL = wxNewId();
+const long Zombie_SimulationFrame::ID_BACKGROUND_PANEL = wxNewId();
+const long Zombie_SimulationFrame::ID_STATUSBAR1 = wxNewId();
 //*)
 
-BEGIN_EVENT_TABLE(Zombi_SimulationFrame,wxFrame)
-    //(*EventTable(Zombi_SimulationFrame)
+BEGIN_EVENT_TABLE(Zombie_SimulationFrame,wxFrame)
+    //(*EventTable(Zombie_SimulationFrame)
     //*)
 END_EVENT_TABLE()
 
-Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
+Zombie_SimulationFrame::Zombie_SimulationFrame(wxWindow* parent,wxWindowID id)
 {
     RandomGeneratorObject = new RandomGenerator();
 
@@ -125,7 +125,7 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
     continentSpec[5].y = AustraliaY;
 
 //    SetBackgroundStyle(wxBG_STYLE_PAINT); /// NEEDED FOR DOUBLE BUFFERING
-    //(*Initialize(Zombi_SimulationFrame)
+    //(*Initialize(Zombie_SimulationFrame)
     wxBoxSizer* BoxSizer1;
 
     Create(parent, wxID_ANY, _("Zombie Simulation"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
@@ -181,15 +181,15 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
     SetSizer(BoxSizer1);
     Layout();
 
-    Connect(ID_STAR_BUTTON,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnStartButtonClick);
-    Connect(ID_ZOMBIE_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnZombieSpinCtrlChange);
-    Connect(ID_TRAP_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnTrapSpinCtrlChange);
-    Connect(ID_RESOURCE_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnResourceSpinCtrlChange);
-    Connect(ID_HUMAN_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnHumanSpinCtrlChange);
-    Connect(ID_CONTINENT_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnContinentSpinCtrlChange);
-    Connect(ID_SPINCTRL1,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnSpeedCtrlChange);
-    Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnLoadButtonClick);
-    Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&Zombi_SimulationFrame::OnSaveButtonClick);
+    Connect(ID_STAR_BUTTON,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&Zombie_SimulationFrame::OnStartButtonClick);
+    Connect(ID_ZOMBIE_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombie_SimulationFrame::OnZombieSpinCtrlChange);
+    Connect(ID_TRAP_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombie_SimulationFrame::OnTrapSpinCtrlChange);
+    Connect(ID_RESOURCE_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombie_SimulationFrame::OnResourceSpinCtrlChange);
+    Connect(ID_HUMAN_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombie_SimulationFrame::OnHumanSpinCtrlChange);
+    Connect(ID_CONTINENT_SPINCTRL,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombie_SimulationFrame::OnContinentSpinCtrlChange);
+    Connect(ID_SPINCTRL1,wxEVT_COMMAND_SPINCTRL_UPDATED,(wxObjectEventFunction)&Zombie_SimulationFrame::OnSpeedCtrlChange);
+    Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&Zombie_SimulationFrame::OnLoadButtonClick);
+    Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&Zombie_SimulationFrame::OnSaveButtonClick);
     //*)
 
     SetCellPercentageVariables();
@@ -198,25 +198,25 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
 
 }
 
-Zombi_SimulationFrame::~Zombi_SimulationFrame()
+Zombie_SimulationFrame::~Zombie_SimulationFrame()
 {
-    //(*Destroy(Zombi_SimulationFrame)
+    //(*Destroy(Zombie_SimulationFrame)
     delete RandomGeneratorObject;
     //*)
 }
 
-void Zombi_SimulationFrame::OnQuit(wxCommandEvent& event)
+void Zombie_SimulationFrame::OnQuit(wxCommandEvent& event)
 {
     Destroy();
 }
 
-void Zombi_SimulationFrame::OnAbout(wxCommandEvent& event)
+void Zombie_SimulationFrame::OnAbout(wxCommandEvent& event)
 {
     wxString msg = wxbuildinfo(long_f);
     wxMessageBox(msg, _("Welcome to..."));
 }
 
-void Zombi_SimulationFrame::render()
+void Zombie_SimulationFrame::render()
 {
     StartButton->Hide();
     ProgressGauge->Show();
@@ -342,7 +342,7 @@ void Zombi_SimulationFrame::render()
 
 }
 
-void Zombi_SimulationFrame::renderContinentCells(wxDC *dc, Continent *cont, int positionX, int positionY)
+void Zombie_SimulationFrame::renderContinentCells(wxDC *dc, Continent *cont, int positionX, int positionY)
 {
 
 
@@ -378,37 +378,37 @@ void Zombi_SimulationFrame::renderContinentCells(wxDC *dc, Continent *cont, int 
     }
 
 }
-void Zombi_SimulationFrame::OnStartButtonClick(wxCommandEvent& event)
+void Zombie_SimulationFrame::OnStartButtonClick(wxCommandEvent& event)
 {
     render();
 }
 
-void Zombi_SimulationFrame::OnZombieSpinCtrlChange(wxSpinEvent& event)
+void Zombie_SimulationFrame::OnZombieSpinCtrlChange(wxSpinEvent& event)
 {
     SetCellPercentageVariables();
 }
 
-void Zombi_SimulationFrame::OnHumanSpinCtrlChange(wxSpinEvent& event)
+void Zombie_SimulationFrame::OnHumanSpinCtrlChange(wxSpinEvent& event)
 {
     SetCellPercentageVariables();
 }
 
-void Zombi_SimulationFrame::OnTrapSpinCtrlChange(wxSpinEvent& event)
+void Zombie_SimulationFrame::OnTrapSpinCtrlChange(wxSpinEvent& event)
 {
     SetCellPercentageVariables();
 }
 
-void Zombi_SimulationFrame::OnResourceSpinCtrlChange(wxSpinEvent& event)
+void Zombie_SimulationFrame::OnResourceSpinCtrlChange(wxSpinEvent& event)
 {
     SetCellPercentageVariables();
 }
 
-void Zombi_SimulationFrame::OnSpeedCtrlChange(wxSpinEvent& event)
+void Zombie_SimulationFrame::OnSpeedCtrlChange(wxSpinEvent& event)
 {
     SetCellPercentageVariables();
 }
 
-void Zombi_SimulationFrame::SetCellPercentageVariables()
+void Zombie_SimulationFrame::SetCellPercentageVariables()
 {
     speed = 11 - SpeedCtrl->GetValue();
     humans = HumanSpinCtrl->GetValue();
@@ -437,7 +437,7 @@ void Zombi_SimulationFrame::SetCellPercentageVariables()
 
 }
 
-void Zombi_SimulationFrame::InitiliazeContinets()
+void Zombie_SimulationFrame::InitiliazeContinets()
 {
     for(int i = 0; i < totalContinents ; i++)
     {
@@ -452,16 +452,16 @@ void Zombi_SimulationFrame::InitiliazeContinets()
     }
 }
 
-void Zombi_SimulationFrame::OnContinentSpinCtrlChange(wxSpinEvent& event)
+void Zombie_SimulationFrame::OnContinentSpinCtrlChange(wxSpinEvent& event)
 {
     totalContinents = ContinentSpinCtrl->GetValue() + 1;
 }
 
-void Zombi_SimulationFrame::OnDisplayPanelEraseBackground(wxEraseEvent& event)
+void Zombie_SimulationFrame::OnDisplayPanelEraseBackground(wxEraseEvent& event)
 {
 }
 
-void Zombi_SimulationFrame::OnLoadButtonClick(wxCommandEvent& event)
+void Zombie_SimulationFrame::OnLoadButtonClick(wxCommandEvent& event)
 {
     wxFileDialog loadFileDialog(this, wxT("Load a simulation saved configuration"), "", "",  "BIN files (*.bin)|*.bin", wxFD_OPEN|wxFD_FILE_MUST_EXIST);
 
@@ -495,7 +495,7 @@ void Zombi_SimulationFrame::OnLoadButtonClick(wxCommandEvent& event)
     configFile.Close();
 }
 
-void Zombi_SimulationFrame::OnSaveButtonClick(wxCommandEvent& event)
+void Zombie_SimulationFrame::OnSaveButtonClick(wxCommandEvent& event)
 {
     wxString defaultDir = wxGetCwd();
     wxString defaultFilename = wxEmptyString;

@@ -5,15 +5,15 @@
  * Copyright: Florida International University
  **************************************************************/
 
-#ifndef ZOMBI_SIMULATIONAPP_H
-#define ZOMBI_SIMULATIONAPP_H
+#ifndef ZOMBIE_SIMULATIONAPP_H
+#define ZOMBIE_SIMULATIONAPP_H
 
 #include <wx/app.h>
 
-class Zombi_SimulationApp : public wxApp
+class Zombie_SimulationApp : public wxApp
 {
     public:
         virtual bool OnInit();
 };
 
-#endif // ZOMBI_SIMULATIONAPP_H
+#endif // ZOMBIE_SIMULATIONAPP_H
