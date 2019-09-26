@@ -5,10 +5,10 @@
  * Copyright: Florida International University
  **************************************************************/
 
-#ifndef ZOMBI_SIMULATIONMAIN_H
-#define ZOMBI_SIMULATIONMAIN_H
+#ifndef ZOMBIE_SIMULATIONMAIN_H
+#define ZOMBIE_SIMULATIONMAIN_H
 
-//(*Headers(Zombi_SimulationFrame)
+//(*Headers(Zombie_SimulationFrame)
 #include <wx/gauge.h>
 #include <wx/spinctrl.h>
 #include <wx/sizer.h>
@@ -34,12 +34,12 @@ struct ContinentSpec
     int y;
 };
 
-class Zombi_SimulationFrame: public wxFrame
+class Zombie_SimulationFrame: public wxFrame
 {
     public:
 
-        Zombi_SimulationFrame(wxWindow* parent,wxWindowID id = -1);
-        virtual ~Zombi_SimulationFrame();
+        Zombie_SimulationFrame(wxWindow* parent,wxWindowID id = -1);
+        virtual ~Zombie_SimulationFrame();
 
     private:
         Continent **continent;
@@ -80,7 +80,7 @@ class Zombi_SimulationFrame: public wxFrame
         static const int AfricaX = 240;
         static const int AfricaY = 112;
 
-        //(*Handlers(Zombi_SimulationFrame)
+        //(*Handlers(Zombie_SimulationFrame)
         void OnQuit(wxCommandEvent& event);
         void OnAbout(wxCommandEvent& event);
         void OnBackgroundPanelPaint(wxPaintEvent& event);
@@ -100,7 +100,7 @@ class Zombi_SimulationFrame: public wxFrame
         void OnSaveButtonClick(wxCommandEvent& event);
         //*)
 
-        //(*Identifiers(Zombi_SimulationFrame)
+        //(*Identifiers(Zombie_SimulationFrame)
         static const long ID_STAR_BUTTON;
         static const long ID_ZOMBIE_SPINCTRL;
         static const long ID_STATICTEXT1;
@@ -127,7 +127,7 @@ class Zombi_SimulationFrame: public wxFrame
         static const long ID_STATUSBAR1;
         //*)
 
-        //(*Declarations(Zombi_SimulationFrame)
+        //(*Declarations(Zombie_SimulationFrame)
         wxStaticBitmap* WelcomeScreen;
         wxPanel* DisplayPanel;
         wxSpinCtrl* HumanSpinCtrl;
@@ -157,4 +157,4 @@ class Zombi_SimulationFrame: public wxFrame
         DECLARE_EVENT_TABLE()
 };
 
-#endif // ZOMBI_SIMULATIONMAIN_H
+#endif // ZOMBIE_SIMULATIONMAIN_H

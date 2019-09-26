@@ -5,23 +5,23 @@
  * Copyright: Florida International University
  **************************************************************/
 #include "wx_pch.h"
-#include "Zombi_SimulationApp.h"
+#include "Zombie_SimulationApp.h"
 
 //(*AppHeaders
-#include "Zombi_SimulationMain.h"
+#include "Zombie_SimulationMain.h"
 #include <wx/image.h>
 //*)
 
-IMPLEMENT_APP(Zombi_SimulationApp);
+IMPLEMENT_APP(Zombie_SimulationApp);
 
-bool Zombi_SimulationApp::OnInit()
+bool Zombie_SimulationApp::OnInit()
 {
     //(*AppInitialize
     bool wxsOK = true;
     wxInitAllImageHandlers();
     if ( wxsOK )
     {
-    	Zombi_SimulationFrame* Frame = new Zombi_SimulationFrame(0);
+    	Zombie_SimulationFrame* Frame = new Zombie_SimulationFrame(0);
     	Frame->Show();
     	SetTopWindow(Frame);
     }

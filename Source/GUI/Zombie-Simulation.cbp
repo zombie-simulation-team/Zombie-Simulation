@@ -2,12 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="Zombi-Simulation" />
+		<Option title="Zombie-Simulation" />
 		<Option pch_mode="0" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/Zombi-Simulation" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/Zombie-Simulation" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="0" />
 				<Option compiler="gcc" />
@@ -17,7 +17,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/Zombi-Simulation" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/Zombie-Simulation" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="0" />
 				<Option compiler="gcc" />
@@ -62,10 +62,10 @@
 		<Unit filename="Trap.cpp" />
 		<Unit filename="Trap.h" />
 		<Unit filename="Utils.h" />
-		<Unit filename="Zombi_SimulationApp.cpp" />
-		<Unit filename="Zombi_SimulationApp.h" />
-		<Unit filename="Zombi_SimulationMain.cpp" />
-		<Unit filename="Zombi_SimulationMain.h" />
+		<Unit filename="Zombie_SimulationApp.cpp" />
+		<Unit filename="Zombie_SimulationApp.h" />
+		<Unit filename="Zombie_SimulationMain.cpp" />
+		<Unit filename="Zombie_SimulationMain.h" />
 		<Unit filename="Zombie.cpp" />
 		<Unit filename="Zombie.h" />
 		<Unit filename="icons/Human_16px.png" />
@@ -81,15 +81,15 @@
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>
-		<Unit filename="wxsmith/Zombi_Simulationframe.wxs" />
+		<Unit filename="wxsmith/Zombie_SimulationFrame.wxs" />
 		<Extensions>
 			<code_completion />
 			<envvars />
 			<lib_finder disable_auto="1" />
 			<wxsmith version="1">
-				<gui name="wxWidgets" src="Zombi_SimulationApp.cpp" main="Zombi_SimulationFrame" init_handlers="necessary" language="CPP" />
+				<gui name="wxWidgets" src="Zombie_SimulationApp.cpp" main="Zombie_SimulationFrame" init_handlers="necessary" language="CPP" />
 				<resources>
-					<wxFrame wxs="wxsmith/Zombi_Simulationframe.wxs" src="Zombi_SimulationMain.cpp" hdr="Zombi_SimulationMain.h" fwddecl="0" i18n="1" name="Zombi_SimulationFrame" language="CPP" />
+					<wxFrame wxs="wxsmith/Zombie_SimulationFrame.wxs" src="Zombie_SimulationMain.cpp" hdr="Zombie_SimulationMain.h" fwddecl="0" i18n="1" name="Zombie_SimulationFrame" language="CPP" />
 				</resources>
 			</wxsmith>
 			<debugger />

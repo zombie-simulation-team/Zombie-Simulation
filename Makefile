@@ -2,7 +2,7 @@
 SILENCE ?= @
 
 PROJECT_HOME_DIR ?= .
-BUILD_PROGRAM_DIR ?= ./GUI/
+TARGET_FILENAME ?= Target.mk
 
 PROJECT_NAME ?= Zombie-Simulation
 COMPONENT_NAME ?= $(PROJECT_NAME)
@@ -57,6 +57,7 @@ CPPUTEST_LDFLAGS += -fprofile-arcs
 # mocks, stubs and fakes.  You can also just put them
 # in TEST_SRC_DIRS
 MOCKS_SRC_DIRS += \
+	Testing/Mock/ \
 
 # --- SRC_FILES ---
 # Use SRC_FILES to specifiy individual production
@@ -83,7 +84,6 @@ SRC_DIRS += \
 	Source/Actor/ \
 	Source/Zombie/ \
 	Source/Random/ \
-	Source/Mock/ \
 	Source/Utils/ \
 	Source/Human/ \
 
@@ -128,10 +128,10 @@ upgrade:
 	rm -rf $(CPPUTEST_HOME)/lib
 
 target:
-	make -C $(BUILD_PROGRAM_DIR)
+	make -f $(TARGET_FILENAME)
 
 clean_target:
-	make -C $(BUILD_PROGRAM_DIR) clean
+	make -f $(TARGET_FILENAME) clean
 
 # Cleans everything
 distclean: clean upgrade
