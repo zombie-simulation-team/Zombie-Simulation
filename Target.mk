@@ -48,7 +48,7 @@ DEP := $(OBJS:.o=.d)
 # Links all the objects
 $(BUILD_DIR)/$(PROGRAM): $(OBJS)
 	@echo "Building $(PROGRAM)"
-	@$(CXX) $(shell wx-config --libs all) $(OBJS) -o $(PROGRAM)
+	@$(CXX) $(shell wx-config --libs all) $(OBJS) -o $(BUILD_DIR)/$(PROGRAM)
 	@echo "Done with $(PROGRAM)"
 
 # c++ Source
