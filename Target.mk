@@ -1,3 +1,4 @@
+
 # Program name for executable
 PROGRAM = Zombi_Simulation
 
@@ -5,10 +6,10 @@ PROGRAM = Zombi_Simulation
 PROJECT_HOME_DIR ?= .
 
 # Build Directoy
-BUILD_DIR ?= $(PROJECT_HOME_DIR)/build
+BUILD_DIR ?= $(PROJECT_HOME_DIR)/Build
 
 # Source Directories
-SOURCE_DIR ?= $(PROJECT_HOME_DIR)/Source
+SOURCE_DIR = $(PROJECT_HOME_DIR)/Source
 
 # --- SRC_DIRS ---
 # Use SRC_DIRS to specifiy production directories
@@ -16,6 +17,7 @@ SOURCE_DIR ?= $(PROJECT_HOME_DIR)/Source
 # These files are compiled and put into a the
 # ProductionCode library and links with the test runner
 SRC_DIRS += \
+	$(SOURCE_DIR)/GUI/ \
 	$(SOURCE_DIR)/Environment/ \
 	$(SOURCE_DIR)/Cell/ \
 	$(SOURCE_DIR)/Obstacle/ \
@@ -29,35 +31,32 @@ SRC_DIRS += \
 	$(SOURCE_DIR)/Utils/ \
 	$(SOURCE_DIR)/Human/ \
 
-
-# Compiler
+# Compiler 
 CXX = $(shell wx-config --cxx)
-
-# Linker Flags
-LFLAGS += \
-	$(patsubst %,-I%, $(SRC_DIRS)) \
+INCLUDES = $(patsubst %,-I%, $(SRC_DIRS))
+CXXFLAGS = -c $(INCLUDES)
 
 # Source files
-SRC := $(wildcard $(SOURCE_DIRS)/*/*.cpp)
+SRC = $(wildcard ./Source/*/*.cpp)
 
 # Object files
-OBJ := $(SRC:%=$(BUILD_DIR)/%/%.o)
+OBJS = $(SRC:%=$(BUILD_DIR)/%.o)
 
 # Dependencies
-DEP := $(OBJ:.o=.d)
+DEP := $(OBJS:.o=.d)
 
 # Links all the objects
-$(BUILD_DIR)/$(PROGRAM): $(OBJ)
-	$(CXX) $(OBJ) $(shell wx-config --libs all) -o $(PROGRAM)
-
-#$(BUILD_DIR)/GUI/%.cpp.o: $(BUILD_DIR)/Source/%.cpp.o
-#	$(MKDIR_P) $(dir $@)
-#	$(CXX) $(shell wx-config --cxxflags --libs all) $(LFLAGS) -c $< -o $@
+$(BUILD_DIR)/$(PROGRAM): $(OBJS)
+	@echo "Building $(PROGRAM)"
+	@$(CXX) $(shell wx-config --libs all) $(OBJS) -o $(PROGRAM)
+	@echo "Done with $(PROGRAM)"
 
 # c++ Source
-$(BUILD_DIR)/Source/%.cpp.o: %.cpp
+$(BUILD_DIR)/%.cpp.o: %.cpp
 	$(MKDIR_P) $(dir $@)
-	$(CXX) $(shell wx-config --cxxflags --libs all) -c $< -o $@
+	@echo "Compiling $<"
+	@$(CXX) $(CXXFLAGS) $(shell wx-config --cxxflags --libs all) $< -o $@
+	@echo "Done Compiling"
 
 # Cleans all the object files and program executable
 clean:
