@@ -22,10 +22,10 @@
 #include <wx/msgdlg.h>
 #include <wx/file.h>
 
-wxBitmap zombieBMP("./icons/zombie_16px.png", wxBITMAP_TYPE_PNG);
-wxBitmap humanBMP("./icons/human_16px.png", wxBITMAP_TYPE_PNG);
-wxBitmap trapBMP("./icons/trap_16px.png", wxBITMAP_TYPE_PNG);
-wxBitmap resourceBMP("./icons/resource_16px.png", wxBITMAP_TYPE_PNG);
+wxBitmap zombieBMP("./Source/GUI/icons/zombie_16px.png", wxBITMAP_TYPE_PNG);
+wxBitmap humanBMP("./Source/GUI//icons/human_16px.png", wxBITMAP_TYPE_PNG);
+wxBitmap trapBMP("./Source/GUI//icons/trap_16px.png", wxBITMAP_TYPE_PNG);
+wxBitmap resourceBMP("./Source/GUI/icons/resource_16px.png", wxBITMAP_TYPE_PNG);
 
 
 //helper functions
@@ -133,7 +133,7 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
     Move(wxPoint(-1,-1));
     {
     	wxIcon FrameIcon;
-    	FrameIcon.CopyFromBitmap(wxBitmap(wxImage(_T("./icons/biohazard.png"))));
+    	FrameIcon.CopyFromBitmap(wxBitmap(wxImage(_T("./Source/GUI/icons/biohazard.png"))));
     	SetIcon(FrameIcon);
     }
     BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
@@ -169,7 +169,7 @@ Zombi_SimulationFrame::Zombi_SimulationFrame(wxWindow* parent,wxWindowID id)
     ScoreTextCtrl->SetMaxLength(10);
     DisplayPanel = new wxPanel(BackgroundPanel, ID_DISPALY_PANEL, wxPoint(0,0), wxSize(700,300), wxTAB_TRAVERSAL, _T("ID_DISPALY_PANEL"));
     DisplayPanel->SetBackgroundColour(wxColour(88,187,238));
-    WelcomeScreen = new wxStaticBitmap(DisplayPanel, ID_STATICBITMAP1, wxBitmap(wxImage(_T("./icons/StartScreen.PNG")).Rescale(wxSize(700,300).GetWidth(),wxSize(700,300).GetHeight())), wxPoint(0,0), wxSize(700,300), wxSIMPLE_BORDER, _T("ID_STATICBITMAP1"));
+    WelcomeScreen = new wxStaticBitmap(DisplayPanel, ID_STATICBITMAP1, wxBitmap(wxImage(_T("./Source/GUI/icons/StartScreen.PNG")).Rescale(wxSize(700,300).GetWidth(),wxSize(700,300).GetHeight())), wxPoint(0,0), wxSize(700,300), wxSIMPLE_BORDER, _T("ID_STATICBITMAP1"));
     BoxSizer1->Add(BackgroundPanel, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     SetSizer(BoxSizer1);
     StatusBar1 = new wxStatusBar(this, ID_STATUSBAR1, 0, _T("ID_STATUSBAR1"));
@@ -259,10 +259,11 @@ void Zombi_SimulationFrame::render()
     {
         humanCount = 0;
         zombieCount = 0;
+
         wxBufferedDC *dc = new wxBufferedDC(&clientDC, wxSize(width,length));
+
         dc->Clear();
         dc->SetBrush(wxBrush( wxColour(185,185,185)));
-//        dc->SetBrush(*wxGREY_BRUSH);
         dc->DrawRectangle(NorthAmericaX,NorthAmericaY, NorthAmericaSize*squareSize, NorthAmericaSize*squareSize);
         dc->DrawRectangle(SouthAmericaX,SouthAmericaY, SouthAmericaSize*squareSize, SouthAmericaSize*squareSize);
         dc->DrawRectangle(EuropeX,EuropeY, EuropeSize*squareSize, EuropeSize*squareSize);
