@@ -1,6 +1,6 @@
 
-# Program name for executable
-PROGRAM = Zombi_Simulation
+# Target name for executable
+TARGET = Zombie_Simulation
 
 # Project Home Directoy
 PROJECT_HOME_DIR ?= .
@@ -46,23 +46,22 @@ OBJS = $(SRC:%=$(BUILD_DIR)/%.o)
 DEP := $(OBJS:.o=.d)
 
 # Links all the objects
-$(BUILD_DIR)/$(PROGRAM): $(OBJS)
-	@echo "Building $(PROGRAM)"
-	@$(CXX) $(shell wx-config --libs all) $(OBJS) -o $(BUILD_DIR)/$(PROGRAM)
-	@echo "Done with $(PROGRAM)"
+$(BUILD_DIR)/$(TARGET): $(OBJS)
+	@echo "Building $(TARGET)"
+	@$(CXX) $(shell wx-config --libs all) $(OBJS) -o $(BUILD_DIR)/$(TARGET)
+	@echo "Done with $(TARGET)"
 
 # c++ Source
 $(BUILD_DIR)/%.cpp.o: %.cpp
 	$(MKDIR_P) $(dir $@)
 	@echo "Compiling $<"
 	@$(CXX) $(CXXFLAGS) $(shell wx-config --cxxflags --libs all) $< -o $@
-	@echo "Done Compiling"
 
-# Cleans all the object files and program executable
+# Cleans all the object files and TARGET executable
 clean:
-	@echo "Removing $(BUILD_DIR) folder and $(PROGRAM)";
+	@echo "Removing $(BUILD_DIR) folder and $(TARGET)";
 	@rm -r $(BUILD_DIR);
-	@rm $(PROGRAM)
+	@rm $(TARGET)
 
 # include all Dependencies
 -include $(DEP)
